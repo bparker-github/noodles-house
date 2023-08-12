@@ -10,6 +10,9 @@
       <li>
         <SecondaryList />
       </li>
+      <li>
+        <slot name="third-item"></slot>
+      </li>
     </ul>
   </nav>
 </template>

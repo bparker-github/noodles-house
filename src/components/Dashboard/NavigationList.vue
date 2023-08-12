@@ -28,15 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { FunctionalComponent } from 'vue';
 import { useDashboardSidebarStore } from '@/stores/dashboardSidebar';
-
-export interface NavigationListItem {
-  name: string;
-  href: string;
-  icon: FunctionalComponent;
-  current?: boolean;
-}
 
 const { navigation } = useDashboardSidebarStore();
 </script>

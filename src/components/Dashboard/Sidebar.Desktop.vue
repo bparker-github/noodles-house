@@ -11,11 +11,31 @@
         />
       </div>
 
-      <SidebarMainNav />
+      <SidebarMainNav>
+        <template #third-item>
+          <!-- <ProfileAccordion /> -->
+
+          <SecondaryList
+            :items="userNavigation"
+            title="You"
+          />
+        </template>
+      </SidebarMainNav>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import UserProfileIcon from '../UserProfileIcon.vue';
+import SecondaryList from './SecondaryList.vue';
 import SidebarMainNav from './Sidebar.MainNav.vue';
+
+const userNavigation = [
+  {
+    name: 'Your profile',
+    icon: UserProfileIcon,
+    href: '/profile',
+  },
+  { name: 'Sign out', href: '/logout' },
+];
 </script>

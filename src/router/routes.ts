@@ -10,11 +10,15 @@ export const routes: RouteRecordRaw[] = [
     path: '/',
     component: () => import('@/views/RootView.vue')
   },
-
   {
     path: '/home',
-    component: () => import('@/views/HomeView.vue'),
-    meta: {}
+    component: () => import('@/components/Dashboard/DashboardMain.vue'),
+    children: [
+      {
+        path: '/',
+        component: () => import('@/views/HomeView.vue')
+      }
+    ]
   },
 
   NotFound

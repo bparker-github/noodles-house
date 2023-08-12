@@ -1,3 +1,5 @@
+import './assets/index.css';
+
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { MsalPlugin } from './lib/auth/MsalPlugin';

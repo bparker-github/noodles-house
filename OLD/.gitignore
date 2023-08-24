@@ -1,6 +1,6 @@
 # Logs
-Logs
-*.Logs
+logs
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -11,8 +11,6 @@ node_modules
 .DS_Store
 dist
 dist-ssr
-build
-build-ssr
 coverage
 *.local
 
@@ -21,10 +19,10 @@ coverage
 
 # Editor directories and files
 .vscode/*
-!.vsocde/extensions.json
+!.vscode/extensions.json
 .idea
 *.suo
 *.ntvs*
-.njsproj
+*.njsproj
 *.sln
 *.sw?

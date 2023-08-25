@@ -34,10 +34,6 @@
         "url": "https://json.schemastore.org/tsconfig.json"
       }
     ],
-    "tailwindCSS.experimental.configFile": {
-      "./modules/core/tailwind.config.ts": ["modules/core/**"],
-      "./modules/dashboard/tailwind.config.ts": ["modules/dashboard/**"]
-    },
     "[css]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.suggest.insertMode": "replace",
@@ -65,6 +61,6 @@
       ".vscode-insiders",
       "*.code-workspace"
     ],
-    "cSpell.words": ["Msal", "NOOD", "pinia", "tailwindcss"]
+    "cSpell.words": ["headlessui", "heroicons", "Msal", "NOOD", "pinia", "rushstack", "tailwindcss"]
   }
 }

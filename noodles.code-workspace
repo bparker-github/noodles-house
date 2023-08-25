@@ -61,6 +61,16 @@
       ".vscode-insiders",
       "*.code-workspace"
     ],
-    "cSpell.words": ["headlessui", "heroicons", "Msal", "NOOD", "pinia", "rushstack", "tailwindcss"]
+    "cSpell.words": [
+      "headlessui",
+      "heroicons",
+      "Msal",
+      "NOOD",
+      "pinia",
+      "rushstack",
+      "signin",
+      "signout",
+      "tailwindcss"
+    ]
   }
 }

@@ -36,8 +36,7 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./tailwind.config.ts": ["./index.html", "./src/core/**", "./src/dashboard/**"],
-      "./OLD/tailwind.config.ts": ["./OLD/**"]
+      "./tailwind.config.ts": ["./index.html", "./src/core/**", "./src/dashboard/**"]
     },
 
     "[css]": {
@@ -78,6 +77,14 @@
       "signout",
       "tailwindcss",
       "Whiteish"
-    ]
+    ],
+
+    "svg.preview.background": "transparent",
+    "svg.completion.showAdvanced": true,
+    "svg.minify.addAttributesToSVGElement": true,
+    "svg.preview.disable": true,
+    "svg.preview.showRuler": true,
+    "svg.preview.showCrossLine": true,
+    "svg.preview.toolbarSize": "large"
   }
 }

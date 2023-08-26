@@ -82,7 +82,6 @@
     "svg.preview.background": "transparent",
     "svg.completion.showAdvanced": true,
     "svg.minify.addAttributesToSVGElement": true,
-    "svg.preview.disable": true,
     "svg.preview.showRuler": true,
     "svg.preview.showCrossLine": true,
     "svg.preview.toolbarSize": "large"

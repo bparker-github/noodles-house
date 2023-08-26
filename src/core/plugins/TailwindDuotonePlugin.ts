@@ -23,11 +23,12 @@ function flattenColorPalette(colors: RecursiveKeyValuePair): KeyValuePair {
 const TailwindDuotonePlugin = createPlugin(({ matchUtilities, theme }) => {
   matchUtilities(
     {
-      duotone: (colorVal) => {
-        return {
-          '--nood-duotone-primary': toColorValue(colorVal),
-        };
-      },
+      duo: (colorVal) => ({
+        '--nood-duotone-primary': toColorValue(colorVal),
+      }),
+      duo2: (colorVal) => ({
+        '--nood-duotone-secondary': toColorValue(colorVal),
+      }),
     },
     {
       values: flattenColorPalette(theme('colors')),

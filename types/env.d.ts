@@ -9,6 +9,7 @@ interface ImportMetaEnv {
   readonly NOOD_AUTH_CLIENT_SCOPES: string;
   readonly NOOD_AUTH_REDIRECT_URI: string;
   readonly NOOD_AUTH_POST_LOGOUT_REDIRECT_URI: string;
+  readonly NOOD_UNSPLASH_ACCESS_KEY: string;
 }
 
 interface ImportMeta {

@@ -1,10 +1,8 @@
-import { applyThemeToTailwindConfig } from './tailwind.theme';
 import type { Config } from 'tailwindcss';
+import { applyThemeToTailwindConfig } from './src/core/plugins/TailwindConfigAdapter';
 
 const LocalConfig: Config = {
   content: ['./index.html', './src/core/**/*', './src/dashboard/**/*'],
 };
 
-const updated = applyThemeToTailwindConfig(LocalConfig);
-
-export default updated;
+export default applyThemeToTailwindConfig(LocalConfig);

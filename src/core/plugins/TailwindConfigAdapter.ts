@@ -1,7 +1,8 @@
+import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import FormsPlugin from '@tailwindcss/forms';
 import TypographyPlugin from '@tailwindcss/typography';
-import { type Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
+import TailwindDuotonePlugin from './TailwindDuotonePlugin';
 
 const BaseThemeColors = {
   'chalet-green': {
@@ -127,6 +128,6 @@ export function applyThemeToTailwindConfig(config: Config): Config {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
-    plugins: [FormsPlugin, TypographyPlugin],
+    plugins: [FormsPlugin, TypographyPlugin, TailwindDuotonePlugin],
   } satisfies Config;
 }

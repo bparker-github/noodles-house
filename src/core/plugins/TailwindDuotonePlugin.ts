@@ -1,5 +1,5 @@
 import createPlugin from 'tailwindcss/plugin';
-import { KeyValuePair, RecursiveKeyValuePair } from 'tailwindcss/types/config';
+import type { KeyValuePair, RecursiveKeyValuePair } from 'tailwindcss/types/config';
 
 function toColorValue(
   input: string | RecursiveKeyValuePair | ((opts: {}) => string | RecursiveKeyValuePair)
@@ -23,15 +23,14 @@ function flattenColorPalette(colors: RecursiveKeyValuePair): KeyValuePair {
 const TailwindDuotonePlugin = createPlugin(({ matchUtilities, theme }) => {
   matchUtilities(
     {
-      duotone: (colorVal) => ({
-        '--nood-duotone-primary': toColorValue(colorVal),
-      }),
-      'duotone-secondary': (colorVal) => ({
-        '--nood-duotone-secondary': toColorValue(colorVal),
-      }),
+      duotone: (colorVal) => {
+        return {
+          '--nood-duotone-primary': toColorValue(colorVal),
+        };
+      },
     },
     {
-      values: flattenColorPalette(theme('color')),
+      values: flattenColorPalette(theme('colors')),
       type: ['color', 'any'],
     }
   );

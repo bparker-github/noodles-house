@@ -1,6 +1,12 @@
 // Export all used code here, to allow importing from '@/core'
 
 /************
+ *  Assets  *
+ ************/
+export { default as NoodleIcon } from './assets/NoodleIcon.svg';
+export { default as NoodleIconFlat } from './assets/NoodleIconFlat.svg';
+
+/************
  *   Auth   *
  ************/
 export { AuthConfig, BaseLoginRequest, MsalInstance } from './auth/AuthConfig';

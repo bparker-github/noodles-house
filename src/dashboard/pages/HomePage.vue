@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col flex-nowrap items-center px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center lg:max-w-4xl">
+    <div class="mx-auto max-w-[100%] text-center lg:max-w-4xl">
       <h2 class="pb-6 pt-2 text-4xl font-bold tracking-tight text-bali-hai-900 sm:text-6xl">
         Authentication Result
       </h2>

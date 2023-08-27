@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import defaultColors from 'tailwindcss/colors';
 import FormsPlugin from '@tailwindcss/forms';
 import TypographyPlugin from '@tailwindcss/typography';
 import TailwindDuotonePlugin from './TailwindDuotonePlugin';
@@ -105,22 +106,29 @@ const BaseThemeColors = {
   },
 };
 
+const { inherit, white, black, transparent, current } = defaultColors;
+
 export function applyThemeToTailwindConfig(config: Config): Config {
   // Add friendly names
   const themeColors = Object.assign({}, BaseThemeColors, {
-    DarkGreen: BaseThemeColors['chalet-green'].DEFAULT,
-    DarkestGreen: BaseThemeColors.mallard.DEFAULT,
-    Whiteish: BaseThemeColors['off-yellow'].DEFAULT,
-    LightOrange: BaseThemeColors['di-serria'].DEFAULT,
-    DarkOrange: BaseThemeColors.bourbon.DEFAULT,
-    GrayBlue: BaseThemeColors['bali-hai'].DEFAULT,
-    GrayPink: BaseThemeColors.empress.DEFAULT,
+    'dark-green': BaseThemeColors['chalet-green'].DEFAULT,
+    'darkest-green': BaseThemeColors.mallard.DEFAULT,
+    whiteish: BaseThemeColors['off-yellow'].DEFAULT,
+    'light-orange': BaseThemeColors['di-serria'].DEFAULT,
+    'dark-orange': BaseThemeColors.bourbon.DEFAULT,
+    'gray-blue': BaseThemeColors['bali-hai'].DEFAULT,
+    'gray-pink': BaseThemeColors.empress.DEFAULT,
   });
 
   return {
     ...config,
     theme: {
       colors: {
+        inherit,
+        white,
+        black,
+        transparent,
+        current,
         ...themeColors,
       },
       fontFamily: {

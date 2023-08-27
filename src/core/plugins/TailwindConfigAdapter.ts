@@ -135,6 +135,18 @@ export function applyThemeToTailwindConfig(config: Config): Config {
         ...defaultTheme.fontFamily,
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
+      margin: {
+        ...defaultTheme.margin,
+        '10p': '10%',
+        '20p': '20%',
+        '30p': '30%',
+        '40p': '40%',
+        '50p': '50%',
+        '60p': '60%',
+        '70p': '70%',
+        '80p': '80%',
+        '90p': '90%',
+      },
     },
     plugins: [FormsPlugin, TypographyPlugin, TailwindDuotonePlugin],
   } satisfies Config;

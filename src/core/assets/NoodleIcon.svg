@@ -4,7 +4,7 @@
     g#knob-row-2,
     g#knob-row-3,
     g#knob-row-4 {
-      fill: var(--noo-duotone-primary, #69341e);
+      fill: var(--nood-duotone-primary, #69341e);
     }
 
     g#the-noodles {

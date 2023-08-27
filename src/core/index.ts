@@ -31,6 +31,7 @@ export { default as UnsplashImage } from './lib/unsplash/UnsplashImage.vue';
 export { AsyncEnumObject, EnumObject } from './lib/EnumObject';
 export type { IEnumObject, IEnumObjectValue } from './lib/EnumObject';
 export { useUnsplash } from './lib/unsplash/useUnsplash';
+export type { RequireOnlyOne } from './lib/typescriptAugments';
 
 /*************
  *   Pages   *

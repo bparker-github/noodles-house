@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col items-center justify-evenly">
-    <NoodleIconFlat class="duo-empress-950 duo2-bourbon-300 mt-10 h-10 w-20" />
     <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
       <div class="relative overflow-hidden rounded-lg">
         <div class="absolute inset-0">
@@ -35,7 +34,6 @@
 </template>
 
 <script setup lang="ts">
-import { NoodleIconFlat } from '@/core';
 import { createApi } from 'unsplash-js';
 import { ref } from 'vue';
 

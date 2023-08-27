@@ -8,7 +8,7 @@ import {
 } from '@heroicons/vue/24/outline';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { ListItem } from '../layout/SecondaryList.vue';
+import type { ListItem } from '../layout/ListItems';
 
 export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   const isOpen = ref(false);

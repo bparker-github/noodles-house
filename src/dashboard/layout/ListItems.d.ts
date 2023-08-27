@@ -1,34 +1,23 @@
-import type { FunctionalComponent } from 'vue';
+import type { RequireOnlyOne } from '@/core';
+import type { Component } from 'vue';
+import type { RouteLocationRaw } from 'vue-router';
 
-interface ListItemBase {
-  /** The visible name of the item */
-  name: string;
-  /** An optional id to use as the element key - otherwise name. */
+interface ListItem_All {
+  /** The visual representation of this ListItem. */
+  label: string;
+  /** An optional override to use as the dom id. Defaults to @see {this.label} */
   id?: string | number;
-  /** An optional value to trace the active state, used to change visual */
+  /** An optional indicator that the item is selected. */
   current?: boolean;
-}
-interface ListItem_Icon extends ListItemBase {
-  icon: FunctionalComponent;
-}
-interface ListItem_Initial extends ListItemBase {
-  initial: string;
+
+  leftIcon: Component;
+  leftInitial: string;
+
+  to: RouteLocationRaw;
+  click: () => Promise<void> | void;
 }
 
-interface ListItem_Href {
-  href: string;
-}
-interface ListItem_Click {
-  click: () => void | Promise<void>;
-}
-
-type LinkListItem =
-  | (ListItem_Href & ListItemBase)
-  | (ListItem_Href & ListItem_Initial)
-  | (ListItem_Href & ListItem_Icon);
-type ClickListItem =
-  | (ListItem_Click & ListItemBase)
-  | (ListItem_Click & ListItem_Initial)
-  | (ListItem_Click & ListItem_Icon);
-
-export type ListItem = LinkListItem | ClickListItem;
+export type ListItem = RequireOnlyOne<
+  RequireOnlyOne<ListItem_All, 'leftIcon' | 'leftInitial'>,
+  'to' | 'click'
+>;

@@ -5,7 +5,7 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
-} from '@heroicons/vue/24/outline';
+} from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import type { ListItem } from '../layout/ListItems';

@@ -22,5 +22,4 @@ import LogoImage from './LogoImage.vue';
 
 const sidebarStore = useDashboardSidebarStore();
 const { sidebarOpen } = storeToRefs(sidebarStore);
-console.log('Created SidebarMobile:', sidebarOpen.value);
 </script>

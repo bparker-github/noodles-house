@@ -5,10 +5,13 @@
       class="flex flex-1 flex-col gap-y-7"
     >
       <li>
-        <NavigationList />
+        <ItemList :items="navigation" />
       </li>
       <li>
-        <SecondaryList />
+        <ItemList
+          title="Your items"
+          :items="secondItems"
+        />
       </li>
       <li>
         <slot name="third-item"></slot>
@@ -18,6 +21,11 @@
 </template>
 
 <script setup lang="ts">
-import NavigationList from './NavigationList.vue';
-import SecondaryList from './SecondaryList.vue';
+import { toRef } from 'vue';
+import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
+import ItemList from './ItemList.vue';
+
+const dashboardStore = useDashboardSidebarStore();
+const navigation = toRef(dashboardStore, 'navigation');
+const secondItems = toRef(dashboardStore, 'items');
 </script>

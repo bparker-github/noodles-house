@@ -7,7 +7,22 @@ import postcss from './postcss.config';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueSvg()],
+  plugins: [
+    vue(),
+    vueSvg({
+      svgoConfig: {
+        plugins: [
+          'preset-default',
+          {
+            name: 'prefixIds',
+            params: {
+              prefix: true,
+            },
+          },
+        ],
+      },
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

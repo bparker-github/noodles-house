@@ -1,10 +1,10 @@
 <template>
   <div
-    class="sticky top-0 z-40 flex items-center gap-x-6 bg-gray-900 px-4 py-4 shadow-sm sm:px-6 lg:hidden"
+    class="sticky top-0 z-40 flex items-center gap-x-6 bg-mallard px-4 py-4 shadow-sm sm:px-6 lg:hidden"
   >
     <button
       type="button"
-      class="-m-2.5 p-2.5 text-gray-400 lg:hidden"
+      class="-m-2.5 rounded-lg bg-mallard-200 p-2.5 text-mallard-900 lg:hidden"
       @click="clickButton"
     >
       <span class="sr-only">Open sidebar</span>
@@ -13,7 +13,7 @@
         aria-hidden="true"
       />
     </button>
-    <div class="flex-1 text-sm font-semibold leading-6 text-white">Dashboard</div>
+    <div class="flex-1 text-xl font-semibold leading-6 text-white">{{ $route.name }}</div>
     <ProfileDropdown />
   </div>
 </template>

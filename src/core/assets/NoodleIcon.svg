@@ -1,64 +1,59 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" class="w-6 h-6">
-  <style lang="css">
-    g#knobs {
-      fill: var(--nood-duotone-primary, currentColor);
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 40">
+  <style lang="text/css">
+    g#knob-row-1,
+    g#knob-row-2,
+    g#knob-row-3,
+    g#knob-row-4 {
+      fill: var(--nood-duotone-primary, #69341e);
     }
 
     g#the-noodles {
-      fill: var(--nood-duotone-secondary, currentColor);
+      fill: var(--nood-duotone-secondary, #e3bd66);
     }
   </style>
 
+
   <defs>
-    <circle id="knob-ball" cx="4" cy="4" r="4" />
     <path id="knob-squished-ball" d="M 0 0 h 3 a 1 2 0 0 0 0 -6 h -3 a 1 2 0 0 0 0 6 z" />
     <path id="knob-0-dash" d="M 0 0 h 1 c 3 0 3 4 0 4 h -1 c -3 0 -3 -4 0 -4 z" />
     <path id="knob-1-dash" d="M 0 0 h 4 c 3 0 3 4 0 4 h -4 c -3 0 -3 -4 0 -4 z" />
-    <path id="knob-2-dash" d="M 0 0 h 8 c 3 0 3 4 0 4 h -8 c -3 0 -3 -4 0 -4 z" />
     <path id="knob-3-dash" d="M 0 0 h 12 c 3 0 3 4 0 4 h -12 c -3 0 -3 -4 0 -4 z" />
-    <path id="knob-4-dash" d="M 0 0 h 16 c 3 0 3 4 0 4 h -16 c -3 0 -3 -4 0 -4 z" />
+    <path id="knob-4-dash" d="M 0 0 h 18 c 3 0 3 4 0 4 h -18 c -3 0 -3 -4 0 -4 z" />
     <path id="knob-5-dash" d="M 0 0 h 20 c 3 0 3 4 0 4 h -20 c -3 0 -3 -4 0 -4 z" />
-    <path id="knob-6-dash" d="M 0 0 h 28 c 3 0 3 4 0 4 h -28 c -3 0 -3 -4 0 -4 z" />
 
-    <path id="a-noodle" transform="scale(3)"
+    <path id="das-nood"
       d="M 0 0 c 0 1 1 1 1 0 c 0 -1 -0.5 -1 -0.5 -2 c 0 -1 0.5 -1 0.5 -2 c 0 -1 -0.5 -1 -0.5 -2 c 0 -1 0.5 -1 0.5 -2 c 0 0 0 0 0 0 c 0 -1 -0.5 -1 -0.5 -2 c 0 -1 -1 -1 -1 0 c 0 1 0.5 1 0.5 2 c 0 1 -0.5 1 -0.5 2 c 0 1 0.5 1 0.5 2 c 0 1 -0.5 1 -0.5 2 c 0 1 0.5 1 0.5 2 z" />
   </defs>
 
   <g id="total-logo">
-    <g id="knobs">
-      <!-- First Row -->
-      <g id="knob-row-1" transform="translate(0,8)">
-        <use href="#knob-3-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(26,5)" />
-        <use href="#knob-5-dash" transform="translate(36)" />
-      </g>
-
-      <!-- Second row -->
-      <g id="knob-row-2" transform="translate(0,18)">
-        <use href="#knob-1-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(18,5)" />
-        <!-- <use href="#knob-6-dash" transform="translate(28)" /> -->
-        <use href="#knob-5-dash" transform="translate(28)" />
-        <use href="#knob-0-dash" transform="translate(55)" />
-      </g>
-
-      <!-- Third Row -->
-      <g id="knob-row-3" transform="translate(0,28)">
-        <use href="#knob-3-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(26,5)" />
-        <use href="#knob-1-dash" transform="translate(36)" />
-      </g>
-      <!-- Fourth Row -->
-      <g id="knob-row-4" transform="translate(0,38)">
-        <use href="#knob-1-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(18,5)" />
-        <use href="#knob-3-dash" transform="translate(28)" />
-      </g>
+    <g id="knob-row-2" transform="translate(0,12)">
+      <use href="#knob-1-dash" transform="translate(4)" />
+      <use href="#knob-squished-ball" transform="translate(14,5)" />
+      <use href="#knob-4-dash" transform="translate(24)" />
+      <use href="#knob-0-dash" transform="translate(51)" />
     </g>
 
-    <g id="the-noodles">
-      <use href="#a-noodle" transform="translate(48,41)" />
-      <use href="#a-noodle" transform="translate(53,41)" />
+    <g id="knob-row-3" transform="translate(0,22)">
+      <use href="#knob-3-dash" transform="translate(4)" />
+      <use href="#knob-squished-ball" transform="translate(22.5,5)" />
+      <use href="#knob-1-dash" transform="translate(32)" />
+    </g>
+
+    <g id="knob-row-4" transform="translate(0,32)">
+      <use href="#knob-1-dash" transform="translate(4)" />
+      <use href="#knob-squished-ball" transform="translate(14,5)" />
+      <use href="#knob-3-dash" transform="translate(24)" />
+    </g>
+
+    <g id="the-noodles" transform="translate(36,34) scale(3)">
+      <use href="#das-nood" transform="translate(2,1)" />
+      <use href="#das-nood" transform="translate(4,1)" />
+    </g>
+
+    <g id="knob-row-1" transform="translate(0,2)">
+      <use href="#knob-3-dash" transform="translate(4)" />
+      <use href="#knob-squished-ball" transform="translate(22,5)" />
+      <use href="#knob-5-dash" transform="translate(32)" />
     </g>
   </g>
 </svg>

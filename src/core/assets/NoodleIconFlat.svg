@@ -1,11 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32">
   <style lang="css">
-    g.knobs-primary {
-      fill: var(--nood-duotone-primary, currentColor);
+    g#knob-row-1,
+    g#knob-row-2,
+    g#knob-row-3 {
+      fill: var(--nood-duotone-primary, #69341e);
     }
 
     g#the-noodles {
-      fill: var(--nood-duotone-secondary, currentColor);
+      fill: var(--nood-duotone-secondary, #e3bd66);
     }
   </style>
 
@@ -25,21 +27,19 @@
 
   <g id="total-logo">
     <!-- Place the 'back-most' items first. -->
-    <g id="bottom-two-knobs" class="knobs-primary">
-      <!-- Second row -->
-      <g id="knob-row-2" transform="translate(0,12)">
-        <use href="#knob-1-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(18,5)" />
-        <use href="#knob-4-dash" transform="translate(28)" />
-        <use href="#knob-0-dash" transform="translate(55)" />
-      </g>
+    <!-- Second row -->
+    <g id="knob-row-2" transform="translate(0,12)">
+      <use href="#knob-1-dash" transform="translate(8)" />
+      <use href="#knob-squished-ball" transform="translate(18,5)" />
+      <use href="#knob-4-dash" transform="translate(28)" />
+      <use href="#knob-0-dash" transform="translate(55)" />
+    </g>
 
-      <!-- Third Row -->
-      <g id="knob-row-3" transform="translate(0,20)">
-        <use href="#knob-3-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(26,5)" />
-        <use href="#knob-2-dash" transform="translate(35)" />
-      </g>
+    <!-- Third Row -->
+    <g id="knob-row-3" transform="translate(0,20)">
+      <use href="#knob-3-dash" transform="translate(8)" />
+      <use href="#knob-squished-ball" transform="translate(26,5)" />
+      <use href="#knob-2-dash" transform="translate(35)" />
     </g>
 
     <!-- Place the noodles overtop of them -->
@@ -49,14 +49,12 @@
     </g>
 
     <!-- Place the top row over the noodles too -->
-    <g id="top-row-knobs" class="knobs-primary">
-      <!-- First Row -->
-      <g id="knob-row-1" transform="translate(0,4)">
-        <use href="#knob-3-dash" transform="translate(8)" />
-        <use href="#knob-squished-ball" transform="translate(26,5)" />
-        <use href="#knob-5-dash" transform="translate(35)" />
-      </g>
-
+    <!-- First Row -->
+    <g id="knob-row-1" transform="translate(0,4)">
+      <use href="#knob-3-dash" transform="translate(8)" />
+      <use href="#knob-squished-ball" transform="translate(26,5)" />
+      <use href="#knob-5-dash" transform="translate(35)" />
     </g>
+
   </g>
 </svg>

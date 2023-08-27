@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-full overflow-x-hidden overflow-y-scroll">
     <SidebarMobile />
 
     <SidebarDesktop />

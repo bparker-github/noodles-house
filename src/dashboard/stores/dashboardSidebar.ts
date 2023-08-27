@@ -5,10 +5,10 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
-} from '@heroicons/vue/24/outline';
+} from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import { ListItem } from '../layout/SecondaryList.vue';
+import type { ListItem } from '../layout/ListItems';
 
 export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   const isOpen = ref(false);
@@ -26,18 +26,18 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   });
 
   const navigation: ListItem[] = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-    { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-    { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+    { label: 'Dashboard', to: '#', leftIcon: HomeIcon, current: true },
+    { label: 'Team', to: '#', leftIcon: UsersIcon, current: false },
+    { label: 'Projects', to: '#', leftIcon: FolderIcon, current: false },
+    { label: 'Calendar', to: '#', leftIcon: CalendarIcon, current: false },
+    { label: 'Documents', to: '#', leftIcon: DocumentDuplicateIcon, current: false },
+    { label: 'Reports', to: '#', leftIcon: ChartPieIcon, current: false },
   ];
   const itemsTitle = 'Your items';
   const items: ListItem[] = [
-    { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-    { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-    { id: 3, name: 'Something Else', href: '#', initial: 'W', current: false },
+    { id: 1, label: 'Heroicons', to: '#', leftInitial: 'H', current: false },
+    { id: 2, label: 'Tailwind Labs', to: '#', leftInitial: 'T', current: false },
+    { id: 3, label: 'Something Else', to: '#', leftInitial: 'W', current: false },
   ];
 
   return {

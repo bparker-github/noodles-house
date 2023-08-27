@@ -17,7 +17,7 @@
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <div class="fixed inset-0 bg-gray-900/80" />
+        <div class="fixed inset-0 bg-bali-hai-900/80" />
       </TransitionChild>
 
       <div class="fixed inset-0 flex">
@@ -30,7 +30,7 @@
           leave-from="translate-x-0"
           leave-to="-translate-x-full"
         >
-          <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+          <DialogPanel class="mr-16 relative flex w-full max-w-xs flex-1">
             <TransitionChild
               as="template"
               enter="ease-in-out duration-300"

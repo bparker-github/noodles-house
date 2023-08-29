@@ -13,18 +13,23 @@
         aria-hidden="true"
       />
     </button>
-    <div class="flex-1 text-xl font-semibold leading-6 text-white">{{ $route.name }}</div>
+    <div class="flex-1 text-xl font-semibold leading-6 text-white">{{ title }}</div>
     <ProfileDropdown />
   </div>
 </template>
 
 <script setup lang="ts">
-import { Bars3Icon } from '@heroicons/vue/24/outline';
-import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
-// import ProfileDropdown from './ProfileDropdown.vue';
 import { ProfileDropdown } from '@/core';
+import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
+import { Bars3Icon } from '@heroicons/vue/24/outline';
+import { ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 const { setIsOpen } = useDashboardSidebarStore();
+
+const route = useRoute();
+const title = ref(route.name);
+watch(route, (nr) => (title.value = nr.name));
 
 function clickButton() {
   console.log('Button has been clicked.');

@@ -14,6 +14,7 @@ export { useAuthStore } from './auth/AuthStore';
 export { areNoodleAccountArraysEqual } from './auth/AuthUtils';
 export type { NoodleAccountInfo, NoodleTokenClaims } from './auth/AuthUtils';
 export { CustomNavigationClient } from './auth/NavigationGuard';
+export { AuthGuardRedirect } from './auth/AuthGuardRedirect';
 
 /******************
  *   Components   *

@@ -4,7 +4,7 @@ import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import router from './router';
 import { RouterView } from 'vue-router';
-import { useAuthStore } from '@/core';
+import { AuthGuardRedirect, useAuthStore } from '@/core';
 
 const app = createApp(RouterView);
 
@@ -14,10 +14,11 @@ app.use(pinia);
 
 const authStore = useAuthStore();
 
-// Add in the vue router.
+// Add in the vue router, guard authenticated routes.
 app.use(router);
+router.beforeEach(AuthGuardRedirect);
 
-// Control MSAL routing with route.r
+// Control MSAL routing with router.
 authStore.applyNavigationRouter(router);
 
 async function MountApp() {

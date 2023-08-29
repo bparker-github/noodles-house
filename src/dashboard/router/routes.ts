@@ -37,6 +37,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     component: () => import('../layout/MainDashboard.vue'),
+    meta: { authRequired: true },
     children: [
       {
         path: '',

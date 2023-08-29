@@ -4,4 +4,6 @@ export enum RouteName {
   LOGOUT = 'Log out',
   HOME = 'Home',
   PROFILE = 'Profile',
+  FAILED = 'Failed',
+  NOT_FOUND = 'Not Found',
 }

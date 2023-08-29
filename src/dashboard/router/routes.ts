@@ -1,8 +1,6 @@
-import { useAuthStore, type AuthenticationRedirectPageProps } from '@/core';
+import { type AuthenticationRedirectPageProps } from '@/core';
 import type { RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
-import { useRouter } from 'vue-router';
-import { onBeforeRouteUpdate } from 'vue-router';
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -20,18 +18,20 @@ export const routes: RouteRecordRaw[] = [
     path: '/login',
     alias: ['/signin', '/log-in', '/sign-in'],
     name: RouteName.LOGIN,
-    component: () => import('@/dashboard/pages/LoginPage.vue'),
+    component: () => import('../pages/LoginPage.vue'),
   },
 
   {
     path: '/logout',
     alias: ['/signout', '/log-out', '/sign-out'],
     name: RouteName.LOGOUT,
-    component: () => import('@/core/components/LoadingSpinner.vue'),
-    beforeEnter: () =>
-      useAuthStore()
-        .doLogout()
-        .then(() => useRouter().push({ name: RouteName.LANDING })),
+    component: () => import('../pages/LogoutPage.vue'),
+  },
+
+  {
+    path: '/failed',
+    name: RouteName.FAILED,
+    component: () => import('../pages/FailedPage.vue'),
   },
 
   {

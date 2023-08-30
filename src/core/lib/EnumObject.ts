@@ -1,3 +1,5 @@
+import type { RequireOnlyOne } from '..';
+
 export type IEnumObjectValue = string | number | boolean | symbol;
 
 export interface IEnumObject<T extends IEnumObjectValue = string> {
@@ -12,35 +14,40 @@ export class EnumObject<Val extends IEnumObjectValue = string> implements IEnumO
   ) {}
 }
 
-export class AsyncEnumObject<Val extends IEnumObjectValue = string> implements IEnumObject<Val> {
-  private innerLabel?: string;
-  private innerValue?: Val;
+interface _IAsyncEnumObject<T extends IEnumObjectValue = string> {
+  innerLabel: string;
+  labelGetter: () => string;
 
-  private labelGetter?: () => string;
-  private valueGetter?: () => Val;
+  innerValue: T;
+  valueGetter: () => T;
+}
+export type IAsyncEnumObject<T extends IEnumObjectValue = string> = RequireOnlyOne<
+  RequireOnlyOne<_IAsyncEnumObject<T>, 'innerLabel' | 'labelGetter'>,
+  'innerValue' | 'valueGetter'
+>;
+
+export class AsyncEnumObject<Val extends IEnumObjectValue = string> implements IEnumObject<Val> {
+  private labelGetter: () => string;
+  private valueGetter: () => Val;
 
   get label(): string {
-    return this.labelGetter == undefined ? this.innerLabel : this.labelGetter();
+    return this.labelGetter();
   }
   get value(): Val {
-    return this.valueGetter == undefined ? this.innerValue : this.valueGetter();
+    return this.valueGetter();
   }
 
   constructor(labelGetter: string | (() => string), valueGetter: Val | (() => Val)) {
     if (typeof labelGetter === 'function') {
-      this.innerLabel = '';
       this.labelGetter = labelGetter;
     } else {
-      this.innerLabel = labelGetter;
-      this.labelGetter = undefined;
+      this.labelGetter = () => labelGetter;
     }
 
     if (typeof valueGetter === 'function') {
-      this.innerValue = undefined;
       this.valueGetter = valueGetter;
     } else {
-      this.innerValue = valueGetter;
-      this.valueGetter = undefined;
+      this.valueGetter = () => valueGetter;
     }
   }
 }

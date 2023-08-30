@@ -2,6 +2,8 @@ import { LogLevel, type Configuration, PublicClientApplication } from '@azure/ms
 
 const baseUri = import.meta.env.NOOD_UI_URL;
 
+console.log('envVars:', import.meta.env);
+
 export const AuthConfig: Configuration = {
   auth: {
     clientId: import.meta.env.NOOD_AUTH_CLIENT_ID,

@@ -1,12 +1,14 @@
 import { LogLevel, type Configuration, PublicClientApplication } from '@azure/msal-browser';
 
+const baseUri = import.meta.env.NOOD_UI_URL;
+
 export const AuthConfig: Configuration = {
   auth: {
     clientId: import.meta.env.NOOD_AUTH_CLIENT_ID,
     authority: import.meta.env.NOOD_AUTH_AUTHORITY_URL,
     knownAuthorities: [import.meta.env.NOOD_AUTH_AUTHORITY_URL],
-    redirectUri: import.meta.env.NOOD_AUTH_REDIRECT_URI,
-    postLogoutRedirectUri: import.meta.env.NOOD_AUTH_POST_LOGOUT_REDIRECT_URI,
+    redirectUri: baseUri + import.meta.env.NOOD_AUTH_REDIRECT_URI,
+    postLogoutRedirectUri: baseUri + import.meta.env.NOOD_AUTH_POST_LOGOUT_REDIRECT_URI,
   },
   cache: {
     cacheLocation: 'localStorage',

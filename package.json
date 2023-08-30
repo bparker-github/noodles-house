@@ -6,10 +6,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check build-only",
+    "build": "npm run build:swa",
+    "build:swa": "run-p type-check build:code:swa",
+    "build:local": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "build:code:swa": "vite build --mode swa",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
@@ -20,6 +23,7 @@
     "@azure/msal-browser": "^3.0.2",
     "@headlessui/vue": "^1.7.16",
     "@heroicons/vue": "^2.0.18",
+    "dotenv": "^16.3.1",
     "lorem-ipsum": "^2.0.8",
     "pinia": "^2.1.6",
     "unsplash-js": "^7.0.18",

@@ -35,4 +35,7 @@ export default defineConfig({
   server: {
     port: 9090,
   },
+  preview: {
+    port: 9090,
+  },
 });

@@ -1,3 +1,4 @@
+import type { ListItem } from '@/core';
 import {
   CalendarIcon,
   ChartPieIcon,
@@ -8,7 +9,6 @@ import {
 } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { ListItem } from '../layout/ListItems';
 
 export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   const isOpen = ref(false);
@@ -25,7 +25,7 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
     },
   });
 
-  const navigation: ListItem[] = [
+  const primaryItemList: ListItem[] = [
     { label: 'Dashboard', to: '#', leftIcon: HomeIcon, current: true },
     { label: 'Team', to: '#', leftIcon: UsersIcon, current: false },
     { label: 'Projects', to: '#', leftIcon: FolderIcon, current: false },
@@ -33,11 +33,17 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
     { label: 'Documents', to: '#', leftIcon: DocumentDuplicateIcon, current: false },
     { label: 'Reports', to: '#', leftIcon: ChartPieIcon, current: false },
   ];
-  const itemsTitle = 'Your items';
-  const items: ListItem[] = [
+  const secondaryListTitle = 'Your items';
+  const secondaryItemList: ListItem[] = [
     { id: 1, label: 'Heroicons', to: '#', leftInitial: 'H', current: false },
     { id: 2, label: 'Tailwind Labs', to: '#', leftInitial: 'T', current: false },
     { id: 3, label: 'Something Else', to: '#', leftInitial: 'W', current: false },
+  ];
+
+  const userListTitle = 'You';
+  const userItemList: ListItem[] = [
+    { label: 'Your profile', to: '/home/profile' },
+    { label: 'Sign out', to: '/logout' },
   ];
 
   return {
@@ -45,8 +51,10 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
     setIsOpen,
     sidebarOpen,
 
-    navigation,
-    items,
-    itemsTitle,
+    primaryItemList,
+    secondaryListTitle,
+    secondaryItemList,
+    userListTitle,
+    userItemList,
   };
 });

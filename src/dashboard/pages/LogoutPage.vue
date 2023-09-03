@@ -15,10 +15,10 @@ const router = useRouter();
 async function beginLogout() {
   try {
     await authStore.doLogout();
-    router.push(RouteName.LANDING);
+    router.push({ name: RouteName.LANDING });
   } catch (err) {
     console.warn('Somehow error?:', err);
-    router.push(RouteName.FAILED);
+    router.push({ name: RouteName.FAILED });
   }
 }
 

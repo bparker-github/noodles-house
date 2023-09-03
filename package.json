@@ -26,6 +26,9 @@
   "workspaces": [
     "src/api"
   ],
+  "engines": {
+    "node": ">=18"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {

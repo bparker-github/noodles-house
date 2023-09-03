@@ -6,7 +6,7 @@
       "apiDevserverUrl": "http://localhost:7071",
       "apiLanguage": "node",
       "apiLocation": "src\\api",
-      "apiVersion": "16",
+      "apiVersion": "18",
       "appBuildCommand": "npm run build",
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",

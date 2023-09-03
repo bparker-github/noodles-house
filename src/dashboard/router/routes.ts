@@ -6,6 +6,7 @@ export const routes: RouteRecordRaw[] = [
   {
     path: '/',
     alias: ['/auth-response'],
+    name: RouteName.LANDING,
     component: () =>
       import('@/core').then(({ AuthenticatedRedirectPage }) => AuthenticatedRedirectPage),
     props: {

@@ -136,7 +136,7 @@ export function applyThemeToTailwindConfig(config: Config): Config {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
       margin: {
-        ...defaultTheme.margin,
+        ...defaultTheme.spacing,
         '10p': '10%',
         '20p': '20%',
         '30p': '30%',

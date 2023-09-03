@@ -40,7 +40,7 @@
             v-if="!item.to"
             :class="[
               'block cursor-pointer px-3 py-1 text-sm leading-6 text-chalet-green-900',
-              { 'bg-chalet-green-700': active },
+              { 'bg-chalet-green-700 text-chalet-green-200': active },
             ]"
             @click="
               () => {

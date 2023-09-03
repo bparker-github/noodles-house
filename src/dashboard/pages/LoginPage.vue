@@ -5,18 +5,18 @@
         <div class="absolute inset-0">
           <UnsplashImage :photo-id="photoId" />
         </div>
-        <div class="bg-gray-pink relative bg-opacity-50 px-6 py-32 sm:px-12 sm:py-40 lg:px-16">
-          <div class="relative mx-auto flex max-w-3xl flex-col items-center text-center">
-            <h2 class="text-whiteish text-3xl font-bold tracking-tight sm:text-4xl">
-              <span class="mr-2 block sm:inline">Welcome</span>
+        <div class="relative bg-gray-pink bg-opacity-50 px-6 py-32 sm:px-12 sm:py-40 lg:px-16">
+          <div class="relative flex max-w-3xl flex-col items-center text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-whiteish sm:text-4xl">
+              <span class="block pr-2 sm:inline">Welcome</span>
               <span class="block sm:inline">Home!</span>
             </h2>
-            <p class="text-whiteish mt-3 text-xl">
-              {{ loremIpsum({ count: 2, units: 'sentence' }) }}
+            <p class="my-2 text-xl text-whiteish">
+              {{ loremIpsum({ count: 5, units: 'sentence' }) }}
             </p>
             <button
               @click.prevent="beginLogin"
-              class="border-transparent bg-white text-gray-900 hover:bg-gray-100 mt-8 block w-full rounded-md border px-8 py-3 text-base font-medium sm:w-auto"
+              class="text-gray-900 hover:bg-gray-100 mt-8 block w-full rounded-md border border-transparent bg-white px-8 py-3 text-base font-medium sm:w-auto"
             >
               Login
             </button>

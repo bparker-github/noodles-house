@@ -47,8 +47,18 @@ export const routes: RouteRecordRaw[] = [
       },
       {
         path: 'profile',
-        name: RouteName.PROFILE,
-        component: () => import('../pages/ProfilePage.vue'),
+        children: [
+          {
+            path: '',
+            name: RouteName.PROFILE,
+            component: () => import('../pages/ProfilePage.vue'),
+          },
+          {
+            path: 'tokens',
+            name: RouteName.PROFILE_TOKENS,
+            component: () => import('../pages/ProfileTokensPage.vue'),
+          },
+        ],
       },
     ],
   },

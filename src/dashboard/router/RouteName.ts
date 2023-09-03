@@ -6,4 +6,5 @@ export enum RouteName {
   PROFILE = 'Profile',
   FAILED = 'Failed',
   NOT_FOUND = 'Not Found',
+  PROFILE_TOKENS = 'Profile Tokens',
 }

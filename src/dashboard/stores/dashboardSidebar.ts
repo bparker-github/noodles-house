@@ -1,12 +1,5 @@
 import type { ListItem } from '@/core';
-import {
-  CalendarIcon,
-  ChartPieIcon,
-  DocumentDuplicateIcon,
-  FolderIcon,
-  HomeIcon,
-  UsersIcon,
-} from '@heroicons/vue/24/solid';
+import { HomeIcon, UsersIcon } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 
@@ -26,18 +19,13 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   });
 
   const primaryItemList: ListItem[] = [
-    { label: 'Dashboard', to: '#', leftIcon: HomeIcon, current: true },
-    { label: 'Team', to: '#', leftIcon: UsersIcon, current: false },
-    { label: 'Projects', to: '#', leftIcon: FolderIcon, current: false },
-    { label: 'Calendar', to: '#', leftIcon: CalendarIcon, current: false },
-    { label: 'Documents', to: '#', leftIcon: DocumentDuplicateIcon, current: false },
-    { label: 'Reports', to: '#', leftIcon: ChartPieIcon, current: false },
+    { label: 'Dashboard', to: '#', leftIcon: HomeIcon },
+    { label: 'Team', to: '#', leftIcon: UsersIcon },
   ];
   const secondaryListTitle = 'Your items';
   const secondaryItemList: ListItem[] = [
-    { id: 1, label: 'Heroicons', to: '#', leftInitial: 'H', current: false },
-    { id: 2, label: 'Tailwind Labs', to: '#', leftInitial: 'T', current: false },
-    { id: 3, label: 'Something Else', to: '#', leftInitial: 'W', current: false },
+    { id: 1, label: 'Heroicons', to: '#', leftInitial: 'H' },
+    { id: 2, label: 'Token Testing', to: '/home/profile/tokens', leftInitial: 'T' },
   ];
 
   const userListTitle = 'You';

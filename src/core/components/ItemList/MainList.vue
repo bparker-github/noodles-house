@@ -44,18 +44,16 @@
   </ul>
 </template>
 
-<script lang="ts">
-import type { ListItem } from './ListItems';
-
-export interface ItemListProps {
-  /** The optional title to display above the items. */
-  title?: string;
-  items: ListItem[];
-}
-</script>
-
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import type { ListItem } from './index.d';
 
-defineProps<ItemListProps>();
+interface MainListProps {
+  /** The optional title to display above the items. */
+  title?: string;
+  /** The items themselves to display. */
+  items: ListItem[];
+}
+
+defineProps<MainListProps>();
 </script>

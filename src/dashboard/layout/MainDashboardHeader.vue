@@ -5,7 +5,7 @@
     <button
       type="button"
       class="-m-2.5 rounded-lg bg-mallard-200 p-2.5 text-mallard-900 lg:hidden"
-      @click="clickButton"
+      @click="doOpen"
     >
       <span class="sr-only">Open sidebar</span>
       <Bars3Icon
@@ -14,7 +14,7 @@
       />
     </button>
     <div class="flex-1 text-xl font-semibold leading-6 text-white">{{ title }}</div>
-    <ProfileDropdown />
+    <ProfileDropdown :items="userItemList" />
   </div>
 </template>
 
@@ -25,14 +25,11 @@ import { Bars3Icon } from '@heroicons/vue/24/outline';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
-const { setIsOpen } = useDashboardSidebarStore();
+const { userItemList, setIsOpen } = useDashboardSidebarStore();
 
 const route = useRoute();
 const title = ref(route.name);
 watch(route, (nr) => (title.value = nr.name));
 
-function clickButton() {
-  console.log('Button has been clicked.');
-  setIsOpen(true);
-}
+const doOpen = () => setIsOpen(true);
 </script>

@@ -21,3 +21,6 @@ export type ListItem = RequireOnlyOne<
   RequireOnlyOne<ListItem_All, 'leftIcon' | 'leftInitial'>,
   'to' | 'click'
 >;
+
+export { default as MainItemList } from './MainList.vue';
+export { default as ItemListItem } from './SingleItem.vue';

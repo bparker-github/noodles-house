@@ -10,32 +10,12 @@
         />
       </div>
 
-      <SidebarMainNav>
-        <template #third-item>
-          <!-- <ProfileAccordion /> -->
-
-          <ItemList
-            :items="userNavigation"
-            title="You"
-          />
-        </template>
-      </SidebarMainNav>
+      <SidebarMainNav :include-user-items="true" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { UserProfileIcon } from '@/core';
-import ItemList from './ItemList.vue';
-import SidebarMainNav from './Sidebar.MainNav.vue';
 import LogoImage from './LogoImage.vue';
-
-const userNavigation = [
-  {
-    label: 'Your profile',
-    leftIcon: UserProfileIcon,
-    to: '/profile',
-  },
-  { label: 'Sign out', to: '/logout' },
-];
+import SidebarMainNav from './Sidebar.MainNav.vue';
 </script>

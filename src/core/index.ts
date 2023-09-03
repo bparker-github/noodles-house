@@ -10,15 +10,16 @@ export { default as NoodleIconFlat } from './assets/NoodleIconFlat.svg';
  *   Auth   *
  ************/
 export { AuthConfig, BaseLoginRequest, MsalInstance } from './auth/AuthConfig';
+export { AuthGuardRedirect } from './auth/AuthGuardRedirect';
 export { useAuthStore } from './auth/AuthStore';
 export { areNoodleAccountArraysEqual } from './auth/AuthUtils';
 export type { NoodleAccountInfo, NoodleTokenClaims } from './auth/AuthUtils';
 export { CustomNavigationClient } from './auth/NavigationGuard';
-export { AuthGuardRedirect } from './auth/AuthGuardRedirect';
 
 /******************
  *   Components   *
  ******************/
+export * from './components/ItemList/index.d';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
 export { default as MobileSidebar } from './components/MobileSidebar.vue';
 export { default as ProfileDropdown } from './components/ProfileDropdown.vue';
@@ -31,8 +32,8 @@ export { default as UnsplashImage } from './lib/unsplash/UnsplashImage.vue';
  ***************/
 export { AsyncEnumObject, EnumObject } from './lib/EnumObject';
 export type { IEnumObject, IEnumObjectValue } from './lib/EnumObject';
-export { useUnsplash } from './lib/unsplash/useUnsplash';
 export type { RequireOnlyOne } from './lib/typescriptAugments';
+export { useUnsplash } from './lib/unsplash/useUnsplash';
 
 /*************
  *   Pages   *

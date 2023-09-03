@@ -12,7 +12,7 @@
         />
       </div>
 
-      <SidebarMainNav />
+      <SidebarMainNav :include-user-items="false" />
     </div>
   </MobileSidebar>
 </template>

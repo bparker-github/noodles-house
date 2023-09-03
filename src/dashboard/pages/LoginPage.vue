@@ -1,12 +1,12 @@
 <template>
   <div class="flex h-full flex-col items-center justify-evenly">
-    <div class="mx-auto max-w-7xl px-4">
+    <div class="mx-auto max-w-7xl px-4 sm:px-8">
       <div class="relative overflow-hidden rounded-lg">
         <div class="absolute inset-0">
           <UnsplashImage :photo-id="photoId" />
         </div>
         <div
-          class="relative bg-gray-pink bg-opacity-50 px-4 py-16 sm:px-12 sm:px-6 sm:py-10 sm:py-24 lg:px-16 lg:px-8 lg:py-4"
+          class="relative bg-gray-pink bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
         >
           <div class="relative flex max-w-3xl flex-col items-center text-center">
             <h2 class="text-3xl font-bold tracking-tight text-whiteish sm:text-4xl">

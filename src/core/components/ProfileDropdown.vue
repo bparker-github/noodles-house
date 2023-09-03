@@ -29,25 +29,36 @@
       leave-to-class="transform opacity-0 scale-95"
     >
       <MenuItems
-        class="mt-2.5 ring-gray-900/5 absolute right-0 z-10 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 focus:outline-none"
+        class="mt-2.5 absolute right-0 z-10 w-32 origin-top-right rounded-md bg-chalet-green-100 py-2 shadow-lg ring-1 ring-chalet-green-900/50 focus:outline-none dark:bg-chalet-green-800"
       >
         <MenuItem
           v-for="item in items"
           :key="item.label"
-          v-slot="{ active }"
+          v-slot="{ active, close }"
         >
           <button
             v-if="!item.to"
             :class="[
-              'text-gray-900 block cursor-pointer px-3 py-1 text-sm leading-6',
-              { 'bg-gray-50': active },
+              'block cursor-pointer px-3 py-1 text-sm leading-6 text-chalet-green-900',
+              { 'bg-chalet-green-700': active },
             ]"
+            @click="
+              () => {
+                item.click?.();
+                close();
+              }
+            "
           >
             {{ item.label }}
           </button>
           <RouterLink
+            v-else
             :to="item.to ?? '#'"
-            :class="['text-gray-900 block px-3 py-1 text-sm leading-6', { 'bg-gray-50': active }]"
+            :class="[
+              'block cursor-pointer px-3 py-1 text-sm leading-6 text-chalet-green-900',
+              { 'bg-chalet-green-700 text-chalet-green-200': active },
+            ]"
+            @click="close"
           >
             {{ item.label }}
           </RouterLink>

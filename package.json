@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "api:clean": "rimraf src/api/dist",
-    "api:build": "tsc -p ./tsconfig.api.json",
+    "api:build": "npm run build -w src/api",
     "api:": "",
     "dev": "run-p dev:app dev:api",
     "dev:app": "vite",

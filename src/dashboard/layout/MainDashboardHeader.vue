@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ProfileDropdown } from '@/core';
+import { ProfileDropdown } from '@/components';
 import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
 import { ref, watch } from 'vue';

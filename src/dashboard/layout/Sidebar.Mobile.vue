@@ -20,7 +20,7 @@
 <script setup lang="ts">
 import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
 import SidebarMainNav from './Sidebar.MainNav.vue';
-import { MobileSidebar } from '@/core';
+import { MobileSidebar } from '@/components';
 import { storeToRefs } from 'pinia';
 import LogoImage from './LogoImage.vue';
 

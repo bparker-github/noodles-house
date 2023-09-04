@@ -1,4 +1,4 @@
-import type { ListItem } from '@/core';
+import type { ListItem } from '@/components';
 import { HomeIcon, UsersIcon } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';

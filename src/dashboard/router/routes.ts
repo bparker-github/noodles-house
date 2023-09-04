@@ -1,4 +1,4 @@
-import { type AuthenticationRedirectPageProps } from '@/core';
+import { type AuthenticationRedirectPageProps } from '@/components';
 import type { RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 
@@ -8,7 +8,7 @@ export const routes: RouteRecordRaw[] = [
     alias: ['/auth-response'],
     name: RouteName.LANDING,
     component: () =>
-      import('@/core').then(({ AuthenticatedRedirectPage }) => AuthenticatedRedirectPage),
+      import('@/components').then(({ AuthenticatedRedirectPage }) => AuthenticatedRedirectPage),
     props: {
       authRoute: { name: RouteName.HOME },
       unAuthRoute: { name: RouteName.LOGIN },

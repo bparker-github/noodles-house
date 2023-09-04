@@ -40,7 +40,7 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./tailwind.config.ts": ["./index.html", "./src/core/**", "./src/dashboard/**"]
+      "./tailwind.config.ts": ["./index.html", "./src/components/**", "./src/dashboard/**"]
     },
 
     "[css]": {

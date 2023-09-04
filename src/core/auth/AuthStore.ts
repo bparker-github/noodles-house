@@ -92,6 +92,13 @@ export const useAuthStore = defineStore('authStore', () => {
     }
   }
 
+  async function getToken(): Promise<string> {
+    const resp = await instance.value.acquireTokenSilent(BaseLoginRequest);
+    console.log('Resp:', resp);
+
+    return resp.accessToken;
+  }
+
   return {
     // Variables + computed
     instance,
@@ -104,5 +111,6 @@ export const useAuthStore = defineStore('authStore', () => {
     applyNavigationRouter,
     doLogin,
     doLogout,
+    getToken,
   };
 });

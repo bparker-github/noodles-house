@@ -3,6 +3,12 @@
 /************
  *  Assets  *
  ************/
+import { ApiClient } from './api/ApiClient';
+export const apiClient = new ApiClient();
+
+/************
+ *  Assets  *
+ ************/
 export { default as NoodleIcon } from './assets/NoodleIcon.svg';
 export { default as NoodleIconFlat } from './assets/NoodleIconFlat.svg';
 

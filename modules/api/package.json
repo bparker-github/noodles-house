@@ -1,0 +1,17 @@
+{
+  "name": "@test/api",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/functions/*.js",
+  "scripts": {
+    "build": "run-s clean build:code",
+    "build:code": "tsc -p ../../tsconfig.api.json",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0-alpha.9"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.1"
+  }
+}

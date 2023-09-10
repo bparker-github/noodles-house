@@ -1,6 +1,14 @@
 <template>
   <div
-    class="sticky top-0 z-40 flex items-center gap-x-6 bg-mallard px-4 py-4 shadow-sm sm:px-6 lg:hidden"
+    :class="[
+      // Shared styles
+      'sticky top-0 z-40 flex items-center gap-x-6',
+      'bg-gradient-to-r from-chalet-green-900 from-25% to-bourbon-400',
+      // Mobile styles
+      'p-4 sm:px-6',
+      // Desktop styles
+      'lg:ml-4 lg:pl-72 lg:shadow-lg',
+    ]"
   >
     <button
       type="button"
@@ -13,13 +21,13 @@
         aria-hidden="true"
       />
     </button>
-    <div class="flex-1 text-xl font-semibold leading-6 text-white">{{ title }}</div>
+    <div class="flex-1 text-xl font-semibold leading-6 text-whiteish">{{ title }}</div>
     <ProfileDropdown :items="userItemList" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ProfileDropdown } from '@/core';
+import { ProfileDropdown } from '@/components';
 import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
 import { ref, watch } from 'vue';

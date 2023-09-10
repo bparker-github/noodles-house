@@ -10,12 +10,12 @@ export interface AuthenticationRedirectPageProps {
 </script>
 
 <script setup lang="ts">
+import { LoadingSpinner } from '@/components';
+import { useAuthStore } from '@/core';
 import { storeToRefs } from 'pinia';
-import { useAuthStore } from '../auth/AuthStore';
-import LoadingSpinner from '../components/LoadingSpinner.vue';
-import { useRouter } from 'vue-router';
-import type { RouteLocationRaw } from 'vue-router';
 import { onMounted } from 'vue';
+import type { RouteLocationRaw } from 'vue-router';
+import { useRouter } from 'vue-router';
 
 const authStore = useAuthStore();
 const { isAuthenticated } = storeToRefs(authStore);

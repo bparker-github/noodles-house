@@ -4,6 +4,7 @@
     "typeRoots": ["./types"]
   },
   "references": [
+    { "path": "./tsconfig.api.json" },
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.config.json" },
     { "path": "./tsconfig.vitest.json" }

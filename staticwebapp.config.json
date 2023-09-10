@@ -1,5 +1,15 @@
 {
-  
+  "auth": {
+    "identityProviders": {
+      "azureActiveDirectory": {
+        "registration": {
+          "openIdIssuer": "https://login.microsoftonline.com/5c3a58ca-ff7d-4f38-aa9e-c76cbde229da/v2.0",
+          "clientIdSettingName": "97ac662e-a761-4745-bb6c-81041e9b621c",
+          "clientSecretSettingName": "House-secret"
+        }
+      }
+    }
+  },
   "navigationFallback": {
     "rewrite": "index.html",
     "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}"]

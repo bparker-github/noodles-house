@@ -14,7 +14,7 @@ export interface UnsplashImageProps {
 
 <script setup lang="ts">
 import { ref, toRef } from 'vue';
-import { useUnsplash } from './useUnsplash';
+import { useUnsplash } from '@/core';
 import { onMounted } from 'vue';
 
 const unsplashApi = useUnsplash();

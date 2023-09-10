@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/node18/tsconfig.json",
+  "include": ["types/env.d.ts", "types", "src/api/*", "src/core/*"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "src/api/dist",
+    "rootDir": "src",
+    "sourceMap": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    }
+  }
+}

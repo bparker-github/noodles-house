@@ -1,0 +1,11 @@
+{
+  "name": "@noodle/api",
+  "version": "1.0.0",
+  "description": "The main api interface for Functions App.",
+  "type": "module",
+  "main": "dist/src/functions/*.js",
+  "scripts": {
+    "build": "tsc -p ../../tsconfig.api.json",
+    "clean": "rimraf dist"
+  }
+}

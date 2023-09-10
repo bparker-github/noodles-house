@@ -32,11 +32,15 @@
       {
         "fileMatch": ["tsconfig.*.json"],
         "url": "https://json.schemastore.org/tsconfig.json"
+      },
+      {
+        "fileMatch": ["staticwebapp.config*"],
+        "url": "https://json.schemastore.org/staticwebapp.config.json"
       }
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./tailwind.config.ts": ["./index.html", "./src/core/**", "./src/dashboard/**"]
+      "./tailwind.config.ts": ["./index.html", "./src/components/**", "./src/dashboard/**"]
     },
 
     "[css]": {
@@ -48,6 +52,10 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.suggest.insertMode": "replace"
     },
+    "[json]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.formatOnPaste": true
+    },
     "[svg]": {
       "editor.defaultFormatter": "jock.svg"
     },
@@ -57,6 +65,11 @@
     "[vue]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+
+    "files.associations": {
+      ".funcignore": "ignore"
+    },
+
     "cSpell.ignorePaths": [
       "package-lock.json",
       "node_modules",
@@ -72,6 +85,7 @@
       "Msal",
       "NOOD",
       "pinia",
+      "prestart",
       "rushstack",
       "signin",
       "signout",
@@ -84,6 +98,7 @@
     "svg.minify.addAttributesToSVGElement": true,
     "svg.preview.showRuler": true,
     "svg.preview.showCrossLine": true,
-    "svg.preview.toolbarSize": "large"
+    "svg.preview.toolbarSize": "large",
+    "debug.internalConsoleOptions": "neverOpen"
   }
 }

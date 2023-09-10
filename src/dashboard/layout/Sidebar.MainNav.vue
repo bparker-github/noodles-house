@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { MainItemList } from '@/core';
+import { MainItemList } from '@/components';
 import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
 
 interface SidebarMainNavProps {

@@ -4,7 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import { LoadingSpinner, useAuthStore } from '@/core';
+import { LoadingSpinner } from '@/components';
+import { useAuthStore } from '@/core';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';
@@ -15,10 +16,10 @@ const router = useRouter();
 async function beginLogout() {
   try {
     await authStore.doLogout();
-    router.push(RouteName.LANDING);
+    router.push({ name: RouteName.LANDING });
   } catch (err) {
     console.warn('Somehow error?:', err);
-    router.push(RouteName.FAILED);
+    router.push({ name: RouteName.FAILED });
   }
 }
 

@@ -7,9 +7,13 @@
     "modules/ui"
   ],
   "scripts": {
-    "dev": "npm run dev -w @test/ui",
-    "build:ui": "npm run build -w @test/ui",
-    "build:api": "npm run build -w @test/api"
+    "dev": "run-p dev:ui dev:api",
+    "dev:ui": "npm run dev -w @noodles-house/ui",
+    "dev:api": "npm run dev -w @noodles-house/api",
+    "build:ui": "npm run build -w @noodles-house/ui",
+    "build:api": "npm run build -w @noodles-house/api",
+    "swa:start": "swa start",
+    "swa:start:ui": "swa start http://localhost:9090 --run \"npm run dev\" -a \"modules\\ui\""
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",

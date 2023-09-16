@@ -1,6 +1,6 @@
 {
   "extends": ["./tsconfig.paths.json", "@tsconfig/node18/tsconfig.json"],
-  "include": ["types/env.d.ts", "modules/api/**/*", "modules/ui/**/vite.config.*", "modules/ui/**/plugins/*"],
+  "include": ["types/env.d.ts", "modules/api/**/*"],
   "compilerOptions": {
     "rootDirs": ["modules/api"],
     "lib": ["ESNext"],

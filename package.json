@@ -5,6 +5,8 @@
     "modules/**"
   ],
   "scripts": {
+    "dev": "npm run dev -w @test/ui",
+    "build:ui": "npm run build -w @test/ui",
     "build:api": "npm run build -w @test/api"
   },
   "devDependencies": {
@@ -12,9 +14,11 @@
     "@types/node": "^20.6.0",
     "dotenv": "^16.3.1",
     "eslint": "^8.49.0",
+    "lorem-ipsum": "^2.0.8",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.4",
     "typescript": "^5.2.2"
   },
   "dependencies": {

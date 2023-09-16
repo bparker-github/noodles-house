@@ -1,0 +1,10 @@
+{
+  "extends": ["./tsconfig.paths.json"],
+  "include": ["types/env.d.ts", "modules/shared/**/*"],
+  "compilerOptions": {
+    "rootDir": "modules/shared",
+    "lib": ["ESNext"],
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
+  }
+}

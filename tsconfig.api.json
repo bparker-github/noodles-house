@@ -1,15 +1,12 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["types/env.d.ts", "types", "src/api/*", "src/core/*"],
+  "extends": ["./tsconfig.paths.json", "@tsconfig/node18/tsconfig.json"],
+  "include": ["types/env.d.ts", "modules/api/**/*", "modules/ui/**/vite.config.*", "modules/ui/**/plugins/*"],
   "compilerOptions": {
-    "baseUrl": ".",
-    "outDir": "src/api/dist",
-    "rootDir": "src",
+    "rootDirs": ["modules/api"],
+    "lib": ["ESNext"],
+    "outDir": "modules/api/dist",
     "sourceMap": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "paths": {
-      "@/*": ["src/*"]
-    }
+    "moduleResolution": "Bundler"
   }
 }

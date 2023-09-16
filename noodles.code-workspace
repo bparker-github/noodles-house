@@ -1,9 +1,5 @@
 {
-  "folders": [
-    {
-      "path": "."
-    }
-  ],
+  "folders": [{ "path": "../noodles-house" }, { "path": "../vue-project" }],
   "extensions": {
     "recommendations": [
       "bradlc.vscode-tailwindcss",
@@ -13,6 +9,7 @@
       "jock.svg",
       "mikestead.dotenv",
       "mitchdenny.ecdc",
+      "ms-azuretools.vscode-azurefunctions",
       "streetsidesoftware.code-spell-checker",
       "vue.volar",
       "vue.vscode-typescript-vue-plugin",
@@ -99,6 +96,57 @@
     "svg.preview.showRuler": true,
     "svg.preview.showCrossLine": true,
     "svg.preview.toolbarSize": "large",
-    "debug.internalConsoleOptions": "neverOpen"
+    "debug.internalConsoleOptions": "neverOpen",
+
+    "azureFunctions.deploySubpath": "src\\api",
+    "azureFunctions.postDeployTask": "npm install (functions)",
+    "azureFunctions.projectLanguage": "JavaScript",
+    "azureFunctions.projectRuntime": "~4",
+    "azureFunctions.preDeployTask": "npm prune (functions)"
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Attach to Node Functions",
+        "type": "node",
+        "request": "attach",
+        "port": 9229,
+        "preLaunchTask": "func: host start"
+      }
+    ]
+  },
+  "tasks": {
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "type": "func",
+        "label": "func: host start",
+        "command": "host start",
+        "problemMatcher": "$func-node-watch",
+        "isBackground": true,
+        "dependsOn": "npm install (functions)",
+        "options": {
+          "cwd": "${workspaceFolder}/src\\api"
+        }
+      },
+      {
+        "type": "shell",
+        "label": "npm install (functions)",
+        "command": "npm install",
+        "options": {
+          "cwd": "${workspaceFolder}/src\\api"
+        }
+      },
+      {
+        "type": "shell",
+        "label": "npm prune (functions)",
+        "command": "npm prune --production",
+        "problemMatcher": [],
+        "options": {
+          "cwd": "${workspaceFolder}/src\\api"
+        }
+      }
+    ]
   }
 }

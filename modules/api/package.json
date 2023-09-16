@@ -1,5 +1,5 @@
 {
-  "name": "@test/api",
+  "name": "@noodles-house/api",
   "version": "1.0.0",
   "type": "module",
   "main": "dist/functions/*.js",
@@ -9,7 +9,8 @@
     "clean": "rimraf dist"
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0-alpha.9"
+    "@azure/functions": "^4.0.0-alpha.9",
+    "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.1"

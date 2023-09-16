@@ -1,8 +1,10 @@
 {
-  "name": "vue-project",
+  "name": "noodles-house",
   "version": "1.0.0",
   "workspaces": [
-    "modules/**"
+    "modules/api",
+    "modules/shared",
+    "modules/ui"
   ],
   "scripts": {
     "dev": "npm run dev -w @test/ui",

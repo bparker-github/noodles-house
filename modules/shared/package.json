@@ -1,4 +1,10 @@
 {
   "name": "@noodles-house/shared",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "unsplash-js": "^7.0.18"
+  }
 }

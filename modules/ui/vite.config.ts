@@ -33,9 +33,10 @@ export default defineConfig({
     // This has to match ../../tsconfig.paths.json
     alias: {
       ...makeAlias('@shared', '../shared/src/index.ts'),
-      ...makeAlias('@ui', './src'),
-      ...makeAlias('@ui/auth', './src/common/auth/index.ts'),
-      ...makeAlias('@ui/common', './src/common/index.ts'),
+      ...makeAlias('@ui/auth', './src/common/auth'),
+      ...makeAlias('@ui-auth', './src/common/auth/index.ts'),
+      ...makeAlias('@ui/common', './src/common'),
+      ...makeAlias('@ui-common', './src/common/index.ts'),
     },
   },
   css: {

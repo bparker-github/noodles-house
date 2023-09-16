@@ -1,11 +1,11 @@
-import '../core/styles/index.css';
+import '@ui/common/assets/main.css';
 
-import { createApp } from 'vue';
-import { createPinia, storeToRefs } from 'pinia';
-import router from './router';
-import { RouterView } from 'vue-router';
 import { useAuthStore } from '@shared';
-import { AuthGuardRedirect, applyNavigationRouter } from '@/common/auth';
+import { AuthGuardRedirect, applyNavigationRouter } from '@ui/auth';
+import { createPinia } from 'pinia';
+import { createApp } from 'vue';
+import { RouterView } from 'vue-router';
+import router from './router';
 
 const app = createApp(RouterView);
 

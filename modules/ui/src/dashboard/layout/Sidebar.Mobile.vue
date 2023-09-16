@@ -2,11 +2,11 @@
 <template>
   <MobileSidebar v-model:isOpen="sidebarOpen">
     <div
-      class="flex grow flex-col gap-y-5 overflow-y-auto bg-mallard px-6 pb-2 ring-1 ring-white/10"
+      class="bg-mallard flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2 ring-1 ring-white/10"
     >
       <div class="flex h-16 shrink-0 items-center">
         <LogoImage
-          class="h-8 w-auto duo-whiteish duo2-dark-orange"
+          class="duo-whiteish duo2-dark-orange h-8 w-auto"
           titleRow1="Noodle's"
           titleRow2="House"
         />
@@ -18,11 +18,11 @@
 </template>
 
 <script setup lang="ts">
-import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
-import SidebarMainNav from './Sidebar.MainNav.vue';
-import { MobileSidebar } from '@/components';
+import { MobileSidebar } from '@ui/common';
 import { storeToRefs } from 'pinia';
+import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
 import LogoImage from './LogoImage.vue';
+import SidebarMainNav from './Sidebar.MainNav.vue';
 
 const sidebarStore = useDashboardSidebarStore();
 const { sidebarOpen } = storeToRefs(sidebarStore);

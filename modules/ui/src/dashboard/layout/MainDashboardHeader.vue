@@ -3,7 +3,7 @@
     :class="[
       // Shared styles
       'sticky top-0 z-40 flex items-center gap-x-6',
-      'bg-gradient-to-r from-chalet-green-900 from-25% to-bourbon-400',
+      'from-chalet-green-900 to-bourbon-400 bg-gradient-to-r from-25%',
       // Mobile styles
       'p-4 sm:px-6',
       // Desktop styles
@@ -12,7 +12,7 @@
   >
     <button
       type="button"
-      class="-m-2.5 rounded-lg bg-mallard-200 p-2.5 text-mallard-900 lg:hidden"
+      class="bg-mallard-200 text-mallard-900 -m-2.5 rounded-lg p-2.5 lg:hidden"
       @click="doOpen"
     >
       <span class="sr-only">Open sidebar</span>
@@ -21,17 +21,17 @@
         aria-hidden="true"
       />
     </button>
-    <div class="flex-1 text-xl font-semibold leading-6 text-whiteish">{{ title }}</div>
+    <div class="text-whiteish flex-1 text-xl font-semibold leading-6">{{ title }}</div>
     <ProfileDropdown :items="userItemList" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ProfileDropdown } from '@/components';
-import { useDashboardSidebarStore } from '@/dashboard/stores/dashboardSidebar';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
+import { ProfileDropdown } from '@ui/common';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
 
 const { userItemList, setIsOpen } = useDashboardSidebarStore();
 

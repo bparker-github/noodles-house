@@ -6,21 +6,21 @@
           <UnsplashImage :photo-id="photoId" />
         </div>
         <div
-          class="relative bg-gray-pink bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
+          class="bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
         >
           <div class="relative flex max-w-3xl flex-col items-center text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-whiteish sm:text-4xl">
+            <h2 class="text-whiteish text-3xl font-bold tracking-tight sm:text-4xl">
               <span class="block pr-2 sm:inline">Welcome</span>
               <span class="block sm:inline">Home!</span>
             </h2>
-            <p class="my-2 text-xl text-whiteish">
+            <p class="text-whiteish my-2 text-xl">
               {{ loremIpsum({ count: 5, units: 'sentence' }) }}
             </p>
             <button
               @click.prevent="beginLogin"
               :class="[
-                'mt-8 block w-full rounded-md px-8 py-3 sm:w-50p md:w-auto',
-                'border border-transparent bg-white text-base font-medium text-bourbon-800 hover:bg-bourbon-100',
+                'sm:w-50p mt-8 block w-full rounded-md px-8 py-3 md:w-auto',
+                'text-bourbon-800 hover:bg-bourbon-100 border border-transparent bg-white text-base font-medium',
               ]"
             >
               Login
@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import { UnsplashImage } from '@/components';
-import { useAuthStore } from '@/core';
+import { useAuthStore } from '@shared';
+import { UnsplashImage } from '@ui/common';
 import { loremIpsum } from 'lorem-ipsum';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';

@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore, BaseLoginRequest } from '@/core';
+import { BaseLoginRequest, useAuthStore } from '@shared';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 

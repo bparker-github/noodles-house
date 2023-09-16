@@ -91,7 +91,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/core';
+import { useAuthStore } from '@shared';
 import { PaperClipIcon } from '@heroicons/vue/20/solid';
 import { storeToRefs } from 'pinia';
 

@@ -4,9 +4,10 @@
       "@api/*": ["./modules/api/src/*"],
       "@shared/*": ["./modules/shared/src/*"],
       "@shared": ["./modules/shared/src/index.ts"],
-      "@ui/*": ["./modules/ui/src/*"],
-      "@ui/auth": ["./modules/ui/src/common/auth/index.ts"],
-      "@ui/common": ["./modules/ui/src/common/index.ts"]
+      "@ui/auth/*": ["./modules/ui/src/common/auth/*"],
+      "@ui-auth": ["./modules/ui/src/common/auth/index.ts"],
+      "@ui/common/*": ["./modules/ui/src/common/*"],
+      "@ui-common": ["./modules/ui/src/common/index.ts"]
     }
   }
 }

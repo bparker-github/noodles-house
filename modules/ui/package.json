@@ -2,7 +2,14 @@
   "name": "@test/ui",
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "build": "run-p build:code build:types",
+    "build:code": "vite build",
+    "build:types": "vue-tsc --noEmit -p ../../tsconfig.ui.json --composite false",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "util:format": "prettier --write src/",
+    "util:lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.16",

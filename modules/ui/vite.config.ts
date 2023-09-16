@@ -1,9 +1,15 @@
 import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import { defineConfig } from 'vite';
 import vueSvg from 'vite-svg-loader';
 import postcss from './postcss.config';
+
+function makeAlias(key: string, val: string): Record<string, string> {
+  return {
+    [key]: fileURLToPath(new URL(val, import.meta.url)),
+  };
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -24,15 +30,19 @@ export default defineConfig({
     }),
   ],
   resolve: {
+    // This has to match ../../tsconfig.paths.json
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      ...makeAlias('@shared', '../shared/src/index.ts'),
+      ...makeAlias('@ui', './src'),
+      ...makeAlias('@ui/auth', './src/common/auth/index.ts'),
+      ...makeAlias('@ui/common', './src/common/index.ts'),
     },
   },
   css: {
     postcss,
   },
   envPrefix: 'NOOD_',
-  envDir: "../../",
+  envDir: '../../',
   server: {
     port: 9090,
   },

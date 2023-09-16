@@ -6,6 +6,8 @@
   "scripts": {
     "build": "run-s clean build:code",
     "build:code": "tsc -p ../../tsconfig.api.json",
+    "dev": "run-s build dev:func",
+    "dev:func": "func start --typescript",
     "clean": "rimraf dist"
   },
   "dependencies": {

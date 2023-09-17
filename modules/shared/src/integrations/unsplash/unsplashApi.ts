@@ -1,7 +1,7 @@
 import { createApi } from 'unsplash-js';
-import { UnsplashApi } from './unsplash';
+import type { UnsplashApi } from './unsplash';
 
-let serverApi: UnsplashApi = null;
+let serverApi: UnsplashApi | null = null;
 
 export function useUnsplashApi(which: 'ui' | 'api', configVal: string): UnsplashApi {
   return (serverApi ??= createApi(

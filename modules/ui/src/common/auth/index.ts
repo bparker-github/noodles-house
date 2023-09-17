@@ -1,10 +1,10 @@
-import type { AuthStoreShape } from '@shared';
-import { toValue } from "vue";
-import { type Router } from "vue-router";
-import { CustomNavigationClient } from "./NavigationGuard";
+import type { AuthStoreShape } from '@nh/shared';
+import { toValue } from 'vue';
+import { type Router } from 'vue-router';
+import { CustomNavigationClient } from './NavigationGuard';
 
-export { AuthGuardRedirect } from "./AuthGuardRedirect";
-export { CustomNavigationClient } from "./NavigationGuard";
+export { AuthGuardRedirect } from './AuthGuardRedirect';
+export { CustomNavigationClient } from './NavigationGuard';
 
 export function applyNavigationRouter(router: Router, app: AuthStoreShape) {
   // This is how you tell MSAL how to route using our vue router.

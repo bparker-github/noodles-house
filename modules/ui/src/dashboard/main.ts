@@ -1,6 +1,6 @@
 import '@ui/common/assets/main.css';
 
-import { useAuthStore } from '@shared';
+import { useAuthStore } from '@nh/shared';
 import { AuthGuardRedirect, applyNavigationRouter } from '@ui-auth';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';

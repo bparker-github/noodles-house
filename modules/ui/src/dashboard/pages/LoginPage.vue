@@ -33,7 +33,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@shared';
+import { useAuthStore } from '@nh/shared';
 import { UnsplashImage } from '@ui-common';
 import { loremIpsum } from 'lorem-ipsum';
 import { useRouter } from 'vue-router';

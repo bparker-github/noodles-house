@@ -6,6 +6,7 @@ export default defineConfig({
       entry: './lib/index.ts',
       name: 'NoodlesHouseShared',
       fileName: 'nh-shared',
+      formats: ['cjs', 'es', 'umd'],
     },
   },
 });

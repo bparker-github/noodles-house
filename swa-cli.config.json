@@ -15,7 +15,7 @@
     },
     "serve": {
       "apiLanguage": "node",
-      "apiLocation": "modules\\api\\dist",
+      "apiLocation": "modules\\api",
       "apiVersion": "18",
       "appLocation": "modules\\ui\\dist"
     },

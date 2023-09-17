@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@shared';
+import { useAuthStore } from '@nh/shared';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 import type { RouteLocationRaw } from 'vue-router';

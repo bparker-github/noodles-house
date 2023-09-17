@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@shared';
+import { useAuthStore } from '@nh/shared';
 import { LoadingSpinner } from '@ui-common';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';

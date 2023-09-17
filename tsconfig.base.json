@@ -4,8 +4,8 @@
     // "verbatimModuleSyntax": true,
     "paths": {
       "@api/*": ["./modules/api/src/*"],
-      "@shared/*": ["./modules/shared/src/*"],
-      "@shared": ["./modules/shared/src/index.ts"],
+      "@shared/*": ["./modules/shared/lib/*"],
+      "@nh/shared": ["./modules/shared/lib/index.ts"],
       "@ui/auth/*": ["./modules/ui/src/common/auth/*"],
       "@ui-auth": ["./modules/ui/src/common/auth/index.ts"],
       "@ui/common/*": ["./modules/ui/src/common/*"],

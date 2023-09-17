@@ -4,7 +4,7 @@ export async function Unsplash(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
-  const { doGetOrThrow, useUnsplashApi } = await import('@noodles-house/shared');
+  const { doGetOrThrow, useUnsplashApi } = await import('@nh/shared');
 
   context.debug(
     'UnsplashRequest:\n\tQuery:',

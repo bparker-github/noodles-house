@@ -11,6 +11,8 @@ export async function Unsplash(
   return { body: `Hello, ${name}!` };
 }
 
+console.log('Unsplash function file loaded.');
+
 app.http('unsplash', {
   methods: ['GET'],
   authLevel: 'anonymous',

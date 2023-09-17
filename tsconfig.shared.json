@@ -2,6 +2,7 @@
   "extends": "./tsconfig.base.json",
   "include": ["types/env.d.ts", "modules/shared/**/*"],
   "compilerOptions": {
+    "composite": true,
     "rootDir": "modules/shared",
     "lib": ["ESNext"],
     "module": "ESNext",

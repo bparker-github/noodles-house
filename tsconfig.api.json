@@ -1,0 +1,15 @@
+{
+  "extends": ["./tsconfig.base.json", "@tsconfig/node18/tsconfig.json"],
+  "include": ["./types/env.d.ts", "modules/api/src/**/*"],
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "rootDir": ".",
+    "outDir": "modules\\api\\dist",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6"
+  },
+  "references": [{ "path": "./tsconfig.shared.json" }]
+}

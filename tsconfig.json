@@ -3,6 +3,7 @@
   "include": [],
   "references": [
     { "path": "./modules/api/tsconfig.json" },
+    { "path": "./tsconfig.config.json" },
     { "path": "./tsconfig.shared.json" },
     { "path": "./tsconfig.ui.json" }
   ]

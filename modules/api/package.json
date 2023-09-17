@@ -1,9 +1,9 @@
 {
   "name": "@noodles-house/api",
   "version": "1.0.0",
-  "type": "module",
   "main": "dist/src/functions/*.js",
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "tsc",
     "watch": "tsc -w",
     "clean": "rimraf dist",

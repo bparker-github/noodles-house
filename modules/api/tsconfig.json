@@ -2,13 +2,13 @@
   "extends": ["../../tsconfig.base.json", "@tsconfig/node18/tsconfig.json"],
   "include": ["../../types/env.d.ts", "src/**/*"],
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "target": "es6",
-    "rootDir": ".",
     "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
+    "rootDir": ".",
     "sourceMap": true,
-    "strict": false
+    "strict": false,
+    "target": "es6"
   }
 }

@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '@shared';
-import { UnsplashImage } from '@ui/common';
+import { UnsplashImage } from '@ui-common';
 import { loremIpsum } from 'lorem-ipsum';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';

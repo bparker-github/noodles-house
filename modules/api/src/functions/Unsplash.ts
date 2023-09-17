@@ -1,4 +1,4 @@
-import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
+import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
 
 export async function Unsplash(
   request: HttpRequest,

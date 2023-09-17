@@ -1,16 +1,28 @@
 {
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
-    "noodles-house": {
-      "appLocation": ".",
-      "apiLocation": ".",
-      "outputLocation": "modules\\ui\\dist",
+    "dev": {
+      "apiBuildCommand": "npm run build:api --if-present",
+      "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
+      "apiLocation": ".",
       "apiVersion": "18",
       "appBuildCommand": "npm run build:ui",
-      "apiBuildCommand": "npm run build:api --if-present",
-      "run": "npm run dev",
       "appDevserverUrl": "http://localhost:9090",
+      "appLocation": ".",
+      "outputLocation": "modules\\ui\\dist",
+      "run": "npm run dev"
+    },
+    "serve": {
+      "apiLanguage": "node",
+      "apiLocation": "modules\\api\\dist",
+      "apiVersion": "18",
+      "appLocation": "modules\\ui\\dist"
+    },
+    "api": {
+      "apiLanguage": "node",
+      "apiVersion": "18",
+      "run": "npm run start -w @noodles-house/api",
       "apiDevserverUrl": "http://localhost:9091"
     }
   }

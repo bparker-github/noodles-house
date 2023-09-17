@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "strict": true,
-    "verbatimModuleSyntax": true,
+    // "verbatimModuleSyntax": true,
     "paths": {
       "@api/*": ["./modules/api/src/*"],
       "@shared/*": ["./modules/shared/src/*"],

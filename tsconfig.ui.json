@@ -1,7 +1,7 @@
 {
   "extends": ["./tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
   "include": ["types/env.d.ts", "types", "modules/ui/**/*"],
-  "exclude": ["modules/ui/**/vite.config.*", "modules/ui/**/plugins/*"],
+  "exclude": ["modules/ui/**/plugins/*", "**/*vite.config*", "**/postcss.config*"],
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "modules/ui/dist"

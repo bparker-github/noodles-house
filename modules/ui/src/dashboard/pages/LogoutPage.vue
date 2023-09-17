@@ -5,7 +5,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from '@shared';
-import { LoadingSpinner } from '@ui/common';
+import { LoadingSpinner } from '@ui-common';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';

@@ -13,8 +13,10 @@
     "build": "npm-run-all -ln -p build:ui build:api",
     "build:ui": "npm run build -w @noodles-house/ui",
     "build:api": "npm run build -w @noodles-house/api",
-    "swa:start": "swa start",
-    "swa:start:ui": "swa start http://localhost:9090 --run \"npm run dev\" -a \"modules\\ui\""
+    "swa:api": "swa start --config-name api",
+    "swa:build": "npm-run-all -ln build swa:serve",
+    "swa:serve": "swa start --config-name serve",
+    "swa:start": "swa start --config-name dev"
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",

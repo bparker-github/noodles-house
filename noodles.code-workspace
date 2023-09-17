@@ -2,6 +2,9 @@
   "folders": [
     {
       "path": "../noodles-house"
+    },
+    {
+      "path": "../vue-project"
     }
   ],
   "extensions": {

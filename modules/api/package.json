@@ -8,8 +8,7 @@
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "prestart": "run-s clean build",
-    "fake": "func start --language-worker --help",
-    "start": "func start --verbose",
+    "start": "func start",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {

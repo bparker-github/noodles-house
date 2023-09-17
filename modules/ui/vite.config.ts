@@ -30,7 +30,7 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    // This has to match ../../tsconfig.paths.json
+    // This has to match ../../tsconfig.base.json
     alias: {
       ...makeAlias('@shared', '../shared/src/index.ts'),
       ...makeAlias('@ui/auth', './src/common/auth'),

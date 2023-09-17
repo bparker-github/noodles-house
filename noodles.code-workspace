@@ -40,6 +40,10 @@
       {
         "fileMatch": ["staticwebapp.config*"],
         "url": "https://json.schemastore.org/staticwebapp.config.json"
+      },
+      {
+        "fileMatch": ["local.settings.json"],
+        "url": "https://json.schemastore.org/local.settings.json"
       }
     ],
 

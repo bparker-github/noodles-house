@@ -5,12 +5,17 @@ import { ref } from 'vue';
 import { doGetOrThrow, useUnsplashApi } from '@shared';
 
 export const useUnsplash = defineStore('unsplash', () => {
-  const accessKey = doGetOrThrow(
-    () => import.meta.env.NOOD_UNSPLASH_ACCESS_KEY,
-    'Missing Unsplash Access Key'
-  );
+  // const accessKey = doGetOrThrow(
+  //   () => import.meta.env.NOOD_UNSPLASH_ACCESS_KEY,
+  //   'Missing Unsplash Access Key'
+  // );
+  // const unsplashApi = ref(useUnsplashApi('ui', accessKey));
 
-  const unsplashApi = ref(useUnsplashApi('ui', accessKey));
+  const unsplashUrl = doGetOrThrow(
+    () => import.meta.env.NOOD_API_URL + '/unsplash',
+    'Missing Api URL'
+  );
+  const unsplashApi = ref(useUnsplashApi('ui', unsplashUrl));
 
   async function getPhoto(id: string = 'W7cPLHOa0eQ'): Promise<Full | null> {
     try {

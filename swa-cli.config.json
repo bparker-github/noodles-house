@@ -24,6 +24,13 @@
       "apiVersion": "18",
       "run": "npm run start -w @noodles-house/api",
       "apiDevserverUrl": "http://localhost:9091"
+    },
+    "attach": {
+      "appDevserverUrl": "http://localhost:9090",
+      "apiLanguage": "node",
+      "apiVersion": "18",
+      "run": "npm run start -w @noodles-house/api",
+      "apiDevserverUrl": "http://localhost:9091"
     }
   }
 }

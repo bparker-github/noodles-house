@@ -100,8 +100,9 @@
 
     "azureFunctions.deploySubpath": "src\\api",
     "azureFunctions.postDeployTask": "npm install (functions)",
-    "azureFunctions.projectLanguage": "JavaScript",
+    "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
+    "azureFunctions.projectLanguageModel": 4,
     "azureFunctions.preDeployTask": "npm prune (functions)"
   },
   "launch": {
@@ -122,12 +123,11 @@
       {
         "type": "func",
         "label": "func: host start",
-        "command": "host start",
+        "command": "host start --verbose",
         "problemMatcher": "$func-node-watch",
         "isBackground": true,
-        "dependsOn": "npm install (functions)",
         "options": {
-          "cwd": "${workspaceFolder}/src\\api"
+          "cwd": "${workspaceFolder}\\src\\api"
         }
       },
       {
@@ -136,7 +136,9 @@
         "command": "npm install",
         "options": {
           "cwd": "${workspaceFolder}/src\\api"
-        }
+        },
+        "problemMatcher": ["$func-node-watch"],
+        "isBackground": true
       },
       {
         "type": "shell",

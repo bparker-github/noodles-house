@@ -7,9 +7,10 @@
     "modules/ui"
   ],
   "scripts": {
-    "dev": "run-p dev:ui dev:api",
+    "dev": "npm-run-all -ln -p dev:ui dev:api",
     "dev:ui": "npm run dev -w @noodles-house/ui",
     "dev:api": "npm run start -w @noodles-house/api",
+    "build": "npm-run-all -ln -p build:ui build:api",
     "build:ui": "npm run build -w @noodles-house/ui",
     "build:api": "npm run build -w @noodles-house/api",
     "swa:start": "swa start",

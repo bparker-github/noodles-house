@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "prestart": "run-s clean build",
-    "start": "func start",
+    "start": "func start --port 9091",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {

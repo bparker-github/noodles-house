@@ -1,12 +1,10 @@
 import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
-
+import { doGetOrThrow, useUnsplashApi } from '@shared';
 
 export async function Unsplash(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
-  context.log(`Http function processed request for url "${request.url}"`);
-
   context.debug(
     'UnsplashRequest:\n\tQuery:',
     request.query,
@@ -17,11 +15,17 @@ export async function Unsplash(
     '\n\tUrl:',
     request.url
   );
-  const name = request.query.get('name') || (await request.text()) || 'world';
 
-  const unsplashApi = 
+  const accessKey = doGetOrThrow(
+    () => process.env['NOOD_UNSPLASH_ACCESS_KEY'],
+    'Missing Unsplash Access Key'
+  );
+  const unsplashApi = useUnsplashApi('api', accessKey);
 
-  return { body: `Hello, ${name}!` };
+  const firstPath = request.params.restOfPath?.split('/');
+  context.log('firstPath:', firstPath);
+
+  return { body: `Hello, ${firstPath}!` };
 }
 
 app.http('unsplash', {

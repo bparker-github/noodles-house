@@ -4,7 +4,7 @@
   "main": "dist/src/functions/*.js",
   "scripts": {
     "prebuild": "npm run clean",
-    "build": "tsc",
+    "build": "tsc -p ../../tsconfig.api.json",
     "watch": "npm run build -- -w",
     "clean": "rimraf dist",
     "prestart": "npm run build",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0-alpha.9",
+    "@noodles-house/shared": "^1.0.0",
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {

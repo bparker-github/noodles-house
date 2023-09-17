@@ -1,11 +1,16 @@
 {
   "extends": "./tsconfig.base.json",
-  "include": ["types/env.d.ts", "modules/shared/**/*"],
+  "include": ["types/env.d.ts", "modules/shared/**/*", "modules/shared/lib/index.ts"],
+  "exclude": ["modules/shared/**/*vite.config*"],
   "compilerOptions": {
     "composite": true,
-    "rootDir": "modules/shared",
+    "rootDir": "modules\\shared\\lib",
+    "outDir": "modules\\shared\\types",
     "lib": ["ESNext"],
     "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "moduleResolution": "Bundler",
+    "declaration": true,
+    "skipLibCheck": true,
+    "emitDeclarationOnly": true
   }
 }

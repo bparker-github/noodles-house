@@ -1,10 +1,11 @@
 import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
-import { doGetOrThrow, useUnsplashApi } from '@shared';
 
 export async function Unsplash(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
+  const { doGetOrThrow, useUnsplashApi } = await import('@noodles-house/shared');
+
   context.debug(
     'UnsplashRequest:\n\tQuery:',
     request.query,

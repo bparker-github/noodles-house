@@ -7,12 +7,14 @@
     "modules/ui"
   ],
   "scripts": {
+    "clean:buildinfo": "rimraf -g \"**/*.tsbuildinfo\"",
     "dev": "npm-run-all -ln -p dev:ui dev:api",
     "dev:ui": "npm run dev -w @noodles-house/ui",
     "dev:api": "npm run start -w @noodles-house/api",
     "build": "npm-run-all -ln -p build:ui build:api",
-    "build:ui": "npm run build -w @noodles-house/ui",
     "build:api": "npm run build -w @noodles-house/api",
+    "build:shared": "npm run build -w @noodles-house/shared",
+    "build:ui": "npm run build -w @noodles-house/ui",
     "swa:api": "swa start --config-name api",
     "swa:build": "npm-run-all -ln build swa:serve",
     "swa:serve": "swa start --config-name serve",
@@ -21,7 +23,7 @@
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",
     "@rushstack/eslint-patch": "^1.4.0",
-    "@types/node": "^20.6.0",
+    "@types/node": "^20.6.2",
     "dotenv": "^16.3.1",
     "eslint": "^8.49.0",
     "lorem-ipsum": "^2.0.8",
@@ -29,6 +31,7 @@
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
+    "rimraf": "^5.0.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {

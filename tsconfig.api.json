@@ -1,11 +1,11 @@
 {
   "extends": ["./tsconfig.base.json", "@tsconfig/node18/tsconfig.json"],
-  "include": ["./types/env.d.ts", "modules/api/src/**/*"],
+  "include": ["./types/env.d.ts", "modules/api/**/*", "modules/api/src/main.ts"],
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "rootDir": ".",
+    "rootDir": "modules\\api\\src",
     "outDir": "modules\\api\\dist",
     "sourceMap": true,
     "strict": true,

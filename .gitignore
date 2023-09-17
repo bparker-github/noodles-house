@@ -31,3 +31,5 @@ coverage
 
 # Ignore the standard pr template, we are coding a new one on commit.
 .github/PULL_REQUEST_TEMPLATE.md
+
+*.tsbuildinfo

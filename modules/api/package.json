@@ -1,7 +1,7 @@
 {
   "name": "@noodles-house/api",
   "version": "1.0.0",
-  "main": "dist/src/functions/*.js",
+  "main": "dist/functions/*.js",
   "scripts": {
     "prebuild": "npm run clean",
     "build": "tsc -p ../../tsconfig.api.json",

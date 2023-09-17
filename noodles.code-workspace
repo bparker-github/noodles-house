@@ -1,5 +1,9 @@
 {
-  "folders": [{ "path": "../noodles-house" }, { "path": "../vue-project" }],
+  "folders": [
+    {
+      "path": "../noodles-house"
+    }
+  ],
   "extensions": {
     "recommendations": [
       "bradlc.vscode-tailwindcss",

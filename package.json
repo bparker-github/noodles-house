@@ -6,6 +6,9 @@
     "modules/shared",
     "modules/ui"
   ],
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
     "clean": "npm-run-all -lnp clean:*",
     "clean:dist": "rimraf -g \"modules/**/dist",

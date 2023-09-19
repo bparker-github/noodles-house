@@ -1,32 +1,42 @@
 import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
+import { createApi } from 'unsplash-js';
 
 export async function Unsplash(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
-  const { doGetOrThrow, useUnsplashApi } = await import('@nh/shared');
+  context.log('found rest::', request.params.restOfPath);
+  const pathParts = request.params.restOfPath?.split('/');
+  const [domain, secondary, ...rest] = pathParts;
 
-  context.debug(
-    'UnsplashRequest:\n\tQuery:',
-    request.query,
-    '\n\tParams:',
-    request.params,
-    '\n\tBody:',
-    await request.json().catch((er) => er?.message ?? er),
-    '\n\tUrl:',
-    request.url
-  );
+  switch (domain) {
+    case 'photos':
+      // Do photos thing.
+      return handlePhotosRequest(request, secondary, rest);
+    default:
+      return { body: 'Invalid command.', status: 400 };
+  }
+}
 
-  const accessKey = doGetOrThrow(
-    () => process.env['NOOD_UNSPLASH_ACCESS_KEY'],
-    'Missing Unsplash Access Key'
-  );
-  const unsplashApi = useUnsplashApi('api', accessKey);
+let unsplashApi: ReturnType<typeof createApi> | null = null;
+function getUnsplashApi() {
+  const accessKey = process.env.NOOD_UNSPLASH_ACCESS_KEY ?? '';
+  return (unsplashApi ??= createApi({ accessKey }));
+}
 
-  const firstPath = request.params.restOfPath?.split('/');
-  context.log('firstPath:', firstPath);
-
-  return { body: `Hello, ${firstPath}!` };
+async function handlePhotosRequest(
+  request: HttpRequest,
+  secondary: string,
+  rest: string[]
+): Promise<HttpResponseInit> {
+  switch (request.method) {
+    case 'GET':
+      const resp = await getUnsplashApi().photos.get({ photoId: secondary });
+      return { jsonBody: resp.response, status: 200 };
+    case 'POST':
+    default:
+      return { body: 'Invalid method', status: 400 };
+  }
 }
 
 app.http('unsplash', {

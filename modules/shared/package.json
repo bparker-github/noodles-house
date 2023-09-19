@@ -2,26 +2,12 @@
   "name": "@noodles-house/shared",
   "version": "1.0.0",
   "type": "module",
-  "files": [
-    "dist"
-  ],
-  "main": "./dist/nh-shared.umd.cjs",
-  "module": "./dist/nh-shared.js",
-  "types": "./types/index.d.ts",
-  "exports": {
-    "types": "./types/index.d.ts",
-    "import": "./dist/nh-shared.js",
-    "require": "./dist/nh-shared.umd.cjs"
-  },
+  "main": "./lib/index.ts",
   "scripts": {
-    "clean": "rimraf dist types",
-    "prebuild": "npm-run-all -ln clean",
-    "build": "npm-run-all -lns build:code build:types",
-    "build:code": "vite build",
-    "build:types": "tsc -p ../../tsconfig.shared.json",
-    "watch": "npm-run-all -lns build:code -p watch:*",
-    "watch:code": "npm run build:code -- --watch",
-    "watch:types": "npm run build:types -- --watch"
+    "clean": "rimraf dist",
+    "build": "npm-run-all -lns clean build:code",
+    "build:code": "tsc -p ../../tsconfig.shared.json",
+    "watch": "npm run build:code -- --watch"
   },
   "devDependencies": {
     "rimraf": "^5.0.1",

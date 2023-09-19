@@ -10,6 +10,5 @@
     "sourceMap": true,
     "strict": true,
     "target": "es6"
-  },
-  "references": [{ "path": "./tsconfig.shared.json" }]
+  }
 }

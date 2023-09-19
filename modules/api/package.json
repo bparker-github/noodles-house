@@ -5,15 +5,16 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "tsc -p ../../tsconfig.api.json",
-    "watch": "npm run build -- --watch",
+    "watch": "tsc -w -p ../../tsconfig.api.json",
     "clean": "rimraf dist",
     "prestart": "npm run build",
-    "start": "func start --port 9091",
+    "start": "npm-run-all -lnp run:watch run:func",
+    "run:func": "func start --port 9091",
+    "run:watch": "npm run build -- --watch",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
     "@azure/functions": "^4.0.0-alpha.9",
-    "@noodles-house/shared": "^1.0.0",
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {

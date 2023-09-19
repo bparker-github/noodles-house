@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "run-p build:code build:types",
+    "build": "npm-run-all -lns build:code build:types",
     "build:code": "vite build",
     "build:types": "vue-tsc --noEmit -p ../../tsconfig.ui.json --composite false",
     "preview": "vite preview",

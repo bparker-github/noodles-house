@@ -3,12 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "main": "./lib/index.ts",
-  "scripts": {
-    "clean": "rimraf dist",
-    "build": "npm-run-all -lns clean build:code",
-    "build:code": "tsc -p ../../tsconfig.shared.json",
-    "watch": "npm run build:code -- --watch"
-  },
   "devDependencies": {
     "rimraf": "^5.0.1",
     "typescript": "^5.2.2"

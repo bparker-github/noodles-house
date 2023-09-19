@@ -28,7 +28,7 @@
 
 <script setup lang="ts">
 import { Bars3Icon } from '@heroicons/vue/24/outline';
-import { ProfileDropdown } from '@ui-common';
+import { ProfileDropdown } from '@nh/ui-common';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useDashboardSidebarStore } from '../stores/dashboardSidebar';

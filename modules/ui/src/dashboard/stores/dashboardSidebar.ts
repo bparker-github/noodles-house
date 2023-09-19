@@ -1,4 +1,4 @@
-import type { ListItem } from '@ui-common';
+import type { ListItem } from '@nh/ui-common';
 import { HomeIcon, UsersIcon } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';

@@ -7,8 +7,7 @@
     "modules/ui"
   ],
   "engines": {
-    "node": "^18",
-    "nodejs": "^18"
+    "node": "^18"
   },
   "scripts": {
     "clean": "npm-run-all -lnp clean:*",

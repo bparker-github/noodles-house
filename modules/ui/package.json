@@ -1,6 +1,9 @@
 {
   "name": "@noodles-house/ui",
   "version": "1.0.0",
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
     "dev": "vite",
     "build": "npm-run-all -lns build:code build:types",

@@ -29,6 +29,7 @@
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",
     "@rushstack/eslint-patch": "^1.4.0",
+    "@tsconfig/node18": "^18.2.2",
     "@types/node": "^20.6.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",

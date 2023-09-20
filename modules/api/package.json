@@ -22,7 +22,7 @@
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.1",
+    "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.x",
     "rimraf": "^5.0.0",
     "typescript": "^5.2.2"

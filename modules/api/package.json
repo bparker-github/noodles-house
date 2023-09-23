@@ -8,9 +8,9 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "tsc -p ../../tsconfig.api.json",
-    "build:local": "npm run build -- --mode local",
-    "build:swa": "npm run build -- --mode swa",
-    "build:swa-local": "npm run build -- --mode swa-local",
+    "build:local": "cross-env-shell MODE=local npm run build",
+    "build:swa": "cross-env-shell MODE=swa npm run build",
+    "build:swa-local": "cross-env-shell MODE=swa-local npm run build",
     "watch": "npm run build -- --watch",
     "clean": "rimraf dist",
     "prestart": "npm run build",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
     "@types/node": "^18.x",
+    "cross-env": "^7.0.3",
     "rimraf": "^5.0.0",
     "typescript": "^5.2.2"
   }

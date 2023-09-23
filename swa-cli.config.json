@@ -6,7 +6,7 @@
       "appBuildCommand": "npm run b:swa:ui",
       "apiLocation": ".",
       "apiBuildCommand": "npm run b:swa:api",
-      "outputLocation": "dist"
+      "outputLocation": "modules/ui/dist"
     },
     "dev": {
       "apiBuildCommand": "npm run build:api --if-present",

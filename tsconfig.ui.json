@@ -1,9 +1,10 @@
 {
   "extends": ["./tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
-  "include": ["types/env.d.ts", "types", "modules/ui/**/*", "modules/shared/**/*"],
+  "include": ["types/env.d.ts", "types", "modules/ui/**/*"],
   "exclude": ["modules/ui/**/plugins/*", "**/*vite.config*", "**/postcss.config*"],
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "modules/ui/dist"
-  }
+  },
+  "references": [{ "path": "./tsconfig.shared.json" }]
 }

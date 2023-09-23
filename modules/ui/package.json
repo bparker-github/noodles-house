@@ -8,7 +8,7 @@
     "dev": "vite",
     "build": "npm-run-all -lns build:code build:types",
     "build:code": "vite build",
-    "build:types": "vue-tsc --noEmit -p ../../tsconfig.ui.json --composite false",
+    "build:types": "vue-tsc --noEmit -p ../../tsconfig.ui.json",
     "preview": "vite preview",
     "test:unit": "vitest",
     "util:format": "prettier --write src/",

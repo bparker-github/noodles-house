@@ -2,7 +2,7 @@
   "name": "@noodles-house/shared",
   "version": "1.0.0",
   "type": "module",
-  "main": "./lib/index.ts",
+  "main": "./src/index.ts",
   "devDependencies": {
     "rimraf": "^5.0.1",
     "typescript": "^5.2.2"

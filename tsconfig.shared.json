@@ -1,0 +1,5 @@
+{
+  "extends": ["./tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
+  "include": ["types/env.d.ts", "types", "modules/shared/**/*"],
+  "exclude": ["**/*vite.config*", "**/postcss.config*"]
+}

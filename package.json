@@ -6,24 +6,46 @@
     "modules/shared",
     "modules/ui"
   ],
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
-    "dev": "npm run dev -w @test/ui",
-    "build:ui": "npm run build -w @test/ui",
-    "build:api": "npm run build -w @test/api"
+    "clean": "npm-run-all -lnp clean:*",
+    "clean:dist": "rimraf -g modules/**/dist",
+    "clean:buildinfo": "rimraf -g **/*.tsbuildinfo",
+    "dev": "npm run dev:all",
+    "dev:api": "npm run start -w @noodles-house/api",
+    "dev:ui": "npm run dev -w @noodles-house/ui",
+    "build": "npm-run-all -lnp build:api build:ui",
+    "build:api": "npm run build -w @noodles-house/api",
+    "build:ui": "npm run build -w @noodles-house/ui",
+    "swa:api": "swa start --config-name api",
+    "swa:build": "npm-run-all -ln build swa:serve",
+    "swa:attach": "swa start --config-name attach",
+    "swa:serve": "swa start --config-name serve",
+    "swa:start": "swa start --config-name dev",
+    "///////////": "//////////",
+    "b:swa": "cross-env-shell MODE=swa npm run build",
+    "b:swa:api": "npm run build:swa -w @noodles-house/api",
+    "b:swa:ui": "npm run build:swa -w @noodles-house/ui"
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",
-    "@types/node": "^20.6.0",
+    "@rushstack/eslint-patch": "^1.4.0",
+    "@tsconfig/node18": "^18.2.2",
+    "@types/node": "^20.6.2",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.3.1",
     "eslint": "^8.49.0",
-    "lorem-ipsum": "^2.0.8",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
+    "rimraf": "^5.0.1",
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@azure/msal-browser": "^3.1.0"
+    "@azure/msal-browser": "^3.1.0",
+    "lorem-ipsum": "^2.0.8"
   }
 }

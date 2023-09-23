@@ -1,4 +1,4 @@
-import type { RequireOnlyOne } from '@/core';
+import type { RequireOnlyOne } from '@nh/shared';
 import type { Component } from 'vue';
 import type { RouteLocationRaw } from 'vue-router';
 

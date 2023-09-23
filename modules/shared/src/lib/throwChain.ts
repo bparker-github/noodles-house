@@ -3,7 +3,7 @@ export function throwError(msg: string) {
   throw new Error(msg);
 }
 
-export function doGetOrThrow<T>(func: () => T, errorMessage: string): T {
+export function doGetOrThrow<T>(func: () => T, errorMessage: string): NonNullable<T> {
   const found = func();
 
   if (!found) {

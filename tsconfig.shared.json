@@ -1,10 +1,11 @@
 {
-  "extends": ["./tsconfig.paths.json"],
-  "include": ["types/env.d.ts", "modules/shared/**/*"],
+  "extends": ["./tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
+  "include": ["types/env.d.ts", "types", "modules/shared/**/*"],
+  "exclude": ["**/*vite.config*", "**/postcss.config*"],
   "compilerOptions": {
-    "rootDir": "modules/shared",
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler"
+    "rootDir": ".",
+    "outDir": "modules/shared/dist",
+    "composite": true,
+    "incremental": true
   }
 }

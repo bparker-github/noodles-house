@@ -1,6 +1,6 @@
-import type { NavigationGuard } from "vue-router";
-import { toRef } from "vue";
-import { useAuthStore } from "@shared";
+import type { NavigationGuard } from 'vue-router';
+import { toRef } from 'vue';
+import { useAuthStore } from '@nh/shared';
 
 export const AuthGuardRedirect: NavigationGuard = async function (to) {
   // If no auth, continue successfully.
@@ -9,7 +9,7 @@ export const AuthGuardRedirect: NavigationGuard = async function (to) {
   }
 
   const authStore = useAuthStore();
-  const isAuthenticated = toRef(authStore, "isAuthenticated");
+  const isAuthenticated = toRef(authStore, 'isAuthenticated');
 
   // If they are successfully authenticated already, continue successfully.
   if (isAuthenticated.value) {
@@ -17,5 +17,5 @@ export const AuthGuardRedirect: NavigationGuard = async function (to) {
   }
 
   // Otherwise redirect them to the desired route.
-  return typeof to.meta.authRequired === "boolean" ? "/" : to.meta.authRequired;
+  return typeof to.meta.authRequired === 'boolean' ? '/' : to.meta.authRequired;
 };

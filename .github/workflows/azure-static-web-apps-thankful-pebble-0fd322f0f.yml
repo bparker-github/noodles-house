@@ -26,10 +26,10 @@ jobs:
           action: 'upload'
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: '.'
+          app_location: '/'
           app_build_command: 'npm run b:swa:ui'
           api_location: 'modules/api'
-          api_build_command: 'npm run b:swa:api'
+          api_build_command: 'npm run build:swa'
           output_location: 'modules/ui/dist'
 
         env:

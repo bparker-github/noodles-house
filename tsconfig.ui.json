@@ -4,8 +4,7 @@
   "exclude": ["modules/ui/**/plugins/*", "**/*vite.config*", "**/postcss.config*"],
   "compilerOptions": {
     "rootDir": ".",
-    "outDir": "modules/ui/dist",
-    "noEmit": true
+    "outDir": "modules/ui/dist"
   },
   "references": [{ "path": "./tsconfig.shared.json" }]
 }

@@ -4,7 +4,7 @@
     // "verbatimModuleSyntax": true,
     "paths": {
       "@nh/api/*": ["./modules/api/src/*"],
-      "@nh/shared": ["./modules/shared/index.ts"],
+      "@nh/shared": ["./modules/shared/src/index.ts"],
       "@nh/ui-auth": ["./modules/ui/src/common/auth/index.ts"],
       "@nh/ui/auth/*": ["./modules/ui/src/common/auth/*"],
       "@nh/ui-common": ["./modules/ui/src/common/index.ts"],

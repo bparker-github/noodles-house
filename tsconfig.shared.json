@@ -4,7 +4,6 @@
   "exclude": ["**/*vite.config*", "**/postcss.config*"],
   "compilerOptions": {
     "rootDir": ".",
-    "baseUrl": "modules/shared",
     "outDir": "modules/shared/dist",
     "composite": true,
     "incremental": true

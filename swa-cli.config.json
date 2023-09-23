@@ -2,9 +2,9 @@
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
     "workflow": {
-      "appLocation": "modules/ui",
+      "appLocation": ".",
       "appBuildCommand": "npm run b:swa:ui",
-      "apiLocation": "modules/api",
+      "apiLocation": ".",
       "apiBuildCommand": "npm run b:swa:api",
       "outputLocation": "dist"
     },

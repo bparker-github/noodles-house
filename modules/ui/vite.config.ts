@@ -32,7 +32,7 @@ export default defineConfig({
   resolve: {
     // This has to match ../../tsconfig.base.json
     alias: {
-      ...makeAlias('@nh/shared', '../shared/index.ts'),
+      ...makeAlias('@nh/shared', '../shared/src/index.ts'),
       ...makeAlias('@nh/ui/auth', './src/common/auth'),
       ...makeAlias('@nh/ui-auth', './src/common/auth/index.ts'),
       ...makeAlias('@nh/ui/common', './src/common'),

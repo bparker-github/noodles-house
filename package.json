@@ -11,20 +11,23 @@
   },
   "scripts": {
     "clean": "npm-run-all -lnp clean:*",
-    "clean:dist": "rimraf -g \"modules/**/dist",
-    "clean:buildinfo": "rimraf -g \"**/*.tsbuildinfo\"",
+    "clean:dist": "rimraf -g modules/**/dist",
+    "clean:buildinfo": "rimraf -g **/*.tsbuildinfo",
     "dev": "npm run dev:all",
     "dev:api": "npm run start -w @noodles-house/api",
     "dev:ui": "npm run dev -w @noodles-house/ui",
     "build": "npm-run-all -lnp build:api build:ui",
-    "build:swa": "cross-env-shell MODE=swa-local npm run build",
     "build:api": "npm run build -w @noodles-house/api",
     "build:ui": "npm run build -w @noodles-house/ui",
     "swa:api": "swa start --config-name api",
     "swa:build": "npm-run-all -ln build swa:serve",
     "swa:attach": "swa start --config-name attach",
     "swa:serve": "swa start --config-name serve",
-    "swa:start": "swa start --config-name dev"
+    "swa:start": "swa start --config-name dev",
+    "///////////": "//////////",
+    "b:swa": "cross-env-shell MODE=swa npm run build",
+    "b:swa:api": "cross-env-shell MODE=swa npm run build:api",
+    "b:swa:ui": "cross-env-shell MODE=swa npm run build:ui"
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",

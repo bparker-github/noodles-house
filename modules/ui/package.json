@@ -6,9 +6,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "npm-run-all -lns build:code build:types",
+    "build": "npm-run-all -lns build:types build:code",
     "build:code": "vite build",
-    "build:types": "vue-tsc -p ../../tsconfig.ui.json",
+    "build:types": "vue-tsc -b ../../tsconfig.ui.json --declaration --emitDeclarationOnly",
     "preview": "vite preview",
     "test:unit": "vitest",
     "util:format": "prettier --write src/",

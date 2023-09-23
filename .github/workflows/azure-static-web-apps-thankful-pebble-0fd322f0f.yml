@@ -26,9 +26,12 @@ jobs:
           action: 'upload'
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: 'modules/ui' # App source code path
-          api_location: 'modules/api' # Api source code path - optional
-          output_location: 'modules/ui/dist' # Built app content directory - optional
+          app_location: 'modules/ui'
+          app_build_command: 'npm run b:swa:ui'
+          api_location: 'modules/api'
+          api_build_command: 'npm run b:swa:api'
+          output_location: 'dist'
+
         env:
           NOOD_UI_URL: 'https://thankful-pebble-0fd322f0f-7.eastus2.3.azurestaticapps.net'
           NOOD_API_URL: 'https://thankful-pebble-0fd322f0f-7.eastus2.3.azurestaticapps.net/api'

@@ -15,3 +15,5 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+/// <reference types="./vue/shims-vue.d.ts" />

@@ -1,0 +1,9 @@
+{
+  "extends": "../../config/tsconfig/vue-ui",
+  "include": ["./src/**/*"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "dist"
+  },
+  "references": [{ "path": "../tailwind" }]
+}

@@ -2,10 +2,11 @@
   "name": "noodles-house",
   "version": "1.0.0",
   "workspaces": [
-    "modules/api",
-    "modules/shared",
-    "modules/ui",
-    "modules/blur-hash"
+    "./code/api",
+    "./code/modules/blur-hash",
+    "./code/modules/common",
+    "./code/modules/tailwind",
+    "./code/ui"
   ],
   "engines": {
     "node": "^18"

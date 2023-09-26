@@ -34,7 +34,7 @@
         "url": "https://json.schemastore.org/prettierrc"
       },
       {
-        "fileMatch": ["tsconfig.*.json"],
+        "fileMatch": ["tsconfig.*.json", "tsconfig/*.json"],
         "url": "https://json.schemastore.org/tsconfig.json"
       },
       {
@@ -49,10 +49,10 @@
 
     "tailwindCSS.experimental.configFile": {
       "./tailwind.config.ts": [
-        "./index.html",
-        "./modules/blur-hash/src/**",
-        "./modules/ui/src/components/**",
-        "./modules/ui/src/dashboard/**"
+        "./code/ui/index.html",
+        "./code/ui/src/**/*",
+        "./code/modules/blur-hash/src/**/*",
+        "./code/modules/blur-hash/src/**/*"
       ]
     },
 
@@ -80,7 +80,8 @@
     },
 
     "files.associations": {
-      ".funcignore": "ignore"
+      ".funcignore": "ignore",
+      "tsconfig/*.json": "jsonc"
     },
 
     "cSpell.ignorePaths": [

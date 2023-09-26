@@ -1,0 +1,11 @@
+{
+  "name": "@noodles-house/blur-hash",
+  "version": "1.0.0",
+  "main": "src/main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "blurhash": "^2.0.5"
+  }
+}

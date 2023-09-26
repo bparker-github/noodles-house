@@ -1,4 +1,3 @@
 {
-  "extends": ["./BASE.json", "@vue/tsconfig/tsconfig.dom.json"],
-  "include": ["../../types/env.d.ts"]
+  "extends": ["./BASE.json", "@vue/tsconfig/tsconfig.dom.json"]
 }

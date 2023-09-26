@@ -48,6 +48,11 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
+      "./code/ui/tailwind.config.ts": [
+        "./code/ui/index.html",
+        "./code/ui/src/**/*",
+        "./code/modules/blur-hash/src/**/*"
+      ],
       "./tailwind.config.ts": [
         "./code/ui/index.html",
         "./code/ui/src/**/*",
@@ -81,7 +86,7 @@
 
     "files.associations": {
       ".funcignore": "ignore",
-      "tsconfig/*.json": "jsonc"
+      "**/tsconfig/*.json": "jsonc"
     },
 
     "cSpell.ignorePaths": [

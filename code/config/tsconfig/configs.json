@@ -1,5 +1,6 @@
 {
-  "include": ["../types/env.d.ts", "../../config/**/*.ts"],
+  "extends": "./BASE.json",
+  "include": ["../../config/**/*.ts"],
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "ESNext",

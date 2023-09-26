@@ -6,18 +6,15 @@ import {
   PublicClientApplication,
   type AuthenticationResult,
   type EventMessage,
-} from "@azure/msal-browser";
-import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import { BaseLoginRequest, MsalInstance } from "./AuthConfig";
-import {
-  areNoodleAccountArraysEqual,
-  type NoodleAccountInfo,
-} from "./AuthUtils";
+} from '@azure/msal-browser';
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
+import { BaseLoginRequest, MsalInstance } from './AuthConfig';
+import { areNoodleAccountArraysEqual, type NoodleAccountInfo } from './AuthUtils';
 
 export type AuthStoreShape = ReturnType<typeof useAuthStore>;
 
-export const useAuthStore = defineStore("authStore", () => {
+export const useAuthStore = defineStore('authStore', () => {
   // Create and initialize the client.
   const instance = ref<PublicClientApplication>(MsalInstance);
   const interactionStatus = ref<InteractionStatus>(InteractionStatus.Startup);
@@ -25,16 +22,11 @@ export const useAuthStore = defineStore("authStore", () => {
   const user = ref<NoodleAccountInfo>(accounts.value?.[0] ?? null);
 
   // Computed
-  const isAuthenticated = computed(
-    () => accounts.value.length > 0 && !!user.value
-  );
+  const isAuthenticated = computed(() => accounts.value.length > 0 && !!user.value);
 
   // Register hook to update interaction status.
   instance.value.addEventCallback((msg: EventMessage) => {
-    const status = EventMessageUtils.getInteractionStatusFromEvent(
-      msg,
-      interactionStatus.value
-    );
+    const status = EventMessageUtils.getInteractionStatusFromEvent(msg, interactionStatus.value);
     if (status !== null) {
       interactionStatus.value = status;
     }
@@ -49,6 +41,7 @@ export const useAuthStore = defineStore("authStore", () => {
       }
     }
     switch (msg.eventType) {
+      // @ts-expect-error
       case EventType.LOGIN_SUCCESS:
         if (msg.payload) {
           const payload = msg.payload as AuthenticationResult;
@@ -79,7 +72,7 @@ export const useAuthStore = defineStore("authStore", () => {
     } else if (type === InteractionType.Silent) {
       return instance.value.ssoSilent(BaseLoginRequest);
     } else {
-      throw new Error("Interaction Type not supported");
+      throw new Error('Interaction Type not supported');
     }
   }
   function doLogout(
@@ -90,13 +83,13 @@ export const useAuthStore = defineStore("authStore", () => {
     } else if (type === InteractionType.Redirect) {
       return instance.value.logoutRedirect();
     } else {
-      throw new Error("Interaction Type not supported");
+      throw new Error('Interaction Type not supported');
     }
   }
 
   async function getToken(): Promise<string> {
     const resp = await instance.value.acquireTokenSilent(BaseLoginRequest);
-    console.log("Resp:", resp);
+    console.log('Resp:', resp);
 
     return resp.accessToken;
   }

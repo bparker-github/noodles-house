@@ -1,5 +1,4 @@
 {
-  "extends": "./code/config/tsconfig/BASE.json",
   "files": [],
   "include": [],
   "references": [

@@ -1,6 +1,5 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["../../types/env.d.ts"],
+  "extends": ["./BASE.json", "@tsconfig/node18/tsconfig.json"],
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "NodeNext",

@@ -1,7 +1,9 @@
 {
+  "include": ["../../types/env.d.ts"],
   "compilerOptions": {
     "strict": true,
     "verbatimModuleSyntax": true,
+    "typeRoots": ["../../types"],
     "paths": {
       "@nh/blur-hash": ["../../standalone/blur-hash/src/*"],
       "@nh/tailwind": ["../../standalone/tailwind/src/*"],

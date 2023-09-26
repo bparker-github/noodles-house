@@ -48,7 +48,12 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./tailwind.config.ts": ["./index.html", "./src/components/**", "./src/dashboard/**"]
+      "./tailwind.config.ts": [
+        "./index.html",
+        "./modules/blur-hash/src/**",
+        "./modules/ui/src/components/**",
+        "./modules/ui/src/dashboard/**"
+      ]
     },
 
     "[css]": {
@@ -88,6 +93,7 @@
       "*.code-workspace"
     ],
     "cSpell.words": [
+      "blurhash",
       "headlessui",
       "heroicons",
       "Msal",

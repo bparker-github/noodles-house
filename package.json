@@ -4,7 +4,8 @@
   "workspaces": [
     "modules/api",
     "modules/shared",
-    "modules/ui"
+    "modules/ui",
+    "modules/blur-hash"
   ],
   "engines": {
     "node": "^18"

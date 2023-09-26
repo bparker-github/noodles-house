@@ -1,9 +1,11 @@
 {
+  "extends": "./code/config/tsconfig/BASE.json",
   "files": [],
   "include": [],
   "references": [
-    { "path": "./tsconfig.api.json" },
-    { "path": "./tsconfig.config.json" },
-    { "path": "./tsconfig.ui.json" }
+    { "path": "code/config/tsconfig/configs.json" },
+    { "path": "code/config/tsconfig/node.json" },
+    { "path": "code/config/tsconfig/ts-only.json" },
+    { "path": "code/config/tsconfig/vue-ui.json" }
   ]
 }

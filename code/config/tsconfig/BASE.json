@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "strict": true,
-    // "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true,
     "paths": {
+      "@nh/blur-hash": ["../../standalone/blur-hash/src/*"],
+      "@nh/tailwind": ["../../standalone/tailwind/src/*"],
       "@nh/api/*": ["./modules/api/src/*"],
       "@nh/shared": ["./modules/shared/src/index.ts"],
       "@nh/ui-auth": ["./modules/ui/src/common/auth/index.ts"],

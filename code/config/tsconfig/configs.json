@@ -1,6 +1,5 @@
 {
-  "extends": "./tsconfig.base.json",
-  "include": ["types/env.d.ts", "**/vite.config*", "**/postcss.config*"],
+  "include": ["../types/env.d.ts", "../../config/**/*.ts"],
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "ESNext",

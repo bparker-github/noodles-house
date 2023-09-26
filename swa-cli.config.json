@@ -9,15 +9,13 @@
       "outputLocation": "modules/ui/dist"
     },
     "dev": {
-      "apiBuildCommand": "npm run build:api --if-present",
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
-      "apiLocation": ".",
+      "apiLocation": "modules/api",
       "apiVersion": "18",
-      "appBuildCommand": "npm run build:ui",
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
-      "outputLocation": "modules\\ui\\dist",
+      "outputLocation": "modules/ui/dist",
       "run": "npm run dev"
     },
     "serve": {

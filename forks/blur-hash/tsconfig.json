@@ -1,8 +1,0 @@
-{
-  "extends": ["../../tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
-  "include": ["../../types/env.d.ts", "../../types", "./src/**/*", "../../ui/src/plugins/**/*"],
-  "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
-  }
-}

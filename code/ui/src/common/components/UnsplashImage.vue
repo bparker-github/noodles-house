@@ -6,21 +6,19 @@
   />
 </template>
 
-<script lang="ts">
-export interface UnsplashImageProps {
+<script setup lang="ts">
+import { onMounted, ref, toRef } from 'vue';
+import { useUnsplash } from '../stores/unsplashStores';
+
+interface UnsplashImageProps {
   photoId: string;
 }
-</script>
-
-<script setup lang="ts">
-import { onMounted, ref, toRef } from "vue";
-import { useUnsplash } from "../stores/unsplashStores";
 
 const unsplashApi = useUnsplash();
 const props = defineProps<UnsplashImageProps>();
-const propPhotoId = toRef(props, "photoId");
+const propPhotoId = toRef(props, 'photoId');
 
-const imageUrl = ref("");
+const imageUrl = ref('');
 
 onMounted(() => {
   unsplashApi

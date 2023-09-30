@@ -8,5 +8,6 @@
   "htmlWhitespaceSensitivity": "css",
   "useTabs": false,
   "singleAttributePerLine": true,
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-organize-attributes"],
+  "attributeGroups": ["^v-.+$", "$DEFAULT", "^aria-"]
 }

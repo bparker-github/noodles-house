@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@nh/shared';
+import { useAuthStore } from '@noodles-house/common';
 import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();

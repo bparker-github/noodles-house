@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@nh/shared';
-import { LoadingSpinner } from '@nh/ui-common';
+import { LoadingSpinner } from '@common';
+import { useAuthStore } from '@noodles-house/common';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';

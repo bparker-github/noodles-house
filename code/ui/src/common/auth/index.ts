@@ -1,4 +1,4 @@
-import type { AuthStoreShape } from '@nh/shared';
+import type { AuthStoreShape } from '@noodles-house/common';
 import { toValue } from 'vue';
 import { type Router } from 'vue-router';
 import { CustomNavigationClient } from './NavigationGuard';

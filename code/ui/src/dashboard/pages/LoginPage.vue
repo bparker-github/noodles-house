@@ -33,8 +33,8 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@nh/shared';
-import { UnsplashImage } from '@nh/ui-common';
+import { UnsplashImage } from '@common';
+import { useAuthStore } from '@noodles-house/common';
 import { loremIpsum } from 'lorem-ipsum';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';

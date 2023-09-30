@@ -1,6 +1,6 @@
-import type { NavigationGuard } from 'vue-router';
+import { useAuthStore } from '@noodles-house/common';
 import { toRef } from 'vue';
-import { useAuthStore } from '@nh/shared';
+import type { NavigationGuard } from 'vue-router';
 
 export const AuthGuardRedirect: NavigationGuard = async function (to) {
   // If no auth, continue successfully.

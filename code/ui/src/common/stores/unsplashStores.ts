@@ -1,8 +1,7 @@
+import { doGetOrThrow, useUnsplashApi } from '@noodles-house/common';
 import { defineStore } from 'pinia';
-import { createApi } from 'unsplash-js';
 import type { Full } from 'unsplash-js/dist/methods/photos/types';
 import { ref } from 'vue';
-import { doGetOrThrow, useUnsplashApi } from '@nh/shared';
 
 export const useUnsplash = defineStore('unsplash', () => {
   const unsplashUrl = doGetOrThrow(

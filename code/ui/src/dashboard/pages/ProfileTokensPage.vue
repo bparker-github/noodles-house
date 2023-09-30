@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { BaseLoginRequest, useAuthStore } from '@nh/shared';
+import { BaseLoginRequest, useAuthStore } from '@noodles-house/common';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 

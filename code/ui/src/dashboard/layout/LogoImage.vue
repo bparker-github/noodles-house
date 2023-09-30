@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { NoodleIconSvg } from '@nh/ui-common';
+import { NoodleIconSvg } from '@common';
 
 export interface LogoImageProps {
   titleRow1: string;

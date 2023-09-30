@@ -3,14 +3,6 @@
   "compilerOptions": {
     "strict": true,
     "verbatimModuleSyntax": true,
-    "typeRoots": ["./types"],
-    "paths": {
-      "@nh/api": ["./api/src/*"],
-      "@nh/blur-hash": ["./modules/blur-hash/src/*"],
-      "@nh/common": ["./modules/common/src/*"],
-      "@nh/auth-ui": ["./ui/src/common/auth/index.ts"],
-      "@nh/common-ui": ["./ui/src/common/index.ts"],
-      "@nh/tailwind-ui": ["./ui/src/tailwind/index.ts"]
-    }
+    "typeRoots": ["./types"]
   }
 }

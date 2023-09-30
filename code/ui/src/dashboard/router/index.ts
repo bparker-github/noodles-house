@@ -5,7 +5,7 @@ import { routes } from './routes';
 const NotFoundRoute = {
   path: '/:catchAll(.*)*',
   name: RouteName.NOT_FOUND,
-  component: () => import('@nh/ui/common/pages/NotFoundPage.vue'),
+  component: () => import('@common').then(({ NotFoundPage }) => NotFoundPage),
 };
 
 const router = createRouter({

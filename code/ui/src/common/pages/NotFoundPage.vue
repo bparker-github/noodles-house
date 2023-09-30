@@ -17,7 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue';
 import type { RouteLocationRaw } from 'vue-router';
 
 export interface NotFoundPageProps {

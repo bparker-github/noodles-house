@@ -1,7 +1,7 @@
-import '@nh/ui/common/assets/main.css';
+import '../common/assets/main.css';
 
-import { useAuthStore } from '@nh/shared';
-import { AuthGuardRedirect, applyNavigationRouter } from '@nh/ui-auth';
+import { useAuthStore } from '@noodles-house/common';
+import { AuthGuardRedirect, applyNavigationRouter } from '@common';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import { RouterView } from 'vue-router';

@@ -3,6 +3,11 @@
  ***********/
 export { default as NoodleIconSvg } from './assets/NoodleIcon.svg';
 
+/*********
+ * Auth  *
+ *********/
+export * from './auth/index';
+
 /***************
  * Components  *
  ***************/
@@ -19,3 +24,4 @@ export { default as UserProfileIcon } from './components/UserProfileIcon.vue';
  *************/
 export { default as AuthenticatedRedirectPage } from './pages/AuthenticatedRedirectPage.vue';
 export type { AuthenticationRedirectPageProps } from './pages/AuthenticatedRedirectPage.vue';
+export { default as NotFoundPage } from './pages/NotFoundPage.vue';

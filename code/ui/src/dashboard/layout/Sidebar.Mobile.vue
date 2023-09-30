@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { MobileSidebar } from '@nh/ui-common';
+import { MobileSidebar } from '@common';
 import { storeToRefs } from 'pinia';
 import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
 import LogoImage from './LogoImage.vue';

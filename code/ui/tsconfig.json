@@ -3,7 +3,11 @@
   "include": ["src", "../types", "../config"],
   "compilerOptions": {
     "baseUrl": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "paths": {
+      "@common": ["./common/index.ts"],
+      "@dashboard/*": ["./dashboard/*"]
+    }
   },
   "references": [
     { "path": "./tsconfig.configs.json" },

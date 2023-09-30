@@ -30,13 +30,10 @@ export default defineConfig({
     }),
   ],
   resolve: {
-    // This has to match ../../tsconfig.base.json
+    // This has to match the tsconfig paths section.
     alias: {
-      ...makeAlias('@nh/blur-hash', '../../modules/blur-hash/src/*'),
-      ...makeAlias('@nh/common', '../../modules/common/src/*'),
-      ...makeAlias('@nh/auth-ui', '../../ui/src/common/auth/index.ts'),
-      ...makeAlias('@nh/common-ui', '../../ui/src/common/index.ts'),
-      ...makeAlias('@nh/tailwind-ui', '../../ui/src/tailwind/index.ts'),
+      ...makeAlias('@common', './src/common/index.ts'),
+      ...makeAlias('@dashboard/*', './src/dashboard/*'),
     },
   },
   css: {

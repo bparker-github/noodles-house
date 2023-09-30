@@ -5,6 +5,9 @@
     },
     {
       "path": "../vue-project"
+    },
+    {
+      "path": "../vite-project"
     }
   ],
   "extensions": {

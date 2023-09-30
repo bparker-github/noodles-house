@@ -1,9 +1,14 @@
 {
-  "extends": ["../config/tsconfig/BASE.json", "@vue/tsconfig/tsconfig.dom.json"],
-  "include": ["src", "../types"],
+  "extends": ["../../tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
+  "include": ["src", "../types", "../config"],
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "dist"
   },
-  "references": [{ "path": "../modules/tailwind" }]
+  "references": [
+    { "path": "./tsconfig.configs.json" },
+    { "path": "../modules/blur-hash" },
+    { "path": "../modules/common" },
+    { "path": "../modules/tailwind" }
+  ]
 }

@@ -32,18 +32,18 @@ export default defineConfig({
   resolve: {
     // This has to match ../../tsconfig.base.json
     alias: {
-      ...makeAlias('@nh/shared', '../shared/src/index.ts'),
-      ...makeAlias('@nh/ui/auth', './src/common/auth'),
-      ...makeAlias('@nh/ui-auth', './src/common/auth/index.ts'),
-      ...makeAlias('@nh/ui/common', './src/common'),
-      ...makeAlias('@nh/ui-common', './src/common/index.ts'),
+      ...makeAlias('@nh/blur-hash', '../../modules/blur-hash/src/*'),
+      ...makeAlias('@nh/common', '../../modules/common/src/*'),
+      ...makeAlias('@nh/auth-ui', '../../ui/src/common/auth/index.ts'),
+      ...makeAlias('@nh/common-ui', '../../ui/src/common/index.ts'),
+      ...makeAlias('@nh/tailwind-ui', '../../ui/src/tailwind/index.ts'),
     },
   },
   css: {
     postcss,
   },
   envPrefix: 'NOOD_',
-  envDir: '../../',
+  envDir: '../..',
   server: {
     port: 9090,
   },

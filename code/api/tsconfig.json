@@ -1,5 +1,5 @@
 {
-  "extends": ["../config/tsconfig/BASE.json", "@tsconfig/node18/tsconfig.json"],
+  "extends": ["../../tsconfig.base.json", "@tsconfig/node18/tsconfig.json"],
   "include": ["./src", "./src/main.ts"],
   "compilerOptions": {
     "baseUrl": "src",

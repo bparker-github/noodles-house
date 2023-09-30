@@ -1,9 +1,0 @@
-{
-  "extends": "./BASE.json",
-  "include": ["../../config/**/*.ts"],
-  "compilerOptions": {
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Bundler"
-  }
-}

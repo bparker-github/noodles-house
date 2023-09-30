@@ -1,4 +1,4 @@
-import { generateConfigForContent } from '@noodles-house/tailwind';
+import { generateConfigForContent } from './src/tailwind/index';
 
 export default generateConfigForContent([
   './index.html',

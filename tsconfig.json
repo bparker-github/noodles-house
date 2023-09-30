@@ -2,9 +2,10 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "code/config/tsconfig/configs.json" },
-    { "path": "code/config/tsconfig/node.json" },
-    { "path": "code/config/tsconfig/ts-only.json" },
-    { "path": "code/config/tsconfig/vue-ui.json" }
+    { "path": "code/api" },
+    { "path": "code/modules/blur-hash" },
+    { "path": "code/modules/common" },
+    { "path": "code/modules/tailwind" },
+    { "path": "code/ui" }
   ]
 }

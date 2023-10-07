@@ -1,21 +1,34 @@
 <template>
-  <div class="unsplash-image relative transition-opacity duration-500">
-    <BlurCanvas
-      v-if="state >= UIS.HAS_RESPONSE"
-      :class="['image-placeholder-blur h-full w-full', { 'opacity-0': state > UIS.HAS_RESPONSE }]"
-      :height="scaledHeight"
-      :width="scaledWidth"
-      :hash="blurHash!"
-      key="canvas"
-    />
+  <div class="unsplash-image h-full w-full relative transition">
     <img
       v-if="state >= UIS.HAS_RESPONSE"
       v-show="state === UIS.LOADED_REGULAR"
-      class="h-full w-full object-cover object-center"
+      class="absolute h-full w-full object-cover object-center"
       :src="photoResp!.urls.regular"
       :alt="description"
       @load="handleImageLoaded"
     />
+
+    <!-- Render the blur'd canvas last so it is consistently rendered (think z-index + 1); -->
+    <template v-if="state >= UIS.HAS_RESPONSE">
+      <BlurCanvas
+        :class="[
+          'image-placeholder-blur',
+          'absolute h-full w-full transition-opacity duration-200',
+          { 'opacity-0': state > UIS.HAS_RESPONSE },
+        ]"
+        :height="scaledHeight"
+        :width="scaledWidth"
+        :hash="blurHash!"
+        key="canvas"
+      />
+
+      <!-- We must credit the creator of the images with a click section -->
+      <UnsplashImageCredit
+        v-if="photoResp"
+        :photo-resp="photoResp"
+      />
+    </template>
   </div>
 </template>
 
@@ -24,6 +37,7 @@ import { BlurCanvas } from '@noodles-house/blur-hash';
 import type { Full } from 'unsplash-js/dist/methods/photos/types';
 import { computed, ref, watch } from 'vue';
 import { useUnsplash } from '../stores/unsplashStores';
+import UnsplashImageCredit from './UnsplashImageCredit.vue';
 
 /** UnsplashImageState */
 enum UIS {
@@ -56,7 +70,7 @@ const scaledWidth = computed(() => (!photoResp.value ? undefined : 128));
 function handleImageLoaded() {
   setTimeout(() => {
     state.value = UIS.LOADED_REGULAR;
-  }, 5000);
+  }, 2000);
 }
 
 watch(
@@ -68,10 +82,15 @@ watch(
     try {
       // Fetch and set state.
       const resp = await unsplashApi.getPhoto(newId);
-      state.value = UIS.HAS_RESPONSE;
 
-      // Update the response, and continue onward.
-      photoResp.value = resp;
+      if (resp) {
+        state.value = UIS.HAS_RESPONSE;
+
+        // Update the response, and continue onward.
+        photoResp.value = resp;
+      } else {
+        state.value = UIS.ERROR;
+      }
     } catch (err) {
       console.log('Unsplash image error:', err);
       state.value = UIS.ERROR;

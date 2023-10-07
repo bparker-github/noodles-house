@@ -36,10 +36,12 @@ import { loremIpsum } from 'lorem-ipsum';
 import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';
 
-const photoId = 'W7cPLHOa0eQ';
+// Hooks
 const authStore = useAuthStore();
 const router = useRouter();
 
+// Known data
+const photoId = 'W7cPLHOa0eQ';
 const mainContent = loremIpsum({ count: 5, units: 'sentence' });
 
 async function beginLogin() {

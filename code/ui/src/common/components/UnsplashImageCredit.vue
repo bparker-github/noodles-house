@@ -4,18 +4,22 @@
     v-if="photoResp"
     :class="[
       'credit-section absolute bottom-0 left-0 right-0 px-3 py-1',
-      'text-right text-whiteish text-sm leading-4 bg-gray-500/25',
+      'text-right text-whiteish text-sm leading-4 bg-gray-500/25 hover:bg-gray-500/75',
     ]"
     :to="createAttributeLink(photoResp.links.html)"
   >
     <span class="pr-1">Credit:</span>
     <NoodleLink
       :to="createAttributeLink(photoResp.user.portfolio_url!)"
-      class="italic"
+      class="italic hover:font-bold"
       >{{ photoResp.user.name }}</NoodleLink
     >
     <span class="px-1">on</span>
-    <NoodleLink :to="createAttributeLink('https://unsplash.com/')">Unsplash</NoodleLink>
+    <NoodleLink
+      :to="createAttributeLink('https://unsplash.com/')"
+      class="hover:font-bold"
+      >Unsplash</NoodleLink
+    >
   </NoodleLink>
 </template>
 

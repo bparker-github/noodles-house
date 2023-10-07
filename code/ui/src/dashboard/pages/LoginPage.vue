@@ -1,10 +1,7 @@
 <template>
   <div class="flex h-full flex-col items-center justify-evenly">
     <div class="mx-auto max-w-7xl px-4 sm:px-8">
-      <div class="relative overflow-hidden rounded-lg">
-        <div class="absolute inset-0 pointer-events-auto">
-          <UnsplashImage :id="photoId" />
-        </div>
+      <UnsplashImage :id="photoId">
         <div
           class="bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
         >
@@ -14,7 +11,7 @@
               <span class="block sm:inline">Home!</span>
             </h2>
             <p class="text-whiteish my-2 text-xl">
-              {{ loremIpsum({ count: 5, units: 'sentence' }) }}
+              {{ mainContent }}
             </p>
             <button
               @click.prevent="beginLogin"
@@ -27,7 +24,7 @@
             </button>
           </div>
         </div>
-      </div>
+      </UnsplashImage>
     </div>
   </div>
 </template>
@@ -40,11 +37,10 @@ import { useRouter } from 'vue-router';
 import { RouteName } from '../router/RouteName';
 
 const photoId = 'W7cPLHOa0eQ';
-const photoUrl =
-  'https://images.unsplash.com/photo-1526161955674-92d767589833?crop=entropy&cs=srgb&fm=jpg&ixid=M3w0Nzg2ODl8MHwxfGFsbHx8fHx8fHx8fDE2OTYwOTgyMjN8&ixlib=rb-4.0.3&q=85';
-const photoHash = `LgGHV]+Wept8K%Vsv%X9cEV?aiS2`;
 const authStore = useAuthStore();
 const router = useRouter();
+
+const mainContent = loremIpsum({ count: 5, units: 'sentence' });
 
 async function beginLogin() {
   try {

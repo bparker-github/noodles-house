@@ -56,12 +56,6 @@
         "./code/ui/index.html",
         "./code/ui/src/**/*",
         "./code/modules/blur-hash/src/**/*"
-      ],
-      "./tailwind.config.ts": [
-        "./code/ui/index.html",
-        "./code/ui/src/**/*",
-        "./code/modules/blur-hash/src/**/*",
-        "./code/modules/blur-hash/src/**/*"
       ]
     },
 

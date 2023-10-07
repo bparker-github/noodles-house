@@ -7,13 +7,13 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
-import { parseAsInt } from './tools';
 import { decode } from 'blurhash';
+import { computed, nextTick, ref, watch } from 'vue';
+import { parseAsInt } from './tools';
 
 export interface BlurCanvasProps {
   /** The blurhash of the image to decode. */
-  hash: string;
+  hash?: string;
   /** The optional height to decode as. @default 128 */
   height?: string | number;
   /** The optional width to decode as. @default 128 */
@@ -33,8 +33,8 @@ watch(
   [() => props.hash, () => curHeight.value, () => curWidth.value, () => curPunch.value],
   ([cHash, cHeight, cWidth, cPunch]) => {
     nextTick(() => {
-      // No canvas yet, break early.
-      if (!canvasRef.value) {
+      // No canvas or hash yet, break early.
+      if (!canvasRef.value || !cHash) {
         return;
       }
 

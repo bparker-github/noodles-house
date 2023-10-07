@@ -2,7 +2,7 @@
   <div class="flex h-full flex-col items-center justify-evenly">
     <div class="mx-auto max-w-7xl px-4 sm:px-8">
       <div class="relative overflow-hidden rounded-lg">
-        <div class="absolute inset-0">
+        <div class="absolute inset-0 pointer-events-auto">
           <UnsplashImage :id="photoId" />
         </div>
         <div

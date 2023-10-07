@@ -1,6 +1,7 @@
 {
   "extends": ["../../tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
   "include": ["src", "../types", "../config"],
+  "exclude": ["src/tailwind/**/*"],
   "compilerOptions": {
     "baseUrl": "src",
     "outDir": "dist",

@@ -2,7 +2,7 @@ import { generateConfigForContent } from './src/tailwind/index';
 
 export default generateConfigForContent([
   './index.html',
-  './src/components/**/*',
+  './src/common/**/*',
   './src/dashboard/**/*',
-  '../blur-hash/src/**/*',
+  '../modules/blur-hash/src/**/*',
 ]);

@@ -2,6 +2,7 @@
   "name": "@noodles-house/api",
   "version": "1.0.0",
   "main": "dist/functions/*.js",
+  "type": "commonjs",
   "engines": {
     "node": "^18"
   },

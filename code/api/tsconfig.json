@@ -3,8 +3,10 @@
   "include": ["./src", "./src/main.ts"],
   "compilerOptions": {
     "baseUrl": "src",
-    "rootDir": ".",
+    "rootDir": "src",
     "outDir": "dist",
+
+    "verbatimModuleSyntax": false,
 
     /* Given */
     "lib": ["ESNext"],

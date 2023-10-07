@@ -1,34 +1,57 @@
 <template>
-  <div class="unsplash-image h-full w-full relative transition">
+  <div class="unsplash-image relative h-full w-full">
+    <!-- Step 1: No data yet. Display a loading background. -->
+    <div
+      v-if="state === UIS.NONE"
+      key="no-data"
+      class="absolute inset-0 bg-bourbon-200"
+    />
+
+    <!-- Step 2: The response has been fetched or loaded, add <img> to load the desired inner image url. -->
     <img
       v-if="state >= UIS.HAS_RESPONSE"
-      v-show="state === UIS.LOADED_REGULAR"
-      class="absolute h-full w-full object-cover object-center"
+      key="main-image"
+      :class="[
+        'absolute inset-0 h-full w-full object-cover object-center',
+        'transition-opacity opacity-0 duration-700',
+        { 'opacity-100': state === UIS.LOADED_REGULAR },
+      ]"
       :src="photoResp!.urls.regular"
       :alt="description"
       @load="handleImageLoaded"
     />
 
-    <!-- Render the blur'd canvas last so it is consistently rendered (think z-index + 1); -->
-    <template v-if="state >= UIS.HAS_RESPONSE">
-      <BlurCanvas
-        :class="[
-          'image-placeholder-blur',
-          'absolute h-full w-full transition-opacity duration-200',
-          { 'opacity-0': state > UIS.HAS_RESPONSE },
-        ]"
-        :height="scaledHeight"
-        :width="scaledWidth"
-        :hash="blurHash!"
-        key="canvas"
-      />
+    <!-- Step 2.5: Response contains a blur-hash (probably); we can display that for now. -->
+    <!-- Display it further down the DOM to be visible overtop of the <img> above -->
+    <BlurCanvas
+      key="blur-canvas"
+      :class="[
+        'absolute inset-0 h-full w-full',
+        'transition-opacity opacity-0',
+        {
+          'opacity-100': state === UIS.HAS_RESPONSE,
+          'duration-250': state <= UIS.HAS_RESPONSE,
+          'duration-1000': state > UIS.HAS_RESPONSE,
+        },
+      ]"
+      :height="scaledHeight"
+      :width="scaledWidth"
+      :hash="blurHash!"
+    />
+
+    <!-- The user can provide content to display overtop of this element (parent relative); -->
+    <div
+      class="image-content"
+      key="main-content"
+    >
+      <slot></slot>
 
       <!-- We must credit the creator of the images with a click section -->
       <UnsplashImageCredit
-        v-if="photoResp"
+        v-if="photoResp && !omitCredit"
         :photo-resp="photoResp"
       />
-    </template>
+    </div>
   </div>
 </template>
 
@@ -41,13 +64,21 @@ import UnsplashImageCredit from './UnsplashImageCredit.vue';
 
 /** UnsplashImageState */
 enum UIS {
+  ERROR = -1,
   NONE = 0,
   HAS_RESPONSE = 1,
   LOADED_REGULAR = 2,
-  ERROR = -1,
 }
 
-const props = defineProps<{ id: string }>();
+interface UnsplashImageProps {
+  /** The ID of the photo to fetch for this block. */
+  id: string;
+  /** An optional value indicating whether we want to omit the credit; non-standard. */
+  omitCredit?: boolean;
+  /** An optional value indicating the number of ms to display the Blur before transitioning back. @default 1000 */
+  transitionTime?: number;
+}
+const props = defineProps<UnsplashImageProps>();
 
 const state = ref(UIS.NONE);
 const photoResp = ref<Full | null>(null);
@@ -70,7 +101,7 @@ const scaledWidth = computed(() => (!photoResp.value ? undefined : 128));
 function handleImageLoaded() {
   setTimeout(() => {
     state.value = UIS.LOADED_REGULAR;
-  }, 2000);
+  }, props.transitionTime ?? 1000);
 }
 
 watch(

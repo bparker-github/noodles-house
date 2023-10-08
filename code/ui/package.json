@@ -14,7 +14,7 @@
     "build:code:local": "vite build --mode local",
     "build:code:swa": "vite build --mode swa",
     "build:code:swa-local": "vite build --mode swa-local",
-    "build:types": "vue-tsc -b ../../tsconfig.ui.json --declaration --emitDeclarationOnly",
+    "build:types": "vue-tsc -p ./tsconfig.json --noEmit --isolatedModules",
     "preview": "vite preview",
     "test:unit": "vitest",
     "util:format": "prettier --write src/",

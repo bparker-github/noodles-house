@@ -1,8 +1,0 @@
-{
-  "name": "@noodles-house/tailwind",
-  "version": "1.0.0",
-  "main": "src/main.ts",
-  "devDependencies": {
-    "tailwindcss": "^3.3.3"
-  }
-}

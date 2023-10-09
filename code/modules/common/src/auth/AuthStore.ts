@@ -40,15 +40,15 @@ export const useAuthStore = defineStore('authStore', () => {
         accounts.value = newAccounts;
       }
     }
+
     switch (msg.eventType) {
-      // @ts-expect-error
       case EventType.LOGIN_SUCCESS:
         if (msg.payload) {
           const payload = msg.payload as AuthenticationResult;
           const loggedInAccount = payload.account;
           instance.value.setActiveAccount(loggedInAccount);
         }
-      // Correctly fall through and continue the handle.
+        return doHandle();
       case EventType.ACCOUNT_ADDED:
       case EventType.ACCOUNT_REMOVED:
       case EventType.SSO_SILENT_SUCCESS:
@@ -58,7 +58,7 @@ export const useAuthStore = defineStore('authStore', () => {
       case EventType.LOGOUT_END:
       case EventType.ACQUIRE_TOKEN_SUCCESS:
       case EventType.ACQUIRE_TOKEN_FAILURE:
-        doHandle();
+        return doHandle();
     }
   });
 

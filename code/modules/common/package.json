@@ -7,7 +7,7 @@
     "node": "^18"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "build": "tsc -b"
   },
   "devDependencies": {
     "rimraf": "^5.0.1",

@@ -1,12 +1,13 @@
 {
   "extends": "../../tsconfig.base.json",
-  "include": ["tailwind.config*", "vite.config*", "postcss.config*", "src/tailwind"],
+  "include": ["tailwind.config*", "vite.config*", "postcss.config*"],
   "compilerOptions": {
     "baseUrl": "src",
     "composite": true,
     "skipLibCheck": true,
     "module": "ESNext",
     "moduleResolution": "bundler",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true
   }
 }

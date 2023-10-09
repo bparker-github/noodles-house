@@ -7,18 +7,18 @@
     "node": "^18"
   },
   "scripts": {
-    "prebuild": "npm run clean",
-    "build": "tsc -p tsconfig.json",
+    "///// CLEAN /////": "//////",
+    "clean": "rimraf dist",
+    "///// BUILD /////": "//////",
+    "build": "npm-run-all -lns clean build:code",
+    "build:code": "tsc",
     "build:local": "cross-env-shell MODE=local npm run build",
     "build:swa": "cross-env-shell MODE=swa npm run build",
     "build:swa-local": "cross-env-shell MODE=swa-local npm run build",
-    "watch": "npm run build -- --watch",
-    "clean": "rimraf dist",
-    "prestart": "npm run build",
-    "start": "npm-run-all -lnp run:watch run:func",
-    "run:func": "func start --port 9091",
-    "run:watch": "npm run build -- --watch",
-    "test": "echo \"No tests yet...\""
+    "///// DEVELOPMENT /////": "//////",
+    "dev": "npm-run-all -lns build -p dev:code run:func",
+    "dev:code": "tsc --watch",
+    "run:func": "func start --port 9091"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0-alpha.9",

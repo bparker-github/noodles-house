@@ -1,8 +1,7 @@
-import { generateConfigForContent } from './src/tailwind/index';
+import { generateConfigForContent } from '@noodles-house/tailwind';
 
 export default generateConfigForContent([
   './index.html',
-  './src/common/**/*',
-  './src/dashboard/**/*',
+  './src/**/*',
   '../modules/blur-hash/src/**/*',
 ]);

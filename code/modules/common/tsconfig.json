@@ -6,6 +6,9 @@
     "rootDir": ".",
     "outDir": "dist",
 
+    "declaration": true,
+    "emitDeclarationOnly": true,
+
     /* Given */
     "target": "ES2020",
     "useDefineForClassFields": true,

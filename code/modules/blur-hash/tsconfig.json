@@ -4,7 +4,9 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": ".",
-    "outDir": "dist"
+    "outDir": "dist",
+    "declaration": true,
+    "emitDeclarationOnly": true
   },
   "references": [{ "path": "../tailwind" }]
 }

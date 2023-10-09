@@ -5,7 +5,6 @@
     "./code/api",
     "./code/modules/blur-hash",
     "./code/modules/common",
-    "./code/modules/tailwind",
     "./code/ui"
   ],
   "engines": {

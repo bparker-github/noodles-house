@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "src/main.ts",
   "dependencies": {
-    "@noodles-house/tailwind": "^1.0.0",
     "blurhash": "^2.0.5"
   }
 }

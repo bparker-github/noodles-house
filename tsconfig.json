@@ -5,7 +5,6 @@
     { "path": "code/api" },
     { "path": "code/modules/blur-hash" },
     { "path": "code/modules/common" },
-    { "path": "code/modules/tailwind" },
     { "path": "code/ui" }
   ]
 }

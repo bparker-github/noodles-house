@@ -5,6 +5,9 @@
     },
     {
       "path": "../vue-project"
+    },
+    {
+      "path": "../vite-project"
     }
   ],
   "extensions": {
@@ -21,7 +24,8 @@
       "vue.volar",
       "vue.vscode-typescript-vue-plugin",
       "wayou.vscode-todo-highlight",
-      "wmaurer.change-case"
+      "wmaurer.change-case",
+      "misterj.vue-volar-extention-pack"
     ],
     "unwantedRecommendations": ["octref.vetur"]
   },
@@ -34,7 +38,7 @@
         "url": "https://json.schemastore.org/prettierrc"
       },
       {
-        "fileMatch": ["tsconfig.*.json"],
+        "fileMatch": ["tsconfig.*.json", "tsconfig/*.json", "tsconfig.json"],
         "url": "https://json.schemastore.org/tsconfig.json"
       },
       {
@@ -48,7 +52,11 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./tailwind.config.ts": ["./index.html", "./src/components/**", "./src/dashboard/**"]
+      "./code/ui/tailwind.config.ts": [
+        "./code/ui/index.html",
+        "./code/ui/src/**/*",
+        "./code/modules/blur-hash/src/**/*"
+      ]
     },
 
     "[css]": {
@@ -75,7 +83,8 @@
     },
 
     "files.associations": {
-      ".funcignore": "ignore"
+      ".funcignore": "ignore",
+      "**/tsconfig/*.json": "jsonc"
     },
 
     "cSpell.ignorePaths": [
@@ -88,6 +97,7 @@
       "*.code-workspace"
     ],
     "cSpell.words": [
+      "blurhash",
       "headlessui",
       "heroicons",
       "Msal",
@@ -114,7 +124,8 @@
     "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
-    "azureFunctions.preDeployTask": "npm prune (functions)"
+    "azureFunctions.preDeployTask": "npm prune (functions)",
+    "vue.complete.casing.tags": "pascal"
   },
   "launch": {
     "version": "0.2.0",

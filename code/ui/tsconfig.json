@@ -1,0 +1,17 @@
+{
+  "extends": ["../../tsconfig.base.json", "@vue/tsconfig/tsconfig.dom.json"],
+  "include": ["src", "../types", "../config"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "dist",
+    "paths": {
+      "@common": ["./common/index.ts"],
+      "@dashboard/*": ["./dashboard/*"]
+    }
+  },
+  "references": [
+    { "path": "./tsconfig.configs.json" },
+    { "path": "../modules/blur-hash" },
+    { "path": "../modules/common" }
+  ]
+}

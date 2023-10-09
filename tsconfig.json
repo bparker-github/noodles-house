@@ -2,8 +2,9 @@
   "files": [],
   "include": [],
   "references": [
-    { "path": "./tsconfig.api.json" },
-    { "path": "./tsconfig.config.json" },
-    { "path": "./tsconfig.ui.json" }
+    { "path": "code/api" },
+    { "path": "code/modules/blur-hash" },
+    { "path": "code/modules/common" },
+    { "path": "code/ui" }
   ]
 }

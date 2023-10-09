@@ -1,0 +1,19 @@
+{
+  "extends": ["../../tsconfig.base.json", "@tsconfig/node18/tsconfig.json"],
+  "include": ["./src", "./src/main.ts"],
+  "compilerOptions": {
+    "baseUrl": "src",
+    "rootDir": "src",
+    "outDir": "dist",
+
+    "verbatimModuleSyntax": false,
+
+    /* Given */
+    "lib": ["ESNext"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es6"
+  }
+}

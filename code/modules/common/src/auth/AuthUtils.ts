@@ -6,7 +6,18 @@ export interface NoodleTokenClaims {
 export interface NoodleAccountInfo extends AccountInfo {
   idTokenClaims?: NoodleTokenClaims & AccountInfo['idTokenClaims'];
 }
-
+export function compareNoodleAccountInfo(
+  a?: NoodleAccountInfo | null,
+  b?: NoodleAccountInfo | null
+) {
+  return (
+    !!a &&
+    !!b &&
+    a.homeAccountId === b.homeAccountId &&
+    a.localAccountId === b.localAccountId &&
+    a.username === b.username
+  );
+}
 export function areNoodleAccountArraysEqual(
   arrayA: NoodleAccountInfo[],
   arrayB: NoodleAccountInfo[]
@@ -15,18 +26,5 @@ export function areNoodleAccountArraysEqual(
     return false;
   }
 
-  const compArray = [...arrayB];
-
-  return arrayA.every((eA) => {
-    const eB = compArray.shift();
-    if (!eA || !eB) {
-      return false;
-    }
-
-    return (
-      eA.homeAccountId === eB.homeAccountId &&
-      eA.localAccountId === eB.localAccountId &&
-      eA.username === eB.username
-    );
-  });
+  return arrayA.every((eA, i) => compareNoodleAccountInfo(eA, arrayB[i]));
 }

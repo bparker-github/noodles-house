@@ -1,7 +1,6 @@
 import '../common/assets/main.css';
 
-import { AuthGuardRedirect, CustomNavigationClient } from '@common';
-import { useAuthStore } from '@noodles-house/common';
+import { AuthGuardRedirect, getAuthStoreSyncHook } from '@common';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import { RouterView } from 'vue-router';
@@ -13,18 +12,12 @@ const app = createApp(RouterView);
 const pinia = createPinia();
 app.use(pinia);
 
-// Reference the pinia store AFTER creating pinia.
-const authStore = useAuthStore();
-
-// Add in the vue router, guard authenticated routes.
+// Create router, sync store beforeEach, and guard specific routes.
 app.use(router);
+router.beforeEach(getAuthStoreSyncHook(router));
 router.beforeEach(AuthGuardRedirect);
 
 async function MountApp() {
-  // Initialize the Auth Store.
-  const navClient = new CustomNavigationClient(router);
-  await authStore.initializeStore(navClient);
-
   // Wait for router to be ready prevents race conditions when returning from loginRedirect or acquireTokenRedirect.
   await router.isReady();
 

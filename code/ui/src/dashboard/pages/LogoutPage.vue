@@ -1,10 +1,15 @@
 <template>
-  <LoadingSpinner />
-  <div>Doing logout...</div>
+  <PageSpinner
+    class="font-mono"
+    spinner-size="xl"
+  >
+    <span class="text-2xl font-semibold mt-8 mb-4">Logging out...</span>
+    <p>There may be a popup window open already, or it might have been blocked.</p>
+  </PageSpinner>
 </template>
 
 <script setup lang="ts">
-import { LoadingSpinner } from '@common';
+import { PageSpinner } from '@common';
 import { useAuthStore } from '@noodles-house/common';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';

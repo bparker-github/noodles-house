@@ -87,13 +87,17 @@ export const useAuthStore = defineStore('authStore', () => {
   //#endregion
 
   // Helper functions
-  const didInit = ref(false);
-  async function initializeStore(client?: NavigationClient): Promise<boolean> {
-    // Don't re-init.
-    if (didInit.value) {
-      return false;
+  const initFunc = ref<Promise<void> | undefined>();
+  async function initializeStore(client?: NavigationClient): Promise<void> {
+    // Don't re-add the init function.
+    if (initFunc.value) {
+      return;
     }
 
+    // Begin, but don't await the initFunc.
+    initFunc.value = storeInitializer(client);
+  }
+  async function storeInitializer(client?: NavigationClient): Promise<void> {
     // Wrap in try/catch for supreme safety!
     try {
       // Add the navigation client, if presented.
@@ -116,11 +120,8 @@ export const useAuthStore = defineStore('authStore', () => {
       if (activeAcc) {
         curAccount.value = activeAcc;
       }
-
-      return true;
     } catch (err) {
       console.error('MSAL init error:', err);
-      return false;
     }
   }
 
@@ -157,6 +158,10 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   return {
+    // Init
+    initFunc,
+    initializeStore,
+
     // Variables + computed
     msalPCA,
     currentStatus,
@@ -165,7 +170,6 @@ export const useAuthStore = defineStore('authStore', () => {
     isAuthenticated,
 
     // Functions
-    initializeStore,
     doLogin,
     doLogout,
     getToken,

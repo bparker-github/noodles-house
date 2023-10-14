@@ -59,8 +59,9 @@
                   <a
                     href="#"
                     class="font-medium text-indigo-600 hover:text-indigo-500"
-                    >Download</a
                   >
+                    Download
+                  </a>
                 </div>
               </li>
               <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
@@ -78,8 +79,9 @@
                   <a
                     href="#"
                     class="font-medium text-indigo-600 hover:text-indigo-500"
-                    >Download</a
                   >
+                    Download
+                  </a>
                 </div>
               </li>
             </ul>
@@ -96,7 +98,7 @@ import { useAuthStore } from '@noodles-house/common';
 import { storeToRefs } from 'pinia';
 
 const authStore = useAuthStore();
-const { user } = storeToRefs(authStore);
+const { curAccount } = storeToRefs(authStore);
 
-console.log('CurrentUser:', user.value);
+console.log('CurrentUser:', curAccount.value);
 </script>

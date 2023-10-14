@@ -32,13 +32,13 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 
 const authStore = useAuthStore();
-const { user, instance } = storeToRefs(authStore);
+const { curAccount, msalPCA } = storeToRefs(authStore);
 
 const value = ref('');
 
 async function handleClick() {
   try {
-    const resp = await instance.value.acquireTokenSilent(BaseLoginRequest);
+    const resp = await msalPCA.value.acquireTokenSilent(BaseLoginRequest);
     console.log('Success:', resp);
     value.value = JSON.stringify(resp, null, 2);
   } catch (err) {
@@ -46,5 +46,5 @@ async function handleClick() {
   }
 }
 
-console.log('User:', user.value);
+console.log('User:', curAccount.value);
 </script>

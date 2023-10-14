@@ -1,7 +1,7 @@
 import '../common/assets/main.css';
 
+import { AuthGuardRedirect, CustomNavigationClient } from '@common';
 import { useAuthStore } from '@noodles-house/common';
-import { AuthGuardRedirect, applyNavigationRouter } from '@common';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import { RouterView } from 'vue-router';
@@ -13,18 +13,17 @@ const app = createApp(RouterView);
 const pinia = createPinia();
 app.use(pinia);
 
+// Reference the pinia store AFTER creating pinia.
 const authStore = useAuthStore();
 
 // Add in the vue router, guard authenticated routes.
 app.use(router);
 router.beforeEach(AuthGuardRedirect);
 
-// Control MSAL routing with router.
-applyNavigationRouter(router, authStore);
-
 async function MountApp() {
-  // Msal needs to init.
-  await authStore.instance.initialize();
+  // Initialize the Auth Store.
+  const navClient = new CustomNavigationClient(router);
+  await authStore.initializeStore(navClient);
 
   // Wait for router to be ready prevents race conditions when returning from loginRedirect or acquireTokenRedirect.
   await router.isReady();

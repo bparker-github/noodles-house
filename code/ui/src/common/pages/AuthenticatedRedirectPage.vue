@@ -3,8 +3,7 @@
     class="font-mono"
     spinner-size="xl"
   >
-    <span class="text-2xl font-semibold mt-8 mb-4">Checking your status</span>
-    <p>damn, this shit's hard...</p>
+    <span class="text-xl font-semibold mt-8 mb-4">Checking your status</span>
   </PageSpinner>
 </template>
 
@@ -22,13 +21,12 @@ export interface AuthenticationRedirectPageProps {
 }
 
 const authStore = useAuthStore();
-const { msalPCA, isAuthenticated } = storeToRefs(authStore);
+const { isAuthenticated } = storeToRefs(authStore);
 
 const router = useRouter();
 const props = defineProps<AuthenticationRedirectPageProps>();
 
 onMounted(async () => {
-  // await msalPCA.value.initialize();
-  // router.push(isAuthenticated.value ? props.authRoute : props.unAuthRoute);
+  router.push(isAuthenticated.value ? props.authRoute : props.unAuthRoute);
 });
 </script>

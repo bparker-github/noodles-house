@@ -1,5 +1,5 @@
 import { useAuthStore } from '@noodles-house/common';
-import { toRef } from 'vue';
+import { storeToRefs } from 'pinia';
 import type { NavigationGuard } from 'vue-router';
 
 export const AuthGuardRedirect: NavigationGuard = async function (to) {
@@ -9,7 +9,7 @@ export const AuthGuardRedirect: NavigationGuard = async function (to) {
   }
 
   const authStore = useAuthStore();
-  const isAuthenticated = toRef(authStore, 'isAuthenticated');
+  const { isAuthenticated } = storeToRefs(authStore);
 
   // If they are successfully authenticated already, continue successfully.
   if (isAuthenticated.value) {

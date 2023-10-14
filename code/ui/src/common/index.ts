@@ -13,6 +13,7 @@ export * from './auth/index';
  ***************/
 export * from './components/ItemList/index';
 export { default as LoadingSpinner } from './components/LoadingSpinner.vue';
+export { default as PageSpinner } from './components/PageSpinner.vue';
 export { default as MobileSidebar } from './components/MobileSidebar.vue';
 export { default as ProfileDropdown } from './components/ProfileDropdown.vue';
 export { default as StackedCTA } from './components/StackedCTA.vue';

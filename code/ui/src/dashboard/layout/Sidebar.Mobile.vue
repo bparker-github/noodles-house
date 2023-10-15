@@ -20,10 +20,17 @@
 <script setup lang="ts">
 import { MobileSidebar } from '@common';
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 import { useDashboardSidebarStore } from '../stores/dashboardSidebar';
 import LogoImage from './LogoImage.vue';
 import SidebarMainNav from './Sidebar.MainNav.vue';
 
 const sidebarStore = useDashboardSidebarStore();
 const { sidebarOpen } = storeToRefs(sidebarStore);
+
+const router = useRouter();
+
+// Ensure we are closing the sidebar when navigating.
+onMounted(() => router.beforeEach(() => sidebarStore.setIsOpen(false)));
 </script>

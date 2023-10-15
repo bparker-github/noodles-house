@@ -21,13 +21,13 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   const secondaryListTitle = 'Integrations';
   const secondaryItemList: ListItem[] = [
     { id: 1, label: 'Unsplash Images', to: '#', leftIcon: FilmIcon },
-    { id: 2, label: 'Token Testing', to: '/home/profile/tokens', leftInitial: 'T' },
+    { id: 2, label: 'Token Testing', to: { name: RouteName.PROFILE_TOKENS }, leftInitial: 'T' },
   ];
 
   const userListTitle = 'You';
   const userItemList: ListItem[] = [
-    { label: 'Your profile', to: '/home/profile', leftIcon: UserIcon },
-    { label: 'Sign out', to: '/logout', leftIcon: LockClosedIcon },
+    { label: 'Your profile', to: { name: RouteName.PROFILE }, leftIcon: UserIcon },
+    { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
   return {

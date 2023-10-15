@@ -15,8 +15,8 @@ export { useUnsplashApi } from './integrations/unsplash/unsplashApi';
 /***************
  *   Library   *
  ***************/
-export { AsyncEnumObject, EnumObject } from './lib/EnumObject';
-export type { IEnumObject, IEnumObjectValue } from './lib/EnumObject';
+export { EnumObject } from './lib/EnumObject';
+export type { IEnumObject } from './lib/EnumObject';
 export { doGetOrThrow, throwError } from './lib/throwChain';
 
 /*************

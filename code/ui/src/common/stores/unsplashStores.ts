@@ -17,10 +17,7 @@ export const useUnsplash = defineStore('unsplash', () => {
     () => import.meta.env.NOOD_API_URL + '/unsplash',
     'Missing Api URL'
   );
-  const unsplashAccessKey = doGetOrThrow(
-    () => import.meta?.env?.NOOD_UNSPLASH_ACCESS_KEY ?? '',
-    `-- shouldn't error --`
-  );
+  const unsplashAccessKey = import.meta?.env?.NOOD_UNSPLASH_ACCESS_KEY ?? '';
 
   // If we have the access key, we can make the secondary API.
   const unsplashApi = ref(useUnsplashApi('ui', unsplashUrl));
@@ -47,7 +44,7 @@ export const useUnsplash = defineStore('unsplash', () => {
       }
 
       // Make a request to the primary API, iff we haven't deemed it useless.
-      if (!didLocalApiFail.value) {
+      if (!didLocalApiFail.value && unsplashApi.value) {
         const primaryResp = await getDataFromApi(unsplashApi.value, id);
         if (primaryResp.type !== 'error') {
           cache.value[id] ??= primaryResp.response;

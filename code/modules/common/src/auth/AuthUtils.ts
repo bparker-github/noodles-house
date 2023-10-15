@@ -2,6 +2,8 @@ import type { AccountInfo } from '@azure/msal-browser';
 
 export interface NoodleTokenClaims {
   email?: string;
+  family_name?: string;
+  given_name?: string;
 }
 export interface NoodleAccountInfo extends AccountInfo {
   idTokenClaims?: NoodleTokenClaims & AccountInfo['idTokenClaims'];

@@ -19,6 +19,8 @@ export { default as ProfileDropdown } from './components/ProfileDropdown.vue';
 export { default as StackedCTA } from './components/StackedCTA.vue';
 export { default as UnsplashImage } from './components/UnsplashImage.vue';
 export { default as UserProfileIcon } from './components/UserProfileIcon.vue';
+export { default as InfoListCard } from './components/cards/InfoListCard.vue';
+export { default as InfoListItem } from './components/cards/InfoListItem.vue';
 
 /*************
  *   Pages   *

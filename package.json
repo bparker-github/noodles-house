@@ -37,8 +37,13 @@
     "swa:serve:ui": "swa start --config-name serve:ui",
     "swa:dev": "swa start --config-name dev --run \"npm run dev:all\"",
     "swa:dev:api": "swa start --config-name dev:api",
-    "swa:dev:ui": "swa start --config-name dev:ui"
+    "swa:dev:ui": "swa start --config-name dev:ui",
+    "///// LIFECYCLES /////": "/////",
+    "update-pr-template": "node ./.github/update_pull_request_template.mjs"
   },
+  "pre-commit": [
+    "update-pr-template"
+  ],
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.4",
     "@rushstack/eslint-patch": "^1.4.0",

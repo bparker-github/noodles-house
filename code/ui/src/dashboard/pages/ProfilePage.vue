@@ -32,6 +32,4 @@ const items = computed<EnumObject[]>(() => {
     { label: 'Family Name', value: curAccount.value.idTokenClaims.family_name ?? 'Unknown' },
   ];
 });
-
-console.log('CurrentUser:', curAccount.value);
 </script>

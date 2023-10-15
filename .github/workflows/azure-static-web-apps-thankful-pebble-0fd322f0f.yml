@@ -27,7 +27,8 @@ jobs:
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           api_location: 'code/api'
-          api_build_command: 'npm run build:swa:api'
+          # This DOES need to be the command within ^ code/api
+          api_build_command: 'npm run build:swa'
           app_location: '/'
           app_build_command: 'npm run build:swa:ui'
           output_location: 'code/ui/dist'

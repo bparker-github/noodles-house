@@ -8,7 +8,7 @@ import { fileURLToPath } from 'url';
 const execAsync = promisify(exec)
 
 async function DoWork() {
-  const { stderr, stdout } = await execAsync('git branch --show-current');
+  const { stderr, stdout } = await execAsync('git rev-parse --abbrev-ref HEAD');
   const error = stderr?.trim();
   const output = stdout?.trim();
 

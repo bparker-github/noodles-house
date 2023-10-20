@@ -6,7 +6,8 @@ export { default as NoodleIconSvg } from './assets/NoodleIcon.svg';
 /*********
  * Auth  *
  *********/
-export * from './auth/index';
+export { AuthGuardHook } from './auth/AuthGuard.Hook';
+export { CustomNavigationClient } from './auth/NavigationGuard';
 
 /***************
  * Components  *

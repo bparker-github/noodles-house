@@ -1,15 +1,18 @@
 import { useAuthStore } from '@noodles-house/common';
-import { toRef } from 'vue';
-import type { NavigationGuard } from 'vue-router';
+import { storeToRefs } from 'pinia';
+import type { NavigationGuard, RouteLocationNormalized } from 'vue-router';
 
-export const AuthGuardRedirect: NavigationGuard = async function (to) {
+export const AuthGuardRedirect: NavigationGuard = async (to: RouteLocationNormalized) => {
   // If no auth, continue successfully.
   if (!to.meta.authRequired) {
     return true;
   }
 
   const authStore = useAuthStore();
-  const isAuthenticated = toRef(authStore, 'isAuthenticated');
+  const { isAuthenticated } = storeToRefs(authStore);
+
+  // Ensure we are initialized
+  await authStore.initFunc;
 
   // If they are successfully authenticated already, continue successfully.
   if (isAuthenticated.value) {

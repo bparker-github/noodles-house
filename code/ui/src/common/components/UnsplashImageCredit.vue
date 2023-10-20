@@ -27,8 +27,7 @@
 import type { Full } from 'unsplash-js/dist/methods/photos/types';
 import NoodleLink from './NoodleLink.vue';
 
-const props = defineProps<{ photoResp: Full | null }>();
-console.log('Credit Props:', props);
+defineProps<{ photoResp: Full | null }>();
 
 function createAttributeLink(link: string): string {
   const separator = link.match(/\?w=/i) ? '&' : '?';

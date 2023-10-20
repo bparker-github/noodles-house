@@ -6,7 +6,8 @@ export function throwError(msg: string) {
 export function doGetOrThrow<T>(func: () => T, errorMessage: string): NonNullable<T> {
   const found = func();
 
-  if (!found) {
+  // Soft comparison to catch
+  if (found === undefined || found === null) {
     throw new Error(errorMessage);
   }
 

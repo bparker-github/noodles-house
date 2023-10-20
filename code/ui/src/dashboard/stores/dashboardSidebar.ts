@@ -1,7 +1,8 @@
 import type { ListItem } from '@common';
-import { HomeIcon, UsersIcon } from '@heroicons/vue/24/solid';
+import { FilmIcon, HomeIcon, LockClosedIcon, UserIcon } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
+import { RouteName } from '../router/RouteName';
 
 export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
   const isOpen = ref(false);
@@ -9,29 +10,24 @@ export const useDashboardSidebarStore = defineStore('dashboardSidebar', () => {
     isOpen.value = newVal;
   }
 
-  const sidebarOpen = computed({
-    get(): boolean {
-      return isOpen.value;
-    },
-    set(newVal: boolean): void {
-      isOpen.value = newVal;
-    },
+  const sidebarOpen = computed<boolean>({
+    get: () => isOpen.value,
+    set: (newVal: boolean) => (isOpen.value = newVal),
   });
 
   const primaryItemList: ListItem[] = [
-    { label: 'Dashboard', to: '#', leftIcon: HomeIcon },
-    { label: 'Team', to: '#', leftIcon: UsersIcon },
+    { label: 'Home', to: { name: RouteName.HOME }, leftIcon: HomeIcon },
   ];
-  const secondaryListTitle = 'Your items';
+  const secondaryListTitle = 'Integrations';
   const secondaryItemList: ListItem[] = [
-    { id: 1, label: 'Heroicons', to: '#', leftInitial: 'H' },
-    { id: 2, label: 'Token Testing', to: '/home/profile/tokens', leftInitial: 'T' },
+    { id: 1, label: 'Unsplash Images', to: '#', leftIcon: FilmIcon },
+    { id: 2, label: 'Token Testing', to: { name: RouteName.PROFILE_TOKENS }, leftInitial: 'T' },
   ];
 
   const userListTitle = 'You';
   const userItemList: ListItem[] = [
-    { label: 'Your profile', to: '/home/profile' },
-    { label: 'Sign out', to: '/logout' },
+    { label: 'Your profile', to: { name: RouteName.PROFILE }, leftIcon: UserIcon },
+    { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
   return {

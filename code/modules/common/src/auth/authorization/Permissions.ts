@@ -29,7 +29,7 @@ export function getAllPermissions(): Permission[] {
   return [...ALL_PERMISSIONS];
 }
 export function getPermissionFrom(...types: PermissionType[]): Permission[] {
-  return types.filter((type) => type in ALL_PERMISSIONS).map((type) => ALL_PERMISSIONS[type]);
+  return types.map((type) => ALL_PERMISSIONS.find((p) => p.type === type)!);
 }
 export function getPermissionsFromGroups(...groups: string[]): PermissionType[] {
   const foundPerms = new Set<PermissionType>();

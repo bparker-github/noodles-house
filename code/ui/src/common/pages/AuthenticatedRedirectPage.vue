@@ -21,12 +21,12 @@ export interface AuthenticationRedirectPageProps {
 }
 
 const authStore = useAuthStore();
-const { isAuthenticated } = storeToRefs(authStore);
+const { curAccount } = storeToRefs(authStore);
 
 const router = useRouter();
 const props = defineProps<AuthenticationRedirectPageProps>();
 
 onMounted(async () => {
-  router.push(isAuthenticated.value ? props.authRoute : props.unAuthRoute);
+  router.push(curAccount.value ? props.authRoute : props.unAuthRoute);
 });
 </script>

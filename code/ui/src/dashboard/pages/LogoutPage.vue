@@ -18,15 +18,18 @@ import { RouteName } from '../router/RouteName';
 const authStore = useAuthStore();
 const router = useRouter();
 
-async function beginLogout() {
-  try {
-    await authStore.doLogout();
-    router.push({ name: RouteName.LANDING });
-  } catch (err) {
-    console.warn('Somehow error?:', err);
-    router.push({ name: RouteName.FAILED });
-  }
-}
+onMounted(async () => {
+  // Ensure we have initialized
+  await authStore.initFunc;
 
-onMounted(beginLogout);
+  // Redirect to landing, or failed if errors.
+  let name = RouteName.LANDING;
+  await authStore.doLogout().catch((err) => {
+    console.warn('Somehow error?:', err);
+    name = RouteName.FAILED;
+  });
+
+  // Do the pushing.
+  router.push({ name });
+});
 </script>

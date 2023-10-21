@@ -90,7 +90,7 @@ export const useAuthStore = defineStore('authStore', () => {
         return handleUpdateAccounts();
       case EventType.INITIALIZE_END:
         allAccounts.value = msalPCA.value.getAllAccounts();
-        curAccountId.value = allAccounts.value[0].homeAccountId;
+        curAccountId.value = allAccounts.value[0]?.homeAccountId ?? '';
     }
   });
   //#endregion
@@ -128,7 +128,7 @@ export const useAuthStore = defineStore('authStore', () => {
       const activeAcc = msalPCA.value.getActiveAccount();
       if (activeAcc) {
         curAccountId.value = activeAcc.homeAccountId;
-      } else {
+      } else if (allAccounts.value.length > 0) {
         curAccountId.value = allAccounts.value[0].homeAccountId;
       }
     } catch (err) {

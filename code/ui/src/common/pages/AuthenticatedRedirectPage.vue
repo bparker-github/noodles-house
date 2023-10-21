@@ -27,6 +27,7 @@ const router = useRouter();
 const props = defineProps<AuthenticationRedirectPageProps>();
 
 onMounted(async () => {
+  await authStore.initFunc;
   router.push(curAccount.value ? props.authRoute : props.unAuthRoute);
 });
 </script>

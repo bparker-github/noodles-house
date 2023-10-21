@@ -28,7 +28,7 @@ export const useAuthStore = defineStore('authStore', () => {
 
   /** A computed getter to lookup the account from the current id. */
   const curAccount = computed<NoodleAccountInfo | undefined>(() => {
-    if (!curAccount.value || !allAccounts.value.length) {
+    if (!curAccountId.value || !allAccounts.value.length) {
       return undefined;
     }
 
@@ -45,14 +45,6 @@ export const useAuthStore = defineStore('authStore', () => {
   });
 
   //#region MSAL lifecycle and state
-  /** Ensure we have an up to date reference to the status lifecycle. */
-  function handleStatusUpdate(msg: EventMessage) {
-    const status = EventMessageUtils.getInteractionStatusFromEvent(msg, currentStatus.value);
-    if (status !== null) {
-      currentStatus.value = status;
-    }
-  }
-
   /** Fetch new accounts from the PCA, and handle updating our storage values. */
   function handleUpdateAccounts() {
     const newAccounts = msalPCA.value.getAllAccounts();
@@ -73,8 +65,14 @@ export const useAuthStore = defineStore('authStore', () => {
     curAccountId.value = payload.account.homeAccountId;
   }
 
-  /** Watch the status change to map out updates for the login lifecycle. */
-  function handleAccountsUpdate(msg: EventMessage) {
+  // Register these functions within the lifecycle
+  msalPCA.value.addEventCallback((msg: EventMessage) => {
+    // Keep the status updated.
+    currentStatus.value =
+      EventMessageUtils.getInteractionStatusFromEvent(msg, currentStatus.value) ??
+      currentStatus.value;
+
+    // Watch each specific event.
     switch (msg.eventType) {
       case EventType.ACQUIRE_TOKEN_SUCCESS:
       case EventType.LOGIN_SUCCESS:
@@ -90,16 +88,10 @@ export const useAuthStore = defineStore('authStore', () => {
       case EventType.LOGOUT_END:
       case EventType.ACQUIRE_TOKEN_FAILURE:
         return handleUpdateAccounts();
+      case EventType.INITIALIZE_END:
+        allAccounts.value = msalPCA.value.getAllAccounts();
+        curAccountId.value = allAccounts.value[0].homeAccountId;
     }
-  }
-
-  // Register these functions within the lifecycle
-  msalPCA.value.addEventCallback((msg: EventMessage) => {
-    // Keep the status updated.
-    handleStatusUpdate(msg);
-
-    // Watch the login process and update our internal accounts models.
-    handleAccountsUpdate(msg);
   });
   //#endregion
 
@@ -136,6 +128,8 @@ export const useAuthStore = defineStore('authStore', () => {
       const activeAcc = msalPCA.value.getActiveAccount();
       if (activeAcc) {
         curAccountId.value = activeAcc.homeAccountId;
+      } else {
+        curAccountId.value = allAccounts.value[0].homeAccountId;
       }
     } catch (err) {
       console.error('MSAL init error:', err);

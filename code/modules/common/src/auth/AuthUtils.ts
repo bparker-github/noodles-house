@@ -1,17 +1,17 @@
 import type { AccountInfo } from '@azure/msal-browser';
+import type { Role } from './authorization/Role';
 
 export interface NoodleTokenClaims {
   email?: string;
   family_name?: string;
   given_name?: string;
+  group?: string[];
 }
 export interface NoodleAccountInfo extends AccountInfo {
   idTokenClaims?: NoodleTokenClaims & AccountInfo['idTokenClaims'];
+  roles?: Role[];
 }
-export function compareNoodleAccountInfo(
-  a?: NoodleAccountInfo | null,
-  b?: NoodleAccountInfo | null
-) {
+export function compareNoodleAccountInfo(a?: AccountInfo | null, b?: AccountInfo | null) {
   return (
     !!a &&
     !!b &&
@@ -20,10 +20,7 @@ export function compareNoodleAccountInfo(
     a.username === b.username
   );
 }
-export function areNoodleAccountArraysEqual(
-  arrayA: NoodleAccountInfo[],
-  arrayB: NoodleAccountInfo[]
-): boolean {
+export function areNoodleAccountArraysEqual(arrayA: AccountInfo[], arrayB: AccountInfo[]): boolean {
   if (arrayA.length !== arrayB.length) {
     return false;
   }

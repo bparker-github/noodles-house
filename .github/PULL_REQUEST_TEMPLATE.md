@@ -1,5 +1,5 @@
 # Checks
-[![Azure Static Web Apps CI/CD](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml/badge.svg?branch=tweak-login)](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml)
+[![Azure Static Web Apps CI/CD](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml/badge.svg?branch=roles-and-perms)](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml)
 
 [Visit the page](https://thankful-pebble-0fd322f0f.3.azurestaticapps.net)
 

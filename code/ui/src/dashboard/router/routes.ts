@@ -3,6 +3,7 @@ import type { RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 
 export const routes: RouteRecordRaw[] = [
+  //#region Auth Routes
   {
     path: '/',
     alias: ['/auth-response'],
@@ -34,6 +35,7 @@ export const routes: RouteRecordRaw[] = [
     name: RouteName.FAILED,
     component: () => import('../pages/FailedPage.vue'),
   },
+  //#endregion
 
   {
     path: '/home',

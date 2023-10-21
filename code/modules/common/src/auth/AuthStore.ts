@@ -3,14 +3,16 @@ import {
   EventType,
   InteractionStatus,
   InteractionType,
+  NavigationClient,
   type AuthenticationResult,
   type EventMessage,
-  NavigationClient,
 } from '@azure/msal-browser';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { BaseLoginRequest, MsalInstance } from './AuthConfig';
 import { areNoodleAccountArraysEqual, type NoodleAccountInfo } from './AuthUtils';
+import type { PermissionType } from './authorization/Permissions';
+import { RoleType, getRolesFromGroups } from './authorization/Role';
 
 export type AuthStoreShape = ReturnType<typeof useAuthStore>;
 
@@ -21,21 +23,28 @@ export const useAuthStore = defineStore('authStore', () => {
   const currentStatus = ref<InteractionStatus>(InteractionStatus.Startup);
   /** A list of all known accounts for this user. */
   const allAccounts = ref<NoodleAccountInfo[]>([]);
-  /** A list of the selected account for this user. */
-  const curAccount = ref<NoodleAccountInfo | undefined>();
+  /** An "homeAccountId" identifier of the selected account within the AllAccounts list. */
+  const curAccountId = ref('');
 
-  /** A value indicating whether the authentication has completed and yielded anything. */
-  const isAuthenticated = computed(() => !!curAccount.value || allAccounts.value.length > 0);
+  /** A computed getter to lookup the account from the current id. */
+  const curAccount = computed<NoodleAccountInfo | undefined>(() => {
+    if (!curAccountId.value || !allAccounts.value.length) {
+      return undefined;
+    }
+
+    const found = allAccounts.value.find((acc) => acc.homeAccountId);
+    if (!found) {
+      return undefined;
+    }
+
+    // Add roles and return.
+    return {
+      ...found,
+      roles: getRolesFromGroups(...(found.idTokenClaims?.group ?? [])),
+    };
+  });
 
   //#region MSAL lifecycle and state
-  /** Ensure we have an up to date reference to the status lifecycle. */
-  function handleStatusUpdate(msg: EventMessage) {
-    const status = EventMessageUtils.getInteractionStatusFromEvent(msg, currentStatus.value);
-    if (status !== null) {
-      currentStatus.value = status;
-    }
-  }
-
   /** Fetch new accounts from the PCA, and handle updating our storage values. */
   function handleUpdateAccounts() {
     const newAccounts = msalPCA.value.getAllAccounts();
@@ -53,11 +62,17 @@ export const useAuthStore = defineStore('authStore', () => {
 
     const payload = msg.payload as AuthenticationResult;
     msalPCA.value.setActiveAccount(payload.account);
-    curAccount.value = payload.account;
+    curAccountId.value = payload.account.homeAccountId;
   }
 
-  /** Watch the status change to map out updates for the login lifecycle. */
-  function handleAccountsUpdate(msg: EventMessage) {
+  // Register these functions within the lifecycle
+  msalPCA.value.addEventCallback((msg: EventMessage) => {
+    // Keep the status updated.
+    currentStatus.value =
+      EventMessageUtils.getInteractionStatusFromEvent(msg, currentStatus.value) ??
+      currentStatus.value;
+
+    // Watch each specific event.
     switch (msg.eventType) {
       case EventType.ACQUIRE_TOKEN_SUCCESS:
       case EventType.LOGIN_SUCCESS:
@@ -73,16 +88,10 @@ export const useAuthStore = defineStore('authStore', () => {
       case EventType.LOGOUT_END:
       case EventType.ACQUIRE_TOKEN_FAILURE:
         return handleUpdateAccounts();
+      case EventType.INITIALIZE_END:
+        allAccounts.value = msalPCA.value.getAllAccounts();
+        curAccountId.value = allAccounts.value[0].homeAccountId;
     }
-  }
-
-  // Register these functions within the lifecycle
-  msalPCA.value.addEventCallback((msg: EventMessage) => {
-    // Keep the status updated.
-    handleStatusUpdate(msg);
-
-    // Watch the login process and update our internal accounts models.
-    handleAccountsUpdate(msg);
   });
   //#endregion
 
@@ -118,7 +127,9 @@ export const useAuthStore = defineStore('authStore', () => {
       // Select the first account as 'chosen'.
       const activeAcc = msalPCA.value.getActiveAccount();
       if (activeAcc) {
-        curAccount.value = activeAcc;
+        curAccountId.value = activeAcc.homeAccountId;
+      } else {
+        curAccountId.value = allAccounts.value[0].homeAccountId;
       }
     } catch (err) {
       console.error('MSAL init error:', err);
@@ -157,6 +168,17 @@ export const useAuthStore = defineStore('authStore', () => {
     return resp.accessToken;
   }
 
+  /** A utility function to check if the current user has this role. */
+  function userHasRole(role: RoleType): boolean {
+    return !curAccount.value ? false : !!curAccount.value.roles?.some((r) => r.type === role);
+  }
+  /** A utility function to check if the current user has roles that include this permission. */
+  function userHasPerm(perm: PermissionType): boolean {
+    return !curAccount.value
+      ? false
+      : !!curAccount.value.roles?.some((r) => r.permissions.includes(perm));
+  }
+
   return {
     // Init
     initFunc,
@@ -166,12 +188,14 @@ export const useAuthStore = defineStore('authStore', () => {
     msalPCA,
     currentStatus,
     allAccounts,
+    curAccountId,
     curAccount,
-    isAuthenticated,
 
     // Functions
     doLogin,
     doLogout,
     getToken,
+    userHasRole,
+    userHasPerm,
   };
 });

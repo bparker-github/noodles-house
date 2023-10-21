@@ -4,6 +4,12 @@ import { storeToRefs } from 'pinia';
 import { RouteName } from '../../dashboard/router/RouteName';
 
 export const AuthGuardHook: NavigationGuard = async (to, from, next) => {
+  // We want to ensure the auth store is initialized before any routes.
+  const authStore = useAuthStore();
+  await authStore.initFunc;
+  const { curAccount } = storeToRefs(authStore);
+
+  // Lookup config from route.
   const everyRole = to.meta.mustHaveAllRoles ?? [];
   const someRole = to.meta.mustHaveSomeRoles ?? [];
   const everyPerm = to.meta.mustHaveAllPermissions ?? [];
@@ -14,11 +20,6 @@ export const AuthGuardHook: NavigationGuard = async (to, from, next) => {
   if (!everyRole.length && !someRole.length && !everyPerm.length && !somePerm.length) {
     return next(true);
   }
-
-  // Now we must consult the Auth Store. Be sure it's initialized.
-  const authStore = useAuthStore();
-  const { curAccount } = storeToRefs(authStore);
-  await authStore.initFunc;
 
   // They do not have a user, and we are in a condition where they require some kind of permissions or roles.
   if (!curAccount.value) {

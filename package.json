@@ -13,13 +13,21 @@
     "dev": "npm-run-all -lns build:common -p dev:*",
     "dev:common": "npm run dev -w common",
     "dev:api": "npm run start -w api",
-    "dev:ui": "npm run dev -w ui"
+    "dev:ui": "npm run dev -w ui",
+    "///// LIFE CYCLES /////": "/////",
+    "update-pr-template": "node ./.github/update_pull_request_template.mjs"
   },
+  "pre-commit": [
+    "update-pr-template"
+  ],
   "workspaces": [
     "api",
     "common",
     "ui"
   ],
+  "engines": {
+    "node": "^18"
+  },
   "author": "Ben Parker (ben@noodles.house)",
   "license": "ISC",
   "devDependencies": {

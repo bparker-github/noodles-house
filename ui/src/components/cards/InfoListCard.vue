@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import type { EnumObject } from '@noodles-house/common';
+import type { EnumObject } from '@/lib';
 import InfoListItem from './InfoListItem.vue';
 import { onMounted } from 'vue';
 

@@ -1,4 +1,4 @@
-import { doGetOrThrow, useUnsplashApi, type UnsplashApi } from '@noodles-house/common';
+import { doGetOrThrow, useUnsplashApi, type UnsplashApi } from '@/lib';
 import { defineStore } from 'pinia';
 import type { ApiResponse } from 'unsplash-js/dist/helpers/response';
 import type { Full } from 'unsplash-js/dist/methods/photos/types';

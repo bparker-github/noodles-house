@@ -1,4 +1,4 @@
-import { PermissionType } from '@noodles-house/common';
+import { PermissionType } from '@/lib';
 import type { RouteRecordRaw } from 'vue-router';
 import type { AuthenticationRedirectPageProps } from '../components/pages/AuthenticatedRedirectPage.vue';
 import { RouteName } from './RouteName';

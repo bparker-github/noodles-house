@@ -13,7 +13,7 @@ import {
   getDefaultRoleSchema,
   getRolesFromGroup,
   type NoodleAccountInfo,
-} from '@noodles-house/common';
+} from '@/lib';
 import { defineStore } from 'pinia';
 import { computed, ref, toValue } from 'vue';
 import type { Router } from 'vue-router';

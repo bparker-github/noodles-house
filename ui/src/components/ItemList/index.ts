@@ -1,4 +1,4 @@
-import type { RequireOnlyOne } from '@noodles-house/common';
+import type { RequireOnlyOne } from '@/lib';
 import type { Component } from 'vue';
 import type { RouteLocationRaw } from 'vue-router';
 

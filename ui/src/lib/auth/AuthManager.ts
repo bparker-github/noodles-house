@@ -8,7 +8,7 @@ import {
 } from '@azure/msal-browser';
 import { ref } from 'vue';
 import type { AuthPluginOptions } from './AuthPluginOptions';
-import { getLoggerOptions } from '@noodles-house/common';
+import { getLoggerOptions } from '@/lib';
 
 export class AuthManager {
   public MSAL: PublicClientApplication;

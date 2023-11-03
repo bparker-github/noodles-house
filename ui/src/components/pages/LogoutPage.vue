@@ -19,7 +19,7 @@ const router = useRouter();
 
 onMounted(async () => {
   // Ensure we have initialized
-  await authStore.initPromise;
+  // await authStore.initPromise;
 
   // Redirect to landing, or failed if errors.
   let name = RouteName.LANDING;

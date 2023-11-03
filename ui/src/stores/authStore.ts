@@ -20,7 +20,8 @@ import type { Router } from 'vue-router';
 
 export const useAuthStore = defineStore('auth-store', () => {
   // Retrieve the base msal info from the plugin.
-  const { MSAL, options, ...authManager } = toValue(useAuthPlugin());
+  const authManager = toValue(useAuthPlugin());
+  const { MSAL, options } = authManager;
 
   // Store the schemas
   const permSchema = getDefaultPermissionSchema();

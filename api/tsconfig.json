@@ -1,15 +1,17 @@
 {
+  "include": ["src"],
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
     "outDir": "dist",
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": true,
     "strict": false,
-    
+
     /** New settings below */
     "typeRoots": ["../types"],
+    "incremental": true,
     "skipLibCheck": true
-  },
-  "references": [{ "path": "../common" }]
+  }
 }

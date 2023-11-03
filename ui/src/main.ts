@@ -5,11 +5,10 @@ import './assets/main.css';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import { RouterView } from 'vue-router';
-import router from './router';
 import { AuthPlugin } from './lib/auth/AuthPlugin';
-import { AuthPluginOptions } from './lib/auth/AuthPluginOptions';
-import { useAuthStore } from './stores/authStore';
 import { AuthPluginHook } from './lib/auth/AuthPlugin.Hook';
+import { AuthPluginOptions } from './lib/auth/AuthPluginOptions';
+import router from './router';
 
 const app = createApp(RouterView);
 
@@ -19,10 +18,6 @@ app.use(new AuthPlugin(), new AuthPluginOptions());
 // Add in pinia - allows (auth) stores to be referenced.
 const pinia = createPinia();
 app.use(pinia);
-
-// Declare store only after pinia is applied.
-const authStore = useAuthStore();
-await authStore.initialize(router);
 
 // Create router, sync store beforeEach, and guard specific routes.
 app.use(router);

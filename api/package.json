@@ -2,22 +2,24 @@
   "name": "@noodles-house/api",
   "version": "1.0.0",
   "description": "",
+  "main": "dist/src/functions/*.js",
+  "engines": {
+    "node": "^18"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "clean": "rimraf dist",
-    "prestart": "npm run clean && npm run build",
-    "start": "func start",
+    "start": "npm-run-all -lns clean build -p watch start:func",
+    "start:func": "func start",
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0",
-    "@noodles-house/common": "^0.0.0"
+    "@azure/functions": "^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.x",
     "rimraf": "^5.0.0",
     "typescript": "^4.0.0"
-  },
-  "main": "dist/src/functions/*.js"
+  }
 }

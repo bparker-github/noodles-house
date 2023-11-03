@@ -32,7 +32,7 @@ const props = withDefaults(defineProps<AuthenticationRedirectPageProps>(), {
 });
 
 onMounted(async () => {
-  await authStore.initPromise;
+  await authStore.initialize(router);
 
   // Once auth has finalized, we should know if the user has an account implicitly already.
   router.push(currAccount.value ? props.authRoute : props.unAuthRoute);

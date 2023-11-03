@@ -1,5 +1,5 @@
 import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
-import { UnsplashApi, useUnsplashApi } from '@noodles-house/common';
+import { UnsplashApi, useUnsplashApi } from '../lib/unsplash-js';
 
 export async function Unsplash(
   request: HttpRequest,

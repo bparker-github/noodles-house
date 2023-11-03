@@ -1,7 +1,7 @@
+import { PermissionType } from '@noodles-house/common';
 import type { RouteRecordRaw } from 'vue-router';
-import { RouteName } from './RouteName';
 import type { AuthenticationRedirectPageProps } from '../components/pages/AuthenticatedRedirectPage.vue';
-import { CommonAuth } from '@noodles-house/common';
+import { RouteName } from './RouteName';
 
 export const routes: RouteRecordRaw[] = [
   //#region Auth Routes
@@ -42,7 +42,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/home',
     component: () => import('../layouts/dashboard/MainDashboard.vue'),
     meta: {
-      requiredPermission: CommonAuth.PermissionType.VIEW_DASHBOARD,
+      requiredPermission: PermissionType.VIEW_DASHBOARD,
     },
     children: [
       {

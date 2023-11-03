@@ -1,5 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
-import { AuthConfig } from '@noodles-house/common';
+import { AuthConfig } from '../lib/auth';
 
 export async function GetAuthConfig(
   request: HttpRequest,

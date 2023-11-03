@@ -1,13 +1,8 @@
 {
   "folders": [
     {
+      "name": "noodles-house",
       "path": "../noodles-house"
-    },
-    {
-      "path": "../vue-project"
-    },
-    {
-      "path": "../vite-project"
     }
   ],
   "extensions": {
@@ -18,6 +13,7 @@
       "esbenp.prettier-vscode",
       "jock.svg",
       "mikestead.dotenv",
+      "misterj.vue-volar-extention-pack",
       "mitchdenny.ecdc",
       "ms-azuretools.vscode-azurefunctions",
       "streetsidesoftware.code-spell-checker",
@@ -25,7 +21,6 @@
       "vue.vscode-typescript-vue-plugin",
       "wayou.vscode-todo-highlight",
       "wmaurer.change-case",
-      "misterj.vue-volar-extention-pack"
     ],
     "unwantedRecommendations": ["octref.vetur"]
   },

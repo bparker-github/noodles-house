@@ -1,0 +1,35 @@
+{
+  "name": "@noodles-house/common",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "dist/lib/index.d.ts"
+  ],
+  "main": "./dist/noodles-house-common.umd.cjs",
+  "module": "./dist/noodles-house-common.js",
+  "types": "./dist/lib/index.d.ts",
+  "exports": {
+    "types": "./dist/lib/index.d.ts",
+    "import": "./dist/noodles-house-common.js",
+    "require": "./dist/noodles-house-common.umd.cjs"
+  },
+  "scripts": {
+    "build": "npm-run-all -lns build:lib:type-check build:lib:code build:lib:generate-types",
+    "build:lib:type-check": "tsc --noEmit",
+    "build:lib:code": "vite build",
+    "build:lib:generate-types": "tsc --emitDeclarationOnly --declaration",
+    "/// Dev Stuffs ///": "/// Very similar to the build ///",
+    "dev": "nodemon --watch lib --exec \"npm run build\""
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.2",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11"
+  },
+  "dependencies": {
+    "@azure/msal-common": "^14.2.0",
+    "vite-svg-loader": "^4.0.0"
+  }
+}

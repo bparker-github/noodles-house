@@ -1,5 +1,5 @@
 import type { BrowserAuthOptions } from '@azure/msal-browser';
-import { AuthConfig } from '@noodles-house/common';
+import { AuthConfig } from './AuthConfig';
 
 export class AuthPluginOptions extends AuthConfig {
   getAuthOptions = (): BrowserAuthOptions => ({

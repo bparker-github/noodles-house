@@ -1,9 +1,7 @@
 {
   "files": [],
-  "include": ["types"],
   "references": [
     "./api",
-    "./common",
     "./ui"
   ]
 }

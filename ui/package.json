@@ -4,12 +4,19 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "npm-run-all -lns build:types build:code",
+    "build:local": "npm-run-all -lns build:types build:code:local",
+    "build:swa": "npm-run-all -lns build:types build:code:swa",
+    "build:swa-local": "npm-run-all -lns build:types build:code:swa-local",
+    "build:code": "vite build --mode swa",
+    "build:code:local": "vite build --mode local",
+    "build:code:swa": "vite build --mode swa",
+    "build:code:swa-local": "vite build --mode swa-local",
+    "build:types": "vue-tsc -b ./tsconfig.app.json --declaration --emitDeclarationOnly",
     "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "test:unit": "vitest",
+    "util:format": "prettier --write src/",
+    "util:lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@azure/msal-browser": "^3.3.0",

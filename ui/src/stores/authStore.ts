@@ -1,31 +1,23 @@
+import { PermissionType, RoleType, getRolesFromGroup, type NoodleAccountInfo } from '@/lib';
 import { useAuthPlugin } from '@/lib/auth/AuthPlugin';
-import { CustomNavigationClient } from '@/lib/auth/CustomNavigationClient';
 import {
   InteractionRequiredAuthError,
   InteractionType,
   type AccountInfo,
   type AuthenticationResult,
 } from '@azure/msal-browser';
-import {
-  PermissionType,
-  RoleType,
-  getDefaultPermissionSchema,
-  getDefaultRoleSchema,
-  getRolesFromGroup,
-  type NoodleAccountInfo,
-} from '@/lib';
+import { useFetch } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { computed, ref, toValue } from 'vue';
-import type { Router } from 'vue-router';
+import { computed, ref } from 'vue';
+import { envConfig } from '../config/env';
 
 export const useAuthStore = defineStore('auth-store', () => {
   // Retrieve the base msal info from the plugin.
-  const authManager = toValue(useAuthPlugin());
-  const { MSAL, options } = authManager;
+  const authManager = useAuthPlugin();
+  const { MSAL, options } = authManager.value;
 
   // Store the schemas
-  const permSchema = getDefaultPermissionSchema();
-  const roleSchema = getDefaultRoleSchema(permSchema);
+  const permFetch = useFetch(envConfig.apiUrl + '/getAllPermissions');
 
   // Store info separate from strict-msal.
   const accessToken = ref('');
@@ -36,7 +28,7 @@ export const useAuthStore = defineStore('auth-store', () => {
       : {
           ..._currAccountInfo.value,
           roles: getRolesFromGroup(
-            roleSchema,
+            [],
             ...((_currAccountInfo.value as NoodleAccountInfo).idTokenClaims?.group ?? [])
           ),
         }
@@ -65,8 +57,8 @@ export const useAuthStore = defineStore('auth-store', () => {
   }
 
   async function doLogin(type: InteractionType = InteractionType.Popup) {
-    const loginRequest = authManager.getLoginRequest();
-    const resetRequest = authManager.getLoginRequest(options.passwordAuthority);
+    const loginRequest = authManager.value.getLoginRequest();
+    const resetRequest = authManager.value.getLoginRequest(options.passwordAuthority);
 
     try {
       await makeLoginRequest(loginRequest, type);
@@ -107,7 +99,7 @@ export const useAuthStore = defineStore('auth-store', () => {
       return '';
     }
 
-    const tokenRequest = authManager.getTokenRequest(currAccount.value);
+    const tokenRequest = authManager.value.getTokenRequest(currAccount.value);
 
     try {
       const tokenResp = await MSAL.acquireTokenSilent(tokenRequest);
@@ -130,11 +122,10 @@ export const useAuthStore = defineStore('auth-store', () => {
     return !!currAccount.value?.roles?.some((r) => r.permissions?.includes(perm));
   }
 
-  async function initialize(router: Router): Promise<void> {
-    await authManager.initPromise;
-    const navClient = new CustomNavigationClient(router);
-    MSAL.setNavigationClient(navClient);
+  async function initialize(): Promise<void> {
+    await Promise.all([authManager.value.initPromise, permFetch.then]);
   }
+  const initPromise = initialize();
 
   return {
     msalInstance: MSAL,
@@ -142,7 +133,7 @@ export const useAuthStore = defineStore('auth-store', () => {
     isAuthenticated,
     currAccount,
 
-    initialize,
+    initPromise,
     acquireToken,
     doLogin,
     doLogout,

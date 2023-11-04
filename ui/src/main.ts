@@ -9,8 +9,9 @@ import { AuthPlugin } from './lib/auth/AuthPlugin';
 import { AuthPluginHook } from './lib/auth/AuthPlugin.Hook';
 import { AuthPluginOptions } from './lib/auth/AuthPluginOptions';
 import router from './router';
+import App from './App.vue';
 
-const app = createApp(RouterView);
+const app = createApp(App);
 
 // Add our msal config and auth.
 app.use(new AuthPlugin(), new AuthPluginOptions());

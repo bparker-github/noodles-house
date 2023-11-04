@@ -1,5 +1,5 @@
 import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
-import { UnsplashApi, useUnsplashApi } from '../lib/unsplash-js';
+import { createApi } from 'unsplash-js';
 
 export async function Unsplash(
   request: HttpRequest,
@@ -18,10 +18,11 @@ export async function Unsplash(
   }
 }
 
+type UnsplashApi = ReturnType<typeof createApi>;
 let unsplashApi: UnsplashApi | null = null;
 function getUnsplashApi() {
   const accessKey = process.env.NOOD_UNSPLASH_ACCESS_KEY ?? '';
-  return (unsplashApi ??= useUnsplashApi('api', accessKey));
+  return (unsplashApi ??= createApi({ accessKey: accessKey }));
 }
 
 async function handlePhotosRequest(

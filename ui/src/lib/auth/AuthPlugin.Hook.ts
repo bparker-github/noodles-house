@@ -2,13 +2,10 @@ import { RouteName } from '@/router/RouteName';
 import { useAuthStore } from '@/stores/authStore';
 import { storeToRefs } from 'pinia';
 import type { NavigationGuard } from 'vue-router';
-import { useRouter } from 'vue-router';
 
 export const AuthPluginHook: NavigationGuard = async (to, from, next) => {
-  const router = useRouter();
   const authStore = useAuthStore();
   const { isAuthenticated } = storeToRefs(authStore);
-  await authStore.initialize(router);
 
   // Lookup config from route.
   const asArr = <T>(obj: T | T[] | undefined): T[] =>

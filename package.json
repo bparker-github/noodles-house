@@ -8,6 +8,8 @@
     "build": "npm-run-all -lnp build:*",
     "build:api": "npm run build -w api",
     "build:ui": "npm run build -w ui",
+    "build:swa:api": "npm run build:swa -w api",
+    "build:swa:ui": "npm run build:swa -w ui",
     "/// Development ///": "/// Scripts below make it easy to develop ///",
     "dev": "npm-run-all -lnp dev:*",
     "dev:api": "npm run start -w api",
@@ -29,6 +31,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.8.10",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.0.1",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",

@@ -118,7 +118,7 @@ Object.assign(BaseThemeColors, {
 });
 
 export default {
-  content: ['./index.html', './src/**/*'],
+  content: ['./index.html', './src/**/*.vue'],
   theme: {
     extend: {
       colors: BaseThemeColors,

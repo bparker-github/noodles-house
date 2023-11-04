@@ -30,6 +30,7 @@
 </template>
 
 <script setup lang="ts">
+import { UnsplashImage } from '@/lib';
 import { RouteName } from '@/router/RouteName';
 import { useAuthStore } from '@/stores/authStore';
 import { loremIpsum } from 'lorem-ipsum';

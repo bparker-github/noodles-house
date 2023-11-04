@@ -5,13 +5,7 @@
     "target": "es6",
     "outDir": "dist",
     "rootDir": ".",
-    "baseUrl": ".",
     "sourceMap": true,
-    "strict": false,
-
-    /** New settings below */
-    "typeRoots": ["../types"],
-    "incremental": true,
-    "skipLibCheck": true
+    "strict": false
   }
 }

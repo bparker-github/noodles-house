@@ -1,5 +1,4 @@
-import type { AccountInfo } from '@azure/msal-browser';
-import type { Role } from './authorization/Role';
+import type { Role } from './Role';
 
 export interface NoodleUser {
   id: string;
@@ -15,8 +14,4 @@ export interface NoodleTokenClaims {
   family_name?: string;
   given_name?: string;
   group?: string[];
-}
-export interface NoodleAccountInfo extends AccountInfo {
-  idTokenClaims?: NoodleTokenClaims & AccountInfo['idTokenClaims'];
-  roles?: Role[];
 }

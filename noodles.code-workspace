@@ -3,10 +3,6 @@
     {
       "name": "noodles-house",
       "path": "../noodles-house"
-    },
-    {
-      "name": "Func API",
-      "path": "../func-api"
     }
   ],
   "extensions": {

@@ -1,5 +1,5 @@
 <template>
-  <div class="unsplash-image relative h-full w-full">
+  <div class="unsplash-image relative">
     <!-- Step 1: No data yet. Display a loading background. -->
     <div
       v-if="state === UIS.NONE"
@@ -40,18 +40,19 @@
     />
 
     <!-- The user can provide content to display overtop of this element (parent relative); -->
-    <div
+    <slot></slot>
+    <!-- <div
       class="image-content"
       key="main-content"
     >
-      <slot></slot>
 
-      <!-- We must credit the creator of the images with a click section -->
-      <UnsplashImageCredit
-        v-if="photoResp && !omitCredit"
-        :photo-resp="photoResp"
-      />
-    </div>
+    </div> -->
+
+    <!-- We must credit the creator of the images with a click section -->
+    <UnsplashImageCredit
+      v-if="photoResp && !omitCredit"
+      :photo-resp="photoResp"
+    />
   </div>
 </template>
 

@@ -18,9 +18,12 @@ export class AuthManager {
   private _knownAccounts = ref<AccountInfo[]>([]);
   private _activeAccount = ref<AccountInfo | null>(null);
 
-  public getLoginRequest(authority?: string) {
+  public getLoginRequest(authority: string = this.options.loginAuthority) {
     // Should be a subset of all types of login requests (redirect, popup, etc)
-    return { scopes: this.options.scopes ?? [], authority };
+    return {
+      scopes: this.options.scopes ?? [],
+      authority,
+    };
   }
   // Should be a subset of all types of login requests (redirect, popup, etc)
   public getTokenRequest(forAcc: AccountInfo, authority?: string) {

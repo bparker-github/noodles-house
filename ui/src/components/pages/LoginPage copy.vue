@@ -1,24 +1,9 @@
 <template>
-  <!-- The main, outer container -->
-  <div :class="['full-size-container', 'flex flex-col flex-1 w-full h-full justify-center']">
-    <!-- The main "card" -->
-    <div
-      :class="[
-        'card-container',
-        'flex flex-col flex-1',
-        'sm:flex-grow-0 sm:mx-auto sm:max-w-7xl sm:px-4',
-      ]"
-    >
-      <!-- The image itself -->
-      <UnsplashImage
-        :id="photoId"
-        class="flex flex-col h-full w-full"
-      >
+  <div class="flex h-full flex-col items-center justify-evenly">
+    <div class="mx-auto max-w-7xl px-4 sm:px-8">
+      <UnsplashImage :id="photoId">
         <div
-          :class="[
-            'flex flex-1 items-center',
-            'bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28',
-          ]"
+          class="bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
         >
           <div class="relative flex max-w-3xl flex-col items-center text-center">
             <h2 class="text-whiteish text-3xl font-bold tracking-tight sm:text-4xl">
@@ -42,11 +27,6 @@
       </UnsplashImage>
     </div>
   </div>
-
-  <!-- <div class="flex h-full flex-col items-center justify-evenly">
-    <div class="mx-auto max-w-7xl px-0 sm:px-4">
-    </div>
-  </div> -->
 </template>
 
 <script setup lang="ts">

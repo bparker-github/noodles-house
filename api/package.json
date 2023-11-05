@@ -8,7 +8,7 @@
     "watch": "tsc -w",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns clean build -p watch start:func",
-    "start:func": "func start",
+    "start:func": "func start --useHttps --cert ../https/certificate.crt",
     "build:local": "cross-env-shell MODE=local npm run build",
     "build:swa": "cross-env-shell MODE=swa npm run build",
     "build:swa-local": "cross-env-shell MODE=swa-local npm run build"

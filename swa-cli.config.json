@@ -4,58 +4,58 @@
     "build": {
       "apiBuildCommand": "npm run build:swa:api",
       "apiLanguage": "node",
-      "apiLocation": "code\\api",
+      "apiLocation": "api",
       "apiVersion": "18",
       "appBuildCommand": "npm run build:swa:ui",
       "appLocation": "/",
-      "outputLocation": "code\\ui\\dist"
+      "outputLocation": "ui\\dist"
     },
     "build:api": {
       "apiLanguage": "node",
-      "apiLocation": "code\\api",
+      "apiLocation": "api",
       "apiVersion": "18",
       "apiBuildCommand": "npm run build:swa:api"
     },
     "build:ui": {
       "appLocation": "/",
-      "outputLocation": "code\\ui\\dist",
+      "outputLocation": "ui\\dist",
       "appBuildCommand": "npm run build:swa:ui"
     },
     "dev": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": "/",
-      "outputLocation": "code\\ui\\dist",
+      "outputLocation": "ui\\dist",
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
-      "apiLocation": "code\\api",
+      "apiLocation": "api",
       "apiVersion": "18"
     },
     "dev:api": {
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
-      "apiLocation": "code/api",
+      "apiLocation": "api",
       "apiVersion": "18",
       "run": "npm run dev:api"
     },
     "dev:ui": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
-      "outputLocation": "code/ui/dist",
+      "outputLocation": "ui/dist",
       "run": "npm run dev:ui"
     },
     "serve": {
       "apiLanguage": "node",
-      "apiLocation": "code\\api",
+      "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "code\\ui\\dist"
+      "appLocation": "ui\\dist"
     },
     "serve:api": {
       "apiLanguage": "node",
-      "apiLocation": "code\\api",
+      "apiLocation": "api",
       "apiVersion": "18"
     },
     "serve:ui": {
-      "appLocation": "code\\ui\\dist"
+      "appLocation": "ui\\dist"
     }
   }
 }

@@ -1,8 +1,0 @@
-{
-  "include": ["./types/env.d.ts"],
-  "compilerOptions": {
-    "strict": true,
-    "verbatimModuleSyntax": true,
-    "typeRoots": ["./types"]
-  }
-}

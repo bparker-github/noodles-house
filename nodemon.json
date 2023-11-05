@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json.schemastore.org/nodemon.json",
+  "colours": true,
+  "delay": 1500,
+  "ext": "json,ts,vue,env"
+}

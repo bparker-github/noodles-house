@@ -1,0 +1,29 @@
+{
+  "name": "@noodles-house/api",
+  "version": "1.0.0",
+  "description": "The API duh",
+  "main": "dist/src/functions/*.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf dist",
+    "start": "npm-run-all -lns clean build -p watch start:func",
+    "start:func": "func start",
+    "build:local": "cross-env-shell MODE=local npm run build",
+    "build:swa": "cross-env-shell MODE=swa npm run build",
+    "build:swa-local": "cross-env-shell MODE=swa-local npm run build"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "@azure/msal-common": "^14.3.0",
+    "unsplash-js": "^7.0.18"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "rimraf": "^5.0.0",
+    "typescript": "^4.0.0"
+  },
+  "engines": {
+    "node": "^18"
+  }
+}

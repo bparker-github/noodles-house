@@ -1,10 +1,7 @@
 {
   "files": [],
-  "include": [],
   "references": [
-    { "path": "code/api" },
-    { "path": "code/modules/blur-hash" },
-    { "path": "code/modules/common" },
-    { "path": "code/ui" }
+    "./api",
+    "./ui"
   ]
 }

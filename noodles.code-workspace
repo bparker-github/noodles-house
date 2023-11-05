@@ -1,13 +1,12 @@
 {
   "folders": [
     {
+      "name": "noodles-house",
       "path": "../noodles-house"
     },
     {
-      "path": "../vue-project"
-    },
-    {
-      "path": "../vite-project"
+      "name": "Func API",
+      "path": "../func-api"
     }
   ],
   "extensions": {
@@ -18,14 +17,14 @@
       "esbenp.prettier-vscode",
       "jock.svg",
       "mikestead.dotenv",
+      "misterj.vue-volar-extention-pack",
       "mitchdenny.ecdc",
       "ms-azuretools.vscode-azurefunctions",
       "streetsidesoftware.code-spell-checker",
       "vue.volar",
       "vue.vscode-typescript-vue-plugin",
       "wayou.vscode-todo-highlight",
-      "wmaurer.change-case",
-      "misterj.vue-volar-extention-pack"
+      "wmaurer.change-case"
     ],
     "unwantedRecommendations": ["octref.vetur"]
   },
@@ -52,11 +51,7 @@
     ],
 
     "tailwindCSS.experimental.configFile": {
-      "./code/ui/tailwind.config.ts": [
-        "./code/ui/index.html",
-        "./code/ui/src/**/*",
-        "./code/modules/blur-hash/src/**/*"
-      ]
+      "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"]
     },
 
     "[css]": {
@@ -84,7 +79,8 @@
 
     "files.associations": {
       ".funcignore": "ignore",
-      "**/tsconfig/*.json": "jsonc"
+      "**/tsconfig/*.json": "jsonc",
+      "*.css": "tailwindcss"
     },
 
     "cSpell.ignorePaths": [
@@ -121,12 +117,13 @@
     "svg.preview.toolbarSize": "large",
     "debug.internalConsoleOptions": "neverOpen",
 
-    "azureFunctions.deploySubpath": "src\\api",
+    "azureFunctions.deploySubpath": ".",
     "azureFunctions.postDeployTask": "npm install (functions)",
     "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
     "azureFunctions.preDeployTask": "npm prune (functions)",
+
     "vue.complete.casing.tags": "pascal"
   },
   "launch": {
@@ -144,6 +141,39 @@
   "tasks": {
     "version": "2.0.0",
     "tasks": [
+      {
+        "type": "func",
+        "label": "func: host start",
+        "command": "host start",
+        "problemMatcher": "$func-node-watch",
+        "isBackground": true,
+        "dependsOn": "npm build (functions)"
+      },
+      {
+        "type": "shell",
+        "label": "npm build (functions)",
+        "command": "npm run build",
+        "dependsOn": "npm clean (functions)",
+        "problemMatcher": "$tsc"
+      },
+      {
+        "type": "shell",
+        "label": "npm install (functions)",
+        "command": "npm install"
+      },
+      {
+        "type": "shell",
+        "label": "npm prune (functions)",
+        "command": "npm prune --production",
+        "dependsOn": "npm build (functions)",
+        "problemMatcher": []
+      },
+      {
+        "type": "shell",
+        "label": "npm clean (functions)",
+        "command": "npm run clean",
+        "dependsOn": "npm install (functions)"
+      },
       {
         "type": "func",
         "label": "func: host start",

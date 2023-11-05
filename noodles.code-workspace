@@ -79,7 +79,8 @@
 
     "files.associations": {
       ".funcignore": "ignore",
-      "**/tsconfig/*.json": "jsonc"
+      "**/tsconfig/*.json": "jsonc",
+      "*.css": "tailwindcss"
     },
 
     "cSpell.ignorePaths": [
@@ -122,7 +123,7 @@
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
     "azureFunctions.preDeployTask": "npm prune (functions)",
-    
+
     "vue.complete.casing.tags": "pascal"
   },
   "launch": {

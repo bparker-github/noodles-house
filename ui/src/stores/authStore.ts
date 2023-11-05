@@ -17,7 +17,7 @@ export const useAuthStore = defineStore('auth-store', () => {
   const { MSAL, options } = authManager.value;
 
   // Store the schemas
-  const permFetch = useFetch(envConfig.apiUrl + '/getAllPermissions');
+  const permFetch = useFetch(envConfig.apiUrl + '/scheme/permissions');
 
   // Store info separate from strict-msal.
   const accessToken = ref('');

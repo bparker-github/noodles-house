@@ -11,8 +11,9 @@ export async function GetAllPermissions(
   return { body: JSON.stringify(ret) };
 }
 
-app.http('permissions', {
+app.http('GetAllPermissions', {
   methods: ['GET'],
   authLevel: 'anonymous',
+  route: 'scheme/permissions',
   handler: GetAllPermissions,
 });

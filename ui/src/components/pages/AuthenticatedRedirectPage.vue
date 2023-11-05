@@ -35,6 +35,6 @@ onMounted(async () => {
   await authStore.initPromise;
 
   // Once auth has finalized, we should know if the user has an account implicitly already.
-  router.push(currAccount.value ? props.authRoute : props.unAuthRoute);
+  router.push({ name: currAccount.value ? props.authRoute : props.unAuthRoute });
 });
 </script>

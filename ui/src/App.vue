@@ -7,20 +7,37 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PageSpinner from './components/PageSpinner.vue';
-import { useAuthPlugin } from './lib/auth/AuthPlugin';
+import { useAuthApiStore } from './stores/authApiStore';
+import { useAuthStore } from './stores/authStore';
 
 const loading = ref(true);
 
 const router = useRouter();
-const authPlugin = useAuthPlugin();
+const authStore = useAuthStore();
+const authApiStore = useAuthApiStore();
 
 onMounted(async () => {
-  console.time('App');
+  // Ensure we have permissions from the API.
+  await authApiStore.initPromise;
+  console.log('AuthApiStore loaded.');
+
+  // Ensure the MSAL plugin has loaded.
+  await authStore.initPromise;
+  console.log('AuthStore loaded.');
+
+  // Ensure the router has loaded before continuing.
   await router.isReady();
-  console.timeLog('App', 'Router ready.');
-  await authPlugin.value.initPromise;
-  console.timeLog('App', 'AuthPlugin ready.');
+  console.log('Router loaded.');
+
+  // Complete loading.
   loading.value = false;
-  console.timeEnd('App');
 });
 </script>
+
+<style lang="css">
+html,
+body,
+div#app {
+  @apply h-full w-full;
+}
+</style>

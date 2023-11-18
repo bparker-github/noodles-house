@@ -20,11 +20,11 @@ export interface NativeUserClientPrincipal {
   userDetails: string;
 }
 
-/** A utility function to check if the current user has this role. */
-function userHasRole(role: RoleType): boolean {
-  return !!curAccount.value?.roles?.some((r) => r.type === role);
-}
-/** A utility function to check if the current user has roles that include this permission. */
-function userHasPerm(perm: PermissionType): boolean {
-  return !!curAccount.value?.roles?.some((r) => r.permissions?.includes(perm));
-}
+// /** A utility function to check if the current user has this role. */
+// function userHasRole(role: RoleType): boolean {
+//   return !!curAccount.value?.roles?.some((r) => r.type === role);
+// }
+// /** A utility function to check if the current user has roles that include this permission. */
+// function userHasPerm(perm: PermissionType): boolean {
+//   return !!curAccount.value?.roles?.some((r) => r.permissions?.includes(perm));
+// }

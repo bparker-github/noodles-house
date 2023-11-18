@@ -7,16 +7,16 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PageSpinner from './components/PageSpinner.vue';
-import { useAuthStore } from './stores/authStore';
+// import { useAuthStore } from './stores/authStore';
 
 const loading = ref(true);
 
 const router = useRouter();
-const authStore = useAuthStore();
+// const authStore = useAuthStore();
 
 onMounted(async () => {
   // Ensure the MSAL plugin has loaded.
-  await authStore.initPromise;
+  // await authStore.initPromise;
   console.log('AuthStore loaded.');
 
   // Ensure the router has loaded before continuing.

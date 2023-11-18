@@ -1,43 +1,31 @@
 import { PermissionType } from '@/lib';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
-import type { AuthenticationRedirectPageProps } from '../components/pages/AuthenticatedRedirectPage.vue';
 import { RouteName } from './RouteName';
 
 const routes: RouteRecordRaw[] = [
-  //#region Auth Routes
   {
     path: '/',
-    // alias: ['/auth-response'],
     name: RouteName.LANDING,
-    component: () => import('../components/pages/AuthenticatedRedirectPage.vue'),
-    props: {
-      authRoute: RouteName.HOME,
-      unAuthRoute: RouteName.LOGIN,
-    } satisfies AuthenticationRedirectPageProps,
+    redirect: { name: RouteName.HOME },
+    // component: () => import('../components/pages/AuthenticatedRedirectPage.vue'),
   },
 
+  // #region SWA auth redirects
   {
     path: '/login',
     alias: ['/signin', '/log-in', '/sign-in', '/auth-response', '/auth-response-2'],
     name: RouteName.LOGIN,
-    component: () => import('../components/pages/LoginPage.vue'),
+    redirect: { path: '/.auth/login/aadb2c' },
   },
-
   {
     path: '/logout',
     alias: ['/signout', '/log-out', '/sign-out'],
     name: RouteName.LOGOUT,
-    component: () => import('../components/pages/LogoutPage.vue'),
+    redirect: { path: '/.auth/logout' },
   },
+  // #endregion
 
-  {
-    path: '/failed',
-    name: RouteName.FAILED,
-    component: () => import('../components/pages/FailedPage.vue'),
-  },
-  //#endregion
-
-  /** Dashboard Routes */
+  // #region Dashboard routes
   {
     path: '/home',
     component: () => import('../layouts/dashboard/MainDashboard.vue'),
@@ -67,16 +55,24 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-];
+  // #endregion
 
-const NotFoundRoute = {
-  path: '/:catchAll(.*)*',
-  name: RouteName.NOT_FOUND,
-  component: () => import('../components/pages/NotFoundPage.vue'),
-};
+  // #region Rest-routes
+  {
+    path: '/failed',
+    name: RouteName.FAILED,
+    component: () => import('../components/pages/FailedPage.vue'),
+  },
+  {
+    path: '/:catchAll(.*)*',
+    name: RouteName.NOT_FOUND,
+    component: () => import('../components/pages/NotFoundPage.vue'),
+  },
+  // #endregion
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [...routes, NotFoundRoute],
+  routes,
 });
 export default router;

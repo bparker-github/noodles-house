@@ -13,30 +13,29 @@
 
       <pre
         class="border-bali-hai-300 bg-bali-hai-200 text-bali-hai-900 max-h-[800px] overflow-x-scroll rounded-md p-2 text-left text-lg leading-8 shadow-inner whitespace-pre"
-      >
-        <code>{{ userToPrint }}</code>
-        <!-- <code>{}</code> -->
-      </pre>
+      ><code>IsFetching: {{ isFetching }}</code></pre>
+      <pre
+        class="border-bali-hai-300 bg-bali-hai-200 text-bali-hai-900 max-h-[800px] overflow-x-scroll rounded-md p-2 text-left text-lg leading-8 shadow-inner whitespace-pre"
+      ><code>IsFinished: {{ isFinished }}</code></pre>
+      <pre
+        class="border-bali-hai-300 bg-bali-hai-200 text-bali-hai-900 max-h-[800px] overflow-x-scroll rounded-md p-2 text-left text-lg leading-8 shadow-inner whitespace-pre"
+      ><code>FetchError: {{ fetchError }}</code></pre>
+      <pre
+        class="border-bali-hai-300 bg-bali-hai-200 text-bali-hai-900 max-h-[800px] overflow-x-scroll rounded-md p-2 text-left text-lg leading-8 shadow-inner whitespace-pre"
+      ><code>{{ curUser ?? 'No user...' }}</code></pre>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useAuthStore } from '@/stores/authStore';
+import { useNativeAuth } from '@/auth/useNativeAuth';
 import { storeToRefs } from 'pinia';
-import { watch } from 'vue';
-import { computed, onMounted } from 'vue';
+import { onMounted } from 'vue';
 
-const authStore = useAuthStore();
-const { curAccount } = storeToRefs(authStore);
+const nativeAuth = useNativeAuth();
+const { curUser, isFetching, isFinished, fetchError } = storeToRefs(nativeAuth);
 
-const userToPrint = computed(() => JSON.stringify(curAccount.value ?? {}, null, 2).trim());
-
-watch(
-  curAccount,
-  (nca) => {
-    console.log('AuthStore user:', nca);
-  },
-  { immediate: true }
-);
+onMounted(() => {
+  nativeAuth.doFetch();
+});
 </script>

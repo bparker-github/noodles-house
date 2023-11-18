@@ -24,7 +24,7 @@
             //   : 'text-white hover:bg-indigo-500 hover:bg-opacity-75',
             // 'block rounded-md py-2 px-3 text-base font-medium',
 
-            'text-whiteish group flex gap-x-3 rounded-md py-2 px-3 text-base font-medium',
+            'text-whiteish group flex gap-x-3 rounded-md py-2 px-3 text-base font-medium shadow-md shadow-mallard-600',
             !item.current
               ? 'hover:bg-mallard-700 hover:text-white'
               : 'bg-mallard-800 hover:bg-mallard-600',

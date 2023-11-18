@@ -1,9 +1,9 @@
 <template>
   <InfoListCard
-    v-if="currAccount?.idTokenClaims"
+    v-if="curAccount?.idTokenClaims"
     title="Profile"
     subTitle="Personal profile information."
-    :items="!currAccount.idTokenClaims ? [] : items"
+    :items="!curAccount.idTokenClaims ? [] : items"
   />
 </template>
 
@@ -12,12 +12,13 @@ import type { EnumObject } from '@/lib';
 import { useAuthStore } from '@/stores/authStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
+import InfoListCard from '../cards/InfoListCard.vue';
 
 const authStore = useAuthStore();
-const { currAccount } = storeToRefs(authStore);
+const { curAccount } = storeToRefs(authStore);
 
 const items = computed<EnumObject[]>(() => {
-  if (!currAccount.value?.idTokenClaims) {
+  if (!curAccount.value?.idTokenClaims) {
     return [];
   }
 
@@ -25,13 +26,11 @@ const items = computed<EnumObject[]>(() => {
     {
       label: 'Preferred Username',
       value:
-        currAccount.value.idTokenClaims.preferred_username ??
-        currAccount.value.username ??
-        'Unknown',
+        curAccount.value.idTokenClaims.preferred_username ?? curAccount.value.username ?? 'Unknown',
     },
-    { label: 'Full Name', value: currAccount.value.name ?? 'Unknown' },
-    { label: 'Given Name', value: currAccount.value.idTokenClaims.given_name ?? 'Unknown' },
-    { label: 'Family Name', value: currAccount.value.idTokenClaims.family_name ?? 'Unknown' },
+    { label: 'Full Name', value: curAccount.value.name ?? 'Unknown' },
+    { label: 'Given Name', value: curAccount.value.idTokenClaims.given_name ?? 'Unknown' },
+    { label: 'Family Name', value: curAccount.value.idTokenClaims.family_name ?? 'Unknown' },
   ];
 });
 </script>

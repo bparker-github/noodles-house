@@ -14,6 +14,8 @@
     "dev": "npm-run-all -lnp dev:*",
     "dev:api": "npm run start -w api",
     "dev:ui": "npm run dev -w ui",
+    "//// SWA Commands ////": "/////",
+    "dev:swa:ui": "swa start --config-name dev:ui --run \"npm run dev -w ui\"",
     "///// LIFE CYCLES /////": "/////",
     "update-pr-template": "node ./.github/update_pull_request_template.mjs"
   },

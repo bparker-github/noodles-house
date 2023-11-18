@@ -7,7 +7,7 @@ const routes: RouteRecordRaw[] = [
   //#region Auth Routes
   {
     path: '/',
-    alias: ['/auth-response'],
+    // alias: ['/auth-response'],
     name: RouteName.LANDING,
     component: () => import('../components/pages/AuthenticatedRedirectPage.vue'),
     props: {
@@ -18,7 +18,7 @@ const routes: RouteRecordRaw[] = [
 
   {
     path: '/login',
-    alias: ['/signin', '/log-in', '/sign-in'],
+    alias: ['/signin', '/log-in', '/sign-in', '/auth-response', '/auth-response-2'],
     name: RouteName.LOGIN,
     component: () => import('../components/pages/LoginPage.vue'),
   },

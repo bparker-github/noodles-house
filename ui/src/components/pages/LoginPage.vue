@@ -1,24 +1,9 @@
 <template>
-  <!-- The main, outer container -->
-  <div :class="['full-size-container', 'flex flex-col flex-1 w-full h-full justify-center']">
-    <!-- The main "card" -->
-    <div
-      :class="[
-        'card-container',
-        'flex flex-col flex-1',
-        'sm:flex-grow-0 sm:mx-auto sm:max-w-7xl sm:px-4',
-      ]"
-    >
-      <!-- The image itself -->
-      <UnsplashImage
-        :id="photoId"
-        class="flex flex-col h-full w-full"
-      >
+  <div class="flex h-full flex-col items-center justify-evenly">
+    <div class="mx-auto max-w-7xl px-4 sm:px-8">
+      <UnsplashImage :id="photoId">
         <div
-          :class="[
-            'flex flex-1 items-center',
-            'bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28',
-          ]"
+          class="bg-gray-pink relative bg-opacity-50 px-4 py-16 sm:px-10 sm:py-24 lg:px-16 lg:py-28"
         >
           <div class="relative flex max-w-3xl flex-col items-center text-center">
             <h2 class="text-whiteish text-3xl font-bold tracking-tight sm:text-4xl">
@@ -28,7 +13,16 @@
             <p class="text-whiteish my-2 text-xl">
               {{ mainContent }}
             </p>
-            <button
+            <a
+              href="/.auth/login/aadb2c?post_login_redirect-uri=http://localhost:9090/auth-response"
+              :class="[
+                'sm:w-50p mt-8 block w-full rounded-md px-8 py-3 md:w-auto',
+                'text-bourbon-800 hover:bg-bourbon-100 border border-transparent bg-white text-base font-medium',
+              ]"
+            >
+              SWA Login
+            </a>
+            <!-- <button
               @click.prevent="beginLogin"
               :class="[
                 'sm:w-50p mt-8 block w-full rounded-md px-8 py-3 md:w-auto',
@@ -36,17 +30,12 @@
               ]"
             >
               Login
-            </button>
+            </button> -->
           </div>
         </div>
       </UnsplashImage>
     </div>
   </div>
-
-  <!-- <div class="flex h-full flex-col items-center justify-evenly">
-    <div class="mx-auto max-w-7xl px-0 sm:px-4">
-    </div>
-  </div> -->
 </template>
 
 <script setup lang="ts">

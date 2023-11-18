@@ -23,7 +23,7 @@ export interface AuthenticationRedirectPageProps {
 }
 
 const authStore = useAuthStore();
-const { currAccount } = storeToRefs(authStore);
+const { curAccount } = storeToRefs(authStore);
 
 const router = useRouter();
 const props = withDefaults(defineProps<AuthenticationRedirectPageProps>(), {
@@ -35,6 +35,6 @@ onMounted(async () => {
   await authStore.initPromise;
 
   // Once auth has finalized, we should know if the user has an account implicitly already.
-  router.push({ name: currAccount.value ? props.authRoute : props.unAuthRoute });
+  router.push({ name: curAccount.value ? props.authRoute : props.unAuthRoute });
 });
 </script>

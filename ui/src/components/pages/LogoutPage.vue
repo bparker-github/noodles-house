@@ -13,6 +13,7 @@ import { RouteName } from '@/router/RouteName';
 import { useAuthStore } from '@/stores/authStore';
 import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import PageSpinner from '../PageSpinner.vue';
 
 const authStore = useAuthStore();
 const router = useRouter();

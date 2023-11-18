@@ -36,13 +36,13 @@ export default defineConfig({
   envDir: '..',
   server: {
     port: 9090,
-    https: {
-      key: readFileSync('../https/privateKey.key'),
-      cert: readFileSync('../https/certificate.crt'),
-    },
+    // https: {
+    //   key: readFileSync('../https/privateKey.key'),
+    //   cert: readFileSync('../https/certificate.crt'),
+    // },
   },
   preview: {
     port: 9090,
-    https: true,
+    // https: true,
   },
 });

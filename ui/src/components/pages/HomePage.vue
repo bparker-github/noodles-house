@@ -15,6 +15,7 @@
         class="border-bali-hai-300 bg-bali-hai-200 text-bali-hai-900 max-h-[800px] overflow-x-scroll rounded-md p-2 text-left text-lg leading-8 shadow-inner whitespace-pre"
       >
         <code>{{ userToPrint }}</code>
+        <!-- <code>{}</code> -->
       </pre>
     </div>
   </div>
@@ -23,10 +24,19 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/authStore';
 import { storeToRefs } from 'pinia';
-import { computed } from 'vue';
+import { watch } from 'vue';
+import { computed, onMounted } from 'vue';
 
 const authStore = useAuthStore();
-const { currAccount } = storeToRefs(authStore);
+const { curAccount } = storeToRefs(authStore);
 
-const userToPrint = computed(() => JSON.stringify(currAccount.value ?? {}, null, 2).trim());
+const userToPrint = computed(() => JSON.stringify(curAccount.value ?? {}, null, 2).trim());
+
+watch(
+  curAccount,
+  (nca) => {
+    console.log('AuthStore user:', nca);
+  },
+  { immediate: true }
+);
 </script>

@@ -57,6 +57,24 @@ const routes: RouteRecordRaw[] = [
   },
   // #endregion
 
+  // #region Develop Stuffs
+  {
+    path: '/testing-1',
+    name: RouteName.TESTING_1,
+    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
+  },
+  {
+    path: '/testing-2',
+    name: RouteName.TESTING_2,
+    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
+  },
+  {
+    path: '/testing-3',
+    name: RouteName.TESTING_3,
+    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
+  },
+  // #endregion
+
   // #region Rest-routes
   {
     path: '/failed',

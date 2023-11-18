@@ -10,4 +10,9 @@ export enum RouteName {
   HOME = 'Home',
   PROFILE = 'Profile',
   PROFILE_TOKENS = 'Profile Tokens',
+
+  /** Develop stuff */
+  TESTING_1 = 'Testing 1',
+  TESTING_2 = 'Testing 2',
+  TESTING_3 = 'Testing 3',
 }

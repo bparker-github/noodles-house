@@ -23,12 +23,13 @@
     },
     "dev": {
       "appDevserverUrl": "http://localhost:9090",
-      "appLocation": "/",
+      "appLocation": ".",
       "outputLocation": "ui\\dist",
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
       "apiLocation": "api",
-      "apiVersion": "18"
+      "apiVersion": "18",
+      "run": "npm run dev"
     },
     "dev:api": {
       "apiDevserverUrl": "http://localhost:9091",
@@ -40,8 +41,12 @@
     "dev:ui": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
-      "outputLocation": "ui/dist",
+      "outputLocation": "ui\\dist",
       "run": "npm run dev:ui"
+    },
+    "dev:debug": {
+      "appDevserverUrl": "http://localhost:9090",
+      "apiDevserverUrl": "http://localhost:9091"
     },
     "serve": {
       "apiLanguage": "node",

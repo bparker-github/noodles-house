@@ -42,7 +42,9 @@
     />
 
     <!-- The user can provide content to display overtop of this element (parent relative); -->
-    <slot :class="normalizeClass(sharedClass)"></slot>
+    <div :class="['absolute inset-0 h-full w-full', normalizeClass(sharedClass)]">
+      <slot></slot>
+    </div>
     <!-- <div
       class="image-content"
       key="main-content"

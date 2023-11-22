@@ -122,6 +122,9 @@ export default {
   theme: {
     extend: {
       colors: ThemeColors,
+      boxShadow: {
+        'inner-lg': 'inset 0 4px 8px 0 rgb(0 0 0 / 0.1)',
+      },
       spacing: {
         '10p': '10%',
         '20p': '20%',

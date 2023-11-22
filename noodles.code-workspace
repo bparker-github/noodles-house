@@ -50,6 +50,7 @@
       }
     ],
 
+    "tailwindCSS.classAttributes": ["class", "className", "ngClass", "sharedClass", "shared-class"],
     "tailwindCSS.experimental.configFile": {
       "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"]
     },

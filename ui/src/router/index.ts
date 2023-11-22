@@ -19,16 +19,16 @@ const routes: RouteRecordRaw[] = [
 
   // #region NEW ROUTES
   {
-    path: '/',
+    path: '',
+    name: RouteName.LANDING,
+    component: () => import('../components/pages/LandingPage.vue'),
+  },
+  {
+    path: '/home',
     component: () => import('../layouts/custom/MobileFirst.vue'),
     children: [
       {
         path: '',
-        name: RouteName.LANDING,
-        component: () => import('../components/pages/LandingPage.vue'),
-      },
-      {
-        path: 'home',
         name: RouteName.HOME,
         component: () => import('../components/pages/HomePage.vue'),
         children: [],

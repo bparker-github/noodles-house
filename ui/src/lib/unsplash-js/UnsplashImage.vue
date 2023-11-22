@@ -56,6 +56,7 @@
     <UnsplashImageCredit
       v-if="photoResp && !omitCredit"
       :photo-resp="photoResp"
+      :class="normalizeClass(creditClass)"
     />
   </div>
 </template>
@@ -66,7 +67,6 @@ import type { Full } from 'unsplash-js/dist/methods/photos/types';
 import { computed, ref, watch, normalizeClass } from 'vue';
 import UnsplashImageCredit from './UnsplashImageCredit.vue';
 import { useUnsplash } from '@/stores/unsplashStore';
-import type { normalize } from 'path';
 
 /** UnsplashImageState */
 enum UIS {
@@ -94,6 +94,11 @@ interface UnsplashImageProps {
    *  - Helpful for borders and rounded etc.
    */
   sharedClass?: CN_Argument;
+  /**
+   * An optional class-name argument to assign directly to the credit.
+   * @example text-whiteish
+   */
+  creditClass?: CN_Argument;
 }
 const props = defineProps<UnsplashImageProps>();
 

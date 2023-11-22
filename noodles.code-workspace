@@ -50,7 +50,15 @@
       }
     ],
 
-    "tailwindCSS.classAttributes": ["class", "className", "ngClass", "sharedClass", "shared-class"],
+    "tailwindCSS.classAttributes": [
+      "class",
+      "className",
+      "ngClass",
+      "sharedClass",
+      "shared-class",
+      "creditClass",
+      "credit-class"
+    ],
     "tailwindCSS.experimental.configFile": {
       "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"]
     },

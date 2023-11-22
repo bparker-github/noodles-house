@@ -1,15 +1,7 @@
-import { PermissionType } from '@/lib';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: RouteName.LANDING,
-    redirect: { name: RouteName.HOME },
-    // component: () => import('../components/pages/AuthenticatedRedirectPage.vue'),
-  },
-
   // #region SWA auth redirects
   {
     path: '/login',
@@ -27,24 +19,19 @@ const routes: RouteRecordRaw[] = [
 
   // #region NEW ROUTES
   {
-    path: '/noods',
-    name: 'Noodles',
+    path: '/',
     component: () => import('../layouts/custom/MobileFirst.vue'),
-  },
-  // #endregion
-
-  // #region Dashboard routes
-  {
-    path: '/home',
-    component: () => import('../layouts/dashboard/MainDashboard.vue'),
-    meta: {
-      requiredPermission: PermissionType.VIEW_DASHBOARD,
-    },
     children: [
       {
         path: '',
+        name: RouteName.LANDING,
+        component: () => import('../components/pages/LandingPage.vue'),
+      },
+      {
+        path: 'home',
         name: RouteName.HOME,
         component: () => import('../components/pages/HomePage.vue'),
+        children: [],
       },
       {
         path: 'profile',
@@ -53,6 +40,11 @@ const routes: RouteRecordRaw[] = [
             path: '',
             name: RouteName.PROFILE,
             component: () => import('../components/pages/ProfilePage.vue'),
+          },
+          {
+            path: 'auth-dump',
+            name: RouteName.AUTH_DUMP,
+            component: () => import('../components/pages/AuthDump.vue'),
           },
           {
             path: 'tokens',

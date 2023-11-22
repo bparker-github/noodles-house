@@ -10,17 +10,16 @@
         'gap-x-2 p-2 shadow-md',
       ]"
     >
-      <!-- The back button or placeholder -->
+      <!-- The home icon or placeholder -->
       <div class="mf-header-left-side w-8">
-        <ArrowLeftIcon
-          v-if="canGoBack"
-          class="text-nh-bourbon w-8 h-8"
-          @click="goBack"
+        <NoodleIconSvg
+          class="text-nh-bourbon w-10 h-10"
+          @click="clickHomeIcon"
         />
       </div>
 
       <!-- The title of the page/header -->
-      <h1 class="the-title font-medium tracking-wide text-xl px-4">
+      <h1 class="the-title font-medium tracking-wide text-2xl px-4">
         {{ $route.name }}
       </h1>
 
@@ -45,38 +44,31 @@
     <!-- The body and content below, with same header-margin above for spacer. -->
     <main class="nhl-mf-body flex flex-col w-full h-full mt-12 p-2 pt-4 bg-nh-bourbon-100">
       <RouterView />
-      <div class="body-temp flex flex-col w-full overflow-hidden">
-        <pre
-          class="p-2 bg-nh-off-yellow-50 rounded-md shadow-inner-lg overflow-x-auto border border-nh-bourbon-950/25"
-          style="clip-path: view-box"
-        ><code class="font-mono text-nh-bourbon-950">{{ JSON.stringify(curUser, null, 2) }}</code></pre>
-      </div>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
+import NoodleIconSvg from '@/assets/NoodleIcon.svg';
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import LoadingSpinner from '@/components/LoadingSpinner.vue';
+import { RouteName } from '@/router/RouteName';
 import { QuestionMarkCircleIcon, UserIcon } from '@heroicons/vue/24/outline';
-import { ArrowLeftIcon } from '@heroicons/vue/20/solid';
 import { storeToRefs } from 'pinia';
-import { onBeforeUnmount } from 'vue';
-import { ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 
 const nativeAuth = useNativeAuth();
 const { curUser, isFetching, isFinished, fetchError } = storeToRefs(nativeAuth);
 
-const canGoBack = ref(true);
-const goBackRef = ref<NodeJS.Timeout | undefined>();
-function goBack() {
-  canGoBack.value = false;
-  setTimeout(() => (canGoBack.value = true), 2000);
-}
+const route = useRoute();
+const router = useRouter();
 
-onBeforeUnmount(() => {
-  if (goBackRef.value) {
-    clearTimeout(goBackRef.value);
+function clickHomeIcon() {
+  if (route.name === RouteName.HOME) {
+    console.log('Already Home');
   }
-});
+
+  console.log('Going Home');
+  router.push({ name: RouteName.HOME });
+}
 </script>

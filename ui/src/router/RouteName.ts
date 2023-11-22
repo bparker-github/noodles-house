@@ -9,6 +9,7 @@ export enum RouteName {
   /** Dashboard Stuffs */
   HOME = 'Home',
   PROFILE = 'Profile',
+  AUTH_DUMP = 'Auth Dump',
   PROFILE_TOKENS = 'Profile Tokens',
 
   /** Develop stuff */

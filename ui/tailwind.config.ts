@@ -6,7 +6,7 @@ import createPlugin from 'tailwindcss/plugin';
 import type { KeyValuePair, RecursiveKeyValuePair } from 'tailwindcss/types/config';
 
 const BaseThemeColors = {
-  'chalet-green': {
+  'nh-chalet-green': {
     '50': '#f6f7ee',
     '100': '#eaedda',
     '200': '#d6dcba',
@@ -20,7 +20,7 @@ const BaseThemeColors = {
     '950': '#1d2112',
     DEFAULT: '#606c38',
   },
-  mallard: {
+  'nh-mallard': {
     '50': '#f5faeb',
     '100': '#e9f3d4',
     '200': '#d4e8ae',
@@ -34,7 +34,7 @@ const BaseThemeColors = {
     '950': '#1a260d',
     DEFAULT: '#283618',
   },
-  'off-yellow': {
+  'nh-off-yellow': {
     '50': '#fefae0',
     '100': '#fff7c2',
     '200': '#ffec89',
@@ -48,7 +48,7 @@ const BaseThemeColors = {
     '950': '#431d05',
     DEFAULT: '#fefae0',
   },
-  'di-serria': {
+  'nh-di-serria': {
     '50': '#fcf8f0',
     '100': '#f8eedc',
     '200': '#f0dab8',
@@ -62,7 +62,7 @@ const BaseThemeColors = {
     '950': '#391c11',
     DEFAULT: '#dda15e',
   },
-  bourbon: {
+  'nh-bourbon': {
     '50': '#fcf8ee',
     '100': '#f6ebcf',
     '200': '#ecd79b',
@@ -76,7 +76,7 @@ const BaseThemeColors = {
     '950': '#3b1a0d',
     DEFAULT: '#bc6c25',
   },
-  'bali-hai': {
+  'nh-bali-hai': {
     '50': '#f5f6f8',
     '100': '#ecf1f3',
     '200': '#dce4e9',
@@ -90,7 +90,7 @@ const BaseThemeColors = {
     '950': '#2e3238',
     DEFAULT: '#8e9aaf',
   },
-  empress: {
+  'nh-empress': {
     '50': '#f8f7f8',
     '100': '#f2f1f2',
     '200': '#e7e3e5',
@@ -106,22 +106,22 @@ const BaseThemeColors = {
   },
 };
 
-// Add friendly names
-Object.assign(BaseThemeColors, {
-  'dark-green': BaseThemeColors['chalet-green'].DEFAULT,
-  'darkest-green': BaseThemeColors.mallard.DEFAULT,
-  whiteish: BaseThemeColors['off-yellow'].DEFAULT,
-  'light-orange': BaseThemeColors['di-serria'].DEFAULT,
-  'dark-orange': BaseThemeColors.bourbon.DEFAULT,
-  'gray-blue': BaseThemeColors['bali-hai'].DEFAULT,
-  'gray-pink': BaseThemeColors.empress.DEFAULT,
+// Add prefix and friendly names
+const ThemeColors = Object.assign({}, BaseThemeColors, {
+  'nh-dark-green': BaseThemeColors['nh-chalet-green'].DEFAULT,
+  'nh-darkest-green': BaseThemeColors['nh-mallard'].DEFAULT,
+  'nh-whiteish': BaseThemeColors['nh-off-yellow'].DEFAULT,
+  'nh-light-orange': BaseThemeColors['nh-di-serria'].DEFAULT,
+  'nh-dark-orange': BaseThemeColors['nh-bourbon'].DEFAULT,
+  'nh-gray-blue': BaseThemeColors['nh-bali-hai'].DEFAULT,
+  'nh-gray-pink': BaseThemeColors['nh-empress'].DEFAULT,
 });
 
 export default {
   content: ['./index.html', './src/**/*.vue'],
   theme: {
     extend: {
-      colors: BaseThemeColors,
+      colors: ThemeColors,
       spacing: {
         '10p': '10%',
         '20p': '20%',

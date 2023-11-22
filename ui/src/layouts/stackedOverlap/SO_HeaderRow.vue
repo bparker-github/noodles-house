@@ -4,7 +4,7 @@
     as="nav"
     :class="[
       'stacked-overlap-header-row fixed flex flex-col w-full',
-      'bg-mallard-800 border-b text-whiteish',
+      'bg-nh-mallard-800 border-b text-whiteish',
       'px-4 py-2',
     ]"
   >
@@ -12,12 +12,12 @@
       :class="[
         'header-row-content flex flex-row w-full items-center justify-stretch',
         'border-b-2',
-        !open ? 'border-transparent' : 'border-mallard-400 mb-2 pb-2',
+        !open ? 'border-transparent' : 'border-nh-mallard-400 mb-2 pb-2',
       ]"
     >
       <!-- Left side -->
       <div class="left-side flex">
-        <NoodleIconSvg class="duo-bourbon-200/75 duo2-bourbon-400 w-12 h-12 -my-1 mr-2" />
+        <NoodleIconSvg class="duo-nh-bourbon-200/75 duo2-nh-bourbon-400 w-12 h-12 -my-1 mr-2" />
       </div>
 
       <!-- Main, center, growing -->

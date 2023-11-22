@@ -4,7 +4,7 @@
     <div
       v-if="state === UIS.NONE"
       key="no-data"
-      class="absolute inset-0 bg-bourbon-200"
+      class="absolute inset-0 bg-nh-bourbon-200"
     />
 
     <!-- Step 2: The response has been fetched or loaded, add <img> to load the desired inner image url. -->

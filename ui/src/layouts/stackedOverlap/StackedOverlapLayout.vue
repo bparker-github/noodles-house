@@ -6,7 +6,7 @@
       <SO_HeaderRow>
         <SO_MobileNavList :items="primaryItemList" />
 
-        <div class="border-t border-mallard-700 pb-3 pt-4">
+        <div class="border-t border-nh-mallard-700 pb-3 pt-4">
           <div class="flex items-center px-5">
             <div class="flex-shrink-0">
               <img
@@ -17,11 +17,11 @@
             </div>
             <div class="ml-3">
               <div class="text-base font-medium text-white">{{ user.name }}</div>
-              <div class="text-sm font-medium text-mallard-300">{{ user.email }}</div>
+              <div class="text-sm font-medium text-nh-mallard-300">{{ user.email }}</div>
             </div>
             <button
               type="button"
-              class="relative ml-auto flex-shrink-0 rounded-full bg-mallard-600 p-1 text-mallard-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-mallard-600"
+              class="relative ml-auto flex-shrink-0 rounded-full bg-nh-mallard-600 p-1 text-nh-mallard-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nh-mallard-600"
             >
               <span class="absolute -inset-1.5" />
               <span class="sr-only">View notifications</span>
@@ -37,7 +37,7 @@
               :key="item.name"
               as="a"
               :href="item.href"
-              class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-mallard-500 hover:bg-opacity-75"
+              class="block rounded-md px-3 py-2 text-base font-medium text-white hover:bg-nh-mallard-500 hover:bg-opacity-75"
               >{{ item.name }}</DisclosureButton
             >
           </div>

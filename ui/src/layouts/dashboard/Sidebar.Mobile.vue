@@ -2,7 +2,7 @@
 <template>
   <MobileSidebar v-model:isOpen="sidebarOpen">
     <div
-      class="bg-mallard flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2 ring-1 ring-white/10"
+      class="bg-nh-mallard flex grow flex-col gap-y-5 overflow-y-auto px-6 pb-2 ring-1 ring-white/10"
     >
       <div class="flex h-16 shrink-0 items-center">
         <LogoImage

@@ -4,21 +4,20 @@ import { computed } from 'vue';
 import type { NativeUser } from './NativeUser';
 
 export const useNativeAuth = defineStore('native-swa-auth', () => {
-  const nativeAuthFetch = useFetch('/.auth/me', { immediate: false }).json();
+  const nativeAuthFetch = useFetch<NativeUser | null>('/.auth/me', { immediate: false }).json();
 
-  const curUser = computed<NativeUser | null>(() => {
-    if (!nativeAuthFetch.isFinished.value || nativeAuthFetch.isFetching.value) {
-      return null;
-    }
-
-    return nativeAuthFetch.data.value;
-  });
+  const curUser = computed(() => nativeAuthFetch.data.value ?? null);
   const isFetching = computed(() => nativeAuthFetch.isFetching.value);
   const isFinished = computed(() => nativeAuthFetch.isFinished.value);
   const fetchError = computed(() => nativeAuthFetch.error.value);
 
-  function doFetch() {
-    nativeAuthFetch.execute();
+  function doFetch(force = false) {
+    // Short circuit if we already have a user, and aren't forcing a reload.
+    if (!!curUser.value && !force) {
+      return;
+    }
+    // Otherwise, make the request.
+    return nativeAuthFetch.execute();
   }
 
   return {

@@ -25,6 +25,14 @@ const routes: RouteRecordRaw[] = [
   },
   // #endregion
 
+  // #region NEW ROUTES
+  {
+    path: '/noods',
+    name: 'Noodles',
+    component: () => import('../layouts/custom/MobileFirst.vue'),
+  },
+  // #endregion
+
   // #region Dashboard routes
   {
     path: '/home',

@@ -1,5 +1,8 @@
 <template>
-  <PageSpinner v-if="loading" />
+  <PageSpinner
+    v-if="loading"
+    class="initial-loader"
+  />
   <RouterView v-else />
 </template>
 
@@ -7,21 +10,20 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PageSpinner from './components/PageSpinner.vue';
-// import { useAuthStore } from './stores/authStore';
+import { useNativeAuth } from './auth/useNativeAuth';
 
 const loading = ref(true);
 
 const router = useRouter();
-// const authStore = useAuthStore();
+const nativeAuth = useNativeAuth();
 
 onMounted(async () => {
-  // Ensure the MSAL plugin has loaded.
-  // await authStore.initPromise;
-  console.log('AuthStore loaded.');
-
-  // Ensure the router has loaded before continuing.
-  await router.isReady();
-  console.log('Router loaded.');
+  await Promise.all([
+    // Complete the 'auth/me' call.
+    nativeAuth.doFetch(),
+    // Ensure the router has loaded before continuing.
+    router.isReady(),
+  ]);
 
   // Complete loading.
   loading.value = false;

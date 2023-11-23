@@ -11,8 +11,7 @@ import { UnsplashImage } from '@/lib';
         :class="[
           'landing-page-image-content',
           'flex flex-col',
-          'prose p-10 text-nh-whiteish bg-nh-bali-hai-100',
-          // 'prose p-10 text-nh-whiteish bg-nh-bali-hai-500/70',
+          'prose p-10 text-nh-whiteish bg-nh-bali-hai-500/70',
         ]"
       >
         <h1>Welcome</h1>
@@ -22,7 +21,7 @@ import { UnsplashImage } from '@/lib';
         <p>Pardon the construction</p>
 
         <NhLinkButton
-          class="justify-center"
+          class="justify-center not-prose"
           text="Go Home"
           :to="{ name: RouteName.HOME }"
         />

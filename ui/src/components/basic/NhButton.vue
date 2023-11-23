@@ -4,17 +4,20 @@
     :class="[
       'nh-button',
       'flex flex-row flex-nowrap',
-      'px-3 py-2.5 shadow-sm',
+      'px-3 py-2.5',
       // Apply Styles.
       {
         'border rounded-md': !bStyle || bStyle === ButtonStyle.SOLID,
         'border-2 bg-transparent rounded-md': bStyle === ButtonStyle.OUTLINE,
       },
       // Apply Default Themes
-      {
-        'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800':
-          !bTheme || bTheme === DefaultTheme.BALI_HAI,
-      },
+      'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800',
+      'border border-nh-bali-hai-950/50',
+      'outline-2 outline-offset-1',
+      'focus-visible:outline focus-visible:outline-nh-bali-hai-950',
+      // {
+      //   '': !bTheme || bTheme === DefaultTheme.BALI_HAI,
+      // },
     ]"
   >
     <span class="nh-button-text text-base font-semibold">

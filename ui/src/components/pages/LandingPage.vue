@@ -11,7 +11,8 @@ import { UnsplashImage } from '@/lib';
         :class="[
           'landing-page-image-content',
           'flex flex-col',
-          'prose p-10 text-nh-whiteish bg-nh-bali-hai-500/70',
+          'prose p-10 text-nh-whiteish bg-nh-bali-hai-100',
+          // 'prose p-10 text-nh-whiteish bg-nh-bali-hai-500/70',
         ]"
       >
         <h1>Welcome</h1>
@@ -19,15 +20,21 @@ import { UnsplashImage } from '@/lib';
 
         <p>This is a landing page for the future Noodle's House page.</p>
         <p>Pardon the construction</p>
-      </div>
 
-      <button />
+        <NhLinkButton
+          class="justify-center"
+          text="Go Home"
+          :to="{ name: RouteName.HOME }"
+        />
+      </div>
     </UnsplashImage>
   </div>
 </template>
 
 <script setup lang="ts">
 import { UnsplashImage } from '@/lib';
+import NhLinkButton from '../basic/NhLinkButton.vue';
+import { RouteName } from '@/router/RouteName';
 </script>
 
 <style>

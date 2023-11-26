@@ -1,11 +1,5 @@
-export interface IEnumObject<T = string> {
+export interface EnumObject<T = string> {
   label: string;
   value: T;
-}
-
-export class EnumObject<Val = string> implements IEnumObject<Val> {
-  constructor(
-    public label: string,
-    public value: Val
-  ) {}
+  onClick?: (v: T) => void;
 }

@@ -7,6 +7,24 @@
           "clientIdSettingName": "97ac662e-a761-4745-bb6c-81041e9b621c",
           "clientSecretSettingName": "House-secret"
         }
+      },
+      "customOpenIdConnectProviders": {
+        "aadb2c": {
+          "registration": {
+            "clientIdSettingName": "bf8ae1d3-2c62-4716-b811-b1fb8551775e",
+            "clientCredential": {
+              "clientSecretSettingName": "ivs8Q~wuH4~PTccn_aTXHdvR0jMFJ-FL08wrrdms"
+            },
+            "openIdConnectConfiguration": {
+              "wellKnownOpenIdConfiguration": "https://noodleshouse.b2clogin.com/noodleshouse.onmicrosoft.com/B2C_1_noodle_susi/v2.0/.well-known/openid-configuration"
+            }
+          },
+          "login": {
+            "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
+            "scopes": [],
+            "loginParameterNames": []
+          }
+        }
       }
     }
   },
@@ -16,5 +34,17 @@
   "navigationFallback": {
     "rewrite": "index.html",
     "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}"]
+  },
+  "routes": [
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "statusCode": 302,
+      "redirect": "/.auth/login/aadb2c"
+    }
   }
 }

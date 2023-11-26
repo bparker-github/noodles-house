@@ -3,6 +3,9 @@
     {
       "name": "noodles-house",
       "path": "../noodles-house"
+    },
+    {
+      "path": "../vue-azure-b2c-sample"
     }
   ],
   "extensions": {
@@ -20,7 +23,8 @@
       "vue.volar",
       "vue.vscode-typescript-vue-plugin",
       "wayou.vscode-todo-highlight",
-      "wmaurer.change-case"
+      "wmaurer.change-case",
+      "ms-vscode.powershell"
     ],
     "unwantedRecommendations": ["octref.vetur"]
   },
@@ -46,6 +50,15 @@
       }
     ],
 
+    "tailwindCSS.classAttributes": [
+      "class",
+      "className",
+      "ngClass",
+      "sharedClass",
+      "shared-class",
+      "creditClass",
+      "credit-class"
+    ],
     "tailwindCSS.experimental.configFile": {
       "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"]
     },
@@ -102,6 +115,7 @@
       "signin",
       "signout",
       "tailwindcss",
+      "vueuse",
       "Whiteish"
     ],
 
@@ -119,6 +133,8 @@
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
     "azureFunctions.preDeployTask": "npm prune (functions)",
+
+    "powershell.cwd": "noodles-house",
 
     "vue.complete.casing.tags": "pascal"
   },

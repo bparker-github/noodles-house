@@ -4,7 +4,7 @@
     class="loading-spinner"
   >
     <svg
-      class="animate-spin fill-bourbon-500 text-bourbon-900 dark:text-bourbon-800 dark:fill-bourbon-500"
+      class="animate-spin fill-nh-bourbon-500 text-nh-bourbon-900 dark:text-nh-bourbon-800 dark:fill-nh-bourbon-500"
       viewBox="0 0 100 101"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

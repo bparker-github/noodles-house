@@ -3,7 +3,7 @@
     :class="[
       // Shared styles
       'sticky top-0 z-40 flex items-center gap-x-6',
-      'from-chalet-green-900 to-bourbon-400 bg-gradient-to-r from-25%',
+      'from-nh-chalet-green-900 to-nh-bourbon-400 bg-gradient-to-r from-25%',
       // Mobile styles
       'p-4 sm:px-6',
       // Desktop styles
@@ -12,7 +12,7 @@
   >
     <button
       type="button"
-      class="bg-mallard-200 text-mallard-900 -m-2.5 rounded-lg p-2.5 lg:hidden"
+      class="bg-nh-mallard-200 text-nh-mallard-900 -m-2.5 rounded-lg p-2.5 lg:hidden"
       @click="doOpen"
     >
       <span class="sr-only">Open sidebar</span>
@@ -27,10 +27,11 @@
 </template>
 
 <script setup lang="ts">
+import ProfileDropdown from '@/components/ProfileDropdown.vue';
+import { useDashboardStore } from '@/stores/dashboardStore';
 import { Bars3Icon } from '@heroicons/vue/24/outline';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useDashboardStore } from '@/stores/dashboardStore';
 
 const { userItemList, setIsOpen } = useDashboardStore();
 

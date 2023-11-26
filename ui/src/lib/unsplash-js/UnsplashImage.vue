@@ -1,10 +1,10 @@
 <template>
-  <div class="unsplash-image relative h-full w-full">
+  <div class="unsplash-image relative">
     <!-- Step 1: No data yet. Display a loading background. -->
     <div
       v-if="state === UIS.NONE"
       key="no-data"
-      class="absolute inset-0 bg-bourbon-200"
+      :class="['absolute inset-0 bg-nh-bourbon-200', normalizeClass(sharedClass)]"
     />
 
     <!-- Step 2: The response has been fetched or loaded, add <img> to load the desired inner image url. -->
@@ -15,6 +15,7 @@
         'absolute inset-0 h-full w-full object-cover object-center',
         'transition-opacity opacity-0 duration-700',
         { 'opacity-100': state === UIS.LOADED_REGULAR },
+        normalizeClass(sharedClass),
       ]"
       :src="photoResp!.urls.regular"
       :alt="description"
@@ -33,6 +34,7 @@
           'duration-250': state <= UIS.HAS_RESPONSE,
           'duration-1000': state > UIS.HAS_RESPONSE,
         },
+        normalizeClass(sharedClass),
       ]"
       :height="scaledHeight"
       :width="scaledWidth"
@@ -40,25 +42,29 @@
     />
 
     <!-- The user can provide content to display overtop of this element (parent relative); -->
-    <div
+    <div :class="['absolute inset-0 h-full w-full', normalizeClass(sharedClass)]">
+      <slot></slot>
+    </div>
+    <!-- <div
       class="image-content"
       key="main-content"
     >
-      <slot></slot>
 
-      <!-- We must credit the creator of the images with a click section -->
-      <UnsplashImageCredit
-        v-if="photoResp && !omitCredit"
-        :photo-resp="photoResp"
-      />
-    </div>
+    </div> -->
+
+    <!-- We must credit the creator of the images with a click section -->
+    <UnsplashImageCredit
+      v-if="photoResp && !omitCredit"
+      :photo-resp="photoResp"
+      :class="normalizeClass(creditClass)"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { BlurCanvas } from '../blur-hash';
 import type { Full } from 'unsplash-js/dist/methods/photos/types';
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, normalizeClass } from 'vue';
 import UnsplashImageCredit from './UnsplashImageCredit.vue';
 import { useUnsplash } from '@/stores/unsplashStore';
 
@@ -70,6 +76,12 @@ enum UIS {
   LOADED_REGULAR = 2,
 }
 
+type CN_Value = string | number | boolean | undefined | null;
+type CN_Mapping = Record<string, unknown>;
+interface CN_ArgumentArray extends Array<CN_Argument> {}
+interface CN_ReadonlyArgumentArray extends ReadonlyArray<CN_Argument> {}
+export type CN_Argument = CN_Value | CN_Mapping | CN_ArgumentArray | CN_ReadonlyArgumentArray;
+
 interface UnsplashImageProps {
   /** The ID of the photo to fetch for this block. */
   id: string;
@@ -77,6 +89,16 @@ interface UnsplashImageProps {
   omitCredit?: boolean;
   /** An optional value indicating the number of ms to display the Blur before transitioning back. @default 1000 */
   transitionTime?: number;
+  /**
+   * A ClassList of styles to apply to all levels of the image
+   *  - Helpful for borders and rounded etc.
+   */
+  sharedClass?: CN_Argument;
+  /**
+   * An optional class-name argument to assign directly to the credit.
+   * @example text-whiteish
+   */
+  creditClass?: CN_Argument;
 }
 const props = defineProps<UnsplashImageProps>();
 

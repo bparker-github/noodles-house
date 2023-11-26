@@ -2,7 +2,7 @@
   <div class="page-spinner flex flex-col h-full justify-center items-center">
     <div
       v-if="!hideOverlay"
-      :class="['overlay', 'fixed inset-0', 'bg-bourbon-950/20']"
+      :class="['overlay', 'fixed inset-0', 'bg-nh-bourbon-950/20']"
     />
     <LoadingSpinner
       :class="[

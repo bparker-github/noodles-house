@@ -11,18 +11,22 @@ export const useAuthApiStore = defineStore('auth-api-store', () => {
   const permFetch = useFetch(envConfig.apiUrl + '/scheme/permissions');
   const roleFetch = useFetch(envConfig.apiUrl + '/scheme/roles');
 
-  const initPromise = Promise.all([permFetch, roleFetch]);
-
   const isFetching = computed(() => permFetch.isFetching.value || roleFetch.isFetching.value);
+  const isFinished = computed(() => permFetch.isFinished.value || roleFetch.isFinished.value);
   const fetchError = computed(() => permFetch.error.value || roleFetch.error.value);
+
+  async function initialize(): Promise<void> {
+    await Promise.all([permFetch.then(), roleFetch.then()]);
+  }
 
   return {
     permissions: allPerms,
     roles: allRoles,
 
-    initPromise,
+    initialize,
 
     isFetching,
+    isFinished,
     fetchError,
   };
 });

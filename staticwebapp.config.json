@@ -38,7 +38,7 @@
   "routes": [
     {
       "route": "/*",
-      "allowedRoles": ["authenticated"]
+      "allowedRoles": ["anonymous", "authenticated"]
     }
   ],
   "responseOverrides": {

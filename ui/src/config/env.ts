@@ -7,7 +7,5 @@ export const envConfig = {
   authRedirectUri: import.meta.env.NOOD_AUTH_REDIRECT_URI,
   authPostLogoutRedirectUri: import.meta.env.NOOD_AUTH_POST_LOGOUT_REDIRECT_URI,
   unsplashAccessKey: import.meta.env.NOOD_UNSPLASH_ACCESS_KEY,
-  uiUrl: import.meta.env.NOOD_UI_URL,
-  apiUrl: import.meta.env.NOOD_API_URL,
 };
 export type IEnvConfig = typeof envConfig;

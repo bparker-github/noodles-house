@@ -5,7 +5,7 @@ const routes: RouteRecordRaw[] = [
   // #region SWA auth redirects
   {
     path: '/login',
-    alias: ['/signin', '/log-in', '/sign-in', '/auth-response', '/auth-response-2'],
+    alias: ['/signin', '/log-in', '/sign-in'],
     name: RouteName.LOGIN,
     redirect: { path: '/.auth/login/aadb2c' },
   },
@@ -20,6 +20,7 @@ const routes: RouteRecordRaw[] = [
   // #region NEW ROUTES
   {
     path: '',
+    alias: ['/auth-redirect'],
     name: RouteName.LANDING,
     component: () => import('../components/pages/LandingPage.vue'),
   },

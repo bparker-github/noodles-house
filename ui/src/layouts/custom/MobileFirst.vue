@@ -26,34 +26,15 @@
     </transition>
 
     <!-- The body and content below, with same header-margin above for spacer. -->
-    <main class="nhl-mf-body flex flex-col w-full h-full mt-12 p-2 pt-4">
+    <main class="nhl-mf-body flex flex-col w-full h-full px-2 pt-4 pb-8 overflow-y-auto">
       <RouterView />
     </main>
   </Menu>
 </template>
 
 <script setup lang="ts">
-import { useNativeAuth } from '@/auth/useNativeAuth';
-import { RouteName } from '@/router/RouteName';
 import { Menu, MenuButton } from '@headlessui/vue';
 import { Bars3Icon } from '@heroicons/vue/24/solid';
-import { storeToRefs } from 'pinia';
-import { useRoute, useRouter } from 'vue-router';
 import MF_Header from './MF_Header.vue';
 import MF_HeaderMenu from './MF_HeaderMenu.vue';
-
-const nativeAuth = useNativeAuth();
-const { curUser, isFetching, isFinished, fetchError } = storeToRefs(nativeAuth);
-
-const route = useRoute();
-const router = useRouter();
-
-function clickHomeIcon() {
-  if (route.name === RouteName.HOME) {
-    console.log('Already Home');
-  }
-
-  console.log('Going Home');
-  router.push({ name: RouteName.HOME });
-}
 </script>

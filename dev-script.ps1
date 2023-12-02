@@ -17,7 +17,7 @@ function startUi {
   Read-Host
   $tabSWA.Focus;
   
-  Exit-PSSession 0;
+  Exit-PSSession;
 }
 
 # Run on reference

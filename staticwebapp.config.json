@@ -17,7 +17,6 @@
             },
             "openIdConnectConfiguration": {
               "wellKnownOpenIdConfiguration": "https://noodleshouse.b2clogin.com/noodleshouse.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1_noodle_susi"
-              // "wellKnownOpenIdConfiguration": "https://noodleshouse.b2clogin.com/noodleshouse.onmicrosoft.com/B2C_1_noodle_susi/v2.0/.well-known/openid-configuration"
             }
           },
           "login": {

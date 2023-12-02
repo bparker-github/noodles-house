@@ -1,4 +1,4 @@
-import { doGetOrThrow, useUnsplashApi, type UnsplashApi } from '@/lib';
+import { useUnsplashApi, type UnsplashApi } from '@/lib';
 import { defineStore } from 'pinia';
 import type { ApiResponse } from 'unsplash-js/dist/helpers/response';
 import type { Full } from 'unsplash-js/dist/methods/photos/types';
@@ -13,14 +13,10 @@ import { ref } from 'vue';
  */
 
 export const useUnsplash = defineStore('unsplash', () => {
-  const unsplashUrl = doGetOrThrow(
-    () => import.meta.env.NOOD_API_URL + '/unsplash',
-    'Missing Api URL'
-  );
   const unsplashAccessKey = import.meta?.env?.NOOD_UNSPLASH_ACCESS_KEY ?? '';
 
   // If we have the access key, we can make the secondary API.
-  const unsplashApi = ref(useUnsplashApi('ui', unsplashUrl));
+  const unsplashApi = ref(useUnsplashApi('ui', window.location.origin + '/api/unsplash'));
   const backupApi = ref(useUnsplashApi('api', unsplashAccessKey));
 
   // Keep a cache of these images.

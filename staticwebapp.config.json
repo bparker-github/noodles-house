@@ -33,12 +33,24 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}", "/.auth*"]
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}", "/.auth/*"]
   },
   "routes": [
     {
-      "route": "/*",
+      "route": "/logout",
+      "rewrite": "/.auth/logout"
+    },
+    {
+      "route": "/login",
+      "rewrite": "/.auth/login/aad?post_login_redirect_uri=/home"
+    },
+    {
+      "route": "/.auth/*",
       "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "globalHeaders": {
@@ -48,7 +60,7 @@
   "responseOverrides": {
     "401": {
       "statusCode": 302,
-      "redirect": "/.auth/login/aadb2c"
+      "redirect": "/login"
     }
   }
 }

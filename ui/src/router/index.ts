@@ -4,22 +4,25 @@ import { RouteName } from './RouteName';
 const routes: RouteRecordRaw[] = [
   // #region SWA auth redirects
   {
-    path: '/login',
-    alias: ['/signin', '/log-in', '/sign-in', '/auth-response', '/auth-response-2'],
+    // Handle nearly correct login routes.
+    path: '/log-in',
+    alias: ['/signin', '/sign-in'],
     name: RouteName.LOGIN,
-    redirect: { path: '/.auth/login/aadb2c' },
+    redirect: { path: '/login' },
   },
   {
-    path: '/logout',
-    alias: ['/signout', '/log-out', '/sign-out'],
+    // Handle nearly correct logout routes.
+    path: '/log-out',
+    alias: ['/signout', '/sign-out'],
     name: RouteName.LOGOUT,
-    redirect: { path: '/.auth/logout' },
+    redirect: { path: '/logout' },
   },
   // #endregion
 
   // #region NEW ROUTES
   {
     path: '',
+    alias: ['/auth-redirect'],
     name: RouteName.LANDING,
     component: () => import('../components/pages/LandingPage.vue'),
   },

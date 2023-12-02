@@ -1,7 +1,5 @@
 # Checks
-[![Azure Static Web Apps CI/CD](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml/badge.svg?branch=component-demos)](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml)
-
-[Visit the page](https://thankful-pebble-0fd322f0f.3.azurestaticapps.net)
+[![Azure Static Web Apps CI/CD](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml/badge.svg?branch=failing-auth)](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml)
 
 # Changes
 -

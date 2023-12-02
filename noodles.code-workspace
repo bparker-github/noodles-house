@@ -3,9 +3,6 @@
     {
       "name": "noodles-house",
       "path": "../noodles-house"
-    },
-    {
-      "path": "../vue-azure-b2c-sample"
     }
   ],
   "extensions": {

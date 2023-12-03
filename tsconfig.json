@@ -2,6 +2,7 @@
   "files": [],
   "references": [
     "./api",
+    "./database",
     "./ui"
   ]
 }

@@ -18,6 +18,7 @@
     "build:swa-local": "cross-env-shell MODE=swa-local npm run build"
   },
   "dependencies": {
-    "@azure/functions": "^4.1.0"
+    "@azure/functions": "^4.1.0",
+    "@noodles-house/database": "^0.1.0"
   }
 }

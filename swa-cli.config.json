@@ -8,18 +8,21 @@
       "apiVersion": "18",
       "appBuildCommand": "npm run build:swa:ui",
       "appLocation": "/",
-      "outputLocation": "ui\\dist"
+      "outputLocation": "ui\\dist",
+      "dataApiLocation": "database"
     },
     "build:api": {
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "apiBuildCommand": "npm run build:swa:api"
+      "apiBuildCommand": "npm run build:swa:api",
+      "dataApiLocation": "database"
     },
     "build:ui": {
       "appLocation": "/",
       "outputLocation": "ui\\dist",
-      "appBuildCommand": "npm run build:swa:ui"
+      "appBuildCommand": "npm run build:swa:ui",
+      "dataApiLocation": "database"
     },
     "dev": {
       "appDevserverUrl": "http://localhost:9090",
@@ -29,38 +32,45 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "run": "npm run dev"
+      "run": "npm run dev",
+      "dataApiLocation": "database"
     },
     "dev:api": {
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "run": "npm run dev:api"
+      "run": "npm run dev:api",
+      "dataApiLocation": "database"
     },
     "dev:ui": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
       "outputLocation": "ui\\dist",
-      "run": "npm run dev:ui"
+      "run": "npm run dev:ui",
+      "dataApiLocation": "database"
     },
     "dev:debug": {
       "appDevserverUrl": "http://localhost:9090",
-      "apiDevserverUrl": "http://localhost:9091"
+      "apiDevserverUrl": "http://localhost:9091",
+      "dataApiLocation": "database"
     },
     "serve": {
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "ui\\dist"
+      "appLocation": "ui\\dist",
+      "dataApiLocation": "database"
     },
     "serve:api": {
       "apiLanguage": "node",
       "apiLocation": "api",
-      "apiVersion": "18"
+      "apiVersion": "18",
+      "dataApiLocation": "database"
     },
     "serve:ui": {
-      "appLocation": "ui\\dist"
+      "appLocation": "ui\\dist",
+      "dataApiLocation": "database"
     }
   }
 }

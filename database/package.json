@@ -1,0 +1,14 @@
+{
+  "name": "@noodles-house/database",
+  "version": "0.1.0",
+  "description": "The Database configuration and info isolated for sharing.",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "typeorm": "typeorm-ts-node-commonjs"
+  },
+  "dependencies": {
+    "mssql": "^10.0.1",
+    "typeorm": "^0.3.17"
+  }
+}

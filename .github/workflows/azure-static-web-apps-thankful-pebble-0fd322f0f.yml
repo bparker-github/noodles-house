@@ -39,6 +39,7 @@ jobs:
 
         env:
           NOOD_UNSPLASH_ACCESS_KEY: ${{ secrets.NOOD_UNSPLASH_ACCESS_KEY }}
+          NOOD_DB_CONNECTION_STRING: ${{ secrets.NOOD_DB_CONNECTION_STRING }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

@@ -18,6 +18,7 @@
     "build:api": "npm run build -w api",
     "build:db": "npm run build -w database",
     "build:ui": "npm run build -w ui",
+    "build:swa:local": "npm run build:swa-local -ws --if-present",
     "build:swa:api": "npm run build:swa -w api",
     "build:swa:ui": "npm run build:swa -w ui",
     "/// Development ///": "/// Scripts below make it easy to develop ///",

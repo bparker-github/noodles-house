@@ -13,6 +13,11 @@
     "node": "^18"
   },
   "scripts": {
+    "/// Clean Scripts ///": "/// Scripts below are used to clean or reset local environments ///",
+    "clean": "npm-run-all -lhs clean:dist clean:modules",
+    "clean:dist": "rimraf -g **/dist",
+    "clean:modules": "rimraf -g **/node_modules",
+    "bootstrap": "npm-run-all -lhs clean:dist clean:modules \"npm i\"",
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
     "build": "npm-run-all -lns build:db build:api build:ui",
     "build:api": "npm run build -w api",
@@ -44,8 +49,8 @@
     "nodemon": "^3.0.2",
     "npm-run-all2": "^6.1.1",
     "pre-commit": "^1.2.2",
-    "prettier-plugin-tailwindcss": "^0.5.7",
     "prettier": "^3.0.3",
+    "prettier-plugin-tailwindcss": "^0.5.7",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"

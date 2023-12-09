@@ -7,8 +7,8 @@
     "node": "^18"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
+    "build": "tsc -b",
+    "watch": "tsc -b -w",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",

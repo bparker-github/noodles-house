@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "description": "The API duh",
   "main": "../dist/api/src/functions/*.js",
+  "files": [
+    "src"
+  ],
   "engines": {
     "node": "^18"
   },
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",
-    "clean": "rimraf dist",
+    "clean": "rimraf ../dist/api",
     "start": "npm-run-all -lns clean -p watch start:func",
     "start:func": "func start",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt",

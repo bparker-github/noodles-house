@@ -1,5 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
-import { getNoodleDb } from '@noodles-house/database/dist/src';
+import { getNoodleDb } from '../../../database/src';
 
 export async function DbInit(
   request: HttpRequest,

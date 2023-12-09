@@ -8,8 +8,8 @@
       "apiVersion": "18",
       "appBuildCommand": "npm run build:swa:ui",
       "appLocation": "/",
-      "outputLocation": "ui\\dist",
-      "dataApiLocation": "database"
+      "outputLocation": "dist\\ui",
+      "dataApiLocation": "dist\\database"
     },
     "build:api": {
       "apiLanguage": "node",
@@ -20,14 +20,14 @@
     },
     "build:ui": {
       "appLocation": "/",
-      "outputLocation": "ui\\dist",
+      "outputLocation": "dist\\ui",
       "appBuildCommand": "npm run build:swa:ui",
       "dataApiLocation": "database"
     },
     "dev": {
       "appDevserverUrl": "http://localhost:9090",
-      "appLocation": ".",
-      "outputLocation": "ui\\dist",
+      "appLocation": "/",
+      "outputLocation": "dist\\ui",
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
       "apiLocation": "api",
@@ -46,7 +46,7 @@
     "dev:ui": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
-      "outputLocation": "ui\\dist",
+      "outputLocation": "dist\\ui",
       "run": "npm run dev:ui",
       "dataApiLocation": "database"
     },
@@ -58,7 +58,7 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "ui\\dist",
+      "appLocation": "dist\\ui",
       "dataApiLocation": "database"
     },
     "serve:api": {
@@ -68,7 +68,7 @@
       "dataApiLocation": "database"
     },
     "serve:ui": {
-      "appLocation": "ui\\dist",
+      "appLocation": "dist\\ui",
       "dataApiLocation": "database"
     }
   }

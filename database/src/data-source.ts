@@ -1,16 +1,34 @@
-import "reflect-metadata"
-import { DataSource } from "typeorm"
-import { User } from "./entity/User"
+// Ensure the config files are loaded.
+import 'reflect-metadata';
 
-export const AppDataSource = new DataSource({
-    type: "mssql",
-    host: "localhost",
-    username: "sa",
-    password: "Admin12345",
-    database: "tempdb",
+import { config } from 'dotenv';
+config({ path: '../.env' });
+
+import { DataSource } from 'typeorm';
+import { TestModel } from './entity/Test';
+import { UserSettings } from './entity/UserSettings';
+
+let loadedDb: DataSource;
+export async function getNoodleDb(): Promise<DataSource> {
+  if (loadedDb) {
+    return loadedDb;
+  }
+
+  const ret = new DataSource({
+    type: 'mssql',
+    host: process.env.NOOD_DB_URL,
+    database: process.env.NOOD_DB_DATABASE,
+    username: process.env.NOOD_DB_USER,
+    password: process.env.NOOD_DB_PASS,
+    port: 1433,
+    connectionTimeout: 30e3,
     synchronize: true,
-    logging: false,
-    entities: [User],
+    logging: true,
+    entities: [TestModel, UserSettings],
     migrations: [],
-    subscribers: [],
-})
+  });
+
+  await ret.initialize();
+
+  return ret;
+}

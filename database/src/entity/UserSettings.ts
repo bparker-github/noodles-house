@@ -1,9 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class TestModel {
+export class UserSettings {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
+
+  @Column('uuid')
+  userId: string;
 
   @Column()
   firstName: string;
@@ -12,5 +15,5 @@ export class TestModel {
   lastName: string;
 
   @Column()
-  age: number;
+  profileLink: string;
 }

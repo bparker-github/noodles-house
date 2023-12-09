@@ -2,7 +2,7 @@
   "name": "@noodles-house/api",
   "version": "0.1.0",
   "description": "The API duh",
-  "main": "dist/src/functions/*.js",
+  "main": "../dist/api/src/functions/*.js",
   "engines": {
     "node": "^18"
   },
@@ -10,7 +10,7 @@
     "build": "tsc -b",
     "watch": "tsc -b -w",
     "clean": "rimraf dist",
-    "start": "npm-run-all -lns clean build -p watch start:func",
+    "start": "npm-run-all -lns clean -p watch start:func",
     "start:func": "func start",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt",
     "build:local": "cross-env-shell MODE=local npm run build",

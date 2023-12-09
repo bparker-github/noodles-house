@@ -31,8 +31,13 @@ export default defineConfig({
   css: {
     postcss,
   },
+  clearScreen: false,
   envPrefix: 'NOOD_',
   envDir: '..',
+  build: {
+    outDir: '../dist/ui',
+    emptyOutDir: true,
+  },
   server: {
     port: 9090,
     // https: {

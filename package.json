@@ -19,7 +19,7 @@
     "clean:modules": "rimraf -g **/node_modules",
     "bootstrap": "npm-run-all -lhs clean:dist clean:modules \"npm i\"",
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
-    "build": "npm-run-all -lns build:db build:api build:ui",
+    "build": "npm-run-all -lns clean:dist build:db build:api build:ui",
     "build:api": "npm run build -w api",
     "build:db": "npm run build -w database",
     "build:ui": "npm run build -w ui",

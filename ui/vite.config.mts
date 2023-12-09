@@ -31,7 +31,6 @@ export default defineConfig({
   css: {
     postcss,
   },
-  clearScreen: false,
   envPrefix: 'NOOD_',
   envDir: '..',
   build: {

@@ -1,5 +1,5 @@
 {
-  "extends": ["@vue/tsconfig/tsconfig.dom.json", "../tsconfig.paths.json"],
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": ["types", "types/env.d.ts", "src/**/*", "src/**/*.vue"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {

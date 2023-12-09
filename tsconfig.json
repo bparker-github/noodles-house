@@ -3,10 +3,6 @@
   "references": ["./api", "./database", "./ui"],
   "compilerOptions": {
     "rootDir": ".",
-    "paths": {
-      "@api/*": ["./api/*"],
-      "@db/*": ["./database/*"],
-      "@ui/*": ["./ui/*"]
-    }
+    "outDir": "dist"
   }
 }

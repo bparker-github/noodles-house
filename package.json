@@ -6,7 +6,6 @@
   "license": "ISC",
   "workspaces": [
     "./api",
-    "./database",
     "./ui"
   ],
   "engines": {
@@ -21,7 +20,6 @@
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
     "build": "npm-run-all -lns clean:dist build:db build:api build:ui",
     "build:api": "npm run build -w api",
-    "build:db": "npm run build -w database",
     "build:ui": "npm run build -w ui",
     "build:swa:local": "npm run build:swa-local -ws --if-present",
     "build:swa:api": "npm run build:swa -w api",

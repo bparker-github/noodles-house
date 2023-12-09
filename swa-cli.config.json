@@ -8,32 +8,32 @@
       "apiVersion": "18",
       "appBuildCommand": "npm run build:swa:ui",
       "appLocation": "/",
-      "outputLocation": "dist\\ui",
-      "dataApiLocation": "dist\\database"
+      "outputLocation": "ui\\dist",
+      "dataApiLocation": "api\\src\\database"
     },
     "build:api": {
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
       "apiBuildCommand": "npm run build:swa:api",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "build:ui": {
       "appLocation": "/",
-      "outputLocation": "dist\\ui",
+      "outputLocation": "ui\\dist",
       "appBuildCommand": "npm run build:swa:ui",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "dev": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": "/",
-      "outputLocation": "dist\\ui",
+      "outputLocation": "ui\\dist",
       "apiDevserverUrl": "http://localhost:9091",
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
       "run": "npm run dev",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "dev:api": {
       "apiDevserverUrl": "http://localhost:9091",
@@ -41,14 +41,14 @@
       "apiLocation": "api",
       "apiVersion": "18",
       "run": "npm run dev:api",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "dev:ui": {
       "appDevserverUrl": "http://localhost:9090",
       "appLocation": ".",
-      "outputLocation": "dist\\ui",
+      "outputLocation": "ui\\dist",
       "run": "npm run dev:ui",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "dev:debug": {
       "appDevserverUrl": "http://localhost:9090",
@@ -58,18 +58,18 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "dist\\ui",
-      "dataApiLocation": "database"
+      "appLocation": "ui\\dist",
+      "dataApiLocation": "api\\src\\database"
     },
     "serve:api": {
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "dataApiLocation": "database"
+      "dataApiLocation": "api\\src\\database"
     },
     "serve:ui": {
-      "appLocation": "dist\\ui",
-      "dataApiLocation": "database"
+      "appLocation": "ui\\dist",
+      "dataApiLocation": "api\\src\\database"
     }
   }
 }

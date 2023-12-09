@@ -2,7 +2,7 @@
   "name": "@noodles-house/api",
   "version": "0.1.0",
   "description": "The API duh",
-  "main": "../dist/api/src/functions/*.js",
+  "main": "dist/api/src/functions/*.js",
   "files": [
     "src"
   ],
@@ -21,7 +21,6 @@
     "build:swa-local": "cross-env-shell MODE=swa-local npm run build"
   },
   "dependencies": {
-    "@azure/functions": "^4.1.0",
-    "@noodles-house/database": "file:../database"
+    "@azure/functions": "^4.1.0"
   }
 }

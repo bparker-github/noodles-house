@@ -1,8 +1,7 @@
 {
   "files": [],
-  "references": ["./api", "./database", "./ui"],
+  "references": ["./api", "./ui"],
   "compilerOptions": {
-    "rootDir": ".",
-    "outDir": "dist"
+    "rootDir": "."
   }
 }

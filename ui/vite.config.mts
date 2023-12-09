@@ -33,10 +33,6 @@ export default defineConfig({
   },
   envPrefix: 'NOOD_',
   envDir: '..',
-  build: {
-    outDir: '../dist/ui',
-    emptyOutDir: true,
-  },
   server: {
     port: 9090,
     // https: {

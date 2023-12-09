@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "@azure/functions": "^4.1.0",
-    "@noodles-house/database": "^0.1.0"
+    "@noodles-house/database": "file:../database"
   }
 }

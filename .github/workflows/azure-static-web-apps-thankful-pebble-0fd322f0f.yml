@@ -35,7 +35,7 @@ jobs:
           api_build_command: 'npm run build:swa'
           app_location: '/'
           app_build_command: 'npm run build:swa:ui'
-          output_location: 'ui/dist'
+          output_location: 'dist/ui'
 
         env:
           NOOD_UNSPLASH_ACCESS_KEY: ${{ secrets.NOOD_UNSPLASH_ACCESS_KEY }}

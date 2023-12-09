@@ -3,12 +3,9 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-
-    "baseUrl": "..",
     "rootDir": ".",
-    "outDir": "../dist/api",
+    "outDir": "dist",
     "sourceMap": true,
     "strict": false
-  },
-  "references": [{ "path": "../database" }]
+  }
 }

@@ -4,7 +4,7 @@ function startUi {
   # Create the UI tab
   wt -w 0 nt --title UI --inheritEnvironment -d . pwsh -NoExit -c "npm run dev:ui"
   Write-Output "Creating UI Tab..."
-  Start-Sleep -Seconds 5
+  Start-Sleep -Seconds 2
 
   # Create teh API tab
   wt -w 0 nt --title API --inheritEnvironment -d . pwsh -NoExit -c "npm run dev:api"

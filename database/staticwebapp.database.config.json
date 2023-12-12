@@ -8,11 +8,15 @@
   "runtime": {},
   "entities": {
     "TestingOne": {
-      "source": "dbo.TestingOne",
+      "source": "dbo.TestOne",
       "permissions": [{ "actions": ["*"], "role": "authenticated" }]
     },
     "test_model": {
       "source": "dbo.test_model",
+      "permissions": [{ "actions": ["*"], "role": "anonymous" }]
+    },
+    "user_settings": {
+      "source": "dbo.user_settings",
       "permissions": [{ "actions": ["*"], "role": "anonymous" }]
     }
   }

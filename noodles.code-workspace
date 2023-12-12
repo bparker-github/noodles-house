@@ -116,6 +116,7 @@
       "signin",
       "signout",
       "tailwindcss",
+      "typeorm",
       "vueuse",
       "Whiteish"
     ],

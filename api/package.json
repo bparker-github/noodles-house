@@ -19,6 +19,9 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
+    "dotenv": "^16.3.1",
+    "reflect-metadata": "^0.1.14",
+    "typeorm": "^0.3.17",
     "unsplash-js": "^7.0.18"
   }
 }

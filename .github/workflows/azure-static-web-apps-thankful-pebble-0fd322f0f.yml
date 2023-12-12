@@ -34,11 +34,12 @@ jobs:
           # This DOES need to be the command within ^ api
           api_build_command: 'npm run build:swa'
           app_location: '/'
-          app_build_command: 'npm run build:swa:ui'
+          app_build_command: 'npm i -D "@rollup/rollup-linux-x64-gnu@^4.7.0" && npm run build:swa:ui'
           output_location: 'ui/dist'
 
         env:
           NOOD_UNSPLASH_ACCESS_KEY: ${{ secrets.NOOD_UNSPLASH_ACCESS_KEY }}
+          NOOD_DB_CONNECTION_STRING: ${{ secrets.NOOD_DB_CONNECTION_STRING }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

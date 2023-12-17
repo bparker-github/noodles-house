@@ -45,11 +45,5 @@
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET"
-  },
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/login"
-    }
   }
 }

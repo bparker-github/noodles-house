@@ -9,7 +9,7 @@
         "enabled": true,
         "login": {
           "nameClaimType": "email",
-          "scopes": ["openid", "profile", "email", "name"]
+          "scopes": ["profile", "email", "name"]
         }
       }
     }

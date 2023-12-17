@@ -12,36 +12,25 @@
   "platform": {
     "apiRuntime": "node:18"
   },
-  "navigationFallback": {
-    "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}", "/.auth/*"]
-  },
+  "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/*",
+      "route": "/api/*",
       "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/logout",
-      "rewrite": "/.auth/logout"
     },
     {
       "route": "/login",
       "rewrite": "/.auth/login/apple"
     },
     {
-      "route": "/.auth/*",
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/data-api/*",
-      "allowedRoles": ["authenticated"]
+      "route": "/logout",
+      "redirect": "/.auth/logout"
     }
   ],
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}", "/.auth/*"]
+  },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET"

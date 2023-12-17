@@ -6,8 +6,10 @@
           "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
           "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
         },
+        "enabled": true,
         "login": {
-          "scopes": ["email", "name"]
+          "nameClaimType": "email",
+          "scopes": ["openid", "profile", "email", "name"]
         }
       }
     }
@@ -17,6 +19,10 @@
   },
   "trailingSlash": "auto",
   "routes": [
+    {
+      "route": "/api/unsplash/*",
+      "allowedRoles": ["anonymous"]
+    },
     {
       "route": "/api/*",
       "allowedRoles": ["authenticated"]

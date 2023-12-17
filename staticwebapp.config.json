@@ -18,6 +18,10 @@
   },
   "routes": [
     {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/logout",
       "rewrite": "/.auth/logout"
     },
@@ -26,7 +30,15 @@
       "rewrite": "/.auth/login/apple"
     },
     {
-      "route": "/*",
+      "route": "/.auth/*",
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/api/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/data-api/*",
       "allowedRoles": ["authenticated"]
     }
   ],

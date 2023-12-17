@@ -26,18 +26,6 @@
       "rewrite": "/.auth/login/apple"
     },
     {
-      "route": "/.auth/*",
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/data-api/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/*",
       "allowedRoles": ["authenticated"]
     }

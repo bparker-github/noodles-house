@@ -33,3 +33,6 @@ coverage
 .github/PULL_REQUEST_TEMPLATE.md
 
 *.tsbuildinfo
+
+# Ignore database, it needs explicit named file
+database/.env

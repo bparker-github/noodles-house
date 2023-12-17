@@ -36,3 +36,7 @@ coverage
 
 # Ignore database, it needs explicit named file
 database/.env
+
+# Ignore certain config files.
+config/*.p8
+config/*secret*

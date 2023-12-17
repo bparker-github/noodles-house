@@ -1,29 +1,10 @@
 {
   "auth": {
     "identityProviders": {
-      "azureActiveDirectory": {
+      "apple": {
         "registration": {
-          "openIdIssuer": "https://login.microsoftonline.com/5c3a58ca-ff7d-4f38-aa9e-c76cbde229da/v2.0",
-          "clientIdSettingName": "97ac662e-a761-4745-bb6c-81041e9b621c",
-          "clientSecretSettingName": "House-secret"
-        }
-      },
-      "customOpenIdConnectProviders": {
-        "aadb2c": {
-          "registration": {
-            "clientIdSettingName": "bf8ae1d3-2c62-4716-b811-b1fb8551775e",
-            "clientCredential": {
-              "clientSecretSettingName": "ivs8Q~wuH4~PTccn_aTXHdvR0jMFJ-FL08wrrdms"
-            },
-            "openIdConnectConfiguration": {
-              "wellKnownOpenIdConfiguration": "https://noodleshouse.b2clogin.com/noodleshouse.onmicrosoft.com/B2C_1_noodle_susi/v2.0/.well-known/openid-configuration"
-            }
-          },
-          "login": {
-            "nameClaimType": "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name",
-            "scopes": [],
-            "loginParameterNames": []
-          }
+          "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
+          "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
         }
       }
     }
@@ -42,7 +23,7 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/aad?post_login_redirect_uri=/home"
+      "rewrite": "/.auth/login/apple"
     },
     {
       "route": "/.auth/*",
@@ -64,11 +45,5 @@
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET"
-  },
-  "responseOverrides": {
-    "401": {
-      "statusCode": 302,
-      "redirect": "/login"
-    }
   }
 }

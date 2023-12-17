@@ -5,6 +5,9 @@
         "registration": {
           "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
           "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
+        },
+        "login": {
+          "scopes": ["email", "name"]
         }
       }
     }

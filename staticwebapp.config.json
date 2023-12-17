@@ -4,16 +4,22 @@
       "azureActiveDirectory": {
         "registration": {
           "openIdIssuer": "https://login.microsoftonline.com/5c3a58ca-ff7d-4f38-aa9e-c76cbde229da/v2.0",
-          "clientIdSettingName": "97ac662e-a761-4745-bb6c-81041e9b621c",
-          "clientSecretSettingName": "House-secret"
+          "clientIdSettingName": "NOOD_AAD_CLIENT_ID",
+          "clientSecretSettingName": "NOOD_AAD_CLIENT_SECRET"
+        },
+        "apple": {
+          "registration": {
+            "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
+            "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
+          }
         }
       },
       "customOpenIdConnectProviders": {
         "aadb2c": {
           "registration": {
-            "clientIdSettingName": "bf8ae1d3-2c62-4716-b811-b1fb8551775e",
+            "clientIdSettingName": "NOOD_AADB2C_CLIENT_ID",
             "clientCredential": {
-              "clientSecretSettingName": "ivs8Q~wuH4~PTccn_aTXHdvR0jMFJ-FL08wrrdms"
+              "clientSecretSettingName": "NOOD_AADB2C_CLIENT_SECRET"
             },
             "openIdConnectConfiguration": {
               "wellKnownOpenIdConfiguration": "https://noodleshouse.b2clogin.com/noodleshouse.onmicrosoft.com/B2C_1_noodle_susi/v2.0/.well-known/openid-configuration"

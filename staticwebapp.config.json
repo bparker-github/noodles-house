@@ -9,7 +9,7 @@
         "userDetailsClaim": "email",
         "enabled": true,
         "login": {
-          "scopes": ["openid", "email", "name"]
+          "scopes": ["openid", "email", "name", "offline_access"]
         }
       }
     }
@@ -29,7 +29,7 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/apple"
+      "rewrite": "/.auth/login/apple?post_login_redirect_url=/home"
     },
     {
       "route": "/logout",

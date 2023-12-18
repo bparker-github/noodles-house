@@ -6,10 +6,8 @@
           "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
           "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
         },
-        "userDetailsClaim": "email",
-        "enabled": true,
         "login": {
-          "scopes": ["openid", "email", "name", "offline_access"]
+          "scopes": ["openid", "email", "name"]
         }
       }
     }
@@ -29,7 +27,7 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/apple?post_login_redirect_url=/home"
+      "rewrite": "/.auth/login/apple"
     },
     {
       "route": "/logout",

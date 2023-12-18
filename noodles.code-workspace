@@ -1,8 +1,12 @@
 {
   "folders": [
     {
-      "name": "noodles-house",
+      "name": "NoodlesHouse",
       "path": "../noodles-house"
+    },
+    {
+      "name": "AppleTest",
+      "path": "../apple-test"
     }
   ],
   "extensions": {

@@ -6,9 +6,9 @@
           "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
           "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
         },
+        "userDetailsClaim": "email",
         "enabled": true,
         "login": {
-          "nameClaimType": "email",
           "scopes": ["openid", "email", "name"]
         }
       }

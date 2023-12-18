@@ -18,20 +18,20 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/api/unsplash/*",
-      "allowedRoles": ["anonymous"]
-    },
-    {
-      "route": "/api/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/login",
-      "rewrite": "/.auth/login/apple"
+      "rewrite": "/.auth/login/apple?post_login_redirect_url=/home"
     },
     {
       "route": "/logout",
       "redirect": "/.auth/logout"
+    },
+    {
+      "route": "/",
+      "allowedRoles": ["anonymous", "authenticated"]
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "navigationFallback": {

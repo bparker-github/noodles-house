@@ -29,11 +29,11 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/apple"
+      "rewrite": "/.auth/login/apple?post_login_redirect_uri=.referrer"
     },
     {
       "route": "/logout",
-      "redirect": "/.auth/logout"
+      "redirect": "/.auth/logout?post_login_redirect_uri=/"
     }
   ],
   "navigationFallback": {

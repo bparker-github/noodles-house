@@ -2,7 +2,7 @@
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
     "build": {
-      "apiBuildCommand": "npm run build:swa:api",
+      "apiBuildCommand": "npm run build",
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
@@ -14,7 +14,7 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "apiBuildCommand": "npm run build:swa:api"
+      "apiBuildCommand": "npm run build"
     },
     "build:ui": {
       "appLocation": "/",

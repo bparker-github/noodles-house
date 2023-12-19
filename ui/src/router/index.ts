@@ -1,3 +1,4 @@
+import { NativeUserRole } from '@/auth/NativeUser';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 
@@ -22,13 +23,15 @@ const routes: RouteRecordRaw[] = [
   // #region NEW ROUTES
   {
     path: '',
-    alias: ['/auth-redirect'],
     name: RouteName.LANDING,
     component: () => import('../components/pages/LandingPage.vue'),
   },
   {
-    path: '/home',
+    path: '/indoors',
     component: () => import('../layouts/custom/MobileFirst.vue'),
+    meta: {
+      nativeUserRole: NativeUserRole.AUTHENTICATED,
+    },
     children: [
       {
         path: '',
@@ -79,11 +82,6 @@ const routes: RouteRecordRaw[] = [
   // #endregion
 
   // #region Rest-routes
-  {
-    path: '/failed',
-    name: RouteName.FAILED,
-    component: () => import('../components/pages/FailedPage.vue'),
-  },
   {
     path: '/:catchAll(.*)*',
     name: RouteName.NOT_FOUND,

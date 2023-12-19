@@ -40,6 +40,13 @@ jobs:
         env:
           NOOD_UNSPLASH_ACCESS_KEY: ${{ secrets.NOOD_UNSPLASH_ACCESS_KEY }}
           NOOD_DB_CONNECTION_STRING: ${{ secrets.NOOD_DB_CONNECTION_STRING }}
+
+          NOOD_APPLE_CLIENT_ID: ${{ secrets.NOOD_APPLE_CLIENT_ID }}
+          NOOD_APPLE_CLIENT_SECRET: ${{ secrets.NOOD_APPLE_CLIENT_SECRET }}
+          NOOD_DB_URL: ${{ secrets.NOOD_DB_URL }}
+          NOOD_DB_DATABASE: ${{ secrets.NOOD_DB_DATABASE }}
+          NOOD_DB_USER: ${{ secrets.NOOD_DB_USER }}
+          NOOD_DB_PASS: ${{ secrets.NOOD_DB_PASS }}
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

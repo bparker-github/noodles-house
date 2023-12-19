@@ -1,8 +1,7 @@
-import type { NavigationGuard } from 'vue-router';
-import { useNativeAuth } from './useNativeAuth';
 import { storeToRefs } from 'pinia';
-import { RouteName } from '@/router/RouteName';
+import type { NavigationGuard } from 'vue-router';
 import { NativeUserRole } from './NativeUser';
+import { useNativeAuth } from './useNativeAuth';
 
 export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
   const nativeAuth = useNativeAuth();
@@ -17,5 +16,5 @@ export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
   }
 
   // Skip if already auth
-  return next({ name: RouteName.LOGIN, force: true, replace: true });
+  window.location.pathname = '/login';
 };

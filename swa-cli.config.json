@@ -47,7 +47,7 @@
     "dev:debug": {
       "appDevserverUrl": "http://localhost:9090",
       "apiDevserverUrl": "http://localhost:9091",
-      "dataApiLocation": "database"
+      "dataApiLocation": "/"
     },
     "serve": {
       "apiLanguage": "node",

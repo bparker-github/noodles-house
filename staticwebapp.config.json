@@ -18,28 +18,44 @@
   "trailingSlash": "auto",
   "routes": [
     {
+      "route": "/indoors*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/login",
       "rewrite": "/.auth/login/apple?post_login_redirect_url=/home"
     },
     {
       "route": "/logout",
-      "redirect": "/.auth/logout"
-    },
-    {
-      "route": "/",
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/*",
-      "allowedRoles": ["authenticated"]
+      "rewrite": "/.auth/logout"
     }
   ],
+  "responseOverrides": {
+    "401": {
+      "rewrite": "/.auth/login/apple?post_login_redirect_url=/home",
+      "statusCode": 302
+    }
+  },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js}", "/.auth/*"]
+    "exclude": [
+      "/images/*.{png,jpg,gif,ico}",
+      "/*.{css,scss,js,ts,vue}",
+      "/.auth/*",
+      "/logout",
+      "/login"
+    ]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "GET"
+    "Access-Control-Allow-Methods": "GET",
+    "Content-Security-Policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+  },
+  "mimeTypes": {
+    ".json": "text/json"
   }
 }

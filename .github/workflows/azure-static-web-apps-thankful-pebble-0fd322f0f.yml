@@ -32,7 +32,7 @@ jobs:
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           api_location: 'api'
           # This DOES need to be the command within ^ api
-          api_build_command: 'npm run build:swa'
+          api_build_command: 'npm run build'
           app_location: '/'
           app_build_command: 'npm i -D "@rollup/rollup-linux-x64-gnu@^4.7.0" && npm run build:swa:ui'
           output_location: 'ui/dist'

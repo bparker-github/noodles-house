@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Basic API functionality for Noodle's House.",
   "main": "dist/src/functions/*.js",
+  "type": "commonjs",
   "engines": {
     "node": "^18"
   },
@@ -21,5 +22,8 @@
     "reflect-metadata": "^0.1.14",
     "typeorm": "^0.3.17",
     "unsplash-js": "^7.0.18"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }

@@ -28,6 +28,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/indoors',
+    alias: ['/bunker', '/home'],
     component: () => import('../layouts/custom/MobileFirst.vue'),
     meta: {
       nativeUserRole: NativeUserRole.AUTHENTICATED,

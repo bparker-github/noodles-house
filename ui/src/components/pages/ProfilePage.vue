@@ -1,37 +1,45 @@
 <template>
-  <!-- <InfoListCard
-    v-if="curAccount?.idTokenClaims"
+  <InfoListCard
+    v-if="curUser?.clientPrincipal"
     title="Profile"
     subTitle="Personal profile information."
-    :items="!curAccount.idTokenClaims ? [] : items"
-  /> -->
+    :list="items"
+  />
   <div></div>
 </template>
 
 <script setup lang="ts">
 import type { EnumObject } from '@/lib';
-// import { useAuthStore } from '@/stores/authStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import InfoListCard from '../cards/InfoListCard.vue';
+import { useNativeAuth } from '@/auth/useNativeAuth';
 
-// const authStore = useAuthStore();
-// const { curAccount } = storeToRefs(authStore);
+const nativeAuth = useNativeAuth();
+const { curUser } = storeToRefs(nativeAuth);
 
 const items = computed<EnumObject[]>(() => {
-  // if (!curAccount.value?.idTokenClaims) {
-  return [];
-  // }
+  if (!curUser.value?.clientPrincipal?.claims?.length) {
+    return [];
+  }
 
-  // return [
-  //   {
-  //     label: 'Preferred Username',
-  //     value:
-  //       curAccount.value.idTokenClaims.preferred_username ?? curAccount.value.username ?? 'Unknown',
-  //   },
-  //   { label: 'Full Name', value: curAccount.value.name ?? 'Unknown' },
-  //   { label: 'Given Name', value: curAccount.value.idTokenClaims.given_name ?? 'Unknown' },
-  //   { label: 'Family Name', value: curAccount.value.idTokenClaims.family_name ?? 'Unknown' },
-  // ];
+  return [
+    {
+      label: 'Username',
+      value: curUser.value.clientPrincipal.userDetails ?? 'Unknown',
+    },
+    {
+      label: 'Provider',
+      value: JSON.stringify(curUser.value.clientPrincipal.identityProvider ?? []),
+    },
+    {
+      label: 'Claims',
+      value: JSON.stringify(curUser.value.clientPrincipal.claims ?? []),
+    },
+    {
+      label: 'Roles',
+      value: JSON.stringify(curUser.value.clientPrincipal.userRoles ?? []),
+    },
+  ];
 });
 </script>

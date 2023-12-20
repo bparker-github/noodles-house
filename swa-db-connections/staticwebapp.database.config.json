@@ -24,23 +24,20 @@
           "http://localhost:9090",
           "http://localhost:9091",
           "https://localhost:4280",
-          "https://thankful-pebble-0fd322f0f.3.azurestaticapps.net/"
+          "https://thankful-pebble-0fd322f0f.3.azurestaticapps.net",
+          "https://www.noodles.house",
+          "https://noodles.house"
         ]
       }
     }
   },
   "entities": {
-    "TestingOne": {
-      "source": "dbo.TestOne",
-      "permissions": [{ "actions": ["*"], "role": "authenticated" }]
-    },
-    "test_model": {
-      "source": "dbo.test_model",
-      "permissions": [{ "actions": ["*"], "role": "anonymous" }]
-    },
     "user_settings": {
       "source": "dbo.user_settings",
-      "permissions": [{ "actions": ["*"], "role": "anonymous" }]
+      "permissions": [
+        { "actions": ["read"], "role": "authenticated" },
+        { "actions": ["create", "delete", "update"], "role": "admin" }
+      ]
     }
   }
 }

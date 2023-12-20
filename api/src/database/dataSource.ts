@@ -5,7 +5,6 @@ import { config } from 'dotenv';
 config({ path: '../.env' });
 
 import { DataSource } from 'typeorm';
-import { TestModel } from './entity/TestModel';
 import { UserSettings } from './entity/UserSettings';
 
 let loadedDb: DataSource;
@@ -24,7 +23,7 @@ export async function getNoodleDb(): Promise<DataSource> {
     connectionTimeout: 30e3,
     synchronize: true,
     logging: true,
-    entities: [TestModel, UserSettings],
+    entities: [UserSettings],
     migrations: [],
   });
 

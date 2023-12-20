@@ -22,6 +22,11 @@
       "allowedRoles": ["authenticated"]
     },
     {
+      "route": "/api/unsplash/*",
+      "methods": ["GET"],
+      "allowedRoles": ["anonymous"]
+    },
+    {
       "route": "/api/*",
       "methods": ["GET"],
       "allowedRoles": ["authenticated"]
@@ -43,7 +48,7 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}"]
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*"]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

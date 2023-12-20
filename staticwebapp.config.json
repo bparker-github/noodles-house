@@ -22,6 +22,14 @@
       "allowedRoles": ["authenticated"]
     },
     {
+      "route": "/indoors*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/home*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/api/unsplash/*",
       "methods": ["GET"],
       "allowedRoles": ["anonymous"]

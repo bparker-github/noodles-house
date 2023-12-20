@@ -54,6 +54,11 @@ const routes: RouteRecordRaw[] = [
             component: () => import('../components/pages/AuthDump.vue'),
           },
           {
+            path: 'settings',
+            name: RouteName.USER_SETTINGS,
+            component: () => import('../components/pages/UserSettings.vue')
+          },
+          {
             path: 'tokens',
             name: RouteName.PROFILE_TOKENS,
             component: () => import('../components/pages/ProfileTokensPage.vue'),

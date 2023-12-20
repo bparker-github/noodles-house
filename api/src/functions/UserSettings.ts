@@ -2,27 +2,27 @@ import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/fu
 import { getNoodleDb } from '../database/dataSource';
 import { UserSettings } from '../database/entity/UserSettings';
 
-export async function TestUserSettings(
+export async function GetUserSettings(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<HttpResponseInit> {
-  context.debug(`TestUserSettings called.`);
+  const userId = request.user?.id;
+  context.debug(`Getting User Settings for ${userId}`);
 
-  if (!request.user) {
-    return { status: 401 };
+  if (!userId) {
+    context.warn('Attempting to get settings without user');
+    return { status: 401, body: 'Cannot get settings without user.' };
   }
 
   const noodleDb = await getNoodleDb();
-  context.debug(`Summoned the db: ${noodleDb.isInitialized}`);
+  const found = await noodleDb.manager.findOneBy(UserSettings, { userId });
 
-  const found = await noodleDb.manager.findOneBy(UserSettings, { userId: request.user.id });
-
-  return { status: 200, body: JSON.stringify(found ?? UserSettings.Default(request.user.id)) };
+  context.debug(`Returning ${!found ? 'empty' : 'found'} User Settings for ${userId}`);
+  return { status: 200, jsonBody: found ?? UserSettings.Default(userId) };
 }
-
-app.http('TestUserSettings', {
+app.http('Get_UserSettings', {
   methods: ['GET'],
-  authLevel: 'anonymous',
-  route: 'settings/test',
-  handler: TestUserSettings,
+  authLevel: 'function',
+  route: 'settings',
+  handler: GetUserSettings,
 });

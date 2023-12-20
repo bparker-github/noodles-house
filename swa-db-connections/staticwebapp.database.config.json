@@ -5,7 +5,30 @@
     "connection-string": "@env('NOOD_DB_CONNECTION_STRING')",
     "database-type": "mssql"
   },
-  "runtime": {},
+  "runtime": {
+    "rest": {
+      "enabled": true,
+      "path": "/api"
+    },
+    "graphql": {
+      "enabled": false
+    },
+    "host": {
+      "mode": "production",
+      "authentication": {
+        "provider": "StaticWebApps"
+      },
+      "cors": {
+        "allow-credentials": false,
+        "origins": [
+          "http://localhost:9090",
+          "http://localhost:9091",
+          "https://localhost:4280",
+          "https://thankful-pebble-0fd322f0f.3.azurestaticapps.net/"
+        ]
+      }
+    }
+  },
   "entities": {
     "TestingOne": {
       "source": "dbo.TestOne",

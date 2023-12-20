@@ -36,6 +36,7 @@ coverage
 
 # Ignore database, it needs explicit named file
 database/.env
+swa-db-connections/.env
 
 # Ignore certain config files.
 config/*.p8

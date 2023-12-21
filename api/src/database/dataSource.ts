@@ -6,6 +6,7 @@ config({ path: '../.env' });
 
 import { DataSource } from 'typeorm';
 import { UserSettings } from './entity/UserSettings';
+import { TodoModel } from './entity/TodoModel';
 
 let loadedDb: DataSource;
 export async function getNoodleDb(): Promise<DataSource> {
@@ -23,7 +24,7 @@ export async function getNoodleDb(): Promise<DataSource> {
     connectionTimeout: 30e3,
     synchronize: true,
     logging: true,
-    entities: [UserSettings],
+    entities: [UserSettings, TodoModel],
     migrations: [],
   });
 

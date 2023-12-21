@@ -31,7 +31,7 @@
     }
   },
   "entities": {
-    "user_settings": {
+    "UserSettings": {
       "source": "dbo.UserSettings",
       "permissions": [
         { "actions": ["read"], "role": "authenticated" },

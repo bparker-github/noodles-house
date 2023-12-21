@@ -1,4 +1,3 @@
-export * from './auth';
 export * from './unsplash-js';
 
 export * from './EnumObject';

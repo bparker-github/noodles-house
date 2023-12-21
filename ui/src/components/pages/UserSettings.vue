@@ -1,3 +1,40 @@
 <template>
-  <div>This is the User Settings page.</div>
+  <div :class="['user-settings', 'flex flex-col flex-1']">
+    <NhButton
+      v-if="!curSettings"
+      :b-style="ButtonStyle.SOLID"
+      :b-theme="DefaultTheme.BALI_HAI"
+      text="Get Settings"
+      :is-loading="getUserSettingsFetch.isFetching"
+      @click="getSettings"
+    />
+
+    <code v-else>
+      <pre>{{ JSON.stringify(curSettings) }}</pre>
+    </code>
+  </div>
 </template>
+
+<script setup lang="ts">
+import { useNativeAuth } from '@/auth/useNativeAuth';
+import TextboxInput from '@/components/inputs/TextboxInput.vue';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
+import NhButton, { ButtonStyle, DefaultTheme } from '../basic/NhButton.vue';
+import { useFetch } from '@vueuse/core';
+import { computed } from 'vue';
+import { useUserSettings } from '@/stores/userSettingsStore';
+
+const userSettingsStore = useUserSettings();
+const { curSettings, getUserSettingsFetch } = storeToRefs(userSettingsStore);
+
+async function getSettings() {
+  try {
+    // Stuff
+    await getUserSettingsFetch.value.execute();
+  } catch (ex) {
+    // Error
+    console.error('Cannot do:', ex);
+  }
+}
+</script>

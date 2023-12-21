@@ -7,8 +7,7 @@
   },
   "runtime": {
     "rest": {
-      "enabled": true,
-      "path": "/api"
+      "enabled": true
     },
     "graphql": {
       "enabled": false
@@ -33,7 +32,7 @@
   },
   "entities": {
     "user_settings": {
-      "source": "dbo.user_settings",
+      "source": "dbo.UserSettings",
       "permissions": [
         { "actions": ["read"], "role": "authenticated" },
         { "actions": ["create", "delete", "update"], "role": "admin" }

@@ -5,6 +5,7 @@ import { computed } from 'vue';
 
 const DEFAULT_headers = {
   headers: {
+    'Content-Type': 'application/json',
     'X-MS-API-ROLE': 'authenticated',
   },
 };
@@ -18,7 +19,7 @@ export interface UserSettings {
 }
 
 export const useUserSettings = defineStore('user-settings-store', () => {
-  const baseRoute = '/data-api/rest/UserSettings';
+  const baseRoute = '/data-api/api/UserSettings';
 
   const { curUser } = storeToRefs(useNativeAuth());
 
@@ -26,7 +27,13 @@ export const useUserSettings = defineStore('user-settings-store', () => {
     () => baseRoute + '/userId/' + curUser.value?.clientPrincipal.userId
   );
 
-  const getUserSettingsFetch = useFetch(getUserSettingsUrl, DEFAULT_headers, {
+  const getAllUserSettingsFetch = useFetch<UserSettings[]>(
+    '/data-api/api/UserSettings',
+    DEFAULT_headers,
+    { immediate: false }
+  ).json<UserSettings[]>();
+
+  const getUserSettingsFetch = useFetch<UserSettings | null>(getUserSettingsUrl, DEFAULT_headers, {
     immediate: false,
   }).json<UserSettings | null>();
 
@@ -38,5 +45,6 @@ export const useUserSettings = defineStore('user-settings-store', () => {
     curSettings,
 
     getUserSettingsFetch,
+    getAllUserSettingsFetch,
   };
 });

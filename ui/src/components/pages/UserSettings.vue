@@ -5,7 +5,7 @@
       :b-style="ButtonStyle.SOLID"
       :b-theme="DefaultTheme.BALI_HAI"
       text="Get Settings"
-      :is-loading="getUserSettingsFetch.isFetching"
+      :is-loading="isFetching"
       @click="getSettings"
     />
 
@@ -26,12 +26,22 @@ import { computed } from 'vue';
 import { useUserSettings } from '@/stores/userSettingsStore';
 
 const userSettingsStore = useUserSettings();
-const { curSettings, getUserSettingsFetch } = storeToRefs(userSettingsStore);
+const { curSettings } = storeToRefs(userSettingsStore);
+const { getAllUserSettingsFetch } = userSettingsStore;
+
+console.log(
+  'UserSettingFetchIn:',
+  getAllUserSettingsFetch,
+  userSettingsStore,
+  userSettingsStore.getAllUserSettingsFetch
+);
+
+const isFetching = computed(() => getAllUserSettingsFetch.isFetching);
 
 async function getSettings() {
   try {
     // Stuff
-    await getUserSettingsFetch.value.execute();
+    await getAllUserSettingsFetch.execute();
   } catch (ex) {
     // Error
     console.error('Cannot do:', ex);

@@ -28,7 +28,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/indoors',
-    alias: ['/bunker', '/home'],
     component: () => import('../layouts/custom/MobileFirst.vue'),
     meta: {
       nativeUserRole: NativeUserRole.AUTHENTICATED,
@@ -56,7 +55,7 @@ const routes: RouteRecordRaw[] = [
           {
             path: 'settings',
             name: RouteName.USER_SETTINGS,
-            component: () => import('../components/pages/UserSettings.vue')
+            component: () => import('../components/pages/UserSettings.vue'),
           },
           {
             path: 'tokens',

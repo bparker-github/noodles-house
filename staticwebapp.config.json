@@ -18,15 +18,7 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/bunker*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/indoors*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/home*",
       "allowedRoles": ["authenticated"]
     },
     {

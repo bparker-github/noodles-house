@@ -10,6 +10,7 @@ export enum RouteName {
   HOME = 'Home',
   PROFILE = 'Profile',
   AUTH_DUMP = 'Auth Dump',
+  USER_SETTINGS = 'User Settings',
   PROFILE_TOKENS = 'Profile Tokens',
 
   /** Develop stuff */

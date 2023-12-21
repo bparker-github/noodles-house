@@ -22,9 +22,13 @@ const routes: RouteRecordRaw[] = [
 
   // #region NEW ROUTES
   {
-    path: '',
+    path: '/',
     name: RouteName.LANDING,
     component: () => import('../components/pages/LandingPage.vue'),
+  },
+  {
+    path: '/undefined',
+    redirect: { name: RouteName.LANDING },
   },
   {
     path: '/indoors',
@@ -52,6 +56,11 @@ const routes: RouteRecordRaw[] = [
             path: 'auth-dump',
             name: RouteName.AUTH_DUMP,
             component: () => import('../components/pages/AuthDump.vue'),
+          },
+          {
+            path: 'settings',
+            name: RouteName.USER_SETTINGS,
+            component: () => import('../components/pages/UserSettings.vue'),
           },
           {
             path: 'tokens',

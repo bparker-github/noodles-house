@@ -1,11 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('UserSettings')
 export class UserSettings {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('uuid')
+  @Column('varchar', { length: 255, name: 'userId' })
   userId: string;
 
   @Column()
@@ -16,4 +16,14 @@ export class UserSettings {
 
   @Column()
   profileLink: string;
+
+  static Default(userId = ''): UserSettings {
+    return {
+      id: '',
+      userId,
+      firstName: '',
+      lastName: '',
+      profileLink: '',
+    } satisfies UserSettings;
+  }
 }

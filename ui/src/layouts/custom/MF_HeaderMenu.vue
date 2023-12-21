@@ -28,7 +28,7 @@
             'shadow-inner shadow-nh-chalet-green-500',
             active ? 'from-nh-chalet-green-500' : 'from-nh-chalet-green-700',
           ]"
-          @click="() => item.onClick?.(item.value)"
+          @click="handleItemClick(item)"
         >
           <span
             :class="[
@@ -46,12 +46,24 @@
 
 <script setup lang="ts">
 import type { EnumObject } from '@/lib';
+import { RouteName } from '@/router/RouteName';
 import { MenuItem, MenuItems } from '@headlessui/vue';
+import { useRouter, type RouteLocationRaw } from 'vue-router';
 
-const items: EnumObject[] = [
-  { label: 'Testing Page 1', value: '/home', onClick: () => console.log('Home1') },
-  { label: 'Testing Page 2', value: '/home-2', onClick: () => console.log('Home2') },
-  { label: 'Testing Page 3', value: '/home-3', onClick: () => console.log('Home3') },
-  { label: 'Profile', value: '/profile', onClick: () => console.log('Profile') },
+const items: EnumObject<RouteLocationRaw>[] = [
+  { label: 'Testing Page 1', value: { path: '/home' } },
+  { label: 'Testing Page 2', value: { path: '/home-2' } },
+  { label: 'Testing Page 3', value: { path: '/home-3' } },
+  { label: 'User Settings', value: { name: RouteName.USER_SETTINGS } },
+  { label: 'Profile', value: { name: RouteName.PROFILE } },
 ];
+
+const router = useRouter();
+function handleItemClick(item: EnumObject<RouteLocationRaw>) {
+  // Execute the given onClick if present.
+  item?.onClick?.(item.value);
+
+  // Navigate to the value.
+  router.push(item.value);
+}
 </script>

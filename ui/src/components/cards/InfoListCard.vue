@@ -1,16 +1,16 @@
 <template>
-  <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="overflow-hidden bg-nh-whiteish shadow sm:rounded-lg">
     <div class="px-4 py-6 sm:px-6">
-      <h3 class="text-base font-semibold leading-7 text-gray-900">{{ title }}</h3>
+      <h3 class="text-base font-semibold leading-7 text-nh-bali-hai-950">{{ title }}</h3>
       <p
         v-if="subTitle"
-        class="mt-1 max-w-2xl text-sm leading-6 text-gray-500"
+        class="mt-1 max-w-2xl text-sm leading-6 text-nh-bali-hai-700"
       >
         {{ subTitle }}
       </p>
     </div>
-    <div class="border-t border-gray-100">
-      <dl class="divide-y divide-gray-100">
+    <div class="border-t border-nh-bali-hai-200">
+      <dl class="divide-y divide-nh-bali-hai-200">
         <slot>
           <InfoListItem
             v-for="eo in list"

@@ -25,6 +25,10 @@
         ><span class="nh-button-default-text">{{ text }}</span></slot
       >
     </span>
+
+    <slot name="right-icon">
+      <LoadingSpinner v-if="isLoading" />
+    </slot>
   </component>
 </template>
 
@@ -39,6 +43,8 @@ export enum DefaultTheme {
 </script>
 
 <script setup lang="ts">
+import LoadingSpinner from '../LoadingSpinner.vue';
+
 export interface NhButtonProps {
   /** An optional value indicating what base-component the button should embody. @default button */
   as?: string;
@@ -55,6 +61,14 @@ export interface NhButtonProps {
 
   /** An optional value to present as text of the button. Overridden by default slot. */
   text?: string;
+
+  /** An optional value indicating whether the button should show a spinner on the right. */
+  isLoading?: boolean;
 }
 defineProps<NhButtonProps>();
+
+defineSlots<{
+  default: {};
+  'right-icon': {};
+}>();
 </script>

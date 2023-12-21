@@ -22,12 +22,17 @@ const routes: RouteRecordRaw[] = [
 
   // #region NEW ROUTES
   {
-    path: '',
+    path: '/',
     name: RouteName.LANDING,
     component: () => import('../components/pages/LandingPage.vue'),
   },
   {
+    path: '/undefined',
+    redirect: { name: RouteName.LANDING },
+  },
+  {
     path: '/indoors',
+    alias: ['/bunker', '/home'],
     component: () => import('../layouts/custom/MobileFirst.vue'),
     meta: {
       nativeUserRole: NativeUserRole.AUTHENTICATED,

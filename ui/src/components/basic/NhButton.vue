@@ -3,7 +3,7 @@
     :is="as ?? 'button'"
     :class="[
       'nh-button',
-      'flex flex-row flex-nowrap',
+      'flex flex-row flex-nowrap justify-between',
       'px-3 py-2.5',
       // Apply Styles.
       {
@@ -11,13 +11,18 @@
         'border-2 bg-transparent rounded-md': bStyle === ButtonStyle.OUTLINE,
       },
       // Apply Default Themes
-      'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800',
-      'border border-nh-bali-hai-950/50',
-      'outline-2 outline-offset-1',
-      'focus-visible:outline focus-visible:outline-nh-bali-hai-950',
-      // {
-      //   '': !bTheme || bTheme === DefaultTheme.BALI_HAI,
-      // },
+      (!bTheme || bTheme === DefaultTheme.BALI_HAI) && [
+        'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800',
+        'border border-nh-bali-hai-950/50',
+        'outline-2 outline-offset-1',
+        'focus-visible:outline focus-visible:outline-nh-bali-hai-950',
+      ],
+      bTheme === DefaultTheme.CHALET_GREEN && [
+        'bg-nh-bali-hai-700 text-nh-chalet-green-100 hover:bg-nh-chalet-green-800',
+        'border border-nh-chalet-green-950/50',
+        'outline-2 outline-offset-1',
+        'focus-visible:outline focus-visible:outline-nh-chalet-green-950',
+      ],
     ]"
   >
     <span class="nh-button-text text-base font-semibold">
@@ -27,7 +32,10 @@
     </span>
 
     <slot name="right-icon">
-      <LoadingSpinner v-if="isLoading" />
+      <LoadingSpinner
+        v-if="isLoading"
+        class="h-6 w-6"
+      />
     </slot>
   </component>
 </template>
@@ -39,6 +47,7 @@ export enum ButtonStyle {
 }
 export enum DefaultTheme {
   BALI_HAI = 'bali-hai',
+  CHALET_GREEN = 'chalet-green',
 }
 </script>
 

@@ -18,7 +18,7 @@
         'focus-visible:outline focus-visible:outline-nh-bali-hai-950',
       ],
       bTheme === DefaultTheme.CHALET_GREEN && [
-        'bg-nh-bali-hai-700 text-nh-chalet-green-100 hover:bg-nh-chalet-green-800',
+        'bg-nh-chalet-green-700 text-nh-chalet-green-100 hover:bg-nh-chalet-green-800',
         'border border-nh-chalet-green-950/50',
         'outline-2 outline-offset-1',
         'focus-visible:outline focus-visible:outline-nh-chalet-green-950',
@@ -32,9 +32,18 @@
     </span>
 
     <slot name="right-icon">
-      <LoadingSpinner
+      <BasicSpinner
         v-if="isLoading"
-        class="h-6 w-6"
+        :omit-default-colors="true"
+        :class="[
+          'h-6 w-6',
+          (!bTheme || bTheme === DefaultTheme.BALI_HAI) && [
+            'text-nh-bali-hai-300 fill-nh-bali-hai-800',
+          ],
+          bTheme === DefaultTheme.CHALET_GREEN && [
+            'text-nh-chalet-green-50 fill-nh-chalet-green-800',
+          ],
+        ]"
       />
     </slot>
   </component>
@@ -52,7 +61,7 @@ export enum DefaultTheme {
 </script>
 
 <script setup lang="ts">
-import LoadingSpinner from '../LoadingSpinner.vue';
+import BasicSpinner from '../spinners/BasicSpinner.vue';
 
 export interface NhButtonProps {
   /** An optional value indicating what base-component the button should embody. @default button */

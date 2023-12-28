@@ -84,7 +84,8 @@
       "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[vue]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
+      "editor.rulers": [80, 120]
     },
 
     "files.associations": {
@@ -138,7 +139,8 @@
 
     "powershell.cwd": "noodles-house",
 
-    "vue.complete.casing.tags": "pascal"
+    "vue.complete.casing.tags": "pascal",
+    "editor.rulers": [80, 120]
   },
   "launch": {
     "version": "0.2.0",

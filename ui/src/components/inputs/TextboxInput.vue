@@ -1,6 +1,7 @@
 <template>
-  <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1']">
+  <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1 gap-y-2']">
     <label
+      v-if="hasLabel"
       :for="inputId"
       class="inline-flex flex-1"
     >
@@ -11,15 +12,24 @@
       </slot>
     </label>
 
-    <div class="relative mt-2 rounded-md shadow-sm">
+    <div class="relative rounded-md shadow-sm">
+      <!-- The input itself -->
       <input
         v-model="localValue"
         :id="inputId"
         :class="[
-          'block w-full rounded-md border-0 py-1.5 pr-10 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6',
+          'block w-full rounded-md border-0 py-1.5 pr-10 text-red-900',
+          'ring-1 ring-inset ring-red-300',
+          'placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500',
+          'sm:text-sm sm:leading-6',
         ]"
         :aria-describedby="errorMsg ? errorId : undefined"
       />
+
+      <!-- The custom right icon, if present -->
+      <slot name="right-icon"></slot>
+
+      <!-- The error icon, if error present -->
       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
         <ExclamationCircleIcon
           class="h-5 w-5 text-nh-empress-800"
@@ -52,7 +62,7 @@ interface TextboxInputProps {
 
 const props = defineProps<TextboxInputProps>();
 const emits = defineEmits<{ 'update:value': [string] }>();
-defineSlots<{ label: [] }>();
+const slots = defineSlots<{ label: []; 'right-icon': [] }>();
 
 const localValue = computed({
   get: () => props.value,
@@ -60,4 +70,5 @@ const localValue = computed({
 });
 
 const errorId = computed(() => props.inputId + '-error');
+const hasLabel = computed(() => props.label || slots.label);
 </script>

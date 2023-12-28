@@ -33,6 +33,18 @@
         'border-nh-off-yellow-500/50 focus-visible:outline-nh-off-yellow-500',
         'shadow-inner-sm shadow-nh-off-yellow-800',
       ],
+      bTheme === BTheme.DI_SERRIA && [
+        'bg-nh-di-serria-700 text-nh-di-serria-100 hover:bg-nh-di-serria-800',
+        'border-nh-di-serria-950/50 focus-visible:outline-nh-di-serria-950',
+      ],
+      bTheme === BTheme.BOURBON && [
+        'bg-nh-bourbon-700 text-nh-bourbon-100 hover:bg-nh-bourbon-800',
+        'border-nh-bourbon-950/50 focus-visible:outline-nh-bourbon-950',
+      ],
+      bTheme === BTheme.EMPRESS && [
+        'bg-nh-empress-700 text-nh-empress-100 hover:bg-nh-empress-800',
+        'border-nh-empress-950/50 focus-visible:outline-nh-empress-950',
+      ],
     ]"
   >
     <span class="nh-button-text text-base font-semibold">
@@ -51,6 +63,9 @@
           bTheme === BTheme.CHALET_GREEN && ['text-nh-chalet-green-50 fill-nh-chalet-green-950'],
           bTheme === BTheme.OFF_YELLOW && ['text-nh-off-yellow-50 fill-nh-off-yellow-950'],
           bTheme === BTheme.OFF_YELLOW_LIGHT && ['text-nh-whiteish fill-nh-off-yellow-800'],
+          bTheme === BTheme.DI_SERRIA && ['text-nh-di-serria-50 fill-nh-di-serria-950'],
+          bTheme === BTheme.BOURBON && ['text-nh-bourbon-50 fill-nh-bourbon-950'],
+          bTheme === BTheme.EMPRESS && ['text-nh-empress-50 fill-nh-empress-950'],
         ]"
       />
     </slot>
@@ -68,6 +83,9 @@ export enum BTheme {
   MALLARD = 'mallard',
   OFF_YELLOW = 'off-yellow',
   OFF_YELLOW_LIGHT = 'off-yellow-light',
+  DI_SERRIA = 'di-serria',
+  BOURBON = 'bourbon',
+  EMPRESS = 'empress',
 }
 </script>
 

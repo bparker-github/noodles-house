@@ -1,9 +1,10 @@
 <template>
   <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1 gap-y-2']">
+    <!-- The label above the input, if present -->
     <label
       v-if="hasLabel"
       :for="inputId"
-      class="inline-flex flex-1"
+      class="nhti-label inline-flex flex-1"
     >
       <slot name="label">
         <span class="text-sm font-medium leading-6 text-nh-gray-blue">
@@ -12,16 +13,30 @@
       </slot>
     </label>
 
-    <div class="relative rounded-md shadow-sm">
+    <!-- The white container box here -->
+    <div
+      :class="[
+        'nhti-white-box',
+        'inline-flex flex-row flex-1 items-center',
+        'rounded-md shadow-sm px-2',
+        'bg-white border-nh-chalet-green-600 border',
+        'gap-x-2',
+        'focus-within:ring-1 focus-within:ring-inset',
+        !errorMsg ? 'focus-within:ring-nh-chalet-green-500' : 'focus-within:ring-nh-bourbon-800',
+      ]"
+    >
       <!-- The input itself -->
       <input
         v-model="localValue"
         :id="inputId"
         :class="[
-          'block w-full rounded-md border-0 py-1.5 pr-10 text-red-900',
-          'ring-1 ring-inset ring-red-300',
-          'placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500',
+          'inline-flex flex-row flex-nowrap flex-1',
+          'py-1.5 pl-1 pr-3 rounded-md border-0 bg-trans',
           'sm:text-sm sm:leading-6',
+          'focus:ring-0',
+          !errorMsg
+            ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/30'
+            : 'text-nh-bourbon-800 placeholder:text-nh-bourbon-800/30',
         ]"
         :aria-describedby="errorMsg ? errorId : undefined"
       />
@@ -30,7 +45,7 @@
       <slot name="right-icon"></slot>
 
       <!-- The error icon, if error present -->
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+      <div class="pointer-events-none flex items-center">
         <ExclamationCircleIcon
           class="h-5 w-5 text-nh-empress-800"
           aria-hidden="true"

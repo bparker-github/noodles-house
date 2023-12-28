@@ -1,10 +1,10 @@
 <template>
   <div :class="['user-settings', 'flex flex-col flex-1', 'gap-y-3']">
     <NhButton
-      :b-style="ButtonStyle.SOLID"
-      :b-theme="DefaultTheme.BALI_HAI"
+      :b-style="BStyle.SOLID"
+      :b-theme="BTheme.CHALET_GREEN"
       :text="buttonText"
-      :is-loading="isFetchMySettingsFetching || true"
+      :is-loading="isFetchMySettingsFetching"
       @click="getSettings"
     />
 
@@ -30,7 +30,7 @@ import { type EnumObject } from '@/lib';
 import { useUserSettings, type UserSettings } from '@/stores/userSettingsStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import NhButton, { ButtonStyle, DefaultTheme } from '../basic/NhButton.vue';
+import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
 import PreCodeBlock from '../PreCodeBlock.vue';
 import EditableInfoList from '../forms/EditableInfoList.vue';
 

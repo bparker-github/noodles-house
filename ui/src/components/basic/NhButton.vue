@@ -7,21 +7,31 @@
       'px-3 py-2.5',
       // Apply Styles.
       {
-        'border rounded-md': !bStyle || bStyle === ButtonStyle.SOLID,
-        'border-2 bg-transparent rounded-md': bStyle === ButtonStyle.OUTLINE,
+        'border rounded-md': !bStyle || bStyle === BStyle.SOLID,
+        'border-2 bg-transparent rounded-md': bStyle === BStyle.OUTLINE,
       },
-      // Apply Default Themes
-      (!bTheme || bTheme === DefaultTheme.BALI_HAI) && [
+      // Apply Themes - first apply shared styles, then unique colors.
+      'border outline-2 outline-offset-1 focus-visible:outline',
+      (!bTheme || bTheme === BTheme.BALI_HAI) && [
         'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800',
-        'border border-nh-bali-hai-950/50',
-        'outline-2 outline-offset-1',
-        'focus-visible:outline focus-visible:outline-nh-bali-hai-950',
+        'border-nh-bali-hai-950/50 focus-visible:outline-nh-bali-hai-950',
       ],
-      bTheme === DefaultTheme.CHALET_GREEN && [
+      bTheme === BTheme.CHALET_GREEN && [
         'bg-nh-chalet-green-700 text-nh-chalet-green-100 hover:bg-nh-chalet-green-800',
-        'border border-nh-chalet-green-950/50',
-        'outline-2 outline-offset-1',
-        'focus-visible:outline focus-visible:outline-nh-chalet-green-950',
+        'border-nh-chalet-green-950/50 focus-visible:outline-nh-chalet-green-950',
+      ],
+      bTheme === BTheme.MALLARD && [
+        'bg-nh-mallard-700 text-nh-mallard-100 hover:bg-nh-mallard-800',
+        'border-nh-mallard-950/50 focus-visible:outline-nh-mallard-950',
+      ],
+      bTheme === BTheme.OFF_YELLOW && [
+        'bg-nh-off-yellow-700 text-nh-off-yellow-100 hover:bg-nh-off-yellow-800',
+        'border-nh-off-yellow-950/50 focus-visible:outline-nh-off-yellow-950',
+      ],
+      bTheme === BTheme.OFF_YELLOW_LIGHT && [
+        'bg-nh-off-yellow-300 text-nh-off-yellow-950 hover:bg-nh-off-yellow-400',
+        'border-nh-off-yellow-500/50 focus-visible:outline-nh-off-yellow-500',
+        'shadow-inner-sm shadow-nh-off-yellow-800',
       ],
     ]"
   >
@@ -37,12 +47,10 @@
         :omit-default-colors="true"
         :class="[
           'h-6 w-6',
-          (!bTheme || bTheme === DefaultTheme.BALI_HAI) && [
-            'text-nh-bali-hai-300 fill-nh-bali-hai-800',
-          ],
-          bTheme === DefaultTheme.CHALET_GREEN && [
-            'text-nh-chalet-green-50 fill-nh-chalet-green-800',
-          ],
+          (!bTheme || bTheme === BTheme.BALI_HAI) && ['text-nh-bali-hai-300 fill-nh-bali-hai-800'],
+          bTheme === BTheme.CHALET_GREEN && ['text-nh-chalet-green-50 fill-nh-chalet-green-950'],
+          bTheme === BTheme.OFF_YELLOW && ['text-nh-off-yellow-50 fill-nh-off-yellow-950'],
+          bTheme === BTheme.OFF_YELLOW_LIGHT && ['text-nh-whiteish fill-nh-off-yellow-800'],
         ]"
       />
     </slot>
@@ -50,13 +58,16 @@
 </template>
 
 <script lang="ts">
-export enum ButtonStyle {
+export enum BStyle {
   SOLID = 'solid',
   OUTLINE = 'outline',
 }
-export enum DefaultTheme {
+export enum BTheme {
   BALI_HAI = 'bali-hai',
   CHALET_GREEN = 'chalet-green',
+  MALLARD = 'mallard',
+  OFF_YELLOW = 'off-yellow',
+  OFF_YELLOW_LIGHT = 'off-yellow-light',
 }
 </script>
 
@@ -68,14 +79,14 @@ export interface NhButtonProps {
   as?: string;
 
   /** An optional value indicating the style of the button. @default SOLID */
-  bStyle?: ButtonStyle;
+  bStyle?: BStyle;
 
   /**
    * An optional value to presume styling upon the button without specific classes.
    * Can be used in conjunction with classes to tweak styles.
    * @default BALI_HAI
    */
-  bTheme?: DefaultTheme;
+  bTheme?: BTheme;
 
   /** An optional value to present as text of the button. Overridden by default slot. */
   text?: string;

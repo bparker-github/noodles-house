@@ -8,15 +8,16 @@
       @click="getSettings"
     />
 
-    <EditableSettingsList
-      v-if="myUserSettings"
-      v-model:data="myUserSettings"
-      :model-labels="settingsLabels"
-      :update-model-val="updateModelVal"
-      title="User Settings"
-      sub-title="These settings are entirely up to your preference, m'dear."
-      @on-save="onSettingsSave"
-    />
+    <form id="user-settings-form">
+      <EditableSettingsList
+        v-if="myUserSettings"
+        v-model:data="myUserSettings"
+        :field-configs="fieldConfigs"
+        title="User Settings"
+        sub-title="These settings are entirely up to your preference, m'dear."
+        @submit="onSettingsSave"
+      />
+    </form>
 
     <div v-if="myUserSettings">
       My User Settings
@@ -26,13 +27,12 @@
 </template>
 
 <script setup lang="ts">
-import { type EnumObject } from '@/lib';
 import { useUserSettings, type UserSettings } from '@/stores/userSettingsStore';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
 import PreCodeBlock from '../PreCodeBlock.vue';
-import EditableInfoList from '../forms/EditableInfoList.vue';
+import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
+import EditableInfoList, { type ModelFieldConfigMap } from '../forms/EditableInfoList.vue';
 
 const EditableSettingsList = EditableInfoList<UserSettings>;
 
@@ -51,34 +51,48 @@ async function getSettings() {
 
 // Computed
 const buttonText = computed(() => (myUserSettings.value ? 'Refresh Settings' : 'Get Settings'));
-const settingsLabels = computed<EnumObject<keyof UserSettings>[]>(() =>
-  !myUserSettings.value
-    ? [
-        {
-          label: 'No User Settings saved yet!',
-          value: null as unknown as keyof UserSettings,
-        },
-      ]
-    : Object.entries(myUserSettings.value).map(([label, value]) => ({
-        label,
-        value: label as keyof UserSettings,
-      }))
-);
 
-function updateModelVal<K extends keyof UserSettings>(key: K, newVal: UserSettings[K]) {
-  // Short circuit if something fishy happens.
-  if (!myUserSettings.value || !(key in myUserSettings.value)) {
-    console.log('error updating model val:', key, newVal);
-    return myUserSettings.value ?? undefined;
+const fieldConfigs = computed<ModelFieldConfigMap<UserSettings>>(() => {
+  if (!myUserSettings.value) {
+    return {
+      id: {
+        getValue: () => 'No User Settings saved yet!',
+        label: 'None',
+        isDisabled: true,
+      },
+    };
   }
 
-  myUserSettings.value = {
-    ...myUserSettings.value,
-    [key]: newVal,
+  const ret: ModelFieldConfigMap<UserSettings> = {
+    id: {
+      disabled: true,
+      value: myUserSettings.value.id,
+      label: 'Id',
+    },
+    userId: {
+      disabled: true,
+      value: myUserSettings.value.userId,
+      label: 'User Id',
+    },
+    firstName: {
+      value: myUserSettings.value.firstName,
+      label: 'First Name',
+    },
+    lastName: {
+      value: myUserSettings.value.lastName,
+      label: 'Last Name',
+    },
+    profileLink: {
+      disabled: true,
+      value: myUserSettings.value.profileLink,
+      label: 'Profile Link',
+    },
   };
 
-  return myUserSettings.value;
-}
+  return ret;
+});
 
-function onSettingsSave() {}
+function onSettingsSave() {
+  console.log('Settings save:', arguments);
+}
 </script>

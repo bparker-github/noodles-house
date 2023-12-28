@@ -1,5 +1,8 @@
 <template>
-  <div class="overflow-hidden bg-nh-whiteish shadow-md sm:rounded-lg">
+  <form
+    class="overflow-hidden bg-nh-whiteish shadow-md sm:rounded-lg"
+    @submit.prevent="clickSave"
+  >
     <div class="px-4 py-6 sm:px-6">
       <h3 class="text-base font-semibold leading-7 text-nh-bali-hai-950">{{ title }}</h3>
       <p
@@ -12,15 +15,41 @@
     <div class="border-t border-nh-bali-hai-200">
       <dl class="divide-y divide-nh-bali-hai-200">
         <template
-          v-for="(eo, i) in modelLabels"
+          v-for="(config, key, i) in fieldConfigs"
           :key="i"
         >
           <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-nh-bali-hai-900">
-              {{ eo.label }}
+              {{ config }}
             </dt>
             <dd class="mt-1 text-sm leading-6 text-nh-bali-hai-700 sm:col-span-2 sm:mt-0">
-              {{ getModelVal(eo.value) }}
+              <!-- Display for non-editing -->
+              <div
+                v-if="!editingList.has(i)"
+                :class="['flex flex-row w-full group justify-between cursor-pointer']"
+                @click.prevent="editingList.add(i)"
+              >
+                <span>{{ getModelLabel(config.value) }}</span>
+
+                <PencilIcon
+                  :class="[
+                    'h-5 w-5',
+                    'motion-safe:transition-opacity motion-safe:opacity-50 duration-300 group-hover:opacity-100',
+                  ]"
+                />
+              </div>
+
+              <!-- Editing visual -->
+              <TextboxInput
+                v-else
+                :value="getValueForModel(eo.value)"
+                @update:value="(nv) => updateModelPart(eo.value, nv)"
+                :name="eo.value"
+                :placeholder="getValueForModel(eo.value)"
+                :input-id="eo.label"
+              />
+
+              <!-- Copy-button -->
             </dd>
           </div>
         </template>
@@ -31,18 +60,32 @@
       <NhButton
         class="self-start"
         text="Save"
-        @click="clickSave"
+        type="submit"
       />
     </div>
-  </div>
+  </form>
 </template>
 
 <script setup lang="ts" generic="T extends {}">
 import type { EnumObject } from '@/lib';
-import NhButton from '../basic/NhButton.vue';
+import { PencilIcon } from '@heroicons/vue/24/solid';
+import type { MaybeRef } from 'vue';
 import { ref } from 'vue';
+import NhButton from '../basic/NhButton.vue';
+import TextboxInput from '../inputs/TextboxInput.vue';
+import { toValue } from 'vue';
 
-export interface EditableInfoListProps<Model> {
+export interface ModelFieldConfig {
+  label: MaybeRef<string>;
+  value?: MaybeRef<string>;
+  errorMsg?: MaybeRef<string | undefined>;
+  disabled?: MaybeRef<boolean>;
+}
+export type ModelFieldConfigMap<Model extends {}> = {
+  [Key in keyof Model]?: ModelFieldConfig;
+};
+
+export interface EditableInfoListProps<Model extends {}> {
   /** The main title of this Editable Info List */
   title: string;
   /** The optional sub-title to supplement the main title with, if present. */
@@ -57,28 +100,34 @@ export interface EditableInfoListProps<Model> {
   data: Model;
 
   /**
-   * The list of items to enumerate for the list.
-   *  Keyed by the label of each field to edit, with values representing the exact key within the model.
+   * The configuration for all models that are intended to be shown.
    */
-  modelLabels: EnumObject<keyof Model>[];
-
-  /**
-   * A function to use to handle the updating of individual pieces of the model.
-   * @param key They key change the value of within the model.
-   * @param newVal The new actual value to inject into the model in the given k
-   */
-  updateModelVal: <K extends keyof Model>(key: K, newVal: Model[K]) => Model | undefined;
+  fieldConfigs: ModelFieldConfigMap<Model>;
 }
+
 const props = defineProps<EditableInfoListProps<T>>();
-const emits = defineEmits<{ 'on-save': [] }>();
+const emits = defineEmits<{
+  submit: [T];
+  'update:data': [T];
+}>();
 
 // Refs
 const isDisabled = ref(false);
+const editingList = ref<Set<number>>(new Set<number>());
 
 // Functions
-function getModelVal(key: keyof T) {
-  return key in props.data ? props.data[key] : 'Missing';
+function getModelLabel(value: MaybeRef<string>) {
+  return toValue(value) ?? 'Missing';
 }
+
+function getValueForModel<K extends keyof T>(key: K): string {
+  const ret = props.data[key];
+  return typeof ret !== 'string' || !`${ret}` ? '' : ret;
+}
+function updateModelPart<K extends keyof T>(key: K, nv: string) {
+  emits('update:data', { ...props.data, [key]: nv as T[K] });
+}
+
 function clickSave() {
   // Cannot save when disabled
   if (isDisabled.value) {
@@ -86,7 +135,10 @@ function clickSave() {
     return;
   }
 
+  // "close" all editing lines
+  editingList.value.clear();
+
   // Emit like normal
-  emits('on-save');
+  emits('submit', props.data);
 }
 </script>

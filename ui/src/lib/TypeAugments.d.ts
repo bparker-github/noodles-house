@@ -4,9 +4,7 @@ export type RequireOnlyOne<T, Keys extends keyof T = keyof T> = Pick<T, Exclude<
   }[Keys];
 
 export type ChangeValues<T extends {}, V> = {
-  [key in T]: T[key] extends Object
-    ? ChangeValues<T[key], V>
-    : T[key] extends Array<infer F>
-      ? Array<ChangeValues<F, V>>
-      : V;
+  [key in T]: V;
 };
+
+export type FromEntries<T extends {}> = [keyof T, T[keyof T]][];

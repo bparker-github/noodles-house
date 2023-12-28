@@ -121,6 +121,8 @@ const ThemeColors = Object.assign(
   },
   {
     trans: 'transparent',
+    black: BaseThemeColors['nh-chalet-green'][950],
+    white: '#fbfbfb',
   }
 );
 

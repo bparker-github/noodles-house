@@ -18,9 +18,8 @@
       :class="[
         'nhti-white-box',
         'inline-flex flex-row flex-1 items-center',
-        'rounded-md shadow-sm px-2',
+        'rounded-md shadow-sm px-2 gap-x-2',
         'bg-white border-nh-chalet-green-600 border',
-        'gap-x-2',
         'focus-within:ring-1 focus-within:ring-inset',
         !errorMsg ? 'focus-within:ring-nh-chalet-green-500' : 'focus-within:ring-nh-bourbon-800',
       ]"
@@ -45,7 +44,10 @@
       <slot name="right-icon"></slot>
 
       <!-- The error icon, if error present -->
-      <div class="pointer-events-none flex items-center">
+      <div
+        v-if="errorMsg"
+        class="pointer-events-none flex items-center"
+      >
         <ExclamationCircleIcon
           class="h-5 w-5 text-nh-empress-800"
           aria-hidden="true"

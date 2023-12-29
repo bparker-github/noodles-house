@@ -8,16 +8,15 @@
       @click="getSettings"
     />
 
-    <form id="user-settings-form">
-      <EditableSettingsList
-        v-if="myUserSettings"
-        v-model:data="myUserSettings"
-        :field-configs="fieldConfigs"
-        title="User Settings"
-        sub-title="These settings are entirely up to your preference, m'dear."
-        @submit="onSettingsSave"
-      />
-    </form>
+    <EditableSettingsList
+      v-if="myUserSettings"
+      v-model:data="myUserSettings"
+      id="user-settings-form"
+      :field-configs="fieldConfigs"
+      title="User Settings"
+      sub-title="These settings are entirely up to your preference, m'dear."
+      @submit="onSettingsSave"
+    />
 
     <div v-if="myUserSettings">
       My User Settings
@@ -32,7 +31,7 @@ import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import PreCodeBlock from '../PreCodeBlock.vue';
 import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
-import EditableInfoList, { type ModelFieldConfigMap } from '../forms/EditableInfoList.vue';
+import EditableInfoList, { type ModelFieldConfig } from '../forms/EditableInfoList.vue';
 
 const EditableSettingsList = EditableInfoList<UserSettings>;
 
@@ -52,42 +51,45 @@ async function getSettings() {
 // Computed
 const buttonText = computed(() => (myUserSettings.value ? 'Refresh Settings' : 'Get Settings'));
 
-const fieldConfigs = computed<ModelFieldConfigMap<UserSettings>>(() => {
+const fieldConfigs = computed<ModelFieldConfig<UserSettings>[]>(() => {
   if (!myUserSettings.value) {
-    return {
-      id: {
-        getValue: () => 'No User Settings saved yet!',
-        label: 'None',
-        isDisabled: true,
+    return [
+      {
+        key: 'id',
+        label: 'No Settings',
+        disabled: true,
+        placeholder: 'No settings yet exist',
       },
-    };
+    ];
   }
 
-  const ret: ModelFieldConfigMap<UserSettings> = {
-    id: {
+  const ret: ModelFieldConfig<UserSettings>[] = [
+    {
+      key: 'id',
       disabled: true,
-      value: myUserSettings.value.id,
       label: 'Id',
     },
-    userId: {
+    {
+      key: 'userId',
       disabled: true,
-      value: myUserSettings.value.userId,
       label: 'User Id',
     },
-    firstName: {
-      value: myUserSettings.value.firstName,
+    {
+      key: 'firstName',
       label: 'First Name',
+      placeholder: 'John',
     },
-    lastName: {
-      value: myUserSettings.value.lastName,
+    {
+      key: 'lastName',
       label: 'Last Name',
+      placeholder: 'Smith',
     },
-    profileLink: {
+    {
+      key: 'profileLink',
       disabled: true,
-      value: myUserSettings.value.profileLink,
       label: 'Profile Link',
     },
-  };
+  ];
 
   return ret;
 });

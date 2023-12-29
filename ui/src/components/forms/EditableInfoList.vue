@@ -13,23 +13,23 @@
       </p>
     </div>
     <div class="border-t border-nh-bali-hai-200">
-      <dl class="divide-y divide-nh-bali-hai-200">
+      <dl class="divide-y divide-nh-bali-hai-200 shadow-sm">
         <template
-          v-for="(config, key, i) in fieldConfigs"
+          v-for="(config, i) in fieldConfigs"
           :key="i"
         >
-          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <div class="px-4 pt-4 pb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
             <dt class="text-sm font-medium text-nh-bali-hai-900">
-              {{ config }}
+              {{ toValue(config.label) }}
             </dt>
             <dd class="mt-1 text-sm leading-6 text-nh-bali-hai-700 sm:col-span-2 sm:mt-0">
               <!-- Display for non-editing -->
               <div
                 v-if="!editingList.has(i)"
                 :class="['flex flex-row w-full group justify-between cursor-pointer']"
-                @click.prevent="editingList.add(i)"
+                @click.prevent="toggleEditable(config, i)"
               >
-                <span>{{ getModelLabel(config.value) }}</span>
+                <span>{{ getValueForModel(config.key) ?? 'Missing' }}</span>
 
                 <PencilIcon
                   :class="[
@@ -42,11 +42,12 @@
               <!-- Editing visual -->
               <TextboxInput
                 v-else
-                :value="getValueForModel(eo.value)"
-                @update:value="(nv) => updateModelPart(eo.value, nv)"
-                :name="eo.value"
-                :placeholder="getValueForModel(eo.value)"
-                :input-id="eo.label"
+                :ref="(el) => assignRef(config, el)"
+                :value="getValueForModel(config.key)"
+                @update:value="(nv) => updateModelPart(config.key, nv)"
+                :name="config.key"
+                :placeholder="toValue(config.placeholder)"
+                :input-id="String(config.key)"
               />
 
               <!-- Copy-button -->
@@ -56,9 +57,9 @@
       </dl>
     </div>
 
-    <div class="submit-button flex flex-col flex-1 px-2 py-3">
+    <div :class="['submit-button flex flex-col flex-1', 'px-2 py-3']">
       <NhButton
-        class="self-start"
+        :class="['flex-1 self-end w-32', '[&>span]:w-full']"
         text="Save"
         type="submit"
       />
@@ -67,23 +68,19 @@
 </template>
 
 <script setup lang="ts" generic="T extends {}">
-import type { EnumObject } from '@/lib';
 import { PencilIcon } from '@heroicons/vue/24/solid';
-import type { MaybeRef } from 'vue';
-import { ref } from 'vue';
+import type { ComponentPublicInstance, MaybeRef } from 'vue';
+import { ref, toValue } from 'vue';
 import NhButton from '../basic/NhButton.vue';
 import TextboxInput from '../inputs/TextboxInput.vue';
-import { toValue } from 'vue';
 
-export interface ModelFieldConfig {
+export interface ModelFieldConfig<Model extends {}> {
+  key: keyof Model;
   label: MaybeRef<string>;
-  value?: MaybeRef<string>;
+  placeholder?: MaybeRef<string>;
   errorMsg?: MaybeRef<string | undefined>;
   disabled?: MaybeRef<boolean>;
 }
-export type ModelFieldConfigMap<Model extends {}> = {
-  [Key in keyof Model]?: ModelFieldConfig;
-};
 
 export interface EditableInfoListProps<Model extends {}> {
   /** The main title of this Editable Info List */
@@ -102,7 +99,7 @@ export interface EditableInfoListProps<Model extends {}> {
   /**
    * The configuration for all models that are intended to be shown.
    */
-  fieldConfigs: ModelFieldConfigMap<Model>;
+  fieldConfigs: ModelFieldConfig<Model>[];
 }
 
 const props = defineProps<EditableInfoListProps<T>>();
@@ -115,17 +112,36 @@ const emits = defineEmits<{
 const isDisabled = ref(false);
 const editingList = ref<Set<number>>(new Set<number>());
 
-// Functions
-function getModelLabel(value: MaybeRef<string>) {
-  return toValue(value) ?? 'Missing';
+// Element Refs
+const inputRefs = ref<Record<string, InstanceType<typeof TextboxInput> | null>>({});
+function assignRef(config: ModelFieldConfig<T>, el: Element | ComponentPublicInstance | null) {
+  console.log('Assigning ref for config:', config.key);
+
+  const refName = getRefName(config.key);
+  inputRefs.value[refName] = el as InstanceType<typeof TextboxInput>;
 }
 
+// Functions
 function getValueForModel<K extends keyof T>(key: K): string {
   const ret = props.data[key];
   return typeof ret !== 'string' || !`${ret}` ? '' : ret;
 }
 function updateModelPart<K extends keyof T>(key: K, nv: string) {
   emits('update:data', { ...props.data, [key]: nv as T[K] });
+}
+function getRefName<K extends keyof T>(key: K): string {
+  return 'inputRef' + String(key);
+}
+
+function toggleEditable(config: ModelFieldConfig<T>, i: number) {
+  editingList.value.add(i);
+
+  // Jump to the end of the callstack so the input can render and properly mount.
+  setTimeout(() => {
+    const refName = getRefName(config.key);
+    const foundRef = inputRefs.value[refName];
+    foundRef?.focusInput();
+  }, 0);
 }
 
 function clickSave() {

@@ -27,6 +27,7 @@
       <!-- The input itself -->
       <input
         v-model="localValue"
+        ref="inputEle"
         :id="inputId"
         :class="[
           'inline-flex flex-row flex-nowrap flex-1',
@@ -66,20 +67,26 @@
 
 <script setup lang="ts">
 import { ExclamationCircleIcon } from '@heroicons/vue/20/solid';
-import { type InputHTMLAttributes, computed } from 'vue';
+import { computed, ref, type InputHTMLAttributes } from 'vue';
 
 interface TextboxInputProps {
+  /** The model value to pass to the input. */
   value: string;
+  /** The id to associate with this input. Used for DOM referencing. */
   inputId: string;
+  /** The optional label to add above this input. Entire line is omitted of not present. */
   label?: string;
+  /** An optional string indicating the presence of an error, described by the message. */
   errorMsg?: string;
-
+  /** An optional set of additional attributes to pass directly to the input element. */
   inputProps?: InputHTMLAttributes;
 }
 
 const props = defineProps<TextboxInputProps>();
 const emits = defineEmits<{ 'update:value': [string] }>();
 const slots = defineSlots<{ label: []; 'right-icon': [] }>();
+
+const inputEle = ref<HTMLInputElement | null>(null);
 
 const localValue = computed({
   get: () => props.value,
@@ -88,4 +95,9 @@ const localValue = computed({
 
 const errorId = computed(() => props.inputId + '-error');
 const hasLabel = computed(() => props.label || slots.label);
+
+function focusInput() {
+  inputEle.value?.focus();
+}
+defineExpose({ focusInput, inputEle });
 </script>

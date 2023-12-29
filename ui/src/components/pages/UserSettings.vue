@@ -18,15 +18,25 @@
       @submit="onSettingsSave"
     />
 
-    <div v-if="myUserSettings">
+    <div
+      v-if="myUserSettings"
+      class="flex flex-col gap-y-2"
+    >
       My User Settings
       <PreCodeBlock :data="myUserSettings" />
+
+      <NhButton
+        :class="['flex-1 self-end w-64', '[&>span]:w-full']"
+        text="Manual Fetch"
+        @click.prevent="performGet"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useUserSettings, type UserSettings } from '@/stores/userSettingsStore';
+import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import PreCodeBlock from '../PreCodeBlock.vue';
@@ -94,7 +104,57 @@ const fieldConfigs = computed<ModelFieldConfig<UserSettings>[]>(() => {
   return ret;
 });
 
-function onSettingsSave() {
-  console.log('Settings save:', arguments);
+async function onSettingsSave(toSave: UserSettings) {
+  // Check if we are PUT or POST (create/update);
+  console.log('Settings save:', toSave);
+
+  // We are in a create/PUT situation
+  if (!toSave.id) {
+    await createNewSettings(toSave);
+  }
+}
+async function createNewSettings(newSettings: UserSettings) {
+  const putFetch = useFetch('/data-api/rest/user-settings', {
+    beforeFetch(ctx) {
+      ctx.options.method = 'POST';
+      ctx.options.headers = {
+        ...(ctx.options.headers ?? {}),
+        'Content-Type': 'application/json',
+        'X-MS-API-ROLE': 'anonymous',
+      };
+
+      // // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // const { id, ...withoutId } = newSettings;
+      newSettings.id = '5bd81e1a-8c9e-4000-be33-cbb2c46cf1c4';
+      ctx.options.body = JSON.stringify(newSettings);
+
+      return ctx;
+    },
+    immediate: false,
+  });
+
+  try {
+    await putFetch.execute();
+
+    console.log('PutFetch completed:', putFetch.response.value);
+  } catch (err) {
+    console.error('PutFetch error:', putFetch.error.value);
+  }
+}
+
+async function performGet() {
+  const resp = await useFetch('/data-api/rest/user-settings', {
+    beforeFetch(ctx) {
+      ctx.options.method = 'GET';
+      ctx.options.headers = {
+        ...(ctx.options.headers ?? {}),
+        'Content-Type': 'application/json',
+        'X-MS-API-ROLE': 'anonymous',
+      };
+      return ctx;
+    },
+  });
+
+  console.log('Returned val:', resp.response.value);
 }
 </script>

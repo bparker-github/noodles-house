@@ -114,7 +114,7 @@ async function onSettingsSave(toSave: UserSettings) {
   }
 }
 async function createNewSettings(newSettings: UserSettings) {
-  const putFetch = useFetch('/data-api/da-data/user-settings', {
+  const putFetch = useFetch('/data-api/direct/user-settings', {
     beforeFetch(ctx) {
       ctx.options.method = 'POST';
       ctx.options.headers = {
@@ -143,7 +143,7 @@ async function createNewSettings(newSettings: UserSettings) {
 }
 
 async function performGet() {
-  const resp = await useFetch('/data-api/da-data/user-settings', {
+  const resp = await useFetch('/data-api/direct/user-settings', {
     beforeFetch(ctx) {
       ctx.options.method = 'GET';
       ctx.options.headers = {

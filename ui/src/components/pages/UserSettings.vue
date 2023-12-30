@@ -4,8 +4,8 @@
       :b-style="BStyle.SOLID"
       :b-theme="BTheme.CHALET_GREEN"
       :text="buttonText"
-      :is-loading="isFetchMySettingsFetching"
-      @click="getSettings"
+      :is-loading="userSettingsRepo.GET_fetch.isFetching"
+      @click="userSettingsRepo.getUserSettings"
     />
 
     <EditableSettingsList
@@ -35,7 +35,7 @@
 </template>
 
 <script setup lang="ts">
-import { useUserSettings, type UserSettings } from '@/stores/userSettingsStore';
+import { userSettingsRepository, type UserSettings } from '@/repos/user-settings';
 import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
@@ -45,18 +45,8 @@ import EditableInfoList, { type ModelFieldConfig } from '../forms/EditableInfoLi
 
 const EditableSettingsList = EditableInfoList<UserSettings>;
 
-const userSettingsStore = useUserSettings();
-const { myUserSettings, isFetchMySettingsFetching } = storeToRefs(userSettingsStore);
-
-async function getSettings() {
-  try {
-    // Stuff
-    await userSettingsStore.fetchMySettings(!!myUserSettings.value);
-  } catch (ex) {
-    // Error
-    console.error('Cannot do:', ex);
-  }
-}
+const userSettingsRepo = userSettingsRepository();
+const { myUserSettings } = storeToRefs(userSettingsRepo);
 
 // Computed
 const buttonText = computed(() => (myUserSettings.value ? 'Refresh Settings' : 'Get Settings'));
@@ -78,11 +68,6 @@ const fieldConfigs = computed<ModelFieldConfig<UserSettings>[]>(() => {
       key: 'id',
       disabled: true,
       label: 'Id',
-    },
-    {
-      key: 'userId',
-      disabled: true,
-      label: 'User Id',
     },
     {
       key: 'firstName',
@@ -124,9 +109,9 @@ async function createNewSettings(newSettings: UserSettings) {
       };
 
       // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      // const { id, ...withoutId } = newSettings;
-      newSettings.id = '5bd81e1a-8c9e-4000-be33-cbb2c46cf1c4';
-      ctx.options.body = JSON.stringify(newSettings);
+      const { id, ...withoutId } = newSettings;
+      // newSettings.id = '5bd81e1a-8c9e-4000-be33-cbb2c46cf1c4';
+      ctx.options.body = JSON.stringify(withoutId);
 
       return ctx;
     },

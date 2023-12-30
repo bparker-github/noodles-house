@@ -10,7 +10,8 @@
   },
   "runtime": {
     "rest": {
-      "enabled": true
+      "enabled": true,
+      "path": "/da-data"
     },
     "graphql": {
       "enabled": false

@@ -1,8 +1,10 @@
 <template>
-  <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1']">
+  <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1 gap-y-2']">
+    <!-- The label above the input, if present -->
     <label
+      v-if="hasLabel"
       :for="inputId"
-      class="inline-flex flex-1"
+      class="nhti-label inline-flex flex-1"
     >
       <slot name="label">
         <span class="text-sm font-medium leading-6 text-nh-gray-blue">
@@ -11,16 +13,42 @@
       </slot>
     </label>
 
-    <div class="relative mt-2 rounded-md shadow-sm">
+    <!-- The white container box here -->
+    <div
+      :class="[
+        'nhti-white-box',
+        'inline-flex flex-row flex-1 items-center',
+        'rounded-md shadow-sm px-2 gap-x-2',
+        'bg-white border-nh-chalet-green-600 border',
+        'focus-within:ring-1 focus-within:ring-inset',
+        !errorMsg ? 'focus-within:ring-nh-chalet-green-500' : 'focus-within:ring-nh-bourbon-800',
+      ]"
+    >
+      <!-- The input itself -->
       <input
         v-model="localValue"
+        ref="inputEle"
         :id="inputId"
         :class="[
-          'block w-full rounded-md border-0 py-1.5 pr-10 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6',
+          'inline-flex flex-row flex-nowrap flex-1',
+          'py-1.5 pl-1 pr-3 rounded-md border-0 bg-trans',
+          'sm:text-sm sm:leading-6',
+          'focus:ring-0',
+          !errorMsg
+            ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/30'
+            : 'text-nh-bourbon-800 placeholder:text-nh-bourbon-800/30',
         ]"
         :aria-describedby="errorMsg ? errorId : undefined"
       />
-      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+
+      <!-- The custom right icon, if present -->
+      <slot name="right-icon"></slot>
+
+      <!-- The error icon, if error present -->
+      <div
+        v-if="errorMsg"
+        class="pointer-events-none flex items-center"
+      >
         <ExclamationCircleIcon
           class="h-5 w-5 text-nh-empress-800"
           aria-hidden="true"
@@ -39,20 +67,26 @@
 
 <script setup lang="ts">
 import { ExclamationCircleIcon } from '@heroicons/vue/20/solid';
-import { type InputHTMLAttributes, computed } from 'vue';
+import { computed, ref, type InputHTMLAttributes } from 'vue';
 
 interface TextboxInputProps {
+  /** The model value to pass to the input. */
   value: string;
+  /** The id to associate with this input. Used for DOM referencing. */
   inputId: string;
+  /** The optional label to add above this input. Entire line is omitted of not present. */
   label?: string;
+  /** An optional string indicating the presence of an error, described by the message. */
   errorMsg?: string;
-
+  /** An optional set of additional attributes to pass directly to the input element. */
   inputProps?: InputHTMLAttributes;
 }
 
 const props = defineProps<TextboxInputProps>();
 const emits = defineEmits<{ 'update:value': [string] }>();
-defineSlots<{ label: [] }>();
+const slots = defineSlots<{ label: []; 'right-icon': [] }>();
+
+const inputEle = ref<HTMLInputElement | null>(null);
 
 const localValue = computed({
   get: () => props.value,
@@ -60,4 +94,10 @@ const localValue = computed({
 });
 
 const errorId = computed(() => props.inputId + '-error');
+const hasLabel = computed(() => props.label || slots.label);
+
+function focusInput() {
+  inputEle.value?.focus();
+}
+defineExpose({ focusInput, inputEle });
 </script>

@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
-import PageSpinner from './components/PageSpinner.vue';
+import PageSpinner from './components/spinners/PageSpinner.vue';
 import { useNativeAuth } from './auth/useNativeAuth';
 
 const loading = ref(true);

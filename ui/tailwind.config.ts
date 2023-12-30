@@ -107,15 +107,24 @@ const BaseThemeColors = {
 };
 
 // Add prefix and friendly names
-const ThemeColors = Object.assign({}, BaseThemeColors, {
-  'nh-dark-green': BaseThemeColors['nh-chalet-green'].DEFAULT,
-  'nh-darkest-green': BaseThemeColors['nh-mallard'].DEFAULT,
-  'nh-whiteish': BaseThemeColors['nh-off-yellow'].DEFAULT,
-  'nh-light-orange': BaseThemeColors['nh-di-serria'].DEFAULT,
-  'nh-dark-orange': BaseThemeColors['nh-bourbon'].DEFAULT,
-  'nh-gray-blue': BaseThemeColors['nh-bali-hai'].DEFAULT,
-  'nh-gray-pink': BaseThemeColors['nh-empress'].DEFAULT,
-});
+const ThemeColors = Object.assign(
+  {},
+  BaseThemeColors,
+  {
+    'nh-dark-green': BaseThemeColors['nh-chalet-green'].DEFAULT,
+    'nh-darkest-green': BaseThemeColors['nh-mallard'].DEFAULT,
+    'nh-whiteish': BaseThemeColors['nh-off-yellow'].DEFAULT,
+    'nh-light-orange': BaseThemeColors['nh-di-serria'].DEFAULT,
+    'nh-dark-orange': BaseThemeColors['nh-bourbon'].DEFAULT,
+    'nh-gray-blue': BaseThemeColors['nh-bali-hai'].DEFAULT,
+    'nh-gray-pink': BaseThemeColors['nh-empress'].DEFAULT,
+  },
+  {
+    trans: 'transparent',
+    black: BaseThemeColors['nh-chalet-green'][950],
+    white: '#fbfbfb',
+  }
+);
 
 export default {
   content: ['./index.html', './src/**/*.vue'],
@@ -123,6 +132,7 @@ export default {
     extend: {
       boxShadow: {
         'inner-lg': 'inset 0 4px 8px 0 rgb(0 0 0 / 0.1)',
+        'inner-sm': 'inset 0 0 3px -1px rgb(0 0 0 / 0.1)',
       },
       spacing: {
         '10p': '10%',
@@ -181,5 +191,47 @@ export default {
         }
       );
     }),
+    /** Radial Gradient Plugin */
+    createPlugin(
+      ({ matchUtilities, theme }) => {
+        matchUtilities(
+          {
+            // map to bg-radient-[*]
+            'bg-radient': (value) => ({
+              'background-image': `radial-gradient(${value},var(--tw-gradient-stops))`,
+            }),
+          },
+          { values: theme('radialGradients') }
+        );
+      },
+      {
+        theme: {
+          radialGradients: () => {
+            const pos = {
+              c: 'center',
+              t: 'top',
+              b: 'bottom',
+              l: 'left',
+              r: 'right',
+              tl: 'top left',
+              tr: 'top right',
+              bl: 'bottom left',
+              br: 'bottom right',
+            };
+
+            return {
+              ...Object.entries(pos).reduce(
+                (ret, [key, val]) => ({
+                  ...ret,
+                  [`circle-${key}`]: 'circle at ' + val,
+                  [`ellipse-${key}`]: 'ellipse at ' + val,
+                }),
+                {}
+              ),
+            };
+          },
+        },
+      }
+    ),
   ],
 } satisfies Config;

@@ -3,7 +3,10 @@
 
   "data-source": {
     "connection-string": "@env('NOOD_DB_CONNECTION_STRING')",
-    "database-type": "mssql"
+    "database-type": "mssql",
+    "options": {
+      "set-session-context": false
+    }
   },
   "runtime": {
     "rest": {
@@ -22,6 +25,7 @@
         "origins": [
           "http://localhost:9090",
           "http://localhost:9091",
+          "http://localhost:4280",
           "https://localhost:4280",
           "https://thankful-pebble-0fd322f0f.3.azurestaticapps.net",
           "https://www.noodles.house",
@@ -31,12 +35,9 @@
     }
   },
   "entities": {
-    "UserSettings": {
+    "user-settings": {
       "source": "dbo.UserSettings",
-      "permissions": [
-        { "actions": ["read"], "role": "authenticated" },
-        { "actions": ["create", "delete", "update"], "role": "admin" }
-      ]
+      "permissions": [{ "actions": ["*"], "role": "anonymous" }]
     }
   }
 }

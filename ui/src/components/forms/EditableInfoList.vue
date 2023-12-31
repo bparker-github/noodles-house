@@ -71,7 +71,7 @@
 <script setup lang="ts" generic="T extends {}">
 import { PencilIcon } from '@heroicons/vue/24/solid';
 import type { ComponentPublicInstance, ComputedRef, MaybeRef } from 'vue';
-import { computed, ref, toValue, watch } from 'vue';
+import { computed, ref, toValue } from 'vue';
 import NhButton from '../basic/NhButton.vue';
 import TextboxInput from '../inputs/TextboxInput.vue';
 
@@ -108,14 +108,6 @@ const emits = defineEmits<{
   submit: [T];
   'update:data': [T];
 }>();
-
-watch(
-  props.data,
-  () => {
-    console.log('EditableData:', props.data);
-  },
-  { immediate: true }
-);
 
 // Refs
 const isDisabled = ref(false);

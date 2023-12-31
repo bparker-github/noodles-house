@@ -17,14 +17,6 @@
       sub-title="These settings are entirely up to your preference, m'dear."
       @submit="onSettingsSave"
     />
-
-    <div
-      v-if="myUserSettings"
-      class="flex flex-col gap-y-2"
-    >
-      My User Settings
-      <PreCodeBlock :data="myUserSettings" />
-    </div>
   </div>
 </template>
 
@@ -38,7 +30,6 @@ import {
 import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
-import PreCodeBlock from '../PreCodeBlock.vue';
 import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
 import EditableInfoList, { type ModelFieldConfig } from '../forms/EditableInfoList.vue';
 

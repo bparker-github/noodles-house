@@ -27,16 +27,17 @@
       <!-- The input itself -->
       <input
         v-model="localValue"
+        v-bind="inputProps"
         ref="inputEle"
         :id="inputId"
         :class="[
           'inline-flex flex-row flex-nowrap flex-1',
           'py-1.5 pl-1 pr-3 rounded-md border-0 bg-trans',
-          'sm:text-sm sm:leading-6',
+          'sm:text-sm sm:leading-6 placeholder:text-sm',
           'focus:ring-0',
           !errorMsg
-            ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/30'
-            : 'text-nh-bourbon-800 placeholder:text-nh-bourbon-800/30',
+            ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/50'
+            : 'text-nh-bourbon-800 placeholder:text-nh-bourbon-800/50',
         ]"
         :aria-describedby="errorMsg ? errorId : undefined"
       />

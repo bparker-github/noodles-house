@@ -13,14 +13,15 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
 
   // Load the native-auth for the user id.
   const { userId } = storeToRefs(useNativeAuth());
-  const GET_fetch = useFetch<UserSettings[]>(
+  type GET_Resp = { value: UserSettings[] };
+  const GET_fetch = useFetch<GET_Resp>(
     `/data-api/direct/user-settings/id/${userId.value ?? ''}`,
     {
       headers: getFetchHeaders('authenticated'),
       method: 'GET',
     },
     { immediate: false }
-  ).json<UserSettings[]>();
+  ).json<GET_Resp>();
 
   async function getUserSettings(): Promise<UserSettings | null> {
     if (!userId.value) {
@@ -31,7 +32,7 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
     // Execute the fetch, update our local ref settings, return the found value.
     try {
       await GET_fetch.execute();
-      myUserSettings.value = GET_fetch.response.value?.ok ? GET_fetch.data.value?.[0] : null;
+      myUserSettings.value = GET_fetch.response.value?.ok ? GET_fetch.data.value?.value?.[0] : null;
       return myUserSettings.value;
     } catch (err) {
       console.error('Failed to get user settings:', err);

@@ -1,5 +1,6 @@
 <template>
   <form
+    v-if="data"
     class="overflow-hidden bg-nh-whiteish shadow-md sm:rounded-lg"
     @submit.prevent="clickSave"
   >
@@ -29,7 +30,7 @@
                 :class="['flex flex-row w-full group justify-between cursor-pointer']"
                 @click.prevent="toggleEditable(config, i)"
               >
-                <span>{{ getValueForModel(config.key) ?? 'Missing' }}</span>
+                <span>{{ getValueForModel(config.key).value ?? 'Missing' }}</span>
 
                 <PencilIcon
                   :class="[
@@ -43,7 +44,7 @@
               <TextboxInput
                 v-else
                 :ref="(el) => assignRef(config, el)"
-                :value="getValueForModel(config.key)"
+                :value="getValueForModel(config.key).value"
                 @update:value="(nv) => updateModelPart(config.key, nv)"
                 :name="config.key"
                 :placeholder="toValue(config.placeholder)"
@@ -69,8 +70,8 @@
 
 <script setup lang="ts" generic="T extends {}">
 import { PencilIcon } from '@heroicons/vue/24/solid';
-import type { ComponentPublicInstance, MaybeRef } from 'vue';
-import { ref, toValue } from 'vue';
+import type { ComponentPublicInstance, ComputedRef, MaybeRef } from 'vue';
+import { computed, ref, toValue, watch } from 'vue';
 import NhButton from '../basic/NhButton.vue';
 import TextboxInput from '../inputs/TextboxInput.vue';
 
@@ -108,6 +109,14 @@ const emits = defineEmits<{
   'update:data': [T];
 }>();
 
+watch(
+  props.data,
+  () => {
+    console.log('EditableData:', props.data);
+  },
+  { immediate: true }
+);
+
 // Refs
 const isDisabled = ref(false);
 const editingList = ref<Set<number>>(new Set<number>());
@@ -122,9 +131,11 @@ function assignRef(config: ModelFieldConfig<T>, el: Element | ComponentPublicIns
 }
 
 // Functions
-function getValueForModel<K extends keyof T>(key: K): string {
-  const ret = props.data[key];
-  return typeof ret !== 'string' || !`${ret}` ? '' : ret;
+function getValueForModel<K extends keyof T>(key: K): ComputedRef<string> {
+  return computed(() => {
+    const ret = props.data[key];
+    return typeof ret !== 'string' || !`${ret}` ? '' : ret;
+  });
 }
 function updateModelPart<K extends keyof T>(key: K, nv: string) {
   emits('update:data', { ...props.data, [key]: nv as T[K] });

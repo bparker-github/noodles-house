@@ -19,7 +19,10 @@
 
     <hr class="border-nh-bourbon-800/50" />
 
-    <div :class="['todo-create-section', 'flex flex-col', '[&>*]:mb-2']">
+    <form
+      :class="['todo-create-form', 'flex flex-col', '[&>*]:mb-2']"
+      @submit.prevent="onSubmit"
+    >
       <h2 class="text-xl py-2 self-start px-1 !mb-0">Create New Task</h2>
       <hr class="w-50p border-nh-bourbon-700" />
       <TextboxInput
@@ -32,14 +35,19 @@
         v-model:value="createTaskDescription"
         label="Description"
         input-id="create-task-description"
-        :textarea-props="{ placeholder: 'Enter a description of the task, feature, etc', rows: 4 }"
+        :textarea-props="{
+          placeholder: 'Enter a description of the task, feature, etc',
+          rows: 4,
+          onKeypress,
+        }"
       />
 
       <NhButton
         class="self-end px-8 mt-3"
+        type="submit"
         text="Submit"
       />
-    </div>
+    </form>
   </div>
 </template>
 
@@ -51,4 +59,28 @@ import NhButton from '../basic/NhButton.vue';
 
 const createTaskTitle = ref('');
 const createTaskDescription = ref('');
+
+function onSubmit() {
+  const ret = {
+    modelName: 'Task',
+    id: '1',
+    title: createTaskTitle.value,
+    description: createTaskDescription.value,
+  };
+
+  console.log('Fake submit:', ret, JSON.stringify(ret));
+}
+
+function onKeypress(ev: KeyboardEvent) {
+  console.log('OnKeyPress:', ev);
+  if (ev.ctrlKey && ev.code === 'Enter') {
+    // Stop the regular typing
+    ev.preventDefault();
+    ev.stopPropagation();
+
+    // Submit and blur.
+    onSubmit();
+    (ev.currentTarget as HTMLTextAreaElement).blur();
+  }
+}
 </script>

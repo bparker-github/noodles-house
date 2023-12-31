@@ -12,9 +12,9 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
   });
 
   // Load the native-auth for the user id.
-  const { curUser } = storeToRefs(useNativeAuth());
+  const { userId } = storeToRefs(useNativeAuth());
   const GET_fetch = useFetch<UserSettings[]>(
-    `/data-api/direct/user-settings/id/${curUser.value?.clientPrincipal.userId}`,
+    `/data-api/direct/user-settings/id/${userId.value ?? ''}`,
     {
       headers: getFetchHeaders('authenticated'),
       method: 'GET',
@@ -23,7 +23,7 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
   ).json<UserSettings[]>();
 
   async function getUserSettings(): Promise<UserSettings | null> {
-    if (!curUser.value) {
+    if (!userId.value) {
       console.error('Cannot get user settings without the user id');
       return null;
     }

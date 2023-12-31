@@ -2,49 +2,34 @@
   <component
     :is="as ?? 'button'"
     :class="[
+      // Add in button tailwind-css-component.
       'nh-button',
-      'flex flex-row flex-nowrap justify-between',
-      'px-3 py-2.5',
-      // Apply Styles.
-      {
-        'border rounded-md': !bStyle || bStyle === BStyle.SOLID,
-        'border-2 bg-transparent rounded-md': bStyle === BStyle.OUTLINE,
-      },
-      // Apply Themes - first apply shared styles, then unique colors.
-      'border outline-2 outline-offset-1 focus-visible:outline',
-      (!bTheme || bTheme === BTheme.BALI_HAI) && [
-        'bg-nh-bali-hai-700 text-nh-bali-hai-100 hover:bg-nh-bali-hai-800',
-        'border-nh-bali-hai-950/50 focus-visible:outline-nh-bali-hai-950',
+      // Add in the theme, defined as components
+      bTheme ?? BTheme.BALI_HAI,
+      // Add specific visual styles, referencing the color vars
+      (!bStyle || bStyle === BStyle.SOLID) && [
+        'border rounded-md',
+        'bg-[color:var(--bg-color)] hover:bg-[color:var(--hover-color)]',
+        'text-[color:var(--text-color)]',
+        'border-[color:var(--border-color)]',
+        'focus-visible:outline-[color:var(--focus-color)]',
       ],
-      bTheme === BTheme.CHALET_GREEN && [
-        'bg-nh-chalet-green-700 text-nh-chalet-green-100 hover:bg-nh-chalet-green-800',
-        'border-nh-chalet-green-950/50 focus-visible:outline-nh-chalet-green-950',
+      bStyle === BStyle.OUTLINE && [
+        'border bg-transparent rounded-md',
+        'bg-transparent hover:bg-[color:var(--hover-color)]',
+        'text-[color:var(--text-color)]',
+        'border-[color:var(--border-color)]',
+        'focus-visible:outline-[color:var(--focus-color)]',
       ],
-      bTheme === BTheme.MALLARD && [
-        'bg-nh-mallard-700 text-nh-mallard-100 hover:bg-nh-mallard-800',
-        'border-nh-mallard-950/50 focus-visible:outline-nh-mallard-950',
+      bStyle === BStyle.INLINE && [
+        'border-0 rounded-md underline',
+        'bg-transparent hover:bg-[color:var(--hover-color)]',
+        'text-[color:var(--text-color)]',
+        'focus-visible:outline-[color:var(--focus-color)]',
       ],
-      bTheme === BTheme.OFF_YELLOW && [
-        'bg-nh-off-yellow-700 text-nh-off-yellow-100 hover:bg-nh-off-yellow-800',
-        'border-nh-off-yellow-950/50 focus-visible:outline-nh-off-yellow-950',
-      ],
-      bTheme === BTheme.OFF_YELLOW_LIGHT && [
-        'bg-nh-off-yellow-300 text-nh-off-yellow-950 hover:bg-nh-off-yellow-400',
-        'border-nh-off-yellow-500/50 focus-visible:outline-nh-off-yellow-500',
-        'shadow-inner-sm shadow-nh-off-yellow-800',
-      ],
-      bTheme === BTheme.DI_SERRIA && [
-        'bg-nh-di-serria-700 text-nh-di-serria-100 hover:bg-nh-di-serria-800',
-        'border-nh-di-serria-950/50 focus-visible:outline-nh-di-serria-950',
-      ],
-      bTheme === BTheme.BOURBON && [
-        'bg-nh-bourbon-700 text-nh-bourbon-100 hover:bg-nh-bourbon-800',
-        'border-nh-bourbon-950/50 focus-visible:outline-nh-bourbon-950',
-      ],
-      bTheme === BTheme.EMPRESS && [
-        'bg-nh-empress-700 text-nh-empress-100 hover:bg-nh-empress-800',
-        'border-nh-empress-950/50 focus-visible:outline-nh-empress-950',
-      ],
+
+      // Add outline style for focusing
+      'outline-2 outline-offset-1 focus-visible:outline',
     ]"
   >
     <span class="nh-button-text text-base font-semibold">
@@ -76,16 +61,17 @@
 export enum BStyle {
   SOLID = 'solid',
   OUTLINE = 'outline',
+  INLINE = 'inline',
 }
 export enum BTheme {
-  BALI_HAI = 'bali-hai',
-  CHALET_GREEN = 'chalet-green',
-  MALLARD = 'mallard',
-  OFF_YELLOW = 'off-yellow',
-  OFF_YELLOW_LIGHT = 'off-yellow-light',
-  DI_SERRIA = 'di-serria',
-  BOURBON = 'bourbon',
-  EMPRESS = 'empress',
+  BALI_HAI = 'b-theme-bali-hai',
+  BOURBON = 'b-theme-bourbon',
+  CHALET_GREEN = 'b-theme-chalet-green',
+  DI_SERRIA = 'b-theme-di-serria',
+  EMPRESS = 'b-theme-empress',
+  MALLARD = 'b-theme-mallard',
+  OFF_YELLOW = 'b-theme-off-yellow',
+  OFF_YELLOW_LIGHT = 'b-theme-off-yellow-light',
 }
 </script>
 

@@ -45,6 +45,12 @@ const routes: RouteRecordRaw[] = [
         children: [],
       },
       {
+        path: '/todo',
+        name: RouteName.TODO_HOME,
+        component: () => import('../components/pages/TodoPage.vue'),
+        children: [],
+      },
+      {
         path: 'profile',
         children: [
           {

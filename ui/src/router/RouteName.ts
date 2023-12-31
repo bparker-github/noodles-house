@@ -13,6 +13,9 @@ export enum RouteName {
   USER_SETTINGS = 'User Settings',
   PROFILE_TOKENS = 'Profile Tokens',
 
+  /** TODOs Page */
+  TODO_HOME = 'To-Dos Page',
+
   /** Develop stuff */
   TESTING_1 = 'Testing 1',
   TESTING_2 = 'Testing 2',

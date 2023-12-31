@@ -5,9 +5,6 @@ export class UserSettings {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column('varchar', { length: 255, name: 'userId' })
-  userId: string;
-
   @Column()
   firstName: string;
 
@@ -19,8 +16,7 @@ export class UserSettings {
 
   static Default(userId = ''): UserSettings {
     return {
-      id: '',
-      userId,
+      id: userId,
       firstName: '',
       lastName: '',
       profileLink: '',

@@ -7,7 +7,7 @@
       class="nhti-label inline-flex flex-1"
     >
       <slot name="label">
-        <span class="text-sm font-medium leading-6 text-nh-gray-blue">
+        <span class="text-sm font-medium leading-6 text-nh-bali-hai-950/75">
           {{ label }}
         </span>
       </slot>

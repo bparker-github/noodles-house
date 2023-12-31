@@ -11,11 +11,15 @@
   >
     <!-- The home icon or placeholder -->
     <div
-      class="mf-header-left-side w-8"
+      :class="['mf-header-left-side w-9', { 'cursor-pointer': !!onLeftIconClick }]"
       @click="handleLeftClick"
     >
       <slot name="left-side">
-        <NoodleIconSvg class="text-nh-bourbon w-9 h-9" />
+        <NoodleIconSvg
+          title="Noodle's House"
+          class="text-nh-bourbon w-9 h-9"
+          aria-label="Noodle's House Logo. Click to navigate Home."
+        />
       </slot>
     </div>
 
@@ -26,7 +30,7 @@
     </h1>
 
     <!-- The profile status/spinner -->
-    <div class="nh-header-right-side w-8 flex justify-end">
+    <div class="nh-header-right-side w-9 flex justify-end">
       <slot name="right-side">
         <Bars3Icon
           class="md:hidden h-7 w-7"
@@ -45,6 +49,9 @@ import { useVModel } from '@vueuse/core';
 export interface MF_HeaderProps {
   /** A value indicating whether the menu is currently open. */
   open: boolean;
+
+  /** Shadow-prop to check for a 'left-icon-click' listener. */
+  onLeftIconClick?: Function;
 }
 const props = defineProps<MF_HeaderProps>();
 const emits = defineEmits<{
@@ -56,6 +63,8 @@ const emits = defineEmits<{
 defineSlots<{ 'left-side': []; 'right-side': [] }>();
 
 const isOpen = useVModel(props, 'open', emits);
+
+console.log('HasEmit:', props.onLeftIconClick);
 
 function handleLeftClick() {
   emits('left-icon-click');

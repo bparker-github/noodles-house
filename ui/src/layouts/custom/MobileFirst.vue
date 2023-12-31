@@ -8,7 +8,10 @@
       'bg-nh-bourbon-100 z-10',
     ]"
   >
-    <MF_Header :open="open">
+    <MF_Header
+      :open="open"
+      @left-icon-click="$router.push({ name: RouteName.HOME })"
+    >
       <template #right-side>
         <MenuButton>
           <Bars3Icon class="md:hidden h-7 w-7" />
@@ -33,6 +36,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouteName } from '@/router/RouteName';
 import { Menu, MenuButton } from '@headlessui/vue';
 import { Bars3Icon } from '@heroicons/vue/24/solid';
 import MF_Header from './MF_Header.vue';

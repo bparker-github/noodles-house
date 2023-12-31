@@ -5,7 +5,7 @@
       :b-theme="BTheme.CHALET_GREEN"
       :text="buttonText"
       :is-loading="userSettingsRepo.GET_fetch.isFetching"
-      @click="userSettingsRepo.getUserSettings"
+      @click="getUserSettings"
     />
 
     <EditableSettingsList
@@ -24,18 +24,17 @@
     >
       My User Settings
       <PreCodeBlock :data="myUserSettings" />
-
-      <NhButton
-        :class="['flex-1 self-end w-64', '[&>span]:w-full']"
-        text="Manual Fetch"
-        @click.prevent="performGet"
-      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { userSettingsRepository, type UserSettings } from '@/repos/user-settings';
+import { useNativeAuth } from '@/auth/useNativeAuth';
+import {
+  getDefaultUserSettings,
+  userSettingsRepository,
+  type UserSettings,
+} from '@/repos/user-settings';
 import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
@@ -45,100 +44,59 @@ import EditableInfoList, { type ModelFieldConfig } from '../forms/EditableInfoLi
 
 const EditableSettingsList = EditableInfoList<UserSettings>;
 
+const { userId } = storeToRefs(useNativeAuth());
+
 const userSettingsRepo = userSettingsRepository();
 const { myUserSettings } = storeToRefs(userSettingsRepo);
 
 // Computed
 const buttonText = computed(() => (myUserSettings.value ? 'Refresh Settings' : 'Get Settings'));
+const fieldConfigs: ModelFieldConfig<UserSettings>[] = [
+  {
+    key: 'id',
+    disabled: true,
+    label: 'Id',
+  },
+  {
+    key: 'firstName',
+    label: 'First Name',
+    placeholder: 'John',
+  },
+  {
+    key: 'lastName',
+    label: 'Last Name',
+    placeholder: 'Smith',
+  },
+  {
+    key: 'profileLink',
+    disabled: true,
+    label: 'Profile Link',
+  },
+];
 
-const fieldConfigs = computed<ModelFieldConfig<UserSettings>[]>(() => {
-  if (!myUserSettings.value) {
-    return [
-      {
-        key: 'id',
-        label: 'No Settings',
-        disabled: true,
-        placeholder: 'No settings yet exist',
-      },
-    ];
-  }
+// Functions
+async function getUserSettings(): Promise<void> {
+  const foundSettings = await userSettingsRepo.getUserSettings();
 
-  const ret: ModelFieldConfig<UserSettings>[] = [
-    {
-      key: 'id',
-      disabled: true,
-      label: 'Id',
-    },
-    {
-      key: 'firstName',
-      label: 'First Name',
-      placeholder: 'John',
-    },
-    {
-      key: 'lastName',
-      label: 'Last Name',
-      placeholder: 'Smith',
-    },
-    {
-      key: 'profileLink',
-      disabled: true,
-      label: 'Profile Link',
-    },
-  ];
-
-  return ret;
-});
+  myUserSettings.value = foundSettings ?? getDefaultUserSettings(userId.value ?? '');
+}
 
 async function onSettingsSave(toSave: UserSettings) {
-  // Check if we are PUT or POST (create/update);
-  console.log('Settings save:', toSave);
+  const { id, ...withoutId } = toSave;
 
-  // We are in a create/PUT situation
-  if (!toSave.id) {
-    await createNewSettings(toSave);
-  }
-}
-async function createNewSettings(newSettings: UserSettings) {
-  const putFetch = useFetch('/data-api/direct/user-settings', {
-    beforeFetch(ctx) {
-      ctx.options.method = 'POST';
-      ctx.options.headers = {
-        ...(ctx.options.headers ?? {}),
+  const saveFetch = useFetch(
+    `/data-api/direct/user-settings/id/${id}`,
+    {
+      method: 'PUT',
+      headers: {
         'Content-Type': 'application/json',
-        'X-MS-API-ROLE': 'anonymous',
-      };
-
-      // // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { id, ...withoutId } = newSettings;
-      // newSettings.id = '5bd81e1a-8c9e-4000-be33-cbb2c46cf1c4';
-      ctx.options.body = JSON.stringify(withoutId);
-
-      return ctx;
+        'X-MS-API-ROLE': 'authenticated',
+      },
+      body: JSON.stringify(withoutId),
     },
-    immediate: false,
-  });
+    { immediate: false }
+  );
 
-  try {
-    await putFetch.execute();
-
-    console.log('PutFetch completed:', putFetch.response.value);
-  } catch (err) {
-    console.error('PutFetch error:', putFetch.error.value);
-  }
-}
-
-async function performGet() {
-  const resp = await useFetch('/data-api/direct/user-settings', {
-    beforeFetch(ctx) {
-      ctx.options.method = 'GET';
-      ctx.options.headers = {
-        ...(ctx.options.headers ?? {}),
-        'X-MS-API-ROLE': 'anonymous',
-      };
-      return ctx;
-    },
-  });
-
-  console.log('Returned val:', resp.response.value);
+  await saveFetch.execute();
 }
 </script>

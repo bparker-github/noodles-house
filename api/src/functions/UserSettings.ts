@@ -15,7 +15,7 @@ export async function GetUserSettings(
   }
 
   const noodleDb = await getNoodleDb();
-  const found = await noodleDb.manager.findOneBy(UserSettings, { userId });
+  const found = await noodleDb.manager.findOneBy(UserSettings, { id: userId });
 
   context.debug(`Returning ${!found ? 'empty' : 'found'} User Settings for ${userId}`);
   return { status: 200, jsonBody: found ?? UserSettings.Default(userId) };

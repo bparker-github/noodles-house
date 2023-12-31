@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import type { NativeUser } from './NativeUser';
 
 export const useNativeAuth = defineStore('native-swa-auth', () => {
-  const curUser = useSessionStorage('native-auth-me', null, {
+  const curUser = useSessionStorage<NativeUser | null>('native-auth-me', null, {
     serializer: { read: JSON.parse, write: JSON.stringify },
   });
 
@@ -18,6 +18,7 @@ export const useNativeAuth = defineStore('native-swa-auth', () => {
   const fetchError = computed(() => nativeAuthFetch.error.value);
 
   const isAuthenticated = computed(() => !!curUser.value?.clientPrincipal);
+  const userId = computed(() => curUser.value?.clientPrincipal.userId);
 
   function doFetch(force = false) {
     // Short circuit if we are already authenticated, and aren't forcing a reload.
@@ -35,6 +36,8 @@ export const useNativeAuth = defineStore('native-swa-auth', () => {
 
   return {
     curUser,
+
+    userId,
 
     isFetching,
     isFinished,

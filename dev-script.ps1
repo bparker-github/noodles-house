@@ -1,6 +1,12 @@
 # Note: The title changes based on the commands running too - labeling the tabs is hard.
 
 function startUi {
+  # Display the Client IP Firewall warning
+  Write-Output "PAUSE: Did you add the Client Ip Firewall rule?"
+  Write-Output "    Easiest way to add the rule is via Azure Data Studio connection."
+  Write-Output "    Press any key to continue"
+  Read-Host;
+
   # Create the UI tab
   wt -w 0 nt --title UI --inheritEnvironment -d . pwsh -NoExit -c "npm run dev:ui"
   Write-Output "Creating UI Tab..."

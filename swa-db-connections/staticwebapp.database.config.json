@@ -10,7 +10,8 @@
   },
   "runtime": {
     "rest": {
-      "enabled": true
+      "enabled": true,
+      "path": "/direct"
     },
     "graphql": {
       "enabled": false

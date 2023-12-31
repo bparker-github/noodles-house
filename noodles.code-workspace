@@ -140,6 +140,11 @@
     "powershell.cwd": "noodles-house",
 
     "vue.complete.casing.tags": "pascal",
+    "vue.autoInsert.dotValue": true,
+    "vue.inlayHints.inlineHandlerLeading": true,
+    "vue.inlayHints.missingProps": true,
+    "vue.inlayHints.optionsWrapper": true,
+    "vue.splitEditors.icon": true,
     "editor.rulers": [80, 120]
   },
   "launch": {

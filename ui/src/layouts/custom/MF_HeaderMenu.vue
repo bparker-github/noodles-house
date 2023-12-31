@@ -51,9 +51,7 @@ import { MenuItem, MenuItems } from '@headlessui/vue';
 import { useRouter, type RouteLocationRaw } from 'vue-router';
 
 const items: EnumObject<RouteLocationRaw>[] = [
-  { label: 'Testing Page 1', value: { path: '/home' } },
-  { label: 'Testing Page 2', value: { path: '/home-2' } },
-  { label: 'Testing Page 3', value: { path: '/home-3' } },
+  { label: 'Home', value: { name: RouteName.HOME } },
   { label: 'User Settings', value: { name: RouteName.USER_SETTINGS } },
   { label: 'Profile', value: { name: RouteName.PROFILE } },
 ];

@@ -14,7 +14,7 @@ export enum RouteName {
   PROFILE_TOKENS = 'Profile Tokens',
 
   /** TODOs Page */
-  TODO_HOME = 'To-Dos Page',
+  TODO_HOME = 'Tasks',
 
   /** Develop stuff */
   TESTING_1 = 'Testing 1',

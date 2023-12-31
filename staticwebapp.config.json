@@ -22,21 +22,6 @@
       "allowedRoles": ["authenticated"]
     },
     {
-      "route": "/api/unsplash/*",
-      "methods": ["GET"],
-      "allowedRoles": ["anonymous"]
-    },
-    {
-      "route": "/api/*",
-      "methods": ["GET"],
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/data-api/*",
-      "methods": ["GET", "PUT", "POST", "DELETE"],
-      "allowedRoles": ["anonymous"]
-    },
-    {
       "route": "/login",
       "rewrite": "/.auth/login/apple?post_login_redirect_uri=/indoors"
     },

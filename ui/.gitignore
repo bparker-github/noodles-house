@@ -26,3 +26,6 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+# Ignore local models, we copy these from the swa-db-connections folder
+src/repos/models/*

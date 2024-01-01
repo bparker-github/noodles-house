@@ -1,4 +1,4 @@
-export interface ITodoTask {
+export interface TodoTask {
   id: string;
 
   /** Main Details */

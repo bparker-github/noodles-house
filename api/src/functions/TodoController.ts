@@ -1,6 +1,7 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../database/dataSource';
-import { TodoTask } from '../database/entity/TodoTask';
+import { TodoTaskModel } from '../database/entity/TodoTask';
+import { TodoTask } from '../database/models/TodoTask';
 
 export async function CreateTodoTask(
   request: HttpRequest,
@@ -11,12 +12,19 @@ export async function CreateTodoTask(
 
   try {
     const theBody = await request.json();
-    context.debug(`Task Body: ${theBody}`);
+    const asModel = noodleDb.manager.create<TodoTaskModel>(TodoTaskModel, theBody);
 
-    const saved = noodleDb.manager.create<TodoTask>(TodoTask, theBody);
-    await noodleDb.manager.save(saved);
+    // Assign fixed data via server
+    asModel.createdAt = new Date();
+    asModel.createdBy = request.user.id;
+    asModel.updatedAt = new Date();
+    asModel.updatedBy = request.user.id;
 
-    return { status: 201, jsonBody: saved };
+    // Log and save the model.
+    context.debug('Create Task Body:', theBody, asModel);
+    await asModel.save();
+
+    return { status: 201, jsonBody: asModel };
   } catch (ex) {
     context.error('Failed to create Todo Task:', ex);
     return { status: 500, jsonBody: ex };

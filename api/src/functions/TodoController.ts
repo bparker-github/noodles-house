@@ -13,7 +13,10 @@ export async function CreateTodoTask(
     const theBody = await request.json();
     context.debug(`Task Body: ${theBody}`);
 
-    await noodleDb.manager.create(TodoTask, theBody);
+    const saved = noodleDb.manager.create<TodoTask>(TodoTask, theBody);
+    await noodleDb.manager.save(saved);
+
+    return { status: 201, jsonBody: saved };
   } catch (ex) {
     context.error('Failed to create Todo Task:', ex);
     return { status: 500, jsonBody: ex };

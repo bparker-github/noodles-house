@@ -52,27 +52,31 @@
 </template>
 
 <script setup lang="ts">
+import { useFetch } from '@vueuse/core';
 import { ref } from 'vue';
-import TextboxInput from '../inputs/TextboxInput.vue';
-import TextareaInput from '../inputs/TextareaInput.vue';
+import type { TodoTask } from '../../repos/models/TodoTask.d';
 import NhButton from '../basic/NhButton.vue';
+import TextareaInput from '../inputs/TextareaInput.vue';
+import TextboxInput from '../inputs/TextboxInput.vue';
 
 const createTaskTitle = ref('');
 const createTaskDescription = ref('');
 
-function onSubmit() {
-  const ret = {
-    modelName: 'Task',
-    id: '1',
+const SUBMIT_fetch = useFetch('/api/todo/create', { immediate: false });
+
+async function onSubmit() {
+  const toSave = {
     title: createTaskTitle.value,
     description: createTaskDescription.value,
   };
 
-  console.log('Fake submit:', ret, JSON.stringify(ret));
+  SUBMIT_fetch.post(toSave, 'json').json<TodoTask>();
+  await SUBMIT_fetch.execute();
+
+  console.log('Returned ret:', SUBMIT_fetch.data.value);
 }
 
 function onKeypress(ev: KeyboardEvent) {
-  console.log('OnKeyPress:', ev);
   if (ev.ctrlKey && ev.code === 'Enter') {
     // Stop the regular typing
     ev.preventDefault();

@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import type { ITodoTask } from '../models/TodoTask.d';
 
-@Entity('TodoModel')
-export class TodoModel {
+@Entity('TodoTask')
+export class TodoTask implements ITodoTask {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

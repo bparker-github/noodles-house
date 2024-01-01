@@ -38,7 +38,14 @@
   "entities": {
     "user-settings": {
       "source": "dbo.UserSettings",
-      "permissions": [{ "actions": ["*"], "role": "anonymous" }]
+      "permissions": [
+        { "actions": ["create", "read", "update"], "role": "authenticated" },
+        { "actions": ["delete"], "role": "lord-of-the-house" }
+      ]
+    },
+    "todo": {
+      "source": "dbo.TodoTask",
+      "permissions": [{ "actions": ["read"], "role": "authenticated" }]
     }
   }
 }

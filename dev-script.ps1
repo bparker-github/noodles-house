@@ -7,6 +7,11 @@ function startUi {
   Write-Output "    Press any key to continue"
   Read-Host;
 
+  # Create the Models tab
+  wt -w 0 nt --title UI --inheritEnvironment -d . pwsh -NoExit -c "npm run dev:models"
+  Write-Output "Creating Models Tab..."
+  Start-Sleep -Seconds 2
+
   # Create the UI tab
   wt -w 0 nt --title UI --inheritEnvironment -d . pwsh -NoExit -c "npm run dev:ui"
   Write-Output "Creating UI Tab..."

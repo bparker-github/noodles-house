@@ -11,6 +11,10 @@ export async function CreateTodoTask(
 
   try {
     const theBody = await request.json();
+    if (!theBody || typeof theBody !== 'object' || !('id' in theBody) || !theBody.id) {
+      delete theBody['id'];
+    }
+
     const asModel = noodleDb.manager.create<TodoTaskModel>(TodoTaskModel, theBody);
 
     // Assign fixed data via server

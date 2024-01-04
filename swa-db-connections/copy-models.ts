@@ -8,6 +8,11 @@ async function copyModels() {
   const apiDestPath = join(__dirname, '..', 'api', 'src', 'database', 'models');
   const uiDestPath = join(__dirname, '..', 'ui', 'src', 'repos', 'models');
 
+  // Print root level things of parent folder.
+  const parentFiles = await readdir(__dirname, { withFileTypes: true });
+  console.log('Found following files in', __dirname);
+  parentFiles.forEach((fileName) => console.log('\t' + fileName));
+
   // Look up files to copy
   const foundFileNames = await readdir(sourcePath);
   console.log('Found the following Models to copy from', sourcePath);

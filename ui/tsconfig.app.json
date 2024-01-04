@@ -9,5 +9,6 @@
       "@/*": ["./src/*"]
     },
     "typeRoots": ["types"]
-  }
+  },
+  "references": [{ "path": "../swa-db-connections" }]
 }

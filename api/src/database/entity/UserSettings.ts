@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import type { IUserSettings } from '../../../../swa-db-connections/models/UserSettings.d';
+import type { IUserSettings } from '@db/models/UserSettings.d';
 
 @Entity('UserSettings')
 export class UserSettings implements IUserSettings {

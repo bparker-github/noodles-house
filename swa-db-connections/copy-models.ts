@@ -18,6 +18,12 @@ async function copyModels() {
   console.log('Found following files in parentDir:', parentDir);
   parentFiles.forEach((fileName) => console.log('\t' + fileName));
 
+  // Print the UI directory:
+  const uiDir = resolve(join(__dirname, '..', 'ui'));
+  const uiFiles = await readdir(uiDir);
+  console.log('Found following files in uiDir:', uiDir);
+  uiFiles.forEach((fileName) => console.log('\t' + fileName));
+
   // Look up files to copy
   const foundFileNames = await readdir(sourcePath);
   console.log('Found the following Models to copy from', sourcePath);

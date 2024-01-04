@@ -54,7 +54,8 @@
 <script setup lang="ts">
 import { useFetch } from '@vueuse/core';
 import { ref } from 'vue';
-import type { TodoTask } from '../../repos/models/TodoTask.d';
+// import type { TodoTask } from '../../repos/models/TodoTask.d';
+import type { TodoTask } from '../../../../swa-db-connections/models/TodoTask.d';
 import NhButton from '../basic/NhButton.vue';
 import TextareaInput from '../inputs/TextareaInput.vue';
 import TextboxInput from '../inputs/TextboxInput.vue';

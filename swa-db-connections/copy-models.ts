@@ -27,9 +27,9 @@ async function copyModels() {
 
   // Copy the files to all directories
   for (const fileName of foundFileNames) {
-    const sourceFilePath = join(sourcePath, fileName);
-    await copyFile(sourceFilePath, join(apiDestPath, fileName));
-    await copyFile(sourceFilePath, join(uiDestPath, fileName));
+    const sourceFilePath = resolve(join(sourcePath, fileName));
+    await copyFile(sourceFilePath, resolve(join(apiDestPath, fileName)));
+    await copyFile(sourceFilePath, resolve(join(uiDestPath, fileName)));
   }
 
   console.log('Successfully copied files');

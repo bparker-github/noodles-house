@@ -10,7 +10,7 @@ async function copyModels() {
 
   // Look up files to copy
   const foundFileNames = await readdir(sourcePath);
-  console.log('Found the following Models to copy:');
+  console.log('Found the following Models to copy from', sourcePath);
   foundFileNames.forEach((fileName) => console.log('\t' + fileName));
   console.log('...to the following destinations:');
   [apiDestPath, uiDestPath].forEach((dest) => console.log('\t', dest));

@@ -97,6 +97,3 @@ local.settings.json
 __blobstorage__
 __queuestorage__
 __azurite_db*__.json
-
-# Ignore local models, we copy these from the swa-db-connections folder
-src/database/models/*

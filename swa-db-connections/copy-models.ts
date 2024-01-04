@@ -1,16 +1,21 @@
 import { copyFile, readdir } from 'node:fs/promises';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 
 // Define async function.
 async function copyModels() {
   // Get all pertinent directories
   const sourcePath = join(__dirname, 'models');
-  const apiDestPath = join(__dirname, '..', 'api', 'src', 'database', 'models');
-  const uiDestPath = join(__dirname, '..', 'ui', 'src', 'repos', 'models');
+  const apiDestPath = resolve(join(__dirname, '..', 'api', 'src', 'database', 'models'));
+  const uiDestPath = resolve(join(__dirname, '..', 'ui', 'src', 'repos', 'models'));
 
   // Print root level things of parent folder.
-  const parentFiles = await readdir(__dirname, { withFileTypes: true });
-  console.log('Found following files in', __dirname);
+  const thisDirFiles = await readdir(__dirname);
+  console.log('Found following files in thisDir:', __dirname);
+  thisDirFiles.forEach((fileName) => console.log('\t' + fileName));
+
+  const parentDir = resolve(join(__dirname, '..'));
+  const parentFiles = await readdir(parentDir);
+  console.log('Found following files in parentDir:', parentDir);
   parentFiles.forEach((fileName) => console.log('\t' + fileName));
 
   // Look up files to copy

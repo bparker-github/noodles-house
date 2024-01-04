@@ -1,5 +1,6 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import type { TodoTask } from '../models/TodoTask.d';
+// import type { TodoTask } from '../models/TodoTask.d';
+import type { TodoTask } from '../../../../swa-db-connections/models/TodoTask.d';
 
 @Entity('TodoTask')
 export class TodoTaskModel extends BaseEntity implements TodoTask {

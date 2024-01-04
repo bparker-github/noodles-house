@@ -37,6 +37,6 @@ export async function CreateTodoTask(
 app.http('POST_TodoTask', {
   methods: ['POST'],
   authLevel: 'function',
-  route: 'todo/create',
+  route: 'tasks/create',
   handler: CreateTodoTask,
 });

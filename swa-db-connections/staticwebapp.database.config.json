@@ -43,7 +43,7 @@
         { "actions": ["delete"], "role": "lord-of-the-house" }
       ]
     },
-    "todo": {
+    "tasks": {
       "source": "dbo.TodoTask",
       "permissions": [{ "actions": ["read"], "role": "authenticated" }]
     }

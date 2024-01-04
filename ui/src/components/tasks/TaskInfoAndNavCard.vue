@@ -16,6 +16,13 @@
       </p>
       <p>Even improvements about this List feature itself is heartily welcome!</p>
     </div>
+
     <hr class="border-nh-bourbon-800/50" />
+
+    <TasksNavigation />
   </div>
 </template>
+
+<script setup lang="ts">
+import TasksNavigation from './TasksNavigation.vue';
+</script>

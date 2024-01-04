@@ -51,6 +51,7 @@
       <NhButton
         class="self-end px-8 mt-3"
         type="submit"
+        :is-loading="isSubmitLoading"
         text="Submit"
       />
     </form>
@@ -58,23 +59,28 @@
 </template>
 
 <script setup lang="ts">
-import { useFetch } from '@vueuse/core';
-import { ref } from 'vue';
+import { useNativeAuth } from '@/auth/useNativeAuth';
 import type { TodoTask } from '@db/models/TodoTask.d';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 import NhButton from '../basic/NhButton.vue';
 import TextareaInput from '../inputs/TextareaInput.vue';
 import TextboxInput from '../inputs/TextboxInput.vue';
-import { storeToRefs } from 'pinia';
-import { useNativeAuth } from '@/auth/useNativeAuth';
+
+const props = defineProps<{ isSubmitLoading?: boolean }>();
+const emits = defineEmits<{ submit: [TodoTask] }>();
 
 const { userId } = storeToRefs(useNativeAuth());
-
-const emits = defineEmits<{ submit: [TodoTask] }>();
 
 const createTaskTitle = ref('');
 const createTaskDescription = ref('');
 
 async function onSubmit() {
+  // Short circuit
+  if (props.isSubmitLoading) {
+    return;
+  }
+
   const toSave: TodoTask = {
     title: createTaskTitle.value,
     description: createTaskDescription.value,

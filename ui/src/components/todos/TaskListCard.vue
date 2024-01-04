@@ -1,11 +1,19 @@
 <template>
   <div
     :class="[
-      'task-list-card',
+      'task-list-card relative',
       'flex flex-col w-full gap-y-4',
       'bg-white rounded-md shadow-lg px-3 py-5',
     ]"
   >
+    <!-- Display loading spinner if fetch hasn't completed -->
+    <BackgroundSpinner
+      v-if="GET_fetch.isFetching.value"
+      class="-mx-3 -my-5 rounded-md"
+      title="Fetching Tasks"
+      details="Fetching all todo tasks..."
+    />
+
     <h2
       :class="[
         'text-xl py-2 self-start text-nh-bourbon-900 px-1',
@@ -14,61 +22,89 @@
     >
       All Tasks
     </h2>
-    <TextboxInput
-      v-model:value="createTaskTitle"
-      label="Title"
-      input-id="create-task-input"
-      :input-props="{ placeholder: 'Enter a summarized title' }"
-    />
-    <TextareaInput
-      v-model:value="createTaskDescription"
-      label="Description"
-      input-id="create-task-description"
-      :textarea-props="{
-        placeholder: 'Enter a description of the task, feature, etc',
-        rows: 4,
-        onKeypress,
-      }"
-    />
+
+    <ul :class="['task-list', 'flex flex-col w-full']">
+      <!-- The empty state entry -->
+      <li
+        v-if="!allTasks.length"
+        :class="[
+          'flex flex-col flex-1 items-center m-5 p-5',
+          'rounded-lg border-2 border-dashed border-nh-bourbon-800',
+        ]"
+      >
+        <QuestionMarkCircleIcon class="w-8 h-8 nh-bourbon-900" />
+        <h3 class="text-base text-nh-bourbon-950">No Tasks</h3>
+      </li>
+
+      <!-- Otherwise show the list and button -->
+      <template v-else>
+        <li
+          v-for="(task, i) in allTasks"
+          :key="`task-${task.id}-${i}`"
+          :class="['todo-item', 'py-2 px-4 text-nh-bourbon-950 border-y border-nh-bourbon-950/50']"
+        >
+          <h1 class="task-title text-lg leading-6">{{ task.title }}</h1>
+          <h3 :class="['task-subtitle text-base leading-5', { 'text-opacity-50': !task.subTitle }]">
+            {{ task.subTitle ?? '-' }}
+          </h3>
+          <p
+            :class="[
+              'task-description text-sm leading-4',
+              { 'text-opacity-50': !task.description },
+            ]"
+          >
+            {{ task.description ?? '-' }}
+          </p>
+        </li>
+
+        <NhButton
+          class="self-end px-8 py-2 mt-3"
+          :is-loading="GET_fetch.isFetching.value"
+          text="Refresh"
+          @click="refreshList"
+        />
+      </template>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useNativeAuth } from '@/auth/useNativeAuth';
 import type { TodoTask } from '@db/models/TodoTask.d';
-import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
-import TextareaInput from '../inputs/TextareaInput.vue';
-import TextboxInput from '../inputs/TextboxInput.vue';
+import type { ModelResponse } from '@db/models/ModelResponse.d';
+import { QuestionMarkCircleIcon } from '@heroicons/vue/24/outline';
+import { useFetch } from '@vueuse/core';
+import { computed, onMounted } from 'vue';
+import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
+import NhButton from '../basic/NhButton.vue';
 
-const { userId } = storeToRefs(useNativeAuth());
+const GET_fetch = useFetch('/data-api/direct/todo', { immediate: false }).json<
+  ModelResponse<TodoTask>
+>();
 
-const emits = defineEmits<{ submit: [TodoTask] }>();
+const allTasks = computed(() => GET_fetch.data.value?.value ?? []);
 
-const createTaskTitle = ref('');
-const createTaskDescription = ref('');
-
-async function onSubmit() {
-  const toSave: TodoTask = {
-    title: createTaskTitle.value,
-    description: createTaskDescription.value,
-    createdAt: new Date(),
-    createdBy: userId.value ?? 'Unknown user',
-    id: '',
-  };
-
-  emits('submit', toSave);
-}
-
-function onKeypress(ev: KeyboardEvent) {
-  if (ev.ctrlKey && ev.code === 'Enter') {
-    // Stop the regular typing
-    ev.preventDefault();
-    ev.stopPropagation();
-
-    // Submit and blur.
-    onSubmit();
-    (ev.currentTarget as HTMLTextAreaElement).blur();
+async function refreshList() {
+  if (GET_fetch.isFetching.value) {
+    return;
   }
+  await GET_fetch.execute();
 }
+
+onMounted(() => {
+  refreshList();
+});
 </script>
+
+<style lang="css">
+li.todo-item {
+  @apply flex flex-1 flex-col items-start gap-y-1;
+
+  background-image: linear-gradient(
+    to right,
+    theme('colors.nh-bourbon.50') 5%,
+    theme('colors.nh-bourbon.100') 25%,
+    theme('colors.nh-bourbon.100') 75%,
+    theme('colors.nh-bourbon.50') 95%
+  );
+}
+</style>

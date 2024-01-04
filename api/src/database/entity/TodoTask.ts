@@ -19,7 +19,7 @@ export class TodoTaskModel extends BaseEntity implements TodoTask {
   createdBy: string;
   @Column('datetime', { default: () => 'GETDATE()', nullable: false })
   createdAt: Date;
-  @Column('varchar', { length: 63, nullable: false })
+  @Column('varchar', { length: 63, nullable: true })
   updatedBy: string;
   @Column('datetime', { nullable: true })
   updatedAt: Date;

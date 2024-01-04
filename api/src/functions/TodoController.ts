@@ -1,7 +1,6 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../database/dataSource';
 import { TodoTaskModel } from '../database/entity/TodoTask';
-import { TodoTask } from '../database/models/TodoTask';
 
 export async function CreateTodoTask(
   request: HttpRequest,

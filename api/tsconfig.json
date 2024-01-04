@@ -9,7 +9,10 @@
     "strict": false,
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "paths": {
+      "@db/*": ["../swa-db-connections/*"]
+    }
   },
   "references": [{ "path": "../swa-db-connections" }]
 }

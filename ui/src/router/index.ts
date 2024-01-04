@@ -45,17 +45,17 @@ const routes: RouteRecordRaw[] = [
         children: [],
       },
       {
-        path: '/tasks',
+        path: 'tasks',
         name: RouteName.TASKS_HOME,
-        component: () => import('../components/pages/tasks/TaskListPage.vue'),
+        redirect: { name: RouteName.TASKS_CREATE },
         children: [
           {
-            path: '/create',
+            path: 'create',
             name: RouteName.TASKS_CREATE,
             component: () => import('../components/pages/tasks/TaskCreatePage.vue'),
           },
           {
-            path: '/list',
+            path: 'list',
             name: RouteName.TASKS_LIST,
             component: () => import('../components/pages/tasks/TaskListPage.vue'),
           },

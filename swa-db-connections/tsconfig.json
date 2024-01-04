@@ -1,4 +1,7 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "files": ["copy-models.ts"]
+  "files": ["copy-models.ts"],
+  "compilerOptions": {
+    "composite": true
+  }
 }

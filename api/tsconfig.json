@@ -10,5 +10,6 @@
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "references": [{ "path": "../swa-db-connections" }]
 }

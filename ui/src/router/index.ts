@@ -45,10 +45,21 @@ const routes: RouteRecordRaw[] = [
         children: [],
       },
       {
-        path: '/todo',
-        name: RouteName.TODO_HOME,
-        component: () => import('../components/pages/TodoPage.vue'),
-        children: [],
+        path: '/tasks',
+        name: RouteName.TASKS_HOME,
+        component: () => import('../components/pages/tasks/TaskListPage.vue'),
+        children: [
+          {
+            path: '/create',
+            name: RouteName.TASKS_CREATE,
+            component: () => import('../components/pages/tasks/TaskCreatePage.vue'),
+          },
+          {
+            path: '/list',
+            name: RouteName.TASKS_LIST,
+            component: () => import('../components/pages/tasks/TaskListPage.vue'),
+          },
+        ],
       },
       {
         path: 'profile',

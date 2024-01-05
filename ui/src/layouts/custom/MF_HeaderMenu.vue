@@ -52,6 +52,7 @@ import { useRouter, type RouteLocationRaw } from 'vue-router';
 
 const items: EnumObject<RouteLocationRaw>[] = [
   { label: 'Home', value: { name: RouteName.HOME } },
+  { label: 'Tasks', value: { name: RouteName.TASKS_HOME } },
   { label: 'User Settings', value: { name: RouteName.USER_SETTINGS } },
   { label: 'Profile', value: { name: RouteName.PROFILE } },
 ];

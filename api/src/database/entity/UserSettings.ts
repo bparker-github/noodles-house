@@ -1,7 +1,8 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import type { IUserSettings } from '@db/models/UserSettings.d';
 
 @Entity('UserSettings')
-export class UserSettings {
+export class UserSettings implements IUserSettings {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 

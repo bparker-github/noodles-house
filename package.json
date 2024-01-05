@@ -19,13 +19,13 @@
     "clean:dist": "rimraf -g **/dist",
     "clean:modules": "rimraf -g **/node_modules",
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
-    "build": "npm-run-all -lnp build:*",
+    "build": "npm-run-all -lns build:models -p build:api build:ui",
     "build:api": "npm run build -w api",
     "build:ui": "npm run build -w ui",
     "build:swa:api": "npm run build:api",
     "build:swa:ui": "npm run build:swa -w ui",
     "/// Development ///": "/// Scripts below make it easy to develop ///",
-    "dev": "npm-run-all -lnp dev:*",
+    "dev": "npm-run-all -lns build:models -p dev:*",
     "dev:api": "npm run start -w api",
     "dev:ui": "npm run dev -w ui",
     "//// SWA Commands ////": "/////",
@@ -44,6 +44,7 @@
     "pre-commit": "^1.2.2",
     "prettier-plugin-tailwindcss": "^0.5.6",
     "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
   },
   "pre-commit": [

@@ -64,8 +64,6 @@ defineSlots<{ 'left-side': []; 'right-side': [] }>();
 
 const isOpen = useVModel(props, 'open', emits);
 
-console.log('HasEmit:', props.onLeftIconClick);
-
 function handleLeftClick() {
   emits('left-icon-click');
 }

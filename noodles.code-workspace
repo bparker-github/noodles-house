@@ -105,11 +105,13 @@
     ],
     "cSpell.words": [
       "blurhash",
+      "datetime",
       "endregion",
       "headlessui",
       "heroicons",
       "Msal",
       "NOOD",
+      "nvarchar",
       "pinia",
       "prestart",
       "rushstack",

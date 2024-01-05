@@ -1,10 +1,10 @@
 <template>
-  <div :class="['noodles-house-textbox-input', 'flex flex-col flex-1 gap-y-2']">
+  <div :class="['noodles-house-textarea-input', 'flex flex-col flex-1 gap-y-1']">
     <!-- The label above the input, if present -->
     <label
       v-if="hasLabel"
       :for="inputId"
-      class="nhti-label inline-flex flex-1"
+      class="nhtai-label inline-flex flex-1"
     >
       <slot name="label">
         <span class="text-sm font-medium leading-6 text-nh-bali-hai-950/75">
@@ -16,18 +16,18 @@
     <!-- The white container box here -->
     <div
       :class="[
-        'nhti-white-box',
+        'nhtai-white-box',
         'inline-flex flex-row flex-1 items-center',
-        'rounded-md shadow-sm px-2 gap-x-2',
+        'rounded-md shadow-sm p-1 gap-x-2',
         'bg-white border-nh-chalet-green-600 border',
         'focus-within:ring-1 focus-within:ring-inset',
         !errorMsg ? 'focus-within:ring-nh-chalet-green-500' : 'focus-within:ring-nh-bourbon-800',
       ]"
     >
       <!-- The input itself -->
-      <input
+      <textarea
         v-model="localValue"
-        v-bind="inputProps"
+        v-bind="textareaProps"
         ref="inputEle"
         :id="inputId"
         :class="[
@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { ExclamationCircleIcon } from '@heroicons/vue/20/solid';
-import { computed, ref, type InputHTMLAttributes } from 'vue';
+import { computed, ref, type TextareaHTMLAttributes } from 'vue';
 
 interface TextboxInputProps {
   /** The model value to pass to the input. */
@@ -80,7 +80,7 @@ interface TextboxInputProps {
   /** An optional string indicating the presence of an error, described by the message. */
   errorMsg?: string;
   /** An optional set of additional attributes to pass directly to the input element. */
-  inputProps?: InputHTMLAttributes;
+  textareaProps?: TextareaHTMLAttributes;
 }
 
 const props = defineProps<TextboxInputProps>();

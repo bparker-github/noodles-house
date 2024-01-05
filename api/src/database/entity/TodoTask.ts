@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import type { TodoTask } from '@db/models/TodoTask.d';
 
-@Entity('TodoModel')
-export class TodoModel {
+@Entity('TodoTask')
+export class TodoTaskModel extends BaseEntity implements TodoTask {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -18,7 +19,7 @@ export class TodoModel {
   createdBy: string;
   @Column('datetime', { default: () => 'GETDATE()', nullable: false })
   createdAt: Date;
-  @Column('varchar', { length: 63, nullable: false })
+  @Column('varchar', { length: 63, nullable: true })
   updatedBy: string;
   @Column('datetime', { nullable: true })
   updatedAt: Date;

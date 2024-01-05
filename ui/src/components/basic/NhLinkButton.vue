@@ -1,7 +1,6 @@
 <template>
   <NhButton
     v-bind="allProps"
-    class="no-underline"
     as="RouterLink"
     :to="to"
   >

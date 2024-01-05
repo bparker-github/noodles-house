@@ -28,10 +28,9 @@
 
     <div
       :class="[
-        'relative',
         'flex justify-center items-center py-1.5 -mx-2 mb-3 cursor-pointer',
         'border-y border-nh-bourbon-300 shadow-nh-bourbon-100',
-        'hover:bg-nh-bourbon-200 shadow-nh-whiteish',
+        'hover:bg-nh-bourbon-200 shadow-nh-bourbon-200/75',
         !isTaskInfoOpen ? 'shadow-t-blur' : 'shadow-md',
       ]"
       @click="() => setTaskInfoOpen()"
@@ -43,7 +42,6 @@
           { 'rotate-180': isTaskInfoOpen },
         ]"
       />
-      <span class="text-sm absolute right-2">{{ isTaskInfoOpen ? 'Open' : 'Closed' }}</span>
     </div>
 
     <TasksNavigation />

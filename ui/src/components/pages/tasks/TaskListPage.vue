@@ -4,7 +4,7 @@
     <TaskListCard
       :all-tasks="knownTasks"
       :is-fetching="getAll_isFetching"
-      @refresh="doRefresh"
+      @refresh="() => doRefresh(true)"
     />
   </div>
 </template>
@@ -19,14 +19,18 @@ import { onMounted } from 'vue';
 const taskStore = useTaskStore();
 const { knownTasks, getAll_isFetching } = storeToRefs(taskStore);
 
-function doRefresh(): Promise<unknown> {
+function doRefresh(force = false): Promise<unknown> {
   // Don't double-fetch.
   if (getAll_isFetching.value) {
     return Promise.resolve();
   }
 
-  return taskStore.getAllTasks(true);
+  return taskStore.getAllTasks(force);
 }
 
-onMounted(doRefresh);
+onMounted(async () => {
+  // If we have no items, presume we haven't fetched yet.
+  // Otherwise non-forced lookup - we have a refresh button for emergencies ;D
+  await doRefresh(!knownTasks.value.length);
+});
 </script>

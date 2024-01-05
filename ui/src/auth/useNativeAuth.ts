@@ -4,7 +4,7 @@ import { computed } from 'vue';
 import type { NativeUser } from './NativeUser';
 
 export const useNativeAuth = defineStore('native-swa-auth', () => {
-  const curUser = useSessionStorage<NativeUser | null>('native-auth-me', null, {
+  const curUser = useSessionStorage<NativeUser | null>('[nh]auth-me', null, {
     serializer: { read: JSON.parse, write: JSON.stringify },
   });
 

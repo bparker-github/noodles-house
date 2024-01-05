@@ -15,7 +15,7 @@ export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
     return next();
   }
 
-  // Skip if already auth
-  next();
+  // Finish the guard-hook dead-end, do the external routing.
+  next(false);
   window.location.pathname = '/login';
 };

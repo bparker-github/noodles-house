@@ -133,6 +133,8 @@ export default {
       boxShadow: {
         'inner-lg': 'inset 0 4px 8px 0 rgb(0 0 0 / 0.1)',
         'inner-sm': 'inset 0 0 3px -1px rgb(0 0 0 / 0.1)',
+        'b-blur': '0px 1rem 1.25rem -0.5rem rgb(0 0 0 / 0.1)',
+        't-blur': '0px -1rem 1.25rem -0.5rem rgb(0 0 0 / 0.1)',
       },
       spacing: {
         '10p': '10%',

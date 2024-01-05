@@ -55,7 +55,12 @@ export const useTaskStore = defineStore('todo-task-store', () => {
       const postFetch = CREATE_task.post(toSave, 'json');
       await postFetch.execute();
 
-      return postFetch.data.value?.value?.[0] ?? null;
+      // Retrieve the result, and add to our list if we succeeded.
+      const found = postFetch.data.value?.value?.[0] ?? null;
+      if (found) {
+        knownTasks.value.push(found);
+      }
+      return found;
     } catch (err) {
       console.error('Failed to create todoTask:', toSave);
       return null;

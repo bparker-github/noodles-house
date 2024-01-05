@@ -8,7 +8,7 @@
   >
     <!-- Display loading spinner if fetch hasn't completed -->
     <BackgroundSpinner
-      v-if="GET_fetch.isFetching.value"
+      v-if="isFetching"
       class="-mx-3 -my-5 rounded-md"
       title="Fetching Tasks"
       details="Fetching all todo tasks..."
@@ -59,9 +59,9 @@
 
         <NhButton
           class="self-end px-8 py-2 mt-3"
-          :is-loading="GET_fetch.isFetching.value"
+          :is-loading="isFetching"
           text="Refresh"
-          @click="refreshList"
+          @click="$emit('refresh')"
         />
       </template>
     </ul>
@@ -70,29 +70,16 @@
 
 <script setup lang="ts">
 import type { TodoTask } from '@db/models/TodoTask.d';
-import type { ModelResponse } from '@db/models/ModelResponse.d';
 import { QuestionMarkCircleIcon } from '@heroicons/vue/24/outline';
-import { useFetch } from '@vueuse/core';
-import { computed, onMounted } from 'vue';
-import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 import NhButton from '../basic/NhButton.vue';
+import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 
-const GET_fetch = useFetch('/data-api/direct/todo', { immediate: false }).json<
-  ModelResponse<TodoTask>
->();
-
-const allTasks = computed(() => GET_fetch.data.value?.value ?? []);
-
-async function refreshList() {
-  if (GET_fetch.isFetching.value) {
-    return;
-  }
-  await GET_fetch.execute();
+export interface TaskListCardProps {
+  allTasks: TodoTask[];
+  isFetching?: boolean;
 }
-
-onMounted(() => {
-  refreshList();
-});
+defineProps<TaskListCardProps>();
+defineEmits<{ refresh: [] }>();
 </script>
 
 <style lang="css">
@@ -101,10 +88,10 @@ li.todo-item {
 
   background-image: linear-gradient(
     to right,
-    theme('colors.nh-bourbon.50') 5%,
-    theme('colors.nh-bourbon.100') 25%,
-    theme('colors.nh-bourbon.100') 75%,
-    theme('colors.nh-bourbon.50') 95%
+    theme('colors.nh-bourbon.50/50') 5%,
+    theme('colors.nh-bourbon.100/50') 25%,
+    theme('colors.nh-bourbon.100/50') 75%,
+    theme('colors.nh-bourbon.50/50') 95%
   );
 }
 </style>

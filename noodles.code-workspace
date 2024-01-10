@@ -111,6 +111,7 @@
       "heroicons",
       "Msal",
       "NOOD",
+      "Noof",
       "nvarchar",
       "pinia",
       "prestart",
@@ -119,6 +120,7 @@
       "signin",
       "signout",
       "tailwindcss",
+      "Textbox",
       "typeorm",
       "vueuse",
       "Whiteish"

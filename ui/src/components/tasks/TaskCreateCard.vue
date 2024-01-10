@@ -18,17 +18,19 @@
       >
         Create New Task
       </h2>
-      <TextboxInput
+      <NoofInput
         v-model:value="createTaskTitle"
         label="Title"
-        input-id="create-task-input"
-        :input-props="{ placeholder: 'Enter a summarized title' }"
+        id="create-task-input"
+        :ele-props="{
+          placeholder: 'Enter a summarized title',
+        }"
       />
-      <TextareaInput
+      <NoofTextArea
         v-model:value="createTaskDescription"
         label="Description"
-        input-id="create-task-description"
-        :textarea-props="{
+        id="create-task-description"
+        :ele-props="{
           placeholder: 'Enter a description of the task, feature, etc',
           rows: 4,
           onKeypress,
@@ -50,9 +52,9 @@ import { useNativeAuth } from '@/auth/useNativeAuth';
 import type { TodoTask } from '@db/models/TodoTask.d';
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
+import NoofInput from '../../Noof/inputs/NoofInput.vue';
+import NoofTextArea from '../../Noof/inputs/NoofTextarea.vue';
 import NhButton from '../basic/NhButton.vue';
-import TextareaInput from '../inputs/TextareaInput.vue';
-import TextboxInput from '../inputs/TextboxInput.vue';
 
 const props = defineProps<{ isSubmitLoading?: boolean }>();
 const emits = defineEmits<{ submit: [TodoTask] }>();

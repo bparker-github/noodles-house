@@ -49,9 +49,9 @@
 
 <script setup lang="ts">
 import { useNativeAuth } from '@/auth/useNativeAuth';
-import type { TodoTask } from '@db/models/TodoTask.d';
+import { TaskType, type TodoTask } from '@db/models/TodoTask.d';
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import NoofInput from '../../Noof/inputs/NoofInput.vue';
 import NoofTextArea from '../../Noof/inputs/NoofTextarea.vue';
 import NhButton from '../basic/NhButton.vue';
@@ -61,8 +61,23 @@ const emits = defineEmits<{ submit: [TodoTask] }>();
 
 const { userId } = storeToRefs(useNativeAuth());
 
-const createTaskTitle = ref('');
-const createTaskDescription = ref('');
+const taskModel = ref<TodoTask>({
+  createdAt: new Date(),
+  createdBy: userId.value ?? 'Unknown user',
+  id: '',
+  title: '',
+  type: TaskType.UNSPECIFIED,
+  description: '',
+  subTitle: '',
+});
+const createTaskTitle = computed({
+  get: () => taskModel.value.title,
+  set: (nv) => (taskModel.value.title = nv),
+});
+const createTaskDescription = computed<string>({
+  get: () => taskModel.value.description ?? '',
+  set: (nv) => (taskModel.value.description = nv ?? ''),
+});
 
 async function onSubmit() {
   // Short circuit

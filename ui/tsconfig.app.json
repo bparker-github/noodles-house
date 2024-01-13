@@ -9,6 +9,7 @@
       "@/*": ["./src/*"],
       "@db/*": ["../swa-db-connections/*"]
     },
+    "isolatedModules": false,
     "typeRoots": ["types"]
   },
   "references": [{ "path": "../swa-db-connections" }]

@@ -21,11 +21,19 @@
       <NoofInput
         v-model:value="createTaskTitle"
         label="Title"
-        id="create-task-input"
+        id="create-task-title"
         :ele-props="{
           placeholder: 'Enter a summarized title',
         }"
       />
+
+      <NoofSelect
+        v-model:value="createTaskType"
+        label="Task Type"
+        id="create-task-type"
+        :options="taskTypes"
+      />
+
       <NoofTextArea
         v-model:value="createTaskDescription"
         label="Description"
@@ -48,7 +56,9 @@
 </template>
 
 <script setup lang="ts">
+import NoofSelect from '@/Noof/inputs/NoofSelect.vue';
 import { useNativeAuth } from '@/auth/useNativeAuth';
+import { EnumObject } from '@/lib';
 import { TaskType, type TodoTask } from '@db/models/TodoTask.d';
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
@@ -74,10 +84,20 @@ const createTaskTitle = computed({
   get: () => taskModel.value.title,
   set: (nv) => (taskModel.value.title = nv),
 });
+const createTaskType = computed({
+  get: () => taskModel.value.type,
+  set: (nv) => (taskModel.value.type = nv),
+});
 const createTaskDescription = computed<string>({
   get: () => taskModel.value.description ?? '',
   set: (nv) => (taskModel.value.description = nv ?? ''),
 });
+
+const taskTypes: EnumObject<TaskType>[] = [
+  { label: TaskType.UNSPECIFIED.toString(), value: TaskType.UNSPECIFIED },
+  { label: TaskType.BUG.toString(), value: TaskType.BUG },
+  { label: TaskType.IMPROVEMENT.toString(), value: TaskType.IMPROVEMENT },
+];
 
 async function onSubmit() {
   // Short circuit
@@ -88,6 +108,7 @@ async function onSubmit() {
   const toSave: TodoTask = {
     title: createTaskTitle.value,
     description: createTaskDescription.value,
+    type: TaskType.UNSPECIFIED,
     createdAt: new Date(),
     createdBy: userId.value ?? 'Unknown user',
     id: '',

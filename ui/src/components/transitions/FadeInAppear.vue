@@ -14,9 +14,5 @@ import { computed, useAttrs } from 'vue';
 
 const attrs = useAttrs();
 
-const hasDurationClass = computed(() => {
-  const ret = /duration-/g.test(attrs?.['class'] ?? '');
-  console.log('Checking duration class:', attrs?.['class'], ret);
-  return /duration-/g.test(attrs?.['class'] ?? '');
-});
+const hasDurationClass = computed(() => /duration-/g.test(attrs?.['class'] ?? ''));
 </script>

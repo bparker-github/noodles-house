@@ -39,11 +39,7 @@
         </span>
       </ListboxButton>
 
-      <transition
-        leave-active-class="transition ease-in duration-100"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
+      <FadeInAppear class="duration-150">
         <ListboxOptions
           :class="[
             'absolute z-10 right-0 top-0',
@@ -89,7 +85,7 @@
             </li>
           </ListboxOption>
         </ListboxOptions>
-      </transition>
+      </FadeInAppear>
     </template>
 
     <template #right-icon><slot name="right-icon"></slot></template>
@@ -97,6 +93,7 @@
 </template>
 
 <script setup lang="ts" generic="T">
+import FadeInAppear from '@/components/transitions/FadeInAppear.vue';
 import type { EnumObject } from '@/lib';
 import {
   Listbox,

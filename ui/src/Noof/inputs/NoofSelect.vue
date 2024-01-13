@@ -1,7 +1,7 @@
 <template>
   <NoofField
     v-model="localValue"
-    class="noodles-house-select-field"
+    class="noodles-house-select-field relative"
     :id="id"
     :error-msg="errorMsg"
     :label="label"
@@ -17,21 +17,23 @@
     <template #field>
       <ListboxButton
         :class="[
-          'relative w-full cursor-default rounded-md shadow-sm',
-          'bg-white py-1.5 pl-3 pr-10 text-left text-gray-900',
-          'ring-1 ring-inset ring-gray-300',
-          'focus:outline-none focus:ring-2 focus:ring-indigo-600',
-          'sm:text-sm sm:leading-6',
+          'inline-flex flex-row flex-nowrap items-center flex-1',
+          'py-1.5 pl-1 rounded-md border-0 bg-trans',
+          'text-sm leading-6 placeholder:text-sm',
+          'focus-visible:ring-0 focus-visible:outline-none',
+          !errorMsg
+            ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/50'
+            : 'text-nh-bourbon-800 placeholder:text-nh-bourbon-800/50',
         ]"
       >
-        <span class="flex items-center">
+        <span class="flex items-center flex-1">
           <slot name="left-icon"></slot>
-          <span class="ml-3 block truncate">{{ localOption?.label ?? 'None' }}</span>
+          <span class="block truncate">{{ localOption?.label ?? 'None' }}</span>
         </span>
 
-        <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+        <span class="pointer-events-none inline-flex items-center pl-2">
           <ChevronUpDownIcon
-            class="h-5 w-5 text-gray-400"
+            class="h-5 w-5 text-nh-bourbon-900/75"
             aria-hidden="true"
           />
         </span>
@@ -43,7 +45,13 @@
         leave-to-class="opacity-0"
       >
         <ListboxOptions
-          class="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+          :class="[
+            'absolute z-10 right-0 top-0',
+            'max-h-60 min-w-[16rem] max-w-full',
+            'overflow-auto rounded-md shadow-lg bg-white',
+            'md:text-base text-sm mt-1 py-1',
+            'ring-1 ring-black ring-opacity-5 focus:outline-none',
+          ]"
         >
           <ListboxOption
             v-for="(opt, i) in options.filter((o) => !!o.value)"
@@ -54,8 +62,10 @@
           >
             <li
               :class="[
-                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                 'relative cursor-default select-none py-2 pl-3 pr-9',
+                active
+                  ? 'bg-nh-bourbon-100 text-nh-bourbon-800'
+                  : 'text-nh-bourbon-950 hover:text-nh-bourbon-800',
               ]"
             >
               <div class="flex items-center">
@@ -67,7 +77,7 @@
               <span
                 v-if="selected"
                 :class="[
-                  active ? 'text-white' : 'text-indigo-600',
+                  active ? 'text-nh-bourbon-600' : 'text-nh-bourbon-800',
                   'absolute inset-y-0 right-0 flex items-center pr-4',
                 ]"
               >
@@ -108,16 +118,14 @@ export interface LocalNoofSelectProps<P> extends NoofSelectProps {
 }
 
 const props = defineProps<LocalNoofSelectProps<T>>();
-const { label, errorMsg, id, value, options, ...selectProps } = props;
 
 const emits = defineEmits<{ 'update:value': [T | undefined] }>();
 defineSlots<{ 'left-icon': []; 'right-icon': [] }>();
 
 const listboxEle = ref<InstanceType<typeof Listbox> | null>(null);
-const errorId = computed(() => id + '-error');
 
 const localValue = computed({
-  get: () => value,
+  get: () => props.value,
   set: (nv) => emits('update:value', nv),
 });
 const localOption = computed(() => props.options.find((opt) => opt.value === props.value));

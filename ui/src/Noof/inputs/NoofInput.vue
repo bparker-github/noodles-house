@@ -16,7 +16,7 @@
         :class="[
           'inline-flex flex-row flex-nowrap flex-1',
           'py-1.5 pl-1 pr-3 rounded-md border-0 bg-trans',
-          'sm:text-sm sm:leading-6 placeholder:text-sm',
+          'text-sm leading-6 placeholder:text-sm',
           'focus:ring-0',
           !errorMsg
             ? 'text-nh-chalet-green-950 placeholder:text-nh-chalet-green-950/50'

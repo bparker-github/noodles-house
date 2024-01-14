@@ -20,7 +20,7 @@ export const useNativeAuth = defineStore('native-swa-auth', () => {
   const isAuthenticated = computed(() => !!curUser.value?.clientPrincipal);
   const userId = computed(() => curUser.value?.clientPrincipal.userId);
 
-  function doFetch(force = false) {
+  async function doFetch(force = false): Promise<void> {
     // Short circuit if we are already authenticated, and aren't forcing a reload.
     if (isAuthenticated.value && !force) {
       return;

@@ -10,17 +10,16 @@ interface ListItem_All {
   /** An optional indicator that the item is selected. */
   current?: boolean;
 
-  leftIcon: Component;
-  leftInitial: string;
-
   to: RouteLocationRaw;
-  click: () => Promise<void> | void;
+  click?: () => Promise<void> | void;
 }
+interface ListItem_Left {
+  leftIcon?: Component;
+  leftInitial?: string;
+}
+type ListItemLeft = RequireOnlyOne<ListItem_Left, 'leftIcon' | 'leftInitial'>;
 
-export type ListItem = RequireOnlyOne<
-  RequireOnlyOne<ListItem_All, 'leftIcon' | 'leftInitial'>,
-  'to' | 'click'
->;
+export type ListItem = ListItem_All & ListItemLeft;
 
 export { default as MainItemList } from './MainList.vue';
 export { default as ItemListItem } from './SingleItem.vue';

@@ -10,9 +10,11 @@
 </template>
 
 <script setup lang="ts">
+import { normalizeClass } from 'vue';
 import { computed, useAttrs } from 'vue';
 
 const attrs = useAttrs();
 
-const hasDurationClass = computed(() => /duration-/g.test(attrs?.['class'] ?? ''));
+const passedClass = computed(() => normalizeClass(attrs?.['class']));
+const hasDurationClass = computed(() => /duration-/g.test(passedClass.value));
 </script>

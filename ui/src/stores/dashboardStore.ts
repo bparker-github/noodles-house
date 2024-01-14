@@ -1,4 +1,5 @@
 import type { ListItem } from '@/components/ItemList';
+import { Cog6ToothIcon, ListBulletIcon } from '@heroicons/vue/20/solid';
 import { FilmIcon, HomeIcon, LockClosedIcon, UserIcon } from '@heroicons/vue/24/solid';
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
@@ -16,7 +17,8 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
   });
 
   const primaryItemList: ListItem[] = [
-    { label: 'Home', to: { name: RouteName.HOME }, leftIcon: HomeIcon },
+    { id: 0, label: 'Home', to: { name: RouteName.HOME }, leftIcon: HomeIcon },
+    { id: 1, label: 'Tasks', to: { name: RouteName.TASKS_HOME }, leftIcon: ListBulletIcon },
   ];
   const secondaryListTitle = 'Integrations';
   const secondaryItemList: ListItem[] = [
@@ -27,6 +29,7 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
   const userListTitle = 'You';
   const userItemList: ListItem[] = [
     { label: 'Your profile', to: { name: RouteName.PROFILE }, leftIcon: UserIcon },
+    { label: 'User settings', to: { name: RouteName.USER_SETTINGS }, leftIcon: Cog6ToothIcon },
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 

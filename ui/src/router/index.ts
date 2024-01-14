@@ -31,6 +31,10 @@ const routes: RouteRecordRaw[] = [
     redirect: { name: RouteName.LANDING },
   },
   {
+    path: '/indoors2',
+    component: () => import('../layouts/custom/SimpleDark.vue'),
+  },
+  {
     path: '/indoors',
     alias: ['/bunker', '/home'],
     component: () => import('../layouts/custom/MobileFirst.vue'),

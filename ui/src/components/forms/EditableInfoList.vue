@@ -41,14 +41,16 @@
               </div>
 
               <!-- Editing visual -->
-              <TextboxInput
+              <NoofInput
                 v-else
                 :ref="(el) => assignRef(config, el)"
                 :value="getValueForModel(config.key).value"
                 @update:value="(nv) => updateModelPart(config.key, nv)"
-                :name="config.key"
-                :placeholder="toValue(config.placeholder)"
-                :input-id="String(config.key)"
+                :ele-props="{
+                  name: String(config.key),
+                  placeholder: toValue(config.placeholder),
+                }"
+                :id="String(config.key)"
               />
 
               <!-- Copy-button -->
@@ -73,7 +75,7 @@ import { PencilIcon } from '@heroicons/vue/24/solid';
 import type { ComponentPublicInstance, ComputedRef, MaybeRef } from 'vue';
 import { computed, ref, toValue } from 'vue';
 import NhButton from '../basic/NhButton.vue';
-import TextboxInput from '../inputs/TextboxInput.vue';
+import NoofInput from '../../Noof/inputs/NoofInput.vue';
 
 export interface ModelFieldConfig<Model extends {}> {
   key: keyof Model;
@@ -114,12 +116,11 @@ const isDisabled = ref(false);
 const editingList = ref<Set<number>>(new Set<number>());
 
 // Element Refs
-const inputRefs = ref<Record<string, InstanceType<typeof TextboxInput> | null>>({});
+type NoofInputInstance = InstanceType<typeof NoofInput>;
+const inputRefs = ref<Record<string, NoofInputInstance | null>>({});
 function assignRef(config: ModelFieldConfig<T>, el: Element | ComponentPublicInstance | null) {
-  console.log('Assigning ref for config:', config.key);
-
   const refName = getRefName(config.key);
-  inputRefs.value[refName] = el as InstanceType<typeof TextboxInput>;
+  inputRefs.value[refName] = el as NoofInputInstance;
 }
 
 // Functions

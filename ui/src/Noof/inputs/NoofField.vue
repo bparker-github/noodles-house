@@ -1,7 +1,7 @@
 <template>
   <component
     :is="is ?? 'div'"
-    class="flex flex-col flex-1 gap-y-2"
+    class="flex flex-col flex-1 gap-y-1"
   >
     <!-- The label above the input, if present -->
     <slot name="label">
@@ -19,7 +19,7 @@
     <!-- The white container box here -->
     <div
       :class="[
-        'inline-flex flex-row flex-1 items-center',
+        'inline-flex flex-row flex-1 items-center relative',
         'rounded-md shadow-sm px-2 gap-x-2',
         'bg-white border-nh-chalet-green-600 border',
         'focus-within:ring-1 focus-within:ring-inset',

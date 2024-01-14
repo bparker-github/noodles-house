@@ -42,10 +42,11 @@
       <FadeInAppear class="duration-150">
         <ListboxOptions
           :class="[
-            'absolute z-10 right-0 top-0',
-            'max-h-60 min-w-[16rem] max-w-full',
-            'overflow-auto rounded-md shadow-lg bg-white',
+            'absolute z-10 right-0 top-full',
+            'max-h-60 min-w-[16rem] w-full max-w-full',
+            'overflow-auto rounded-md shadow-2xl bg-white',
             'md:text-base text-sm mt-1 py-1',
+            'border border-nh-chalet-green-800/60',
             'ring-1 ring-black ring-opacity-5 focus:outline-none',
           ]"
         >

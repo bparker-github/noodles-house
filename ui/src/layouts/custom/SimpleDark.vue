@@ -2,12 +2,15 @@
   <Disclosure
     v-slot="{ open }"
     as="nav"
-    :class="[
-      'bg-nh-chalet-green-400 text-nh-chalet-green-50',
-      'bg-gradient-to-b from-nh-chalet-green-600/50 to-nh-chalet-green-600',
-    ]"
+    class="text-nh-chalet-green-50"
   >
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div
+      :class="[
+        'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8',
+        'bg-gradient-to-b from-nh-chalet-green-400 to-nh-chalet-green-600',
+        'shadow-xl fixed inset-0 h-16 z-[999]',
+      ]"
+    >
       <div class="flex h-16 items-center justify-between">
         <div class="flex items-center">
           <div
@@ -58,7 +61,7 @@
         <div class="-mr-2 flex sm:hidden">
           <!-- Mobile menu button -->
           <DisclosureButton
-            class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+            class="relative inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
           >
             <span class="absolute -inset-0.5" />
             <span class="sr-only">Open main menu</span>
@@ -72,73 +75,90 @@
       </div>
     </div>
 
-    <DisclosurePanel class="sm:hidden">
-      <div class="space-y-1 px-2 pb-3 pt-2">
-        <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-        <DisclosureButton
-          v-for="(it, i) in primaryItemList"
-          :as="RouterLink"
-          :key="`${it.id}-${i}`"
-          :to="it.to"
-          class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-          @click="it.click"
-          >{{ it.label }}</DisclosureButton
-        >
-      </div>
-      <div class="border-t border-gray-700 pb-3 pt-4">
-        <div class="flex items-center px-5">
-          <div class="flex-shrink-0">
-            <img
-              class="h-10 w-10 rounded-full"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
-          </div>
-          <div class="ml-3">
-            <div class="text-base font-medium text-white">Tom Cook</div>
-            <div class="text-sm font-medium text-gray-400">tom@example.com</div>
-          </div>
-          <button
-            type="button"
-            class="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
-          >
-            <span class="absolute -inset-1.5" />
-            <span class="sr-only">View notifications</span>
-            <BellIcon
-              class="h-6 w-6"
-              aria-hidden="true"
-            />
-          </button>
-        </div>
-        <div class="mt-3 space-y-1 px-2">
+    <FadeSlideDown>
+      <DisclosurePanel :class="['sm:hidden mt-16 bg-nh-chalet-green-400']">
+        <div class="space-y-1 p-2">
+          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <DisclosureButton
-            v-for="(it, i) in userItemList"
-            as="template"
+            v-for="(it, i) in primaryItemList"
+            :as="RouterLink"
             :key="`${it.id}-${i}`"
+            :to="it.to"
+            :class="[
+              'block rounded-md px-3 py-2 text-base font-medium',
+              'text-nh-whiteish hover:text-nh-chalet-green-200 hover:bg-nh-chalet-green-500 hover:shadow-inner',
+            ]"
+            @click="it.click"
+            >{{ it.label }}</DisclosureButton
           >
-            <SingleItem :item="it" />
-          </DisclosureButton>
         </div>
-      </div>
-    </DisclosurePanel>
+        <div :class="['pb-2 bg-gradient-to-t from-nh-chalet-green-400 to-nh-chalet-green-600']">
+          <div
+            :class="[
+              'user-profile-card flex items-center p-3',
+              'bg-nh-chalet-green-500/70 shadow-inner',
+            ]"
+          >
+            <div
+              v-if="myUserSettings?.profileLink"
+              class="flex-shrink-0"
+            >
+              <img
+                class="h-10 w-10 rounded-full"
+                :src="myUserSettings.profileLink"
+                alt=""
+              />
+            </div>
+            <div class="ml-3">
+              <div class="text-base font-medium text-nh-chalet-green-100">
+                {{ myFullName ?? curUser?.clientPrincipal.userId }}
+              </div>
+              <div class="text-sm font-medium text-nh-chalet-green-200">
+                {{ curUser?.clientPrincipal.userDetails }}
+              </div>
+            </div>
+            <button
+              type="button"
+              class="relative ml-auto flex-shrink-0 rounded-full bg-nh-chalet-green-800 p-1 text-nh-whiteish hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nh-chalet-green-900/70"
+            >
+              <span class="absolute -inset-1.5" />
+              <span class="sr-only">View notifications</span>
+              <BellIcon
+                class="h-6 w-6"
+                aria-hidden="true"
+              />
+            </button>
+          </div>
+          <div class="mt-3 space-y-1 px-2">
+            <DisclosureButton
+              v-for="(it, i) in userItemList"
+              as="template"
+              :key="`${it.id}-${i}`"
+            >
+              <SingleItem :item="it" />
+            </DisclosureButton>
+          </div>
+        </div>
+      </DisclosurePanel>
+    </FadeSlideDown>
   </Disclosure>
 </template>
 
 <script setup lang="ts">
 import NoodleIconSvg from '@/assets/NoodleIcon.svg';
+import { useNativeAuth } from '@/auth/useNativeAuth';
+import SingleItem from '@/components/ItemList/SingleItem.vue';
+import NoodleLink from '@/components/NoodleLink.vue';
+import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
+import { userSettingsRepository } from '@/repos/user-settings';
+import { RouteName } from '@/router/RouteName';
+import { useDashboardStore } from '@/stores/dashboardStore';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline';
-import ProfileDropMenu from './ProfileDropMenu.vue';
-import { ListItem } from '@/components/ItemList';
-import { useDashboardStore } from '@/stores/dashboardStore';
 import { storeToRefs } from 'pinia';
-import SingleItem from '@/components/ItemList/SingleItem.vue';
-import { RouteName } from '@/router/RouteName';
-import { useRoute } from 'vue-router';
-import { useRouter } from 'vue-router';
 import { computed } from 'vue';
-import NoodleLink from '@/components/NoodleLink.vue';
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
+import ProfileDropMenu from './ProfileDropMenu.vue';
 
 export interface SimpleDarkProps {
   onNotificationsClick?: Function;
@@ -150,6 +170,9 @@ const route = useRoute();
 const router = useRouter();
 const dashboardStore = useDashboardStore();
 const { primaryItemList, userItemList } = dashboardStore;
+const { curUser } = storeToRefs(useNativeAuth());
+const userSettingsRepo = userSettingsRepository();
+const { myUserSettings, myFullName } = storeToRefs(userSettingsRepo);
 
 const canClickHomeIcon = computed(() => route.name !== RouteName.HOME);
 

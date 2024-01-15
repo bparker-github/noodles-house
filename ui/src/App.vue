@@ -3,7 +3,10 @@
     v-if="loading"
     class="initial-loader"
   />
-  <RouterView v-else />
+  <RouterView
+    v-else
+    class="relative"
+  />
 </template>
 
 <script setup lang="ts">
@@ -34,6 +37,6 @@ onMounted(async () => {
 html,
 body,
 div#app {
-  @apply h-full w-full;
+  @apply max-h-screen min-h-0 w-screen;
 }
 </style>

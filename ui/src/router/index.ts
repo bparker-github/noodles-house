@@ -32,12 +32,12 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/indoors2',
-    component: () => import('../layouts/custom/SimpleDark.vue'),
+    component: () => import('../layouts/custom/MobileFirst.vue'),
   },
   {
     path: '/indoors',
     alias: ['/bunker', '/home'],
-    component: () => import('../layouts/custom/MobileFirst.vue'),
+    component: () => import('../layouts/custom/SimpleDark.vue'),
     meta: {
       nativeUserRole: NativeUserRole.AUTHENTICATED,
     },

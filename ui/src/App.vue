@@ -37,6 +37,6 @@ onMounted(async () => {
 html,
 body,
 div#app {
-  @apply max-h-screen min-h-0 w-screen;
+  @apply flex h-full min-h-0 w-full flex-1 flex-col overflow-hidden;
 }
 </style>

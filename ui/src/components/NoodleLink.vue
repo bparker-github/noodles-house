@@ -1,5 +1,6 @@
 <template>
   <component
+    v-bind="$props"
     :is="isExternalLink ? 'a' : RouterLink"
     :to="to"
     :href="to"

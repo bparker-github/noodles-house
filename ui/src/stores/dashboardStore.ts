@@ -17,7 +17,13 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
   });
 
   const primaryItemList: ListItem[] = [
-    { id: 0, label: 'Home', to: { name: RouteName.HOME }, leftIcon: HomeIcon },
+    {
+      id: 0,
+      label: 'Home',
+      to: { name: RouteName.HOME },
+      leftIcon: HomeIcon,
+      useExactActiveClass: true,
+    },
     { id: 1, label: 'Tasks', to: { name: RouteName.TASKS_HOME }, leftIcon: ListBulletIcon },
   ];
   const secondaryListTitle = 'Integrations';
@@ -33,13 +39,12 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
-  function getItemsWithClose(close: () => void) {
+  function getItemsWithClick(supplementaryClick: (it?: ListItem) => void) {
     const supplementItem = (item: ListItem): ListItem => ({
       ...item,
       click: () => {
         item.click?.();
-        sidebarOpen.value = false;
-        close?.();
+        supplementaryClick?.(item);
       },
     });
 
@@ -56,7 +61,7 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     setIsOpen,
     sidebarOpen,
 
-    getItemsWithClose,
+    getItemsWithClick,
 
     primaryItemList,
     secondaryListTitle,

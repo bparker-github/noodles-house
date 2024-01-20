@@ -10,6 +10,9 @@ interface ListItem_All {
   /** An optional indicator that the item is selected. */
   current?: boolean;
 
+  /** A value indicating if the route should use the 'exact-active' property instead of regular 'active'. */
+  useExactActiveClass?: boolean;
+
   to: RouteLocationRaw;
   click?: () => Promise<void> | void;
 }

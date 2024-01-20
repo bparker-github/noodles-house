@@ -5,8 +5,7 @@
     @click="item.click"
     :class="[
       'text-whiteish group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
-      { 'bg-nh-chalet-green-800 hover:bg-nh-chalet-green-600': item.current },
-      { 'hover:bg-nh-chalet-green-700 hover:text-white': !item.current },
+      'hover:bg-nh-chalet-green-700 hover:text-white',
     ]"
   >
     <component

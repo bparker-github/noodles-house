@@ -5,7 +5,6 @@
     subTitle="Personal profile information."
     :list="items"
   />
-  <div></div>
 </template>
 
 <script setup lang="ts">

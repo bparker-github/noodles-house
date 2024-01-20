@@ -1,8 +1,9 @@
 <template>
   <div class="simple-dark-layout flex flex-col flex-1 min-h-0">
     <Disclosure
-      v-slot="{ open }"
+      v-slot="{ open, close }"
       as="template"
+      :default-open="isOpen"
     >
       <nav
         :class="[
@@ -36,7 +37,7 @@
                 <div class="flex space-x-4">
                   <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                   <NoodleLink
-                    v-for="(it, i) in primaryItemList"
+                    v-for="(it, i) in dashboardStore.getItemsWithClose(close).primaryItemList"
                     :key="`${it.id}-${i}`"
                     :to="it.to"
                     @click="it.click"
@@ -52,7 +53,10 @@
               <div class="flex items-center">
                 <button
                   type="button"
-                  class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  :class="[
+                    'relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white',
+                    'nh-focus-chalet-green',
+                  ]"
                   @click="$emit('notifications-click')"
                 >
                   <span class="absolute -inset-1.5" />
@@ -64,13 +68,17 @@
                 </button>
 
                 <!-- Profile dropdown -->
-                <ProfileDropMenu :items="userItemList" />
+                <ProfileDropMenu :items="dashboardStore.getItemsWithClose(close).userItemList" />
               </div>
             </div>
             <div class="-mr-2 flex sm:hidden">
               <!-- Mobile menu button -->
               <DisclosureButton
-                class="relative inline-flex items-center justify-center rounded-md p-2 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                :class="[
+                  'relative inline-flex items-center justify-center rounded-md p-2 hover:text-white',
+                  'nh-focus-chalet-green',
+                ]"
+                @click="isOpen = !isOpen"
               >
                 <span class="absolute -inset-0.5" />
                 <span class="sr-only">Open main menu</span>
@@ -86,6 +94,8 @@
 
         <FadeSlideDown>
           <DisclosurePanel
+            v-if="isOpen"
+            :static="true"
             :class="[
               'sm:hidden z-[100] shadow-xl',
               'bg-gradient-to-b from-nh-chalet-green-400 to-nh-chalet-green-500/70',
@@ -94,13 +104,14 @@
             <div class="space-y-1 p-2">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
               <DisclosureButton
-                v-for="(it, i) in primaryItemList"
+                v-for="(it, i) in dashboardStore.getItemsWithClose(close).primaryItemList"
                 :as="RouterLink"
                 :key="`${it.id}-${i}`"
                 :to="it.to"
                 :class="[
                   'block rounded-md px-3 py-2 text-base font-medium',
                   'text-nh-whiteish hover:text-nh-chalet-green-200 hover:bg-nh-chalet-green-500 hover:shadow-inner',
+                  'nh-focus-chalet-green-inv',
                 ]"
                 @click="it.click"
                 >{{ it.label }}</DisclosureButton
@@ -114,7 +125,7 @@
             >
               <div
                 :class="[
-                  'user-profile-card flex items-center p-3 mb-0.5',
+                  'user-profile-card flex items-center p-3',
                   'bg-nh-chalet-green-600 shadow-inner',
                 ]"
               >
@@ -138,7 +149,10 @@
                 </div>
                 <button
                   type="button"
-                  class="relative ml-auto flex-shrink-0 rounded-full bg-nh-chalet-green-800 p-1 text-nh-whiteish hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-nh-chalet-green-900/70"
+                  :class="[
+                    'relative ml-auto flex-shrink-0 rounded-full bg-nh-chalet-green-800 p-1 text-nh-whiteish hover:text-white',
+                    'nh-focus-chalet-green',
+                  ]"
                 >
                   <span class="absolute -inset-1.5" />
                   <span class="sr-only">View notifications</span>
@@ -150,16 +164,19 @@
               </div>
               <div
                 :class="[
-                  'space-y-1 px-2',
+                  'flex flex-col flex-1 space-y-1 px-2',
                   'bg-gradient-to-t from-nh-chalet-green-400 to-nh-chalet-green-600',
                 ]"
               >
                 <DisclosureButton
-                  v-for="(it, i) in userItemList"
+                  v-for="(it, i) in dashboardStore.getItemsWithClose(close).userItemList"
                   as="template"
                   :key="`${it.id}-${i}`"
                 >
-                  <SingleItem :item="it" />
+                  <SingleItem
+                    class="nh-focus-chalet-green-inv"
+                    :item="it"
+                  />
                 </DisclosureButton>
               </div>
             </div>
@@ -168,8 +185,13 @@
       </nav>
     </Disclosure>
 
-    <main :class="['simple-dark-main mt-16 pt-2', 'overflow-y-auto max-h-full']">
-      <RouterView class="relative" />
+    <main
+      :class="[
+        'simple-dark-main mt-16 pt-2 bg-nh-whiteish relative',
+        'overflow-y-auto h-full max-h-full',
+      ]"
+    >
+      <RouterView />
     </main>
   </div>
 </template>
@@ -198,9 +220,13 @@ defineEmits<{ 'notifications-click': [] }>();
 
 const route = useRoute();
 const router = useRouter();
+
 const dashboardStore = useDashboardStore();
-const { primaryItemList, userItemList } = dashboardStore;
-const { curUser } = storeToRefs(useNativeAuth());
+const { isOpen } = storeToRefs(dashboardStore);
+
+const authStore = useNativeAuth();
+const { curUser } = storeToRefs(authStore);
+
 const userSettingsRepo = userSettingsRepository();
 const { myUserSettings, myFullName } = storeToRefs(userSettingsRepo);
 

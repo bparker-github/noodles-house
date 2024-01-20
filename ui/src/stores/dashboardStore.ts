@@ -33,10 +33,30 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
+  function getItemsWithClose(close: () => void) {
+    const supplementItem = (item: ListItem): ListItem => ({
+      ...item,
+      click: () => {
+        item.click?.();
+        sidebarOpen.value = false;
+        close?.();
+      },
+    });
+
+    // Return all items.
+    return {
+      primaryItemList: primaryItemList.map(supplementItem),
+      secondaryItemList: secondaryItemList.map(supplementItem),
+      userItemList: userItemList.map(supplementItem),
+    };
+  }
+
   return {
     isOpen,
     setIsOpen,
     sidebarOpen,
+
+    getItemsWithClose,
 
     primaryItemList,
     secondaryListTitle,

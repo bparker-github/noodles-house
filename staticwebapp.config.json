@@ -35,11 +35,15 @@
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/apple?post_login_redirect_uri=/indoors"
+      "rewrite": "/.auth/login/apple?post_login_redirect_uri=/foyer/welcome"
     },
     {
       "route": "/logout",
       "rewrite": "/.auth/logout"
+    },
+    {
+      "route": "/data-api/*",
+      "allowedRoles": ["anonymous", "authenticated"]
     }
   ],
   "responseOverrides": {
@@ -50,13 +54,7 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": [
-      "/images/*.{png,jpg,gif,ico}",
-      "/*.{css,scss,js,ts,vue}",
-      "/.auth/*",
-      "/api/*",
-      "/data-api/*"
-    ]
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*"]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

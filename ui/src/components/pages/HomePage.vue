@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col flex-nowrap items-center px-6 lg:px-8">
+  <div class="nh-home-page flex flex-col flex-nowrap items-center px-6 lg:px-8">
     <div class="mx-auto max-w-[100%] text-center lg:max-w-4xl">
       <h2
         class="text-left text-nh-bali-hai-900 pb-6 pt-2 text-4xl font-bold tracking-tight sm:text-6xl"

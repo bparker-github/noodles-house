@@ -1,12 +1,11 @@
 <template>
   <component
-    :is="!item.click ? RouterLink : 'button'"
+    :is="!item.to ? 'button' : RouterLink"
     :to="item.to"
     @click="item.click"
     :class="[
       'text-whiteish group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
-      { 'bg-nh-mallard-800 hover:bg-nh-mallard-600': item.current },
-      { 'hover:bg-nh-mallard-700 hover:text-white': !item.current },
+      'hover:bg-nh-chalet-green-700 hover:text-white',
     ]"
   >
     <component

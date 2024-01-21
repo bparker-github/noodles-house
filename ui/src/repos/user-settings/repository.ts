@@ -3,12 +3,21 @@ import { useFetch, useSessionStorage } from '@vueuse/core';
 import { defineStore, storeToRefs } from 'pinia';
 import { type UserSettings } from '.';
 import { getFetchHeaders } from '../helpers';
+import { computed } from 'vue';
 
 export const userSettingsRepository = defineStore('user-settings-repo', () => {
   // Set up the local ref for the settings
   //  Persist to session storage for performance on repeat page-loads.
   const myUserSettings = useSessionStorage<UserSettings | null>('user-settings-temp', null, {
     serializer: { read: JSON.parse, write: JSON.stringify },
+  });
+
+  // Computed values for the state.
+  const myFullName = computed(() => {
+    const ret = [myUserSettings.value?.firstName, myUserSettings.value?.lastName]
+      .filter((x) => !!x)
+      .join(' ');
+    return ret;
   });
 
   // Load the native-auth for the user id.
@@ -43,6 +52,9 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
   return {
     // Refs
     myUserSettings,
+
+    // Computed
+    myFullName,
 
     // Fetch Hooks
     GET_fetch,

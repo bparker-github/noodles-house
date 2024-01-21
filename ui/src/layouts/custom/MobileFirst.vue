@@ -5,7 +5,7 @@
     :class="[
       'noodle-house-layout-mf',
       'relative flex flex-col flex-1 h-full overflow-hidden',
-      'bg-nh-bourbon-100 z-10',
+      'bg-nh-bourbon-100',
     ]"
   >
     <MF_Header
@@ -19,17 +19,21 @@
       </template>
     </MF_Header>
 
-    <transition
-      enter-active-class="motion-safe:transition duration-200 ease-out"
-      enter-from-class="-translate-y-8 opacity-0"
-      leave-active-class="motion-safe:transition duration-200 ease-in"
-      leave-to-class="-translate-y-8 opacity-0"
-    >
+    <FadeInAppear>
+      <div class="" />
+    </FadeInAppear>
+
+    <FadeSlideDown>
       <MF_HeaderMenu />
-    </transition>
+    </FadeSlideDown>
 
     <!-- The body and content below, with same header-margin above for spacer. -->
-    <main class="nhl-mf-body flex flex-col w-full h-full px-2 pt-4 pb-8 overflow-y-auto">
+    <main
+      :class="[
+        'nhl-mf-body flex flex-col w-full h-full px-2 pt-4 pb-8',
+        open ? 'overflow-y-hidden' : 'overflow-y-auto',
+      ]"
+    >
       <RouterView />
     </main>
   </Menu>
@@ -41,4 +45,6 @@ import { Menu, MenuButton } from '@headlessui/vue';
 import { Bars3Icon } from '@heroicons/vue/24/solid';
 import MF_Header from './MF_Header.vue';
 import MF_HeaderMenu from './MF_HeaderMenu.vue';
+import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
+import FadeInAppear from '@/components/transitions/FadeInAppear.vue';
 </script>

@@ -18,7 +18,19 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/indoors*",
+      "route": "/foyer*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/foyer/welcome",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/sitting-room*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/office*",
       "allowedRoles": ["authenticated"]
     },
     {
@@ -38,7 +50,13 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*"]
+    "exclude": [
+      "/images/*.{png,jpg,gif,ico}",
+      "/*.{css,scss,js,ts,vue}",
+      "/.auth/*",
+      "/api/*",
+      "/data-api/*"
+    ]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

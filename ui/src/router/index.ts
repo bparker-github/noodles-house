@@ -3,23 +3,6 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { RouteName } from './RouteName';
 
 const routes: RouteRecordRaw[] = [
-  // #region SWA auth redirects
-  {
-    // Handle nearly correct login routes.
-    path: '/log-in',
-    alias: ['/signin', '/sign-in'],
-    name: RouteName.LOGIN,
-    redirect: { path: '/login' },
-  },
-  {
-    // Handle nearly correct logout routes.
-    path: '/log-out',
-    alias: ['/signout', '/sign-out'],
-    name: RouteName.LOGOUT,
-    redirect: { path: '/logout' },
-  },
-  // #endregion
-
   // Guard the entire site for mobile-only (for now)
   {
     path: '/',
@@ -53,7 +36,6 @@ const routes: RouteRecordRaw[] = [
       // Handle the personal-info/SittingRoom pages
       {
         path: 'sitting-room',
-        alias: ['personal-info'],
         meta: {
           nativeUserRole: NativeUserRole.AUTHENTICATED,
         },
@@ -109,25 +91,6 @@ const routes: RouteRecordRaw[] = [
       },
     ],
   },
-
-  // #region NEW ROUTES
-  {
-    path: '/indoors',
-    alias: ['/bunker', '/home'],
-    component: () => import('../layouts/SimpleDark.vue'),
-    meta: {
-      nativeUserRole: NativeUserRole.AUTHENTICATED,
-    },
-    children: [
-      {
-        path: '',
-        name: RouteName.HOME,
-        component: () => import('../components/pages/HomePage.vue'),
-        children: [],
-      },
-    ],
-  },
-  // #endregion
 
   // #region Rest-routes
   {

@@ -3,34 +3,60 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { RouteName } from './RouteName';
 
 const routes: RouteRecordRaw[] = [
+  // Log-in and Log-out routes should be "refresh" the page to route via SWA.
+  {
+    // Handle nearly correct login routes.
+    path: '/log-in',
+    alias: ['/signin', '/sign-in'],
+    name: RouteName.LOGIN,
+    component: () => import('../components/pages/auth/LoginPage.vue'),
+  },
+  {
+    // Handle nearly correct logout routes.
+    path: '/log-out',
+    alias: ['/signout', '/sign-out'],
+    name: RouteName.LOGOUT,
+    component: () => import('../components/pages/auth/LogoutPage.vue'),
+  },
   // Guard the entire site for mobile-only (for now)
+
   {
     path: '/',
     component: () => import('../layouts/DisplayGuards/UpToSmall.vue'),
     children: [
-      // Handle the Landing/Foyer pages
-      {
-        path: 'foyer',
-        name: RouteName.LANDING,
-        component: () => import('../components/pages/LandingPage.vue'),
-        children: [
-          {
-            path: 'welcome',
-            name: RouteName.HOME,
-            meta: {
-              nativeUserRole: NativeUserRole.AUTHENTICATED,
-            },
-            component: () => import('../components/pages/HomePage.vue'),
-          },
-        ],
-      },
+      // Handle no-path yet
       {
         path: '',
         redirect: { name: RouteName.LANDING },
       },
+      // Handle the Landing/Foyer pages
       {
-        path: 'undefined',
-        redirect: { name: RouteName.LANDING },
+        path: 'foyer',
+        children: [
+          {
+            path: '',
+            name: RouteName.LANDING,
+            component: () => import('../components/pages/LandingPage.vue'),
+          },
+          {
+            path: 'welcome',
+            meta: {
+              nativeUserRole: NativeUserRole.AUTHENTICATED,
+            },
+            component: () => import('../layouts/SimpleDark.vue'),
+            children: [
+              {
+                path: '',
+                name: RouteName.HOME,
+                component: () => import('../components/pages/HomePage.vue'),
+              },
+            ],
+          },
+          {
+            path: 'undefined',
+            redirect: { name: RouteName.LANDING },
+          },
+        ],
       },
 
       // Handle the personal-info/SittingRoom pages
@@ -39,6 +65,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           nativeUserRole: NativeUserRole.AUTHENTICATED,
         },
+        component: () => import('../layouts/SimpleDark.vue'),
         children: [
           {
             path: 'profile',
@@ -66,6 +93,7 @@ const routes: RouteRecordRaw[] = [
       // Handle the general-work/Office pages
       {
         path: 'office',
+        component: () => import('../layouts/SimpleDark.vue'),
         meta: {
           nativeUserRole: NativeUserRole.AUTHENTICATED,
         },

@@ -18,12 +18,12 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/foyer*",
-      "allowedRoles": ["anonymous"]
-    },
-    {
       "route": "/foyer/welcome",
       "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/foyer*",
+      "allowedRoles": ["anonymous"]
     },
     {
       "route": "/sitting-room*",

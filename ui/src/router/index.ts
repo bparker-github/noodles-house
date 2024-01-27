@@ -3,73 +3,72 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 import { RouteName } from './RouteName';
 
 const routes: RouteRecordRaw[] = [
-  // #region SWA auth redirects
+  // Log-in and Log-out routes should be "refresh" the page to route via SWA.
   {
     // Handle nearly correct login routes.
     path: '/log-in',
     alias: ['/signin', '/sign-in'],
     name: RouteName.LOGIN,
-    redirect: { path: '/login' },
+    component: () => import('../components/pages/auth/LoginPage.vue'),
   },
   {
     // Handle nearly correct logout routes.
     path: '/log-out',
     alias: ['/signout', '/sign-out'],
     name: RouteName.LOGOUT,
-    redirect: { path: '/logout' },
+    component: () => import('../components/pages/auth/LogoutPage.vue'),
   },
-  // #endregion
+  // Guard the entire site for mobile-only (for now)
 
-  // #region NEW ROUTES
   {
     path: '/',
-    name: RouteName.LANDING,
-    component: () => import('../components/pages/LandingPage.vue'),
-  },
-  {
-    path: '/undefined',
-    redirect: { name: RouteName.LANDING },
-  },
-  {
-    path: '/indoors2',
-    component: () => import('../layouts/custom/MobileFirst.vue'),
-  },
-  {
-    path: '/indoors',
-    alias: ['/bunker', '/home'],
-    component: () => import('../layouts/custom/SimpleDark.vue'),
-    meta: {
-      nativeUserRole: NativeUserRole.AUTHENTICATED,
-    },
+    component: () => import('../layouts/DisplayGuards/UpToSmall.vue'),
     children: [
+      // Handle no-path yet
       {
         path: '',
-        name: RouteName.HOME,
-        component: () => import('../components/pages/HomePage.vue'),
-        children: [],
+        redirect: { name: RouteName.LANDING },
       },
+      // Handle the Landing/Foyer pages
       {
-        path: 'tasks',
-        name: RouteName.TASKS_HOME,
-        redirect: { name: RouteName.TASKS_CREATE },
-        children: [
-          {
-            path: 'create',
-            name: RouteName.TASKS_CREATE,
-            component: () => import('../components/pages/tasks/TaskCreatePage.vue'),
-          },
-          {
-            path: 'list',
-            name: RouteName.TASKS_LIST,
-            component: () => import('../components/pages/tasks/TaskListPage.vue'),
-          },
-        ],
-      },
-      {
-        path: 'profile',
+        path: 'foyer',
         children: [
           {
             path: '',
+            name: RouteName.LANDING,
+            component: () => import('../components/pages/LandingPage.vue'),
+          },
+          {
+            path: 'welcome',
+            meta: {
+              nativeUserRole: NativeUserRole.AUTHENTICATED,
+            },
+            component: () => import('../layouts/SimpleDark.vue'),
+            children: [
+              {
+                path: '',
+                name: RouteName.HOME,
+                component: () => import('../components/pages/HomePage.vue'),
+              },
+            ],
+          },
+          {
+            path: 'undefined',
+            redirect: { name: RouteName.LANDING },
+          },
+        ],
+      },
+
+      // Handle the personal-info/SittingRoom pages
+      {
+        path: 'sitting-room',
+        meta: {
+          nativeUserRole: NativeUserRole.AUTHENTICATED,
+        },
+        component: () => import('../layouts/SimpleDark.vue'),
+        children: [
+          {
+            path: 'profile',
             name: RouteName.PROFILE,
             component: () => import('../components/pages/ProfilePage.vue'),
           },
@@ -90,27 +89,36 @@ const routes: RouteRecordRaw[] = [
           },
         ],
       },
+
+      // Handle the general-work/Office pages
+      {
+        path: 'office',
+        component: () => import('../layouts/SimpleDark.vue'),
+        meta: {
+          nativeUserRole: NativeUserRole.AUTHENTICATED,
+        },
+        children: [
+          {
+            path: 'tasks',
+            name: RouteName.TASKS_HOME,
+            redirect: { name: RouteName.TASKS_CREATE },
+            children: [
+              {
+                path: 'create',
+                name: RouteName.TASKS_CREATE,
+                component: () => import('../components/pages/tasks/TaskCreatePage.vue'),
+              },
+              {
+                path: 'list',
+                name: RouteName.TASKS_LIST,
+                component: () => import('../components/pages/tasks/TaskListPage.vue'),
+              },
+            ],
+          },
+        ],
+      },
     ],
   },
-  // #endregion
-
-  // #region Develop Stuffs
-  {
-    path: '/testing-1',
-    name: RouteName.TESTING_1,
-    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
-  },
-  {
-    path: '/testing-2',
-    name: RouteName.TESTING_2,
-    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
-  },
-  {
-    path: '/testing-3',
-    name: RouteName.TESTING_3,
-    component: () => import('@/layouts/stackedOverlap/StackedOverlapLayout.vue'),
-  },
-  // #endregion
 
   // #region Rest-routes
   {

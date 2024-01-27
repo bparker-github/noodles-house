@@ -18,16 +18,32 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/indoors*",
+      "route": "/foyer/welcome",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/foyer*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/sitting-room*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/office*",
       "allowedRoles": ["authenticated"]
     },
     {
       "route": "/login",
-      "rewrite": "/.auth/login/apple?post_login_redirect_uri=/indoors"
+      "rewrite": "/.auth/login/apple?post_login_redirect_uri=/foyer/welcome"
     },
     {
       "route": "/logout",
       "rewrite": "/.auth/logout"
+    },
+    {
+      "route": "/data-api/*",
+      "allowedRoles": ["anonymous", "authenticated"]
     }
   ],
   "responseOverrides": {

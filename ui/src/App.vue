@@ -3,10 +3,7 @@
     v-if="loading"
     class="initial-loader"
   />
-  <RouterView
-    v-else
-    class="relative"
-  />
+  <RouterView v-else />
 </template>
 
 <script setup lang="ts">

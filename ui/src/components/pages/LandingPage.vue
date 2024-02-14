@@ -1,4 +1,3 @@
-import { UnsplashImage } from '@/lib';
 <template>
   <div class="landing-page flex flex-col flex-1 w-full h-full">
     <UnsplashImage
@@ -22,8 +21,8 @@ import { UnsplashImage } from '@/lib';
 
         <NhLinkButton
           class="justify-center not-prose"
-          text="Go Home"
-          :to="{ name: RouteName.HOME }"
+          :text="isAuthenticated ? 'Go Home' : 'Login'"
+          :to="{ name: isAuthenticated ? RouteName.HOME : RouteName.LOGIN }"
         />
       </div>
     </UnsplashImage>
@@ -34,6 +33,10 @@ import { UnsplashImage } from '@/lib';
 import { UnsplashImage } from '@/lib';
 import NhLinkButton from '../basic/NhLinkButton.vue';
 import { RouteName } from '@/router/RouteName';
+import { storeToRefs } from 'pinia';
+import { useNativeAuth } from '@/auth/useNativeAuth';
+
+const { isAuthenticated } = storeToRefs(useNativeAuth());
 </script>
 
 <style>

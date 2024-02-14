@@ -18,20 +18,12 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/foyer/welcome",
+      "route": "/*",
       "allowedRoles": ["authenticated"]
     },
     {
       "route": "/foyer*",
       "allowedRoles": ["anonymous"]
-    },
-    {
-      "route": "/sitting-room*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/office*",
-      "allowedRoles": ["authenticated"]
     },
     {
       "route": "/login",
@@ -40,10 +32,6 @@
     {
       "route": "/logout",
       "rewrite": "/.auth/logout"
-    },
-    {
-      "route": "/data-api/*",
-      "allowedRoles": ["anonymous", "authenticated"]
     }
   ],
   "responseOverrides": {
@@ -54,7 +42,7 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*"]
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*", "/data-api/*"]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

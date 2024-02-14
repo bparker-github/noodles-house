@@ -4,7 +4,9 @@
     as="RouterLink"
     :to="to"
   >
+    <template #left-icon><slot name="left-icon"></slot></template>
     <template #default><slot></slot></template>
+    <template #right-icon><slot name="right-icon"></slot></template>
   </NhButton>
 </template>
 
@@ -16,4 +18,9 @@ export interface NhLinkButtonProps extends Omit<NhButtonProps, 'as'> {
   to: RouteLocationRaw;
 }
 const allProps = defineProps<NhLinkButtonProps>();
+defineSlots<{
+  default: {};
+  'right-icon': {};
+  'left-icon': {};
+}>();
 </script>

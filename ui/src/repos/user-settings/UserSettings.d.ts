@@ -9,5 +9,5 @@ export interface UserSettings {
   /** An optional value indicating the user's preferred last name. */
   lastName: string;
   /** An optional value indicating the user's preferred profile image. TODO: remove */
-  profileLink: string;
+  profileImageUrl: string;
 }

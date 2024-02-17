@@ -13,14 +13,14 @@ export class UserSettings implements IUserSettings {
   lastName: string;
 
   @Column()
-  profileLink: string;
+  profileImageUrl: string;
 
   static Default(userId = ''): UserSettings {
     return {
       id: userId,
       firstName: '',
       lastName: '',
-      profileLink: '',
+      profileImageUrl: '',
     } satisfies UserSettings;
   }
 }

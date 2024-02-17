@@ -1,5 +1,5 @@
 <template>
-  <div :class="['user-settings', 'flex flex-col flex-1', 'gap-y-3']">
+  <div :class="['user-settings', 'flex flex-col flex-1 gap-y-3 px-2']">
     <NhButton
       :b-style="BStyle.SOLID"
       :b-theme="BTheme.CHALET_GREEN"
@@ -22,18 +22,15 @@
 
 <script setup lang="ts">
 import { useNativeAuth } from '@/auth/useNativeAuth';
-import {
-  getDefaultUserSettings,
-  userSettingsRepository,
-  type UserSettings,
-} from '@/repos/user-settings';
+import { getDefaultUserSettings, userSettingsRepository } from '@/repos/user-settings';
+import type { IUserSettings } from '@db/models/UserSettings.d';
 import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
 import EditableInfoList, { type ModelFieldConfig } from '../forms/EditableInfoList.vue';
 
-const EditableSettingsList = EditableInfoList<UserSettings>;
+const EditableSettingsList = EditableInfoList<IUserSettings>;
 
 const { userId } = storeToRefs(useNativeAuth());
 
@@ -42,7 +39,7 @@ const { myUserSettings } = storeToRefs(userSettingsRepo);
 
 // Computed
 const buttonText = computed(() => (myUserSettings.value ? 'Refresh Settings' : 'Get Settings'));
-const fieldConfigs: ModelFieldConfig<UserSettings>[] = [
+const fieldConfigs: ModelFieldConfig<IUserSettings>[] = [
   {
     key: 'id',
     disabled: true,
@@ -72,7 +69,7 @@ async function getUserSettings(): Promise<void> {
   myUserSettings.value = foundSettings ?? getDefaultUserSettings(userId.value ?? '');
 }
 
-async function onSettingsSave(toSave: UserSettings) {
+async function onSettingsSave(toSave: IUserSettings) {
   const { id, ...withoutId } = toSave;
 
   const saveFetch = useFetch(

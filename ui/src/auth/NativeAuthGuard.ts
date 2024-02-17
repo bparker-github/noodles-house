@@ -8,28 +8,31 @@ import { useNativeAuth } from './useNativeAuth';
 function doExternalRouting(to: string, next: NavigationGuardNext) {
   next(false);
   window.location.pathname = to;
+  return to;
 }
 
 export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
   const nativeAuth = useNativeAuth();
   const { isAuthenticated } = storeToRefs(nativeAuth);
 
-  // Ensure we complete the /.auth/me call
-  await nativeAuth.doFetch();
-
-  // Check if we are attempting to log out or in.
-  if (to.name === RouteName.LOGOUT) {
-    return isAuthenticated.value
-      ? doExternalRouting('/logout', next)
-      : next({ name: RouteName.LANDING });
-  } else if (to.name === RouteName.LOGIN) {
-    return isAuthenticated.value
-      ? next({ name: RouteName.HOME })
-      : doExternalRouting('/login', next);
+  // Check if the route requires authentication
+  const doesRouteRequireAuth = to.meta.nativeUserRole === NativeUserRole.AUTHENTICATED;
+  if (doesRouteRequireAuth) {
+    // Ensure we complete the /.auth/me call
+    await nativeAuth.doFetch();
   }
 
-  // If we require auth, and don't have it - redirect to login.
-  return to.meta.nativeUserRole !== NativeUserRole.AUTHENTICATED || isAuthenticated.value
-    ? next()
-    : doExternalRouting('/login', next);
+  if (to.name === RouteName.LOGIN) {
+    return isAuthenticated.value ? next({ name: RouteName.HOME }) : next();
+  } else if (to.name === RouteName.LOGOUT) {
+    return !isAuthenticated.value ? next({ name: RouteName.HOME }) : next();
+  }
+
+  // If still not authenticated, redirect to the native SWA login page
+  if (doesRouteRequireAuth && !isAuthenticated.value) {
+    return doExternalRouting('/login', next);
+  }
+
+  // Otherwise, we are done.
+  return next();
 };

@@ -1,4 +1,3 @@
-import { UnsplashImage } from '@/lib';
 <template>
   <div class="landing-page flex flex-col flex-1 w-full h-full">
     <UnsplashImage
@@ -20,7 +19,23 @@ import { UnsplashImage } from '@/lib';
         <p>This is a landing page for the future Noodle's House page.</p>
         <p>Pardon the construction</p>
 
+        <!-- Show the native Apple Login button -->
         <NhLinkButton
+          v-if="!isAuthenticated"
+          :class="[
+            'inline-flex items-center justify-center',
+            'h-14 bg-black rounded-md no-underline tracking-wide',
+          ]"
+          text="Sign in with Apple"
+          :to="{ name: RouteName.LOGIN }"
+        >
+          <template #left-icon>
+            <AppleLogoIcon class="text-white" />
+          </template>
+        </NhLinkButton>
+
+        <NhLinkButton
+          v-else
           class="justify-center not-prose"
           text="Go Home"
           :to="{ name: RouteName.HOME }"
@@ -31,9 +46,14 @@ import { UnsplashImage } from '@/lib';
 </template>
 
 <script setup lang="ts">
+import AppleLogoIcon from '@/assets/AppleLogoIcon.svg';
 import { UnsplashImage } from '@/lib';
 import NhLinkButton from '../basic/NhLinkButton.vue';
 import { RouteName } from '@/router/RouteName';
+import { storeToRefs } from 'pinia';
+import { useNativeAuth } from '@/auth/useNativeAuth';
+
+const { isAuthenticated } = storeToRefs(useNativeAuth());
 </script>
 
 <style>

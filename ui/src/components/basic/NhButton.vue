@@ -32,6 +32,8 @@
       'outline-2 outline-offset-1 focus-visible:outline',
     ]"
   >
+    <slot name="left-icon"></slot>
+
     <span class="nh-button-text text-base font-semibold">
       <slot
         ><span class="nh-button-default-text">{{ text }}</span></slot
@@ -103,5 +105,6 @@ defineProps<NhButtonProps>();
 defineSlots<{
   default: {};
   'right-icon': {};
+  'left-icon': {};
 }>();
 </script>

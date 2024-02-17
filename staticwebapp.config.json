@@ -18,10 +18,6 @@
   "trailingSlash": "auto",
   "routes": [
     {
-      "route": "/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
       "route": "/foyer*",
       "allowedRoles": ["anonymous"]
     },
@@ -32,6 +28,10 @@
     {
       "route": "/logout",
       "rewrite": "/.auth/logout"
+    },
+    {
+      "route": "/*",
+      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {

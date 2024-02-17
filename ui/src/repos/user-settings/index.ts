@@ -1,11 +1,10 @@
-import type { UserSettings } from './UserSettings.d';
+import type { IUserSettings } from '@db/models/UserSettings.d';
 
-export const getDefaultUserSettings = (userId: string): UserSettings => ({
+export const getDefaultUserSettings = (userId: string): IUserSettings => ({
   id: userId,
   firstName: '',
   lastName: '',
   profileImageUrl: '',
 });
 
-export * from './UserSettings.d';
 export * from './repository';

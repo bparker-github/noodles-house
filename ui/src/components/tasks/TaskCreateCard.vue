@@ -2,8 +2,8 @@
   <div
     :class="[
       'task-create-card',
-      'flex flex-col w-full gap-y-4',
-      'bg-white rounded-md shadow-lg px-3 py-5',
+      'flex flex-col flex-1 gap-y-4',
+      'bg-nh-white rounded-md shadow-lg px-3 py-5 mx-2',
     ]"
   >
     <form

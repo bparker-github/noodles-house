@@ -3,6 +3,7 @@
     v-if="curUser?.clientPrincipal"
     title="Profile"
     subTitle="Personal profile information."
+    class="m-2"
     :list="items"
   />
 </template>

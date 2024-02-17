@@ -152,12 +152,12 @@
               >
                 <!-- Possible profile image -->
                 <div
-                  v-if="myUserSettings?.profileLink"
+                  v-if="myUserSettings?.profileImageUrl"
                   class="flex-shrink-0"
                 >
                   <img
                     class="h-10 w-10 rounded-full"
-                    :src="myUserSettings.profileLink"
+                    :src="myUserSettings.profileImageUrl"
                     alt=""
                   />
                 </div>

@@ -59,7 +59,7 @@ const fieldConfigs: ModelFieldConfig<UserSettings>[] = [
     placeholder: 'Smith',
   },
   {
-    key: 'profileLink',
+    key: 'profileImageUrl',
     disabled: true,
     label: 'Profile Link',
   },

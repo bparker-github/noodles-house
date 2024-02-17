@@ -4,7 +4,7 @@ export const getDefaultUserSettings = (userId: string): UserSettings => ({
   id: userId,
   firstName: '',
   lastName: '',
-  profileLink: '',
+  profileImageUrl: '',
 });
 
 export * from './UserSettings.d';

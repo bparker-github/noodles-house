@@ -18,6 +18,14 @@
   "trailingSlash": "auto",
   "routes": [
     {
+      "route": "/office*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/sitting-room*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/foyer*",
       "allowedRoles": ["anonymous"]
     },
@@ -28,10 +36,6 @@
     {
       "route": "/logout",
       "rewrite": "/.auth/logout"
-    },
-    {
-      "route": "/*",
-      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {

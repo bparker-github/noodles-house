@@ -1,9 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import type { IUserSettings } from '@db/models/UserSettings.d';
+import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('UserSettings')
 export class UserSettings implements IUserSettings {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryColumn({ type: 'nvarchar', length: 1024 })
   id: string;
 
   @Column()

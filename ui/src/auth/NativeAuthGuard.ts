@@ -1,3 +1,4 @@
+import { userSettingsRepository } from '@/repos/user-settings';
 import { RouteName } from '@/router/RouteName';
 import { storeToRefs } from 'pinia';
 import type { NavigationGuard } from 'vue-router';
@@ -12,6 +13,7 @@ function doExternalRouting(to: string, next: NavigationGuardNext) {
 }
 
 export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
+  const userSettingsRepo = userSettingsRepository();
   const nativeAuth = useNativeAuth();
   const { isAuthenticated } = storeToRefs(nativeAuth);
 
@@ -20,6 +22,8 @@ export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
   if (doesRouteRequireAuth) {
     // Ensure we complete the /.auth/me call
     await nativeAuth.doFetch();
+    // Trigger but don't await the UserSettings call
+    userSettingsRepo.getUserSettings();
   }
 
   if (to.name === RouteName.LOGIN) {

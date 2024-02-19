@@ -20,13 +20,31 @@ interface TimedStorageVal<T> {
   value: T;
 }
 
-export function useTimedStorage<T>({
-  keyName,
-  initialValue = null,
-  liveTime = 5 * 60 * 1000,
-  storage = sessionStorage,
-  storageOptions = {},
-}: UseTimedStorageOptions<T>): WritableComputedRef<T | null> {
+export function useTimedStorage<T>(keyName: string): WritableComputedRef<T | null>;
+export function useTimedStorage<T>(
+  options: UseTimedStorageOptions<T>
+): WritableComputedRef<T | null>;
+export function useTimedStorage<T>(
+  arg1: string | UseTimedStorageOptions<T>
+): WritableComputedRef<T | null> {
+  const args: UseTimedStorageOptions<T> = Object.assign(
+    // Set up object to populate
+    {},
+    // Add in the key-name if it's the only arg.
+    //  We /must/ have keyName, so provide unused default for typing.
+    { keyName: typeof arg1 === 'string' ? arg1 : '' },
+    // Apply the rest of the args, if passed.
+    typeof arg1 === 'object' ? arg1 : {}
+  );
+
+  const {
+    keyName,
+    initialValue = null,
+    liveTime = 5 * 60 * 1000,
+    storage = sessionStorage,
+    storageOptions = {},
+  } = args;
+
   const initialObj: TimedStorageVal<T> | null =
     initialValue === null
       ? null

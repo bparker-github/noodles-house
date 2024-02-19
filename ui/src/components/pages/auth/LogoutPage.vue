@@ -6,14 +6,13 @@
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import PageSpinner from '@/components/spinners/PageSpinner.vue';
 import { userSettingsRepository } from '@/repos/user-settings';
+import { useTaskStore } from '@/stores/tasksStore';
 import { onBeforeMount } from 'vue';
 
-const authStore = useNativeAuth();
-const userSettings = userSettingsRepository();
-
 onBeforeMount(() => {
-  authStore.clearAuthCache();
-  userSettings.clearSettingsCache();
+  useNativeAuth().clearAuthCache();
+  userSettingsRepository().clearSettingsCache();
+  useTaskStore().clearTasksCache();
 
   window.location.pathname = '/logout';
 });

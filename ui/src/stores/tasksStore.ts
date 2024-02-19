@@ -1,31 +1,63 @@
+import { useTimedStorage } from '@/lib/useTimedStorage';
 import type { ModelResponse } from '@db/models/ModelResponse';
 import type { TodoTask } from '@db/models/TodoTask';
-import { useFetch, useSessionStorage } from '@vueuse/core';
+import { useFetch } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
 
 export const useTaskStore = defineStore('todo-task-store', () => {
-  const knownTasks = useSessionStorage<TodoTask[]>('[nh]tasks-list', [], {
-    serializer: { read: JSON.parse, write: JSON.stringify },
-  });
+  const knownTasks = useTimedStorage<TodoTask[]>('[nh]tasks-list');
+
+  // Shared Vars
+  const isFetching = computed(
+    () =>
+      GET_getMyTasks.isFetching.value ||
+      GET_allTasks.isFetching.value ||
+      POST_createTask.isFetching.value
+  );
+  const errorMsg = computed(
+    () => GET_getMyTasks.error.value || GET_allTasks.error.value || POST_createTask.error.value
+  );
+
+  //#region GetMine
+  const GET_getMyTasks = useFetch('/api/tasks', { immediate: false }).json<
+    ModelResponse<TodoTask>
+  >();
+  async function getMyTasks(forceRefresh = false) {
+    if (!forceRefresh && !!knownTasks.value?.length) {
+      // Return cached data if we have it.
+      console.info('Returning known tasks from cache.');
+      return knownTasks.value;
+    } else if (GET_getMyTasks.isFetching.value) {
+      // Prevent duplicate requests
+      console.warn('Preventing duplicate my-tasks fetch.');
+      return knownTasks.value;
+    }
+
+    // Perform the lookup and update records
+    try {
+      await GET_getMyTasks.execute();
+      knownTasks.value = GET_getMyTasks.response.value?.ok
+        ? GET_getMyTasks.data.value?.value ?? null
+        : [];
+    } catch (err) {
+      console.error('Failed to get my tasks:', err);
+      return [];
+    }
+  }
+  //#endregion
 
   //#region GetAll
   const GET_allTasks = useFetch('/data-api/direct/tasks', { immediate: false }).json<
     ModelResponse<TodoTask>
   >();
-  const getAll_isFetching = computed(() => GET_allTasks.isFetching.value);
-  const getAll_isFinished = computed(() => GET_allTasks.isFinished.value);
-  const getAll_error = computed(() => GET_allTasks.error.value);
-
   async function getAllTasks(forceRefresh = false) {
-    // Return cached data if we have it.
-    if (!forceRefresh && knownTasks.value.length > 0) {
+    if (!forceRefresh && !!knownTasks.value?.length) {
+      // Return cached data if we have it.
       console.info('Returning all tasks from cache.');
       return knownTasks.value;
-    }
-
-    // Prevent duplicate requests
-    if (GET_allTasks.isFetching.value) {
+    } else if (GET_allTasks.isFetching.value) {
+      // Prevent duplicate requests
       console.warn('Preventing duplicate all-tasks fetch.');
       return knownTasks.value;
     }
@@ -34,7 +66,9 @@ export const useTaskStore = defineStore('todo-task-store', () => {
     try {
       await GET_allTasks.execute();
 
-      knownTasks.value = GET_allTasks.error.value ? [] : GET_allTasks.data.value?.value;
+      knownTasks.value = GET_allTasks.response.value?.ok
+        ? GET_allTasks.data.value?.value ?? null
+        : [];
     } catch (err) {
       console.error('Failed to get all tasks:', err);
       return [];
@@ -42,22 +76,19 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   }
   //#endregion
 
-  //#region GetAll
-  const CREATE_task = useFetch('/data-api/direct/tasks', { immediate: false }).json<
+  //#region Create Task
+  const POST_createTask = useFetch('/data-api/direct/tasks', { immediate: false }).json<
     ModelResponse<TodoTask>
   >();
-  const create_isFetching = computed(() => CREATE_task.isFetching.value);
-  const create_isFinished = computed(() => CREATE_task.isFinished.value);
-  const create_error = computed(() => CREATE_task.error.value);
-
   async function createTask(toSave: TodoTask): Promise<TodoTask | null> {
     try {
-      const postFetch = CREATE_task.post(toSave, 'json');
+      const postFetch = POST_createTask.post(toSave, 'json');
       await postFetch.execute();
 
       // Retrieve the result, and add to our list if we succeeded.
       const found = postFetch.data.value?.value?.[0] ?? null;
       if (found) {
+        knownTasks.value ??= [];
         knownTasks.value.push(found);
       }
       return found;
@@ -68,19 +99,22 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   }
   //#endregion
 
+  function clearTasksCache() {
+    knownTasks.value = null;
+  }
+
   return {
+    // Aggregate variables
     knownTasks,
+    isFetching,
+    errorMsg,
 
-    // Get All Tasks info
-    getAll_error,
-    getAll_isFetching,
-    getAll_isFinished,
+    // Fetch functions
+    getMyTasks,
     getAllTasks,
-
-    // Create
-    create_error,
-    create_isFetching,
-    create_isFinished,
     createTask,
+
+    // Others
+    clearTasksCache,
   };
 });

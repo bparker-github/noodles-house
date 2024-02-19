@@ -26,7 +26,7 @@
     <ul :class="['task-list', 'flex flex-col w-full']">
       <!-- The empty state entry -->
       <li
-        v-if="!allTasks.length"
+        v-if="!allTasks?.length"
         :class="[
           'flex flex-col flex-1 items-center m-5 p-5',
           'rounded-lg border-2 border-dashed border-nh-bourbon-800',
@@ -75,7 +75,7 @@ import NhButton from '../basic/NhButton.vue';
 import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 
 export interface TaskListCardProps {
-  allTasks: TodoTask[];
+  allTasks?: TodoTask[] | null;
   isFetching?: boolean;
 }
 defineProps<TaskListCardProps>();

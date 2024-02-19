@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import type { TaskType, TodoTask } from '@db/models/TodoTask.d';
+import { TaskState, type TaskType, type TodoTask } from '@db/models/TodoTask.d';
 
 @Entity('TodoTask')
 export class TodoTaskModel extends BaseEntity implements TodoTask {
@@ -15,6 +15,8 @@ export class TodoTaskModel extends BaseEntity implements TodoTask {
   subTitle: string;
   @Column('nvarchar', { nullable: true })
   description: string;
+  @Column('nvarchar', { length: 255, nullable: false, default: TaskState.REPORTED })
+  state: TaskState;
 
   /** Audit details */
   @Column('varchar', { length: 63, nullable: false })

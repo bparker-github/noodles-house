@@ -1,12 +1,11 @@
-import { useFetch, useSessionStorage } from '@vueuse/core';
+import { useTimedStorage } from '@/lib/useTimedStorage';
+import { useFetch } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
 import type { NativeUser } from './NativeUser';
 
 export const useNativeAuth = defineStore('native-swa-auth', () => {
-  const curUser = useSessionStorage<NativeUser | null>('[nh]auth-me', null, {
-    serializer: { read: JSON.parse, write: JSON.stringify },
-  });
+  const curUser = useTimedStorage<NativeUser>({ keyName: 'auth-me' });
 
   const nativeAuthFetch = useFetch('/.auth/me', {
     immediate: false,
@@ -19,7 +18,7 @@ export const useNativeAuth = defineStore('native-swa-auth', () => {
   const fetchError = computed(() => nativeAuthFetch.error.value);
 
   const isAuthenticated = computed(() => !!curUser.value?.clientPrincipal);
-  const userId = computed(() => curUser.value?.clientPrincipal.userId);
+  const userId = computed(() => curUser.value?.clientPrincipal?.userId);
 
   async function doFetch(force = false): Promise<void> {
     // Return the promise that's awaiting this fetch.

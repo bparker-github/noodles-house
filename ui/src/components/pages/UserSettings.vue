@@ -64,7 +64,7 @@ const fieldConfigs: ModelFieldConfig<IUserSettings>[] = [
 
 // Functions
 async function getUserSettings(): Promise<void> {
-  const foundSettings = await userSettingsRepo.getUserSettings();
+  const foundSettings = await userSettingsRepo.getUserSettings(true);
 
   myUserSettings.value = foundSettings ?? getDefaultUserSettings(userId.value ?? '');
 }

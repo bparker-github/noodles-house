@@ -11,11 +11,13 @@ import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PageSpinner from './components/spinners/PageSpinner.vue';
 import { useNativeAuth } from './auth/useNativeAuth';
+import { userSettingsRepository } from './repos/user-settings';
 
 const loading = ref(true);
 
 const router = useRouter();
 const nativeAuth = useNativeAuth();
+const userSettings = userSettingsRepository();
 
 onMounted(async () => {
   await Promise.all([
@@ -24,6 +26,9 @@ onMounted(async () => {
     // Ensure the router has loaded before continuing.
     router.isReady(),
   ]);
+
+  // Begin, but don't await fetching UserSettings
+  userSettings.getUserSettings();
 
   // Complete loading.
   loading.value = false;

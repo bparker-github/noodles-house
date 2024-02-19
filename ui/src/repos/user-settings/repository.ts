@@ -52,6 +52,10 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
     }
   }
 
+  function clearSettingsCache() {
+    myUserSettings.value = null;
+  }
+
   return {
     // Refs
     myUserSettings,
@@ -63,6 +67,7 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
     GET_fetch,
 
     // Functions
+    clearSettingsCache,
     getUserSettings,
   };
 });

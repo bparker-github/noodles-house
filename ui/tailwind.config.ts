@@ -35,6 +35,7 @@ const BaseThemeColors = {
     DEFAULT: '#283618',
   },
   'nh-off-yellow': {
+    '25': '#fefcef',
     '50': '#fefae0',
     '100': '#fff7c2',
     '200': '#ffec89',
@@ -114,6 +115,7 @@ const ThemeColors = Object.assign(
     'nh-dark-green': BaseThemeColors['nh-chalet-green'].DEFAULT,
     'nh-darkest-green': BaseThemeColors['nh-mallard'].DEFAULT,
     'nh-whiteish': BaseThemeColors['nh-off-yellow'].DEFAULT,
+    'nh-white': BaseThemeColors['nh-off-yellow'][25],
     'nh-light-orange': BaseThemeColors['nh-di-serria'].DEFAULT,
     'nh-dark-orange': BaseThemeColors['nh-bourbon'].DEFAULT,
     'nh-gray-blue': BaseThemeColors['nh-bali-hai'].DEFAULT,

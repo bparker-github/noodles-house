@@ -1,5 +1,7 @@
 <template>
-  <div class="overflow-hidden bg-nh-whiteish shadow sm:rounded-lg">
+  <div
+    class="overflow-hidden bg-nh-white border border-nh-whiteish rounded-md shadow sm:rounded-lg"
+  >
     <div class="px-4 py-6 sm:px-6">
       <h3 class="text-base font-semibold leading-7 text-nh-bali-hai-950">{{ title }}</h3>
       <p

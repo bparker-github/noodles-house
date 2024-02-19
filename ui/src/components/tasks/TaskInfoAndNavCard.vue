@@ -3,7 +3,7 @@
     :class="[
       'task-info-and-navigation',
       'flex flex-col w-full',
-      'bg-white rounded-md shadow-lg px-3 py-5',
+      'bg-nh-white rounded-md shadow-lg p-3',
     ]"
   >
     <div
@@ -13,7 +13,7 @@
         'prose-h1:mb-1 prose-h1:text-2xl prose-h1:font-semibold',
         // Collapsible things now
         'motion-safe:transform transition-[max-height] duration-200 ease-linear',
-        isTaskInfoOpen ? 'max-h-96 overflow-y-auto' : 'max-h-20 overflow-y-hidden',
+        isTaskInfoOpen ? 'max-h-96 overflow-y-auto' : 'max-h-10 overflow-y-hidden',
       ]"
     >
       <h1>Ideas List</h1>

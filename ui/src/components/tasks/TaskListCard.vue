@@ -2,8 +2,8 @@
   <div
     :class="[
       'task-list-card relative',
-      'flex flex-col w-full gap-y-4',
-      'bg-white rounded-md shadow-lg px-3 py-5',
+      'flex flex-col flex-1 gap-y-4',
+      'bg-nh-white rounded-md shadow-lg pt-2 px-3 pb-3 mx-2',
     ]"
   >
     <!-- Display loading spinner if fetch hasn't completed -->

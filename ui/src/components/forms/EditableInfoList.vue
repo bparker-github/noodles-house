@@ -1,7 +1,7 @@
 <template>
   <form
     v-if="data"
-    class="overflow-hidden bg-nh-whiteish shadow-md sm:rounded-lg"
+    class="overflow-hidden bg-nh-white border-nh-whiteish border rounded-md shadow-md sm:rounded-lg"
     @submit.prevent="clickSave"
   >
     <div class="px-4 py-6 sm:px-6">

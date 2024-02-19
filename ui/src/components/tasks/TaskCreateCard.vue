@@ -59,7 +59,7 @@
 import NoofSelect from '@/Noof/inputs/NoofSelect.vue';
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import { EnumObject } from '@/lib';
-import { TaskType, type TodoTask } from '@db/models/TodoTask.d';
+import { TaskState, TaskType, type TodoTask } from '@db/models/TodoTask.d';
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 import NoofInput from '../../Noof/inputs/NoofInput.vue';
@@ -77,6 +77,7 @@ const taskModel = ref<TodoTask>({
   id: '',
   title: '',
   type: TaskType.UNSPECIFIED,
+  state: TaskState.REPORTED,
   description: '',
   subTitle: '',
 });
@@ -109,6 +110,7 @@ async function onSubmit() {
     title: createTaskTitle.value,
     description: createTaskDescription.value,
     type: TaskType.UNSPECIFIED,
+    state: TaskState.REPORTED,
     createdAt: new Date(),
     createdBy: userId.value ?? 'Unknown user',
     id: '',

@@ -52,9 +52,7 @@ import { useTaskStore } from '@/stores/tasksStore';
 import { DocumentPlusIcon, ListBulletIcon } from '@heroicons/vue/24/outline';
 import { storeToRefs } from 'pinia';
 import type { FunctionalComponent } from 'vue';
-import { onBeforeMount } from 'vue';
-import { onMounted } from 'vue';
-import { computed } from 'vue';
+import { computed, onBeforeMount } from 'vue';
 import { type RouteLocationRaw } from 'vue-router';
 
 interface TaskNavItem {

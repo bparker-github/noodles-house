@@ -81,6 +81,6 @@ const navigation = computed<TaskNavItem[]>(() => [
 
 // Begin but don't await the TaskList call before mount.
 onBeforeMount(() => {
-  taskStore.getAllTasks();
+  taskStore.getMyTasks();
 });
 </script>

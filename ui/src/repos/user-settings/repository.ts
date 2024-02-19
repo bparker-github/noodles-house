@@ -21,7 +21,7 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
   const { userId } = storeToRefs(useNativeAuth());
   type GET_Resp = { value: IUserSettings[] };
   const GET_fetch = useFetch<GET_Resp>(
-    `/data-api/direct/user-settings/id/${userId.value ?? ''}`,
+    () => `/data-api/direct/user-settings/id/${userId.value ?? ''}`,
     {
       headers: getFetchHeaders('authenticated'),
       method: 'GET',

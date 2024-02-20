@@ -17,3 +17,4 @@ import TaskListCard from '../../tasks/TaskListCard.vue';
 
 const taskStore = useTaskStore();
 const { knownTasks, isFetching } = storeToRefs(taskStore);
+</script>

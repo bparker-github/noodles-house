@@ -75,12 +75,10 @@ const navigation = computed<TaskNavItem[]>(() => [
     label: 'Task List',
     to: { name: RouteName.TASKS_LIST },
     leftIcon: ListBulletIcon,
-    badge: `${knownTasks.value?.length}` ?? undefined,
+    badge: knownTasks.value?.length.toString() ?? '0',
   },
 ]);
 
-// Begin but don't await the TaskList call before mount.
-onBeforeMount(() => {
-  taskStore.getMyTasks();
-});
+// Fetch the task count before mounting.
+onBeforeMount(() => taskStore.getMyTasks());
 </script>

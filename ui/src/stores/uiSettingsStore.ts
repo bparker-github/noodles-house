@@ -1,4 +1,4 @@
-import { useSessionStorage } from '@vueuse/core';
+import { useTimedStorage } from '@/lib/useTimedStorage';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';
 
@@ -7,11 +7,16 @@ export interface UiSettings {
 }
 
 export const useUiSettings = defineStore('ui-settings', () => {
-  const settings = useSessionStorage<UiSettings>('[nh]uis', {}, { deep: true });
+  const settings = useTimedStorage<UiSettings>({
+    keyName: 'ui-settings',
+    initialValue: { taskInfoOpen: false },
+  });
 
-  const isTaskInfoOpen = computed(() => !!settings.value.taskInfoOpen);
+  const isTaskInfoOpen = computed(() => !!settings.value?.taskInfoOpen);
   const setTaskInfoOpen = (newVal?: boolean) =>
-    (settings.value.taskInfoOpen = newVal === undefined ? !settings.value.taskInfoOpen : newVal);
+    Object.assign({}, settings.value, {
+      taskInfoOpen: newVal === undefined ? !settings.value?.taskInfoOpen : newVal,
+    });
 
   return {
     // Shared

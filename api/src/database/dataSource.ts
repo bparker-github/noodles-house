@@ -10,25 +10,20 @@ import { TodoTaskModel } from './entity/TodoTask';
 
 let loadedDb: DataSource;
 export async function getNoodleDb(): Promise<DataSource> {
-  if (loadedDb) {
-    return loadedDb;
-  }
-
-  const ret = new DataSource({
-    type: 'mssql',
-    host: process.env.NOOD_DB_URL,
-    database: process.env.NOOD_DB_DATABASE,
-    username: process.env.NOOD_DB_USER,
-    password: process.env.NOOD_DB_PASS,
-    port: 1433,
-    connectionTimeout: 30e3,
-    synchronize: true,
-    logging: true,
-    entities: [UserSettings, TodoTaskModel],
-    migrations: [],
-  });
-
-  await ret.initialize();
-
-  return ret;
+  return (
+    loadedDb ??
+    (await new DataSource({
+      type: 'mssql',
+      host: process.env.NOOD_DB_URL,
+      database: process.env.NOOD_DB_DATABASE,
+      username: process.env.NOOD_DB_USER,
+      password: process.env.NOOD_DB_PASS,
+      port: 1433,
+      connectionTimeout: 30e3,
+      synchronize: false,
+      logging: true,
+      entities: [UserSettings, TodoTaskModel],
+      migrations: [],
+    }).initialize())
+  );
 }

@@ -2,21 +2,21 @@
   <div class="task-list-page flex flex-col gap-y-4">
     <TaskInfoAndNavCard />
     <TaskCreateCard
-      :is-submit-loading="create_isFetching"
+      :is-submit-loading="isFetching"
       @submit="submitTask"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import TaskInfoAndNavCard from '../../tasks/TaskInfoAndNavCard.vue';
-import TaskCreateCard from '../../tasks/TaskCreateCard.vue';
-import type { TodoTask } from '@db/models/TodoTask';
 import { useTaskStore } from '@/stores/tasksStore';
+import type { TodoTask } from '@db/models/TodoTask';
 import { storeToRefs } from 'pinia';
+import TaskCreateCard from '../../tasks/TaskCreateCard.vue';
+import TaskInfoAndNavCard from '../../tasks/TaskInfoAndNavCard.vue';
 
 const taskStore = useTaskStore();
-const { create_isFetching } = storeToRefs(taskStore);
+const { isFetching } = storeToRefs(taskStore);
 
 async function submitTask(task: TodoTask) {
   try {

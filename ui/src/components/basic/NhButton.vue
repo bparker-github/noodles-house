@@ -45,7 +45,7 @@
         v-if="isLoading"
         :omit-default-colors="true"
         :class="[
-          'h-6 w-6',
+          'h-6 w-6 ml-2',
           (!bTheme || bTheme === BTheme.BALI_HAI) && ['text-nh-bali-hai-300 fill-nh-bali-hai-800'],
           bTheme === BTheme.CHALET_GREEN && ['text-nh-chalet-green-50 fill-nh-chalet-green-950'],
           bTheme === BTheme.OFF_YELLOW && ['text-nh-off-yellow-50 fill-nh-off-yellow-950'],

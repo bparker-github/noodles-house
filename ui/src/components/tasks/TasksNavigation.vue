@@ -12,13 +12,13 @@
         :key="item.label"
       >
         <RouterLink
-          v-slot="{ isActive }"
+          v-slot="{ isExactActive }"
           :to="item.to"
           as="template"
         >
           <div
             :class="[
-              isActive
+              isExactActive
                 ? 'bg-nh-bourbon-100 text-nh-bourbon-800'
                 : 'text-nh-bourbon-950 hover:text-nh-bourbon-800',
               'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold hover:bg-nh-bourbon-200',
@@ -27,7 +27,7 @@
             <component
               :is="item.leftIcon"
               :class="[
-                isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                isExactActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
                 'h-6 w-6 shrink-0',
               ]"
               aria-hidden="true"
@@ -49,6 +49,7 @@
 <script setup lang="ts">
 import { RouteName } from '@/router/RouteName';
 import { useTaskStore } from '@/stores/tasksStore';
+import { ClipboardDocumentListIcon } from '@heroicons/vue/20/solid';
 import { DocumentPlusIcon, ListBulletIcon } from '@heroicons/vue/24/outline';
 import { storeToRefs } from 'pinia';
 import type { FunctionalComponent } from 'vue';
@@ -63,7 +64,7 @@ interface TaskNavItem {
 }
 
 const taskStore = useTaskStore();
-const { knownTasks } = storeToRefs(taskStore);
+const { allTasksCount, myTasksCount } = storeToRefs(taskStore);
 
 const navigation = computed<TaskNavItem[]>(() => [
   {
@@ -72,13 +73,23 @@ const navigation = computed<TaskNavItem[]>(() => [
     leftIcon: DocumentPlusIcon,
   },
   {
-    label: 'Task List',
-    to: { name: RouteName.TASKS_LIST },
+    label: 'All Tasks',
+    to: { name: RouteName.TASKS_LIST_ALL },
     leftIcon: ListBulletIcon,
-    badge: knownTasks.value?.length.toString() ?? '0',
+    badge: allTasksCount.value?.toString(),
+  },
+  {
+    label: 'My Tasks',
+    to: { name: RouteName.TASKS_LIST_MY },
+    leftIcon: ClipboardDocumentListIcon,
+    badge: myTasksCount.value?.toString() ?? '0',
   },
 ]);
 
-// Fetch the task count before mounting.
-onBeforeMount(() => taskStore.getMyTasks());
+// We need the counts of both All/My, but we default to My - fetch that list instead.
+onBeforeMount(() => {
+  // No need to block rendering for this
+  taskStore.getAllTasksCount();
+  taskStore.getMyTasks();
+});
 </script>

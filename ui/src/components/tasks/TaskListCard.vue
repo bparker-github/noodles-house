@@ -20,13 +20,13 @@
         'border-b min-w-[50%] border-nh-bourbon-700',
       ]"
     >
-      All Tasks
+      {{ title }}
     </h2>
 
     <ul :class="['task-list', 'flex flex-col w-full']">
       <!-- The empty state entry -->
       <li
-        v-if="!allTasks?.length"
+        v-if="!tasks?.length"
         :class="[
           'flex flex-col flex-1 items-center m-5 p-5',
           'rounded-lg border-2 border-dashed border-nh-bourbon-800',
@@ -39,7 +39,7 @@
       <!-- Otherwise show the list and button -->
       <template v-else>
         <li
-          v-for="(task, i) in allTasks"
+          v-for="(task, i) in tasks"
           :key="`task-${task.id}-${i}`"
           :class="['todo-item', 'py-2 px-4 text-nh-bourbon-950 border-y border-nh-bourbon-950/50']"
         >
@@ -75,7 +75,8 @@ import NhButton from '../basic/NhButton.vue';
 import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 
 export interface TaskListCardProps {
-  allTasks?: TodoTask[] | null;
+  title: string;
+  tasks?: TodoTask[] | null;
   isFetching?: boolean;
 }
 defineProps<TaskListCardProps>();

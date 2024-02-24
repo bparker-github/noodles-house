@@ -6,20 +6,31 @@ import { defineStore } from 'pinia';
 import { computed } from 'vue';
 
 interface TasksData {
-  knownTasks?: TodoTask[];
-  count?: number;
+  allTasks?: TodoTask[];
+  allTasksCount?: number;
+  myTasks?: TodoTask[];
+  myTasksCount?: number;
 }
 
 export const useTaskStore = defineStore('todo-task-store', () => {
   const tasksData = useTimedStorage<TasksData>('tasks-data');
-  const knownTasks = computed({
-    get: () => tasksData.value?.knownTasks,
-    set: (nv) => (tasksData.value = Object.assign({}, tasksData.value, { knownTasks: nv })),
+  const setTasksData = (data: Partial<TasksData>) =>
+    (tasksData.value = Object.assign({}, tasksData.value, data));
+
+  const myTasks = computed({
+    get: () => tasksData.value?.myTasks,
+    set: (nv) => setTasksData({ myTasks: nv }),
   });
-  const knownCount = computed({
-    get: () => tasksData.value?.count,
-    set: (nv) => (tasksData.value = Object.assign({}, tasksData.value, { count: nv })),
+  const myTasksCount = computed(
+    () => tasksData.value?.myTasksCount ?? tasksData.value?.myTasks?.length
+  );
+  const allTasks = computed({
+    get: () => tasksData.value?.allTasks,
+    set: (nv) => setTasksData({ allTasks: nv }),
   });
+  const allTasksCount = computed(
+    () => tasksData.value?.allTasksCount ?? tasksData.value?.allTasks?.length
+  );
 
   // Shared Vars
   const isFetching = computed(
@@ -37,15 +48,13 @@ export const useTaskStore = defineStore('todo-task-store', () => {
       POST_createTask.error.value
   );
 
-  //#region GetCount
-  const GET_getTaskCount = useFetch('/api/tasks/count', { immediate: false }).json<
-    ModelResponse<number>
-  >();
-  async function getTasksCount(forceRefresh = false) {
-    if (!forceRefresh && knownCount.value !== undefined) {
+  //#region GetAllCount
+  const GET_getTaskCount = useFetch('/api/tasks/count', { immediate: false }).json<number>();
+  async function getAllTasksCount(forceRefresh = false) {
+    if (!forceRefresh && allTasksCount.value !== undefined) {
       // Return cached data if we have it.
       console.info('Returning known count from cache.');
-      return knownCount.value;
+      return allTasksCount.value;
     } else if (GET_getTaskCount.isFetching.value) {
       // Prevent duplicate requests
       console.warn('Preventing duplicate tasks-count fetch.');
@@ -55,9 +64,9 @@ export const useTaskStore = defineStore('todo-task-store', () => {
     // Perform the lookup and update records
     try {
       await GET_getTaskCount.execute();
-      tasksData.value = Object.assign({}, tasksData.value, {
-        knownCount: GET_getTaskCount.response.value?.ok
-          ? GET_getTaskCount.data.value?.value
+      setTasksData({
+        allTasksCount: GET_getTaskCount.response.value?.ok
+          ? GET_getTaskCount.data.value ?? undefined
           : undefined,
       });
     } catch (err) {
@@ -69,13 +78,13 @@ export const useTaskStore = defineStore('todo-task-store', () => {
 
   //#region GetMine
   const GET_getMyTasks = useFetch('/api/tasks', { immediate: false }).json<
-    ModelResponse<TodoTask>
+    ModelResponse<TodoTask[]>
   >();
   async function getMyTasks(forceRefresh = false) {
-    if (!forceRefresh && !!knownTasks.value?.length) {
+    if (!forceRefresh && !!myTasks.value?.length) {
       // Return cached data if we have it.
       console.info('Returning known tasks from cache.');
-      return knownTasks.value;
+      return myTasks.value;
     } else if (GET_getMyTasks.isFetching.value) {
       // Prevent duplicate requests
       console.warn('Preventing duplicate my-tasks fetch.');
@@ -85,8 +94,8 @@ export const useTaskStore = defineStore('todo-task-store', () => {
     // Perform the lookup and update records
     try {
       await GET_getMyTasks.execute();
-      tasksData.value = Object.assign({}, tasksData.value, {
-        knownTasks: GET_getMyTasks.response.value?.ok ? GET_getMyTasks.data.value?.value : [],
+      setTasksData({
+        myTasks: GET_getMyTasks.response.value?.ok ? GET_getMyTasks.data.value?.value : [],
       });
     } catch (err) {
       console.error('Failed to get my tasks:', err);
@@ -95,15 +104,15 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   }
   //#endregion
 
-  //#region GetAll
+  //#region GetAllTasks
   const GET_allTasks = useFetch('/data-api/direct/tasks', { immediate: false }).json<
-    ModelResponse<TodoTask>
+    ModelResponse<TodoTask[]>
   >();
   async function getAllTasks(forceRefresh = false) {
-    if (!forceRefresh && !!knownTasks.value?.length) {
+    if (!forceRefresh && !!allTasks.value?.length) {
       // Return cached data if we have it.
       console.info('Returning all tasks from cache.');
-      return knownTasks.value;
+      return allTasks.value;
     } else if (GET_allTasks.isFetching.value) {
       // Prevent duplicate requests
       console.warn('Preventing duplicate all-tasks fetch.');
@@ -113,8 +122,8 @@ export const useTaskStore = defineStore('todo-task-store', () => {
     // Perform the lookup and update records
     try {
       await GET_allTasks.execute();
-      tasksData.value = Object.assign({}, tasksData.value, {
-        knownTasks: GET_allTasks.response.value?.ok ? GET_allTasks.data.value?.value ?? null : [],
+      setTasksData({
+        allTasks: GET_allTasks.response.value?.ok ? GET_allTasks.data.value?.value : [],
       });
     } catch (err) {
       console.error('Failed to get all tasks:', err);
@@ -125,17 +134,20 @@ export const useTaskStore = defineStore('todo-task-store', () => {
 
   //#region Create Task
   const POST_createTask = useFetch('/data-api/direct/tasks', { immediate: false }).json<
-    ModelResponse<TodoTask>
+    ModelResponse<TodoTask[]>
   >();
   async function createTask(toSave: TodoTask): Promise<TodoTask | null> {
     try {
       const postFetch = POST_createTask.post(toSave, 'json');
       await postFetch.execute();
 
-      // Retrieve the result, and add to our list if we succeeded.
+      // Retrieve the result, and add to both lists if we succeeded.
       const found = postFetch.data.value?.value?.[0] ?? null;
       if (found) {
-        knownTasks.value = (knownTasks.value ?? []).concat(found);
+        setTasksData({
+          allTasks: allTasks.value?.concat(found),
+          myTasks: myTasks.value?.concat(found),
+        });
       }
       return found;
     } catch (err) {
@@ -151,13 +163,15 @@ export const useTaskStore = defineStore('todo-task-store', () => {
 
   return {
     // Aggregate variables
-    knownTasks,
-    knownCount,
+    myTasks,
+    myTasksCount,
+    allTasks,
+    allTasksCount,
     isFetching,
     errorMsg,
 
     // Fetch functions
-    getTasksCount,
+    getAllTasksCount,
     getMyTasks,
     getAllTasks,
     createTask,

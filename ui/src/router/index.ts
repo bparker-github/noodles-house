@@ -110,8 +110,22 @@ const routes: RouteRecordRaw[] = [
               },
               {
                 path: 'list',
-                name: RouteName.TASKS_LIST,
-                component: () => import('../components/pages/tasks/TaskListPage.vue'),
+                children: [
+                  {
+                    path: '',
+                    redirect: { name: RouteName.TASKS_LIST_MY },
+                  },
+                  {
+                    path: 'my',
+                    name: RouteName.TASKS_LIST_MY,
+                    component: () => import('../components/pages/tasks/TaskListMyPage.vue'),
+                  },
+                  {
+                    path: 'all',
+                    name: RouteName.TASKS_LIST_ALL,
+                    component: () => import('../components/pages/tasks/TaskListAllPage.vue'),
+                  },
+                ],
               },
             ],
           },

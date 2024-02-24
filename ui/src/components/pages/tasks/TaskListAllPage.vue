@@ -2,9 +2,10 @@
   <div class="task-list-page flex flex-col gap-y-4">
     <TaskInfoAndNavCard />
     <TaskListCard
-      :all-tasks="knownTasks"
+      title="All Tasks"
+      :tasks="allTasks"
       :is-fetching="isFetching"
-      @refresh="() => taskStore.getMyTasks(true)"
+      @refresh="() => tasksStore.getAllTasks(true)"
     />
   </div>
 </template>
@@ -14,7 +15,11 @@ import { useTaskStore } from '@/stores/tasksStore';
 import { storeToRefs } from 'pinia';
 import TaskInfoAndNavCard from '../../tasks/TaskInfoAndNavCard.vue';
 import TaskListCard from '../../tasks/TaskListCard.vue';
+import { onMounted } from 'vue';
 
-const taskStore = useTaskStore();
-const { knownTasks, isFetching } = storeToRefs(taskStore);
+const tasksStore = useTaskStore();
+const { allTasks, isFetching } = storeToRefs(tasksStore);
+
+// Ensure we have AllTasks data fetched.
+onMounted(() => tasksStore.getAllTasks(false));
 </script>

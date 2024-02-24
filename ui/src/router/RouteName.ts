@@ -16,7 +16,8 @@ export enum RouteName {
   /** TODOs Page */
   TASKS_HOME = 'Tasks',
   TASKS_CREATE = 'Tasks | Create',
-  TASKS_LIST = 'Tasks | List',
+  TASKS_LIST_ALL = 'Tasks | List All',
+  TASKS_LIST_MY = 'Tasks | List My',
   TASKS_EDIT = 'Tasks | Edit',
 
   /** Develop stuff */

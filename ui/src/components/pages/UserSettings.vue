@@ -74,9 +74,9 @@ async function onSettingsSave(toSave: IUserSettings) {
 
   await useAuthFetch({
     url: `/data-api/direct/user-settings/id/${id}`,
-    requestOpts: {
+    method: 'PUT',
+    requestInit: {
       body: JSON.stringify(withoutId),
-      method: 'PUT',
     },
   });
 }

@@ -1,3 +1,4 @@
+import { useAuthFetch } from '@/lib/useAuthFetch';
 import { useTimedStorage } from '@/lib/useTimedStorage';
 import type { ModelResponse } from '@db/models/ModelResponse';
 import type { TodoTask } from '@db/models/TodoTask';
@@ -105,7 +106,13 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   //#endregion
 
   //#region GetAllTasks
-  const GET_allTasks = useFetch(
+  const GET_allTasks = useAuthFetch<ModelResponse<TodoTask[]>>({
+    url: '/data-api/direct/tasks',
+    asJson: true,
+    authRoleRequired: 'authenticated',
+    immediate: false,
+  });
+  const GET_allTasks2 = useFetch(
     '/data-api/direct/tasks',
     {
       headers: {

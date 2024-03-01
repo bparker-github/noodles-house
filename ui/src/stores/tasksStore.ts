@@ -105,9 +105,15 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   //#endregion
 
   //#region GetAllTasks
-  const GET_allTasks = useFetch('/data-api/direct/tasks', { immediate: false }).json<
-    ModelResponse<TodoTask[]>
-  >();
+  const GET_allTasks = useFetch(
+    '/data-api/direct/tasks',
+    {
+      headers: {
+        'X-MS-API-ROLE': 'admin',
+      },
+    },
+    { immediate: false }
+  ).json<ModelResponse<TodoTask[]>>();
   async function getAllTasks(forceRefresh = false) {
     if (!forceRefresh && !!allTasks.value?.length) {
       // Return cached data if we have it.

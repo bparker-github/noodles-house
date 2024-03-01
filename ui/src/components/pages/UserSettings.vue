@@ -22,9 +22,9 @@
 
 <script setup lang="ts">
 import { useNativeAuth } from '@/auth/useNativeAuth';
+import { useAuthFetch } from '@/lib/useAuthFetch';
 import { getDefaultUserSettings, userSettingsRepository } from '@/repos/user-settings';
 import type { IUserSettings } from '@db/models/UserSettings.d';
-import { useFetch } from '@vueuse/core';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';
@@ -72,19 +72,12 @@ async function getUserSettings(): Promise<void> {
 async function onSettingsSave(toSave: IUserSettings) {
   const { id, ...withoutId } = toSave;
 
-  const saveFetch = useFetch(
-    `/data-api/direct/user-settings/id/${id}`,
-    {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-MS-API-ROLE': 'authenticated',
-      },
+  await useAuthFetch({
+    url: `/data-api/direct/user-settings/id/${id}`,
+    requestOpts: {
       body: JSON.stringify(withoutId),
+      method: 'PUT',
     },
-    { immediate: false }
-  );
-
-  await saveFetch.execute();
+  });
 }
 </script>

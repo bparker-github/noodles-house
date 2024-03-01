@@ -109,7 +109,7 @@ export const useTaskStore = defineStore('todo-task-store', () => {
     '/data-api/direct/tasks',
     {
       headers: {
-        'X-MS-API-ROLE': 'admin',
+        'X-MS-API-ROLE': 'authenticated',
       },
     },
     { immediate: false }

@@ -3,7 +3,7 @@
     :class="[
       'task-create-card',
       'flex flex-col flex-1 gap-y-4',
-      'bg-nh-white rounded-md shadow-lg px-3 py-5 mx-2',
+      'bg-nh-white rounded-md shadow-lg px-3 py-5',
     ]"
   >
     <form

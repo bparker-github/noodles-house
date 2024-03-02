@@ -3,7 +3,7 @@
     :class="[
       'task-list-card relative',
       'flex flex-col flex-1 gap-y-4',
-      'bg-nh-white rounded-md shadow-lg pt-2 px-3 pb-3 mx-2',
+      'bg-nh-white rounded-md shadow-lg pt-2 px-3 pb-3',
     ]"
   >
     <!-- Display loading spinner if fetch hasn't completed -->

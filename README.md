@@ -59,3 +59,27 @@ These are all bound into the same "**Azure Static Web Apps**" instance, with the
 - Text area rightDrag bar isn't pretty
 - Page-navigation transitions
 - Double log-in on first start
+
+### 3/2/24
+
+- Login stable
+- User Settings, Tasks stable
+  - Utilizes both the Functions API and Data API
+  - The Functions API is used for guarded-routes
+  - The Data API is used for safe-fetching of generic objects. Still uses SWA auth.
+- Next main step is TLC to the Tasks
+
+  - This will help the next features be gathered from friends
+  - Main features required:
+    - Audit trail (event log below?)
+    - View/Edit single issue.
+    - New fields:
+      - Some kinda status
+      - Some kinda progress bar/status
+      - Description + Label + Feedback/comments?
+    - Delete issues
+    - Admin panel to manage issues?
+
+- Another major to-do is managing "roles" within Azure SWA for specific users.
+  - I must elevate myself first!!! Perhaps do-able from AzurePortal.
+  - Second attempt is an admin panel within SWA to control invites.

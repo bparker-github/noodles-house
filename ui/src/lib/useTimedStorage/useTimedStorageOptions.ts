@@ -1,4 +1,5 @@
 import { StorageLike, UseStorageOptions } from '@vueuse/core';
+import { TimedStorageVal } from '.';
 
 /**
  * The options to pass to the UseTimedStorage function.
@@ -14,5 +15,5 @@ export interface UseTimedStorageOptions<T> {
   /** The base storage interface to use for this hook. @default SessionStorage */
   storage?: StorageLike;
   /** The optional extension value to configure the useStorage native behavior. */
-  storageOptions?: UseStorageOptions<T>;
+  storageOptions?: UseStorageOptions<TimedStorageVal<T> | null>;
 }

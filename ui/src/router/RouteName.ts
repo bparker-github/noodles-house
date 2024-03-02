@@ -17,7 +17,7 @@ export enum RouteName {
   TASKS_HOME = 'Tasks',
   TASKS_CREATE = 'Tasks | Create',
   TASKS_LIST_ALL = 'Tasks | List All',
-  TASKS_LIST_MY = 'Tasks | List My',
+  TASKS_LIST_MY = 'Tasks | List Mine',
   TASKS_EDIT = 'Tasks | Edit',
 
   /** Develop stuff */

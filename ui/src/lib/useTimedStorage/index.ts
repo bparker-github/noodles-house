@@ -38,8 +38,8 @@ export function useTimedStorage<T>(
         };
 
   const storedVal = useStorage<TimedStorageVal<T> | null>('[nh]' + keyName, initialObj, storage, {
-    ...storageOptions.serializer,
-    serializer: storageOptions.serializer ?? StorageSerializers.object,
+    ...storageOptions,
+    serializer: StorageSerializers.object,
   });
 
   return computed<T | null>({

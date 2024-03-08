@@ -5,6 +5,12 @@ import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { RouteName } from '../router/RouteName';
 
+export interface MenuItemsRecord {
+  primaryItems: ListItem[];
+  secondaryItems: ListItem[];
+  userItems: ListItem[];
+}
+
 export const useDashboardStore = defineStore('dashboardSidebar', () => {
   const isOpen = ref(false);
   function setIsOpen(newVal: boolean): void {
@@ -39,7 +45,7 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
-  function getItemsWithClick(supplementaryClick: (it?: ListItem) => void) {
+  function getItemsWithClick(supplementaryClick: (it?: ListItem) => void): MenuItemsRecord {
     const supplementItem = (item: ListItem): ListItem => ({
       ...item,
       click: () => {
@@ -50,9 +56,9 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
 
     // Return all items.
     return {
-      primaryItemList: primaryItemList.map(supplementItem),
-      secondaryItemList: secondaryItemList.map(supplementItem),
-      userItemList: userItemList.map(supplementItem),
+      primaryItems: primaryItemList.map(supplementItem),
+      secondaryItems: secondaryItemList.map(supplementItem),
+      userItems: userItemList.map(supplementItem),
     };
   }
 

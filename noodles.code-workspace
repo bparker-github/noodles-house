@@ -149,7 +149,8 @@
     "vue.inlayHints.missingProps": true,
     "vue.inlayHints.optionsWrapper": true,
     "vue.splitEditors.icon": true,
-    "editor.rulers": [80, 120]
+    "editor.rulers": [80, 120],
+    "editor.defaultFoldingRangeProvider": "Vue.volar"
   },
   "launch": {
     "version": "0.2.0",

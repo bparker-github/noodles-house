@@ -26,7 +26,7 @@
           <div class="flex space-x-4">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <NoodleLink
-              v-for="(it, i) in primaryItems"
+              v-for="(it, i) in primaryItemList"
               :key="`${it.id}-${i}`"
               :to="it.to"
               :exact-active-class="
@@ -63,7 +63,7 @@
           </button>
 
           <!-- Profile dropdown -->
-          <ProfileDropMenu :items="userItems" />
+          <ProfileDropMenu :items="userItemList" />
         </div>
       </div>
       <div class="-mr-2 flex sm:hidden">
@@ -103,18 +103,19 @@ import { useRoute, useRouter } from 'vue-router';
 import ProfileDropMenu from '../ProfileDropMenu.vue';
 
 export interface SD_HeaderBarProps {
-  primaryItems: ListItem[];
-  secondaryItems: ListItem[];
-  userItems: ListItem[];
+  onClose?: Function;
   onNotificationsClick?: Function;
 }
 defineProps<SD_HeaderBarProps>();
-defineEmits<{ 'notifications-click': [] }>();
+defineEmits<{
+  close: [];
+  'notifications-click': [];
+}>();
 
 const route = useRoute();
 const router = useRouter();
 const dashboardStore = useDashboardStore();
-const { isOpen } = storeToRefs(dashboardStore);
+const { isOpen, primaryItemList, userItemList } = storeToRefs(dashboardStore);
 
 const canClickHomeIcon = computed(() => route.name !== RouteName.HOME);
 

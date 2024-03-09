@@ -3,7 +3,7 @@
     <Disclosure
       v-slot="{ open, close }"
       as="template"
-      :default-open="isOpen"
+      :default-open="isSidebarOpen"
     >
       <nav
         :class="[
@@ -13,13 +13,14 @@
       >
         <HeaderBar
           v-bind="getItemsWithClose(close)"
+          :primary-item-list=""
           @notifications-click="$emit('notifications-click')"
         />
 
         <!-- The Mobile Dropdown Section - MAIN USE -->
         <FadeSlideDown>
           <DisclosurePanel
-            v-if="isOpen"
+            v-if="open"
             :static="true"
             :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-500']"
           >
@@ -69,7 +70,8 @@ defineEmits<{ 'notifications-click': [] }>();
 const router = useRouter();
 
 const dashboardStore = useDashboardStore();
-const { isOpen } = storeToRefs(dashboardStore);
+const { isSidebarOpen } = storeToRefs(dashboardStore);
+
 const getItemsWithClose = (close: () => void) =>
   dashboardStore.getItemsWithClick(() => {
     isOpen.value = false;

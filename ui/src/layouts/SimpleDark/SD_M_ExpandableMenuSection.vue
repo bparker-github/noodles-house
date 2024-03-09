@@ -1,31 +1,44 @@
 <template>
-  <div class="space-y-1 p-2">
-    <DisclosureButton
-      v-for="(it, i) in items"
-      :as="RouterLink"
-      :key="`${it.id ?? it.label}-${i}`"
-      :to="it.to"
-      :exact-active-class="
-        normalizeClass(['exact-active', { 'bg-nh-chalet-green-600': it.useExactActiveClass }])
-      "
-      :active-class="
-        normalizeClass(['just-active', { 'bg-nh-chalet-green-600': !it.useExactActiveClass }])
-      "
-      :class="[
-        'block rounded-md px-3 py-2 text-base font-medium',
-        'text-nh-whiteish hover:text-nh-chalet-green-200 hover:bg-nh-chalet-green-700 hover:shadow-inner',
-        'nh-focus-chalet-green-inv',
-      ]"
-      @click="it.click"
-      >{{ it.label }}</DisclosureButton
+  <div :class="['flex flex-col flex-1 justify-center space-y-1 p-2']">
+    <template
+      v-for="(item, i) in items"
+      :key="(item.id ?? item.label) + 'i' + i"
     >
+      <!-- If it's a regular link, we wrap with DiscButton for parent-closing. -->
+      <DisclosureButton
+        v-if="!item.children?.length"
+        :as="ItemItself"
+        :item="item"
+      />
+
+      <!-- Otherwise, wrap in another disclosure. -->
+      <Disclosure
+        v-else
+        as="div"
+        class="flex flex-1 text-start"
+      >
+        <!-- The trigger for this disclosure is the same as the flat line item. -->
+
+        <DisclosureButton
+          :as="ItemItself"
+          :item="item"
+        />
+
+        <FadeSlideDown>
+          <DisclosurePanel :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-200']">
+            <ItemItself :item="item" />
+          </DisclosurePanel>
+        </FadeSlideDown>
+      </Disclosure>
+    </template>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ListItem } from '@/components/ItemList';
-import { normalizeClass } from 'vue';
-import { RouterLink } from 'vue-router';
+import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
+import ItemItself from './SD_M_ItemItself.vue';
 
 export interface ExpandableMenuSectionProps {
   items: ListItem[];

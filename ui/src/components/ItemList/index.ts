@@ -10,6 +10,9 @@ interface ListItem_All {
   /** An optional indicator that the item is selected. */
   current?: boolean;
 
+  /** An optional list of items to display as the child. Only depth 1 supported. */
+  children?: ListItem[];
+
   /** A value indicating if the route should use the 'exact-active' property instead of regular 'active'. */
   useExactActiveClass?: boolean;
 

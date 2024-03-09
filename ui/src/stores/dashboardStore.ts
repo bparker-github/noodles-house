@@ -1,44 +1,65 @@
 import type { ListItem } from '@/components/ItemList';
 import { Cog6ToothIcon, ListBulletIcon } from '@heroicons/vue/20/solid';
-import { FilmIcon, HomeIcon, LockClosedIcon, UserIcon } from '@heroicons/vue/24/solid';
+import { HomeIcon, LockClosedIcon, UserIcon } from '@heroicons/vue/24/solid';
+import { StorageSerializers, useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { RouteName } from '../router/RouteName';
 
 export interface MenuItemsRecord {
   primaryItems: ListItem[];
-  secondaryItems: ListItem[];
   userItems: ListItem[];
 }
 
-export const useDashboardStore = defineStore('dashboardSidebar', () => {
-  const isOpen = ref(false);
-  function setIsOpen(newVal: boolean): void {
-    isOpen.value = newVal;
-  }
+export interface MenuOpenState extends Partial<Record<RouteName, boolean>> {
+  menu: boolean;
+}
 
-  const sidebarOpen = computed<boolean>({
-    get: () => isOpen.value,
-    set: (newVal: boolean) => (isOpen.value = newVal),
+export const useDashboardStore = defineStore('dashboardSidebar', () => {
+  const openState = useLocalStorage<MenuOpenState>(
+    '[nh]menu-state',
+    { menu: false },
+    { serializer: StorageSerializers.object }
+  );
+
+  const isSidebarOpen = computed({
+    get: () => openState.value.menu,
+    set: (nv) => (openState.value.menu = nv),
   });
+
+  const getIsOpenFor = (key: RouteName, supplementaryClose?: () => void) =>
+    computed({
+      get: () => openState.value[key] ?? false,
+      set: (nv) => {
+        if (!nv) supplementaryClose?.();
+        return Object.assign(openState.value, { [key]: nv });
+      },
+    });
 
   const primaryItemList: ListItem[] = [
     {
-      id: 0,
       label: 'Home',
       to: { name: RouteName.HOME },
       leftIcon: HomeIcon,
       useExactActiveClass: true,
     },
-    { id: 1, label: 'Tasks', to: { name: RouteName.TASKS_HOME }, leftIcon: ListBulletIcon },
-  ];
-  const secondaryListTitle = 'Integrations';
-  const secondaryItemList: ListItem[] = [
-    { id: 1, label: 'Unsplash Images', to: '#', leftIcon: FilmIcon },
-    { id: 2, label: 'Token Testing', to: { name: RouteName.PROFILE_TOKENS }, leftInitial: 'T' },
+    {
+      label: 'Tasks',
+      to: { name: RouteName.TASKS_HOME },
+      leftIcon: ListBulletIcon,
+      children: [
+        { label: 'Home', to: { name: RouteName.TASKS_HOME }, leftInitial: 'H' },
+        { label: 'List Tasks (All)', to: { name: RouteName.TASKS_HOME }, leftInitial: 'A' },
+        {
+          label: 'List Tasks (My)',
+          to: { name: RouteName.TASKS_LIST_MY },
+          leftInitial: 'M',
+        },
+        { label: 'Create Task', to: { name: RouteName.TASKS_CREATE }, leftInitial: 'C' },
+      ],
+    },
   ];
 
-  const userListTitle = 'You';
   const userItemList: ListItem[] = [
     { label: 'Your profile', to: { name: RouteName.PROFILE }, leftIcon: UserIcon },
     { label: 'User settings', to: { name: RouteName.USER_SETTINGS }, leftIcon: Cog6ToothIcon },
@@ -57,22 +78,22 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     // Return all items.
     return {
       primaryItems: primaryItemList.map(supplementItem),
-      secondaryItems: secondaryItemList.map(supplementItem),
       userItems: userItemList.map(supplementItem),
     };
   }
 
+  function closeMenu() {
+    openState.value.menu = false;
+  }
+
   return {
-    isOpen,
-    setIsOpen,
-    sidebarOpen,
+    isSidebarOpen,
+    primaryItemList,
+    userItemList,
+
+    getIsOpenFor,
+    closeMenu,
 
     getItemsWithClick,
-
-    primaryItemList,
-    secondaryListTitle,
-    secondaryItemList,
-    userListTitle,
-    userItemList,
   };
 });

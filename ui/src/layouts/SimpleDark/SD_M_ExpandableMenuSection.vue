@@ -1,17 +1,17 @@
 <template>
-  <div :class="['flex flex-col flex-1 justify-center space-y-1 p-2']">
+  <div :class="['flex flex-col justify-center space-y-1 p-2']">
     <template
-      v-for="(item, i) in items"
+      v-for="(item, i) in primaryItemList"
       :key="(item.id ?? item.label) + 'i' + i"
     >
       <!-- If it's a regular link, we wrap with DiscButton for parent-closing. -->
-      <DisclosureButton
+      <ItemItself
         v-if="!item.children?.length"
-        :as="ItemItself"
         :item="item"
+        @click="closeMenu"
       />
 
-      <!-- Otherwise, wrap in another disclosure. -->
+      <!-- Otherwise, wrap in disclosure. -->
       <Disclosure
         v-else
         as="div"
@@ -22,11 +22,15 @@
         <DisclosureButton
           :as="ItemItself"
           :item="item"
+          @click="closeMenu"
         />
 
         <FadeSlideDown>
           <DisclosurePanel :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-200']">
-            <ItemItself :item="item" />
+            <ItemItself
+              :item="item"
+              @click="closeMenu"
+            />
           </DisclosurePanel>
         </FadeSlideDown>
       </Disclosure>
@@ -35,13 +39,10 @@
 </template>
 
 <script setup lang="ts">
-import { ListItem } from '@/components/ItemList';
 import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
+import { useDashboardStore } from '@/stores/dashboardStore';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue';
 import ItemItself from './SD_M_ItemItself.vue';
 
-export interface ExpandableMenuSectionProps {
-  items: ListItem[];
-}
-defineProps<ExpandableMenuSectionProps>();
+const { primaryItemList, closeMenu } = useDashboardStore();
 </script>

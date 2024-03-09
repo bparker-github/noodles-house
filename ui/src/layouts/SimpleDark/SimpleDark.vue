@@ -1,38 +1,38 @@
 <template>
-  <div class="simple-dark-layout flex flex-col flex-1 min-h-0">
-    <Disclosure
-      v-slot="{ open, close }"
-      as="template"
-      :default-open="isSidebarOpen"
-    >
-      <nav
-        :class="[
-          'text-nh-chalet-green-50 fixed inset-0 z-[100] bg-nh-gray-blue/50',
-          { 'h-14': !open },
-        ]"
-      >
-        <HeaderBar
-          v-bind="getItemsWithClose(close)"
-          :primary-item-list=""
-          @notifications-click="$emit('notifications-click')"
-        />
+  <Menu
+    as="div"
+    class="simple-dark-layout flex flex-col flex-1 min-h-0"
+  >
+    <HeaderBar @notifications-click="$emit('notifications-click')" />
 
-        <!-- The Mobile Dropdown Section - MAIN USE -->
-        <FadeSlideDown>
-          <DisclosurePanel
-            v-if="open"
-            :static="true"
-            :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-500']"
-          >
+    <!-- Mobile Menu first, at root level -->
+    <div
+      show="isSidebarOpen"
+      class="mobile-menu fixed inset-0 top-14 z-10"
+    >
+      <!-- The background -->
+      <FadeInAppear>
+        <div
+          v-if="isSidebarOpen"
+          class="fixed inset-0 bg-black/25"
+        />
+      </FadeInAppear>
+
+      <FadeSlideDown>
+        <div
+          v-show="isSidebarOpen"
+          class="absolute left-0 right-0 flex flex-col flex-1 bg-nh-chalet-green-500 duration-1000"
+        >
+          <MenuItems :static="true">
             <!-- Main Heading Items -->
-            <ExpandableMenuSection :items="getItemsWithClose(close).primaryItems" />
+            <ExpandableMenuSection />
 
             <!-- The user's profile badge with pic and notifications, and profile menu items below -->
-            <ProfileMenuData :items="getItemsWithClose(close).userItems" />
-          </DisclosurePanel>
-        </FadeSlideDown>
-      </nav>
-    </Disclosure>
+            <ProfileMenuData />
+          </MenuItems>
+        </div>
+      </FadeSlideDown>
+    </div>
 
     <main
       :class="[
@@ -46,14 +46,15 @@
       />
       <RouterView />
     </main>
-  </div>
+  </Menu>
 </template>
 
 <script setup lang="ts">
 import PageSpinner from '@/components/spinners/PageSpinner.vue';
+import FadeInAppear from '@/components/transitions/FadeInAppear.vue';
 import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
 import { useDashboardStore } from '@/stores/dashboardStore';
-import { Disclosure, DisclosurePanel } from '@headlessui/vue';
+import { Dialog, DialogPanel, Menu, MenuItems } from '@headlessui/vue';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
@@ -69,16 +70,8 @@ defineEmits<{ 'notifications-click': [] }>();
 
 const router = useRouter();
 
-const dashboardStore = useDashboardStore();
-const { isSidebarOpen } = storeToRefs(dashboardStore);
-
-const getItemsWithClose = (close: () => void) =>
-  dashboardStore.getItemsWithClick(() => {
-    isOpen.value = false;
-    close?.();
-  });
-
 const isRouting = ref(false);
+const { isSidebarOpen } = storeToRefs(useDashboardStore());
 
 // Set up page loading on page navigation
 onMounted(() => {

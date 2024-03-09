@@ -53,8 +53,8 @@
         'bg-gradient-to-t from-nh-chalet-green-400 to-nh-chalet-green-600',
       ]"
     >
-      <DisclosureButton
-        v-for="(it, i) in items"
+      <MenuItem
+        v-for="(it, i) in userItemList"
         as="template"
         :key="`${it.id}-${i}`"
       >
@@ -68,28 +68,25 @@
             normalizeClass(['just-active', { 'bg-nh-chalet-green-700': !it.useExactActiveClass }])
           "
         />
-      </DisclosureButton>
+      </MenuItem>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useNativeAuth } from '@/auth/useNativeAuth';
-import { ListItem } from '@/components/ItemList';
 import SingleItem from '@/components/ItemList/SingleItem.vue';
 import { userSettingsRepository } from '@/repos/user-settings';
-import { DisclosureButton } from '@headlessui/vue';
+import { useDashboardStore } from '@/stores/dashboardStore';
+import { DisclosureButton, MenuItem } from '@headlessui/vue';
 import { BellIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { normalizeClass } from 'vue';
 
-export interface ProfileMenuDataProps {
-  items: ListItem[];
-}
-defineProps<ProfileMenuDataProps>();
-
 const authStore = useNativeAuth();
 const { curUser } = storeToRefs(authStore);
+
+const { userItemList } = useDashboardStore();
 
 const userSettingsRepo = userSettingsRepository();
 const { myUserSettings, myFullName } = storeToRefs(userSettingsRepo);

@@ -36,7 +36,7 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
       },
     });
 
-  const primaryItemList: ListItem[] = [
+  const basicPrimaryItemList: ListItem[] = [
     {
       label: 'Home',
       to: { name: RouteName.HOME },
@@ -76,27 +76,27 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     },
   ];
 
-  const userItemList: ListItem[] = [
+  const basicUserItemList: ListItem[] = [
     { label: 'Your profile', to: { name: RouteName.PROFILE }, leftIcon: UserIcon },
     { label: 'User settings', to: { name: RouteName.USER_SETTINGS }, leftIcon: Cog6ToothIcon },
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
-  function getItemsWithClick(supplementaryClick: (it?: ListItem) => void): MenuItemsRecord {
-    const supplementItem = (item: ListItem): ListItem => ({
-      ...item,
+  function addClick(item: ListItem, onClick?: Function): ListItem {
+    return Object.assign({}, item, {
       click: () => {
-        item.click?.();
-        supplementaryClick?.(item);
+        if (onClick) {
+          onClick();
+          item.click?.();
+        }
       },
     });
-
-    // Return all items.
-    return {
-      primaryItems: primaryItemList.map(supplementItem),
-      userItems: userItemList.map(supplementItem),
-    };
   }
+  const addClickTo = (items: ListItem[], onClick?: Function): ListItem[] =>
+    items.map((it) => addClick(it, onClick));
+
+  const primaryItemList = addClickTo(basicPrimaryItemList, () => (isSidebarOpen.value = false));
+  const userItemList = addClickTo(basicUserItemList, () => (isSidebarOpen.value = false));
 
   function closeMenu() {
     // Close main menu and all submenus by resetting the open state to initial.
@@ -110,7 +110,5 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
 
     getIsOpenFor,
     closeMenu,
-
-    getItemsWithClick,
   };
 });

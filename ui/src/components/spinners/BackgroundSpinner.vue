@@ -4,7 +4,12 @@
   >
     <div
       v-if="!hideOverlay"
-      :class="['overlay', 'absolute inset-0', 'bg-nh-bourbon-950/20']"
+      :class="[
+        'overlay',
+        'absolute inset-0 backdrop-blur-xs',
+        'bg-nh-bourbon-950/20',
+        $attrs.class,
+      ]"
     />
     <LoadingSpinner
       :class="[

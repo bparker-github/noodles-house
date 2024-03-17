@@ -10,7 +10,12 @@ interface ListItem_All {
   /** An optional indicator that the item is selected. */
   current?: boolean;
 
-  /** A value indicating if the route should use the 'exact-active' property instead of regular 'active'. */
+  /** An optional list of items to display as the child. Only depth 1 supported. */
+  children?: ListItem[];
+
+  /** A value indicating if the route should apply a class to the 'active' property. */
+  useActiveClass?: boolean;
+  /** A value indicating if the route should apply a class to the 'exact-active' property. */
   useExactActiveClass?: boolean;
 
   to: RouteLocationRaw;
@@ -24,5 +29,4 @@ type ListItemLeft = RequireOnlyOne<ListItem_Left, 'leftIcon' | 'leftInitial'>;
 
 export type ListItem = ListItem_All & ListItemLeft;
 
-export { default as MainItemList } from './MainList.vue';
 export { default as ItemListItem } from './SingleItem.vue';

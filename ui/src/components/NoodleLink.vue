@@ -1,12 +1,15 @@
 <template>
-  <component
-    v-bind="$props"
-    :is="isExternalLink ? 'a' : RouterLink"
-    :to="to"
-    :href="to"
-    :target="isExternalLink ? '_blank' : ''"
+  <a
+    v-if="isExternalLink"
+    :href="href"
+    target="_blank"
     ><slot></slot
-  ></component>
+  ></a>
+  <RouterLink
+    v-else
+    :to="to"
+    ><slot></slot
+  ></RouterLink>
 </template>
 
 <script setup lang="ts">
@@ -20,9 +23,10 @@ export interface NoodleLinkProps extends /** @vue-ignore */ RouterLinkProps {
   isExternal?: boolean;
 }
 const props = defineProps<NoodleLinkProps>();
-defineOptions({ inheritAttrs: false });
 
 const isExternalLink = computed(
   () => props.isExternal || (typeof props.to === 'string' && !!props.to.match(/^http/i))
 );
+
+const href = computed(() => (isExternalLink.value ? (props.to as string) : ''));
 </script>

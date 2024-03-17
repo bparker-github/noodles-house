@@ -18,7 +18,7 @@ export async function InitDb(
     return { status: 204 };
   }
 }
-app.http('InitDb', {
+app.http('Database_Init', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'database/init',
@@ -42,7 +42,7 @@ export async function SyncDb(
     return { status: 204 };
   }
 }
-app.http('SyncDb', {
+app.http('Database_Sync', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'database/sync',

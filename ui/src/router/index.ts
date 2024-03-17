@@ -43,7 +43,7 @@ const routes: RouteRecordRaw[] = [
             meta: {
               nativeUserRole: NativeUserRole.AUTHENTICATED,
             },
-            component: () => import('../layouts/SimpleDark.vue'),
+            component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
             children: [
               {
                 path: '',
@@ -65,7 +65,7 @@ const routes: RouteRecordRaw[] = [
         meta: {
           nativeUserRole: NativeUserRole.AUTHENTICATED,
         },
-        component: () => import('../layouts/SimpleDark.vue'),
+        component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
         children: [
           {
             path: 'profile',
@@ -93,7 +93,7 @@ const routes: RouteRecordRaw[] = [
       // Handle the general-work/Office pages
       {
         path: 'office',
-        component: () => import('../layouts/SimpleDark.vue'),
+        component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
         meta: {
           nativeUserRole: NativeUserRole.AUTHENTICATED,
         },
@@ -116,10 +116,6 @@ const routes: RouteRecordRaw[] = [
               {
                 path: 'list',
                 children: [
-                  {
-                    path: '',
-                    redirect: { name: RouteName.TASKS_LIST_MY },
-                  },
                   {
                     path: 'my',
                     name: RouteName.TASKS_LIST_MY,

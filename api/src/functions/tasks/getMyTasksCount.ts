@@ -20,7 +20,7 @@ export async function getMyTasksCount(
   });
 }
 
-app.http('GET_GetMyTasksCount', {
+app.http('Tasks_GetMyCount', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'tasks/count',

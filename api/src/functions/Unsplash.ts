@@ -41,7 +41,7 @@ async function handlePhotosRequest(
   return { body: `Invalid method. Params: ${secondary} ${rest}`, status: 400 };
 }
 
-app.http('unsplash', {
+app.http('Unsplash', {
   methods: ['GET'],
   route: 'unsplash/{*restOfPath}',
   authLevel: 'anonymous',

@@ -139,6 +139,12 @@ export default {
         'b-blur': '0px 1rem 1.25rem -0.5rem rgb(0 0 0 / 0.1)',
         't-blur': '0px -1rem 1.25rem -0.5rem rgb(0 0 0 / 0.1)',
       },
+      dropShadow: {
+        custom: ['0 1px 2px var(--tw-shadow-color)', '0 1px 1px var(--tw-shadow-color)'],
+      },
+      blur: {
+        xs: '2px',
+      },
       spacing: {
         '10p': '10%',
         '20p': '20%',

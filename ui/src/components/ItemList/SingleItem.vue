@@ -4,7 +4,7 @@
     :to="item.to"
     @click="item.click"
     :class="[
-      'text-whiteish group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
+      'text-nh-whiteish group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
       'hover:bg-nh-chalet-green-700 hover:text-white',
     ]"
   >

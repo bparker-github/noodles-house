@@ -26,6 +26,8 @@
 
 <script setup lang="ts">
 import { useDashboardStore } from '@/stores/dashboardStore';
+import { BellIcon } from '@heroicons/vue/20/solid';
+import ProfileDropMenu from '../ProfileDropMenu.vue';
 
 defineProps<{ onNotificationsClick?: Function }>();
 defineEmits<{ 'notifications-click': [] }>();

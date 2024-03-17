@@ -19,6 +19,7 @@
 </template>
 
 <script setup lang="ts">
+import NoodleLink from '@/components/NoodleLink.vue';
 import { useDashboardStore } from '@/stores/dashboardStore';
 
 const dashboardStore = useDashboardStore();

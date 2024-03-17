@@ -29,18 +29,23 @@
         />
 
         <FadeSlideDown>
-          <DisclosurePanel :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-600']">
+          <DisclosurePanel
+            :class="['sm:hidden z-[100] shadow-xl rounded-b-md', 'bg-nh-chalet-green-600']"
+          >
             <div
               :class="[
-                'ml-4',
-                'border-l-2 border-nh-chalet-green-700',
-                'bg-nh-chalet-green-500/50',
+                'ml-4 bg-nh-chalet-green-500/50 rounded-b-md',
+                'border-l-2 border-t-2 border-nh-chalet-green-700',
               ]"
             >
               <ItemItself
                 v-for="(child, i) in item.children"
                 :key="(child.id ?? child.label) + '-' + i"
                 :item="child"
+                :class="[
+                  'last:rounded-br-md',
+                  'border-r-2 last:border-b-2 border-nh-chalet-green-600',
+                ]"
                 @click="closeMenu"
               />
             </div>

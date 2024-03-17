@@ -78,7 +78,7 @@ import { useNativeAuth } from '@/auth/useNativeAuth';
 import SingleItem from '@/components/ItemList/SingleItem.vue';
 import { userSettingsRepository } from '@/repos/user-settings';
 import { useDashboardStore } from '@/stores/dashboardStore';
-import { DisclosureButton, MenuItem } from '@headlessui/vue';
+import { MenuItem } from '@headlessui/vue';
 import { BellIcon } from '@heroicons/vue/24/solid';
 import { storeToRefs } from 'pinia';
 import { normalizeClass } from 'vue';

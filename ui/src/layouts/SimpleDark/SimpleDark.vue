@@ -7,7 +7,7 @@
 
     <!-- Mobile Menu first, at root level -->
     <div
-      show="isSidebarOpen"
+      v-show="isSidebarOpen"
       class="mobile-menu fixed inset-0 top-14 z-10"
     >
       <!-- The background -->
@@ -36,7 +36,7 @@
 
     <main
       :class="[
-        'simple-dark-main mt-14 pt-2 bg-nh-whiteish relative',
+        'simple-dark-main mt-14 py-2 bg-nh-whiteish relative',
         'overflow-y-auto h-full max-h-full',
       ]"
     >
@@ -54,7 +54,7 @@ import PageSpinner from '@/components/spinners/PageSpinner.vue';
 import FadeInAppear from '@/components/transitions/FadeInAppear.vue';
 import FadeSlideDown from '@/components/transitions/FadeSlideDown.vue';
 import { useDashboardStore } from '@/stores/dashboardStore';
-import { Dialog, DialogPanel, Menu, MenuItems } from '@headlessui/vue';
+import { Menu, MenuItems } from '@headlessui/vue';
 import { storeToRefs } from 'pinia';
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';

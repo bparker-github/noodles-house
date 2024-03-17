@@ -8,29 +8,42 @@
       <ItemItself
         v-if="!item.children?.length"
         :item="item"
+        class="rounded-md"
+        @dblClick.prevent
         @click="closeMenu"
       />
 
       <!-- Otherwise, wrap in disclosure. -->
       <Disclosure
         v-else
+        v-slot="{ open }"
         as="div"
-        class="flex flex-1 text-start"
+        class="flex flex-1 flex-col text-start"
       >
         <!-- The trigger for this disclosure is the same as the flat line item. -->
 
         <DisclosureButton
           :as="ItemItself"
           :item="item"
-          @click="closeMenu"
+          :class="!open ? 'rounded-md' : 'rounded-t-md bg-nh-chalet-green-600'"
         />
 
         <FadeSlideDown>
-          <DisclosurePanel :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-200']">
-            <ItemItself
-              :item="item"
-              @click="closeMenu"
-            />
+          <DisclosurePanel :class="['sm:hidden z-[100] shadow-xl', 'bg-nh-chalet-green-600']">
+            <div
+              :class="[
+                'ml-4',
+                'border-l-2 border-nh-chalet-green-700',
+                'bg-nh-chalet-green-500/50',
+              ]"
+            >
+              <ItemItself
+                v-for="(child, i) in item.children"
+                :key="(child.id ?? child.label) + '-' + i"
+                :item="child"
+                @click="closeMenu"
+              />
+            </div>
           </DisclosurePanel>
         </FadeSlideDown>
       </Disclosure>

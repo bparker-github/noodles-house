@@ -29,11 +29,9 @@
             :key="`${it.id}-${i}`"
             :to="it.to"
             :exact-active-class="
-              'exact-active:' + it.useExactActiveClass ? 'bg-nh-chalet-green-600' : undefined
+              it.useExactActiveClass ? 'exact-active:bg-nh-chalet-green-600' : undefined
             "
-            :active-class="
-              'just-active:' + it.useExactActiveClass ? undefined : 'bg-nh-chalet-green-600'
-            "
+            :active-class="it.useActiveClass ? 'just-active:bg-nh-chalet-green-600' : undefined"
             @click="it.click"
             >{{ it.label }}</NoodleLink
           >
@@ -72,7 +70,7 @@
           'relative inline-flex items-center justify-center rounded-md p-2',
           'hover:text-nh-chalet-green-200',
           'focus:text-nh-chalet-green-200 focus:ring-2 focus:ring-nh-chalet-green-200',
-          isSidebarOpen ? 'text-nh-chalet-green-300' : 'text-nh-chalet-green-900',
+          isSidebarOpen ? 'text-nh-chalet-green-300' : 'text-nh-chalet-green-700',
         ]"
         @click="isSidebarOpen = !isSidebarOpen"
       >

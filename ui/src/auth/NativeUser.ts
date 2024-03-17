@@ -1,17 +1,14 @@
+import { NoodleUserRole } from '@db/models/NoodleAuth.d';
+
 export interface NativeUser {
   clientPrincipal: NativeUserClientPrincipal;
-}
-
-export enum NativeUserRole {
-  ANONYMOUS = 'anonymous',
-  AUTHENTICATED = 'authenticated',
 }
 
 export interface NativeUserClientPrincipal {
   /** The unique identifier for this user. @example <GUID> */
   userId: string;
   /** A list of roles assigned to this user by the identity provider. */
-  userRoles: NativeUserRole[];
+  userRoles: NoodleUserRole[];
   /** A list of claims provided to this user by the identify provider. @example ['openid', 'offline'] */
   claims: string[];
   /** The identifier of the provider. @example 'aadb2c' */

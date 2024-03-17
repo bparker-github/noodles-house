@@ -5,7 +5,7 @@
     <TasksTabsSubtle v-else />
 
     <!-- The content of this tasks page/component. -->
-    <div class="tasks-layout-content px-2 pt-3 pb-1">
+    <div class="tasks-layout-content mt-2 px-2 pt-3 pb-1">
       <RouterView />
     </div>
   </div>

@@ -15,12 +15,12 @@ export interface MenuOpenState extends Partial<Record<RouteName, boolean>> {
   menu: boolean;
 }
 
+const getDefaultOpenState = () => ({ menu: false });
+
 export const useDashboardStore = defineStore('dashboardSidebar', () => {
-  const openState = useLocalStorage<MenuOpenState>(
-    '[nh]menu-state',
-    { menu: false },
-    { serializer: StorageSerializers.object }
-  );
+  const openState = useLocalStorage<MenuOpenState>('[nh]menu-state', getDefaultOpenState(), {
+    serializer: StorageSerializers.object,
+  });
 
   const isSidebarOpen = computed({
     get: () => openState.value.menu,
@@ -48,14 +48,30 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
       to: { name: RouteName.TASKS_HOME },
       leftIcon: ListBulletIcon,
       children: [
-        { label: 'Home', to: { name: RouteName.TASKS_HOME }, leftInitial: 'H' },
-        { label: 'List Tasks (All)', to: { name: RouteName.TASKS_HOME }, leftInitial: 'A' },
+        {
+          label: 'Home',
+          to: { name: RouteName.TASKS_HOME },
+          leftInitial: 'H',
+          useExactActiveClass: true,
+        },
+        {
+          label: 'List Tasks (All)',
+          to: { name: RouteName.TASKS_LIST_ALL },
+          leftInitial: 'A',
+          useExactActiveClass: true,
+        },
         {
           label: 'List Tasks (My)',
           to: { name: RouteName.TASKS_LIST_MY },
           leftInitial: 'M',
+          useExactActiveClass: true,
         },
-        { label: 'Create Task', to: { name: RouteName.TASKS_CREATE }, leftInitial: 'C' },
+        {
+          label: 'Create Task',
+          to: { name: RouteName.TASKS_CREATE },
+          leftInitial: 'C',
+          useExactActiveClass: true,
+        },
       ],
     },
   ];
@@ -83,7 +99,8 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
   }
 
   function closeMenu() {
-    openState.value.menu = false;
+    // Close main menu and all submenus by resetting the open state to initial.
+    openState.value = getDefaultOpenState();
   }
 
   return {

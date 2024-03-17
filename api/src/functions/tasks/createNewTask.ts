@@ -30,7 +30,7 @@ export async function createTask(
   return asModel;
 }
 
-app.http('POST_CreateTask', {
+app.http('Tasks_Create', {
   methods: ['POST'],
   authLevel: 'function',
   route: 'tasks/create',

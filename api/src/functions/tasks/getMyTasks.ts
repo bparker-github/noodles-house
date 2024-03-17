@@ -18,7 +18,7 @@ export async function getMyTasks(
   return await noodleDb.manager.findBy(TodoTaskModel, { createdBy: userId });
 }
 
-app.http('GET_GetMyTasks', {
+app.http('Tasks_GetMy', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'tasks',

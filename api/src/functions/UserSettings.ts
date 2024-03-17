@@ -20,7 +20,7 @@ export async function GetUserSettings(
   context.debug(`Returning ${!found ? 'empty' : 'found'} User Settings for ${userId}`);
   return { status: 200, jsonBody: found ?? UserSettings.Default(userId) };
 }
-app.http('Get_UserSettings', {
+app.http('UserSettings_GetMy', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'settings',

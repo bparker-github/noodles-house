@@ -104,7 +104,7 @@ const routes: RouteRecordRaw[] = [
             redirect: { name: RouteName.TASKS_HOME },
             children: [
               {
-                path: '',
+                path: 'home',
                 name: RouteName.TASKS_HOME,
                 component: () => import('@/components/tasks/TasksGeneralInfo.vue'),
               },
@@ -117,7 +117,7 @@ const routes: RouteRecordRaw[] = [
                 path: 'list',
                 children: [
                   {
-                    path: '',
+                    path: 'my',
                     name: RouteName.TASKS_LIST_MY,
                     component: () => import('../components/pages/tasks/TaskListMyPage.vue'),
                   },

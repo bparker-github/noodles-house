@@ -4,7 +4,7 @@
   >
     <!-- Display loading spinner if fetch hasn't completed -->
     <BackgroundSpinner
-      v-if="true"
+      v-if="isFetching"
       class="rounded-md"
       title="Fetching Tasks"
       details="Fetching all todo tasks..."

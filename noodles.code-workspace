@@ -27,6 +27,9 @@
   "settings": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
+    "editor.rulers": [80, 120],
+    "editor.defaultFoldingRangeProvider": "Vue.volar",
+
     "json.schemas": [
       {
         "fileMatch": [".prettierrc.*json"],
@@ -148,9 +151,7 @@
     "vue.inlayHints.inlineHandlerLeading": true,
     "vue.inlayHints.missingProps": true,
     "vue.inlayHints.optionsWrapper": true,
-    "vue.splitEditors.icon": true,
-    "editor.rulers": [80, 120],
-    "editor.defaultFoldingRangeProvider": "Vue.volar"
+    "vue.splitEditors.icon": true
   },
   "launch": {
     "version": "0.2.0",

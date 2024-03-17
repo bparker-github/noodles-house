@@ -82,21 +82,22 @@ export const useDashboardStore = defineStore('dashboardSidebar', () => {
     { label: 'Sign out', to: { name: RouteName.LOGOUT }, leftIcon: LockClosedIcon },
   ];
 
-  function addClick(item: ListItem, onClick?: Function): ListItem {
+  function addClick(item: ListItem, onClick?: (it: ListItem) => void): ListItem {
     return Object.assign({}, item, {
       click: () => {
-        if (onClick) {
-          onClick();
-          item.click?.();
-        }
+        item.click?.();
+        onClick?.(item);
       },
     });
   }
-  const addClickTo = (items: ListItem[], onClick?: Function): ListItem[] =>
+  const addClickTo = (items: ListItem[], onClick?: (it: ListItem) => void): ListItem[] =>
     items.map((it) => addClick(it, onClick));
 
-  const primaryItemList = addClickTo(basicPrimaryItemList, () => (isSidebarOpen.value = false));
-  const userItemList = addClickTo(basicUserItemList, () => (isSidebarOpen.value = false));
+  const closeIfLink = (item: ListItem) => {
+    if (!item.children?.length) isSidebarOpen.value = false;
+  };
+  const primaryItemList = addClickTo(basicPrimaryItemList, closeIfLink);
+  const userItemList = addClickTo(basicUserItemList, closeIfLink);
 
   function closeMenu() {
     // Close main menu and all submenus by resetting the open state to initial.

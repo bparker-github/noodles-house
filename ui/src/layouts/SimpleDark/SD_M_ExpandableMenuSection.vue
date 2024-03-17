@@ -34,7 +34,7 @@
           >
             <div
               :class="[
-                'ml-4 bg-nh-chalet-green-500/50 rounded-b-md',
+                'ml-4 bg-nh-chalet-green-500/50 rounded-md rounded-tr-none',
                 'border-l-2 border-t-2 border-nh-chalet-green-700',
               ]"
             >
@@ -43,7 +43,7 @@
                 :key="(child.id ?? child.label) + '-' + i"
                 :item="child"
                 :class="[
-                  'last:rounded-br-md',
+                  'last:rounded-br-md first:rounded-tl-md',
                   'border-r-2 last:border-b-2 border-nh-chalet-green-600',
                 ]"
                 @click="closeMenu"

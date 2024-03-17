@@ -1,7 +1,7 @@
 <template>
   <Menu
     as="div"
-    class="simple-dark-layout flex flex-col flex-1 min-h-0"
+    class="simple-dark-layout relative flex flex-col flex-1 min-h-0"
   >
     <HeaderBar @notifications-click="$emit('notifications-click')" />
 
@@ -37,12 +37,14 @@
     <main
       :class="[
         'simple-dark-main mt-14 py-2 bg-nh-whiteish relative',
-        'overflow-y-auto h-full max-h-full',
+        'h-full max-h-full',
+        isSidebarOpen ? 'overflow-y-hidden' : 'overflow-y-auto',
       ]"
     >
       <PageSpinner
         v-if="isRouting"
         title="Loading Page..."
+        class="absolute inset-0"
       />
       <RouterView />
     </main>

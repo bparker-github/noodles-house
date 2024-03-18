@@ -1,7 +1,7 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
-import { NoodleError, asSafeResponseHandler } from '../../lib/safeResponseHandler';
+import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';
 
 export async function GetMyTasks(
   request: HttpRequest,
@@ -22,5 +22,5 @@ app.http('Tasks_GetMy', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'tasks',
-  handler: asSafeResponseHandler(GetMyTasks),
+  handler: (r, c) => safeResponseHandler(r, c, GetMyTasks),
 });

@@ -1,8 +1,8 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
+import { TodoTask } from '@db/models/TodoTask';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
-import { NoodleError, asSafeResponseHandler } from '../../lib/safeResponseHandler';
-import { TodoTask } from '@db/models/TodoTask';
+import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';
 
 export async function EditTask(
   request: HttpRequest,
@@ -43,5 +43,5 @@ app.http('Tasks_Create', {
   methods: ['POST'],
   authLevel: 'function',
   route: 'tasks/create',
-  handler: asSafeResponseHandler(EditTask),
+  handler: (r, c) => safeResponseHandler(r, c, EditTask),
 });

@@ -1,7 +1,7 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../database/dataSource';
 import { UserSettings } from '../database/entity/UserSettings';
-import { NoodleError, safeResponseHandler } from '../lib/safeResponseHandler';
+import { NoodleError, asSafeResponseHandler } from '../lib/safeResponseHandler';
 
 export async function GetUserSettings(
   request: HttpRequest,
@@ -25,5 +25,5 @@ app.http('UserSettings_GetMy', {
   methods: ['GET'],
   authLevel: 'function',
   route: 'settings',
-  handler: (r, c) => safeResponseHandler(r, c, GetUserSettings),
+  handler: asSafeResponseHandler(GetUserSettings),
 });

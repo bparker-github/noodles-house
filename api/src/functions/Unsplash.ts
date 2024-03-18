@@ -1,7 +1,7 @@
 import { HttpRequest, InvocationContext, app } from '@azure/functions';
 import { createApi } from 'unsplash-js';
 import { Full } from 'unsplash-js/dist/methods/photos/types';
-import { NoodleError, safeResponseHandler } from '../lib/safeResponseHandler';
+import { NoodleError, asSafeResponseHandler } from '../lib/safeResponseHandler';
 
 export async function Unsplash(request: HttpRequest, context: InvocationContext): Promise<Full> {
   context.log('found rest::', request.params.restOfPath);
@@ -44,5 +44,5 @@ app.http('Unsplash', {
   methods: ['GET'],
   route: 'unsplash/{*restOfPath}',
   authLevel: 'anonymous',
-  handler: (r, c) => safeResponseHandler(r, c, Unsplash),
+  handler: asSafeResponseHandler(Unsplash),
 });

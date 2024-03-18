@@ -1,10 +1,10 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
-import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';
+import { NoodleError, asSafeResponseHandler } from '../../lib/safeResponseHandler';
 import { TodoTask } from '@db/models/TodoTask';
 
-export async function editTask(
+export async function EditTask(
   request: HttpRequest,
   context: InvocationContext
 ): Promise<TodoTaskModel> {
@@ -43,5 +43,5 @@ app.http('Tasks_Create', {
   methods: ['POST'],
   authLevel: 'function',
   route: 'tasks/create',
-  handler: (r, c) => safeResponseHandler(r, c, editTask),
+  handler: asSafeResponseHandler(EditTask),
 });

@@ -2,7 +2,6 @@ import { useNativeAuth } from '@/auth/useNativeAuth';
 import { useAuthFetch } from '@/lib/useAuthFetch';
 import { useTimedStorage } from '@/lib/useTimedStorage';
 import { type IUserSettings } from '@db/models/UserSettings.d';
-import { useFetch } from '@vueuse/core';
 import { defineStore, storeToRefs } from 'pinia';
 import { computed } from 'vue';
 
@@ -19,12 +18,14 @@ export const userSettingsRepository = defineStore('user-settings-repo', () => {
   // Load the native-auth for the user id.
   const { userId } = storeToRefs(useNativeAuth());
   type GET_Resp = { value: IUserSettings[] };
-  const GET_fetch = useAuthFetch<GET_Resp>({
-    url: computed(() => `/data-api/direct/user-settings/id/${userId.value ?? ''}`),
-    asJson: true,
-    authRoleRequired: 'authenticated',
-    immediate: false,
-  });
+  const GET_fetch = useAuthFetch<GET_Resp>(
+    computed(() => `/data-api/direct/user-settings/id/${userId.value ?? ''}`),
+    {
+      asJson: true,
+      authRoleRequired: 'authenticated',
+      immediate: false,
+    }
+  );
 
   async function getUserSettings(hardRefresh = false): Promise<IUserSettings | null> {
     if (!!myUserSettings.value?.id && !hardRefresh) {

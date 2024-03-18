@@ -3,10 +3,6 @@ import { HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functio
 export type FuncHandler = (req: HttpRequest, con: InvocationContext) => Promise<HttpResponseInit>;
 export type SafeFuncHandler<T> = (req: HttpRequest, con: InvocationContext) => Promise<T | void>;
 
-export function asSafeResponseHandler<T>(action: SafeFuncHandler<T>): FuncHandler {
-  return (r, c) => safeResponseHandler<T>(r, c, action);
-}
-
 export async function safeResponseHandler<T>(
   request: HttpRequest,
   context: InvocationContext,

@@ -3,8 +3,8 @@ import { RouteName } from '@/router/RouteName';
 import { storeToRefs } from 'pinia';
 import type { NavigationGuard } from 'vue-router';
 import { NavigationGuardNext } from 'vue-router';
-import { NativeUserRole } from './NativeUser';
 import { useNativeAuth } from './useNativeAuth';
+import { NoodleUserRole } from '@db/models/NoodleAuth.d';
 
 function doExternalRouting(to: string, next: NavigationGuardNext) {
   next(false);
@@ -18,7 +18,7 @@ export const NativeAuthGuard: NavigationGuard = async (to, _, next) => {
   const { isAuthenticated } = storeToRefs(nativeAuth);
 
   // Check if the route requires authentication
-  const doesRouteRequireAuth = to.meta.nativeUserRole === NativeUserRole.AUTHENTICATED;
+  const doesRouteRequireAuth = to.meta.nativeUserRole === NoodleUserRole.AUTHENTICATED;
   if (doesRouteRequireAuth) {
     // Ensure we complete the /.auth/me call
     await nativeAuth.doFetch();

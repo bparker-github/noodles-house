@@ -1,5 +1,6 @@
 {
   "auth": {
+    "rolesSource": "/api/auth/roles",
     "identityProviders": {
       "apple": {
         "registration": {
@@ -46,7 +47,13 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/.auth/*", "/api/*", "/data-api/*"]
+    "exclude": [
+      "/images/*.{png,jpg,gif,ico}",
+      "/*.{css,scss,js,ts,vue}",
+      "/.auth/*",
+      "/api/*",
+      "/data-api/*"
+    ]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

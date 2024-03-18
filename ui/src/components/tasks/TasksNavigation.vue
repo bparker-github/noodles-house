@@ -18,10 +18,9 @@
         >
           <div
             :class="[
-              isExactActive
-                ? 'bg-nh-bourbon-100 text-nh-bourbon-800'
-                : 'text-nh-bourbon-950 hover:text-nh-bourbon-800',
-              'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold hover:bg-nh-bourbon-200',
+              'group flex gap-x-3 rounded-md p-2 hover:bg-nh-bourbon-200',
+              'text-sm leading-6 font-semibold text-nh-bourbon-100',
+              { 'bg-nh-bourbon-700': isExactActive },
             ]"
           >
             <component

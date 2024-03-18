@@ -1,10 +1,9 @@
-import { HttpRequest, InvocationContext, app, type HttpResponseInit } from '@azure/functions';
+import { HttpRequest, InvocationContext, app } from '@azure/functions';
 import { createApi } from 'unsplash-js';
+import { Full } from 'unsplash-js/dist/methods/photos/types';
+import { NoodleError, asSafeResponseHandler } from '../lib/safeResponseHandler';
 
-export async function Unsplash(
-  request: HttpRequest,
-  context: InvocationContext
-): Promise<HttpResponseInit> {
+export async function Unsplash(request: HttpRequest, context: InvocationContext): Promise<Full> {
   context.log('found rest::', request.params.restOfPath);
   const pathParts = request.params.restOfPath?.split('/');
   const [domain, secondary, ...rest] = pathParts;
@@ -14,7 +13,7 @@ export async function Unsplash(
       // Do photos thing.
       return handlePhotosRequest(request, secondary, rest);
     default:
-      return { body: 'Invalid command.', status: 400 };
+      throw new NoodleError(400, 'Invalid command');
   }
 }
 
@@ -29,21 +28,21 @@ async function handlePhotosRequest(
   request: HttpRequest,
   secondary: string,
   rest: string[]
-): Promise<HttpResponseInit> {
+): Promise<Full> {
   if (request.method === 'GET') {
     const resp = await getUnsplashApi().photos.get({ photoId: secondary });
-    return { jsonBody: resp.response, status: 200 };
+    return resp.response;
   } else if (request.method === 'POST') {
-    return { body: 'Invalid method', status: 400 };
+    throw new NoodleError(400, 'Invalid method');
   }
 
   // Default
-  return { body: `Invalid method. Params: ${secondary} ${rest}`, status: 400 };
+  throw new NoodleError(400, `Invalid method. Params: ${secondary} ${rest}`);
 }
 
 app.http('Unsplash', {
   methods: ['GET'],
   route: 'unsplash/{*restOfPath}',
   authLevel: 'anonymous',
-  handler: Unsplash,
+  handler: asSafeResponseHandler(Unsplash),
 });

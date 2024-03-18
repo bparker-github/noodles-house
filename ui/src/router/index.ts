@@ -1,4 +1,4 @@
-import { NativeUserRole } from '@/auth/NativeUser';
+import { NoodleUserRole } from '@db/models/NoodleAuth.d';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 
@@ -41,7 +41,7 @@ const routes: RouteRecordRaw[] = [
           {
             path: 'welcome',
             meta: {
-              nativeUserRole: NativeUserRole.AUTHENTICATED,
+              nativeUserRole: NoodleUserRole.AUTHENTICATED,
             },
             component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
             children: [
@@ -63,7 +63,7 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'sitting-room',
         meta: {
-          nativeUserRole: NativeUserRole.AUTHENTICATED,
+          nativeUserRole: NoodleUserRole.AUTHENTICATED,
         },
         component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
         children: [
@@ -95,7 +95,7 @@ const routes: RouteRecordRaw[] = [
         path: 'office',
         component: () => import('../layouts/SimpleDark/SimpleDark.vue'),
         meta: {
-          nativeUserRole: NativeUserRole.AUTHENTICATED,
+          nativeUserRole: NoodleUserRole.AUTHENTICATED,
         },
         children: [
           {

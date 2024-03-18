@@ -15,8 +15,16 @@
       :field-configs="fieldConfigs"
       title="User Settings"
       sub-title="These settings are entirely up to your preference, m'dear."
+      :is-submitting="updateFunc.isFetching.value"
       @submit="onSettingsSave"
     />
+
+    <div
+      v-if="updateFunc.error.value"
+      class="error-section flex flex-1 text-sm text-danger"
+    >
+      <code>{{ updateFunc.error.value }}</code>
+    </div>
   </div>
 </template>
 
@@ -62,6 +70,15 @@ const fieldConfigs: ModelFieldConfig<IUserSettings>[] = [
   },
 ];
 
+const updateFuncUrl = computed(
+  () => `/data-api/direct/user-settings/id/${myUserSettings.value?.id}`
+);
+const updateFunc = useAuthFetch(updateFuncUrl, {
+  authRoleRequired: 'authenticated',
+  immediate: false,
+  method: 'PUT',
+});
+
 // Functions
 async function getUserSettings(): Promise<void> {
   const foundSettings = await userSettingsRepo.getUserSettings(true);
@@ -72,12 +89,9 @@ async function getUserSettings(): Promise<void> {
 async function onSettingsSave(toSave: IUserSettings) {
   const { id, ...withoutId } = toSave;
 
-  await useAuthFetch({
-    url: `/data-api/direct/user-settings/id/${id}`,
-    method: 'PUT',
-    requestInit: {
-      body: JSON.stringify(withoutId),
-    },
-  });
+  const putFetch = updateFunc.put(withoutId);
+  console.log('PutFetch:', putFetch);
+
+  await putFetch.execute();
 }
 </script>

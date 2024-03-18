@@ -106,8 +106,7 @@ export const useTaskStore = defineStore('todo-task-store', () => {
   //#endregion
 
   //#region GetAllTasks
-  const GET_allTasks = useAuthFetch<ModelResponse<TodoTask[]>>({
-    url: '/data-api/direct/tasks',
+  const GET_allTasks = useAuthFetch<ModelResponse<TodoTask[]>>('/data-api/direct/tasks', {
     asJson: true,
     authRoleRequired: 'authenticated',
     immediate: false,

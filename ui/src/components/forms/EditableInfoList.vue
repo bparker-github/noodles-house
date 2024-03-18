@@ -64,6 +64,7 @@
       <NhButton
         :class="['flex-1 self-end w-32', '[&>span]:w-full']"
         text="Save"
+        :is-loading="isSubmitting"
         type="submit"
       />
     </div>
@@ -103,6 +104,9 @@ export interface EditableInfoListProps<Model extends {}> {
    * The configuration for all models that are intended to be shown.
    */
   fieldConfigs: ModelFieldConfig<Model>[];
+
+  /** A value indicating whether the submit button should indicate a processing state. */
+  isSubmitting?: boolean;
 }
 
 const props = defineProps<EditableInfoListProps<T>>();
@@ -150,7 +154,7 @@ function toggleEditable(config: ModelFieldConfig<T>, i: number) {
 
 function clickSave() {
   // Cannot save when disabled
-  if (isDisabled.value) {
+  if (isDisabled.value || props.isSubmitting) {
     console.warn('Cannot save info at this time.');
     return;
   }

@@ -1,6 +1,6 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
 import { NoodleUserRole } from '@db/models/NoodleAuth';
-import { asSafeResponseHandler } from '../../lib/safeResponseHandler';
+import { safeResponseHandler } from '../../lib/safeResponseHandler';
 
 export async function GetRoles(
   request: HttpRequest,
@@ -26,8 +26,9 @@ export async function GetRoles(
   };
 }
 
-app.post('Auth_GetRoles', {
+app.http('Auth_GetRoles', {
+  methods: ['POST'],
   authLevel: 'function',
   route: 'auth/roles',
-  handler: asSafeResponseHandler(GetRoles),
+  handler: (r, c) => safeResponseHandler(r, c, GetRoles),
 });

@@ -1,7 +1,7 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
-import { safeResponseHandler } from '../../lib/safeResponseHandler';
+import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';
 import { TodoTask } from '@db/models/TodoTask';
 
 export async function editTask(
@@ -11,26 +11,32 @@ export async function editTask(
   context.debug(`Edit Todo Task`);
   const noodleDb = await getNoodleDb();
 
-  const theBody = await request.json();
-  if (!theBody || typeof theBody !== 'object' || !('id' in theBody) || !theBody.id) {
-    delete theBody['id'];
+  const theBody = (await request.json()) as TodoTask;
+  if (!('id' in theBody)) {
+    throw new NoodleError(400, 'Invalid Edit body.');
   }
 
-  const dto = theBody as TodoTask;
+  const found = await noodleDb.manager.findOneBy<TodoTaskModel>(TodoTaskModel, { id: theBody.id });
+  if (!found.id || found.id !== theBody.id) {
+    throw new NoodleError(404, 'Cannot edit a non-existent task.');
+  }
 
-  const asModel = noodleDb.manager.create<TodoTaskModel>(TodoTaskModel, theBody);
+  // Update values that are allowed to be updated.
+  found.title = theBody.title;
+  found.description = theBody.description;
+  found.state = theBody.state;
+  found.subTitle = theBody.state;
+  found.type = theBody.type;
 
   // Assign fixed data via server
-  asModel.createdAt = new Date();
-  asModel.createdBy = request.user.id;
-  asModel.updatedAt = new Date();
-  asModel.updatedBy = request.user.id;
+  found.updatedAt = new Date();
+  found.updatedBy = request.user.id;
 
   // Log and save the model.
-  context.debug('Create Task Body:', theBody, asModel);
-  await asModel.save();
+  context.debug('Edit Task Body:', theBody, found);
+  await found.save();
 
-  return asModel;
+  return found;
 }
 
 app.http('Tasks_Create', {

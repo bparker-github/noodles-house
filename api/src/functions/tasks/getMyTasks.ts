@@ -1,7 +1,7 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
-import { safeResponseHandler } from '../../lib/safeResponseHandler';
+import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';
 
 export async function getMyTasks(
   request: HttpRequest,
@@ -12,7 +12,7 @@ export async function getMyTasks(
 
   const userId = request.user?.id;
   if (!userId) {
-    throw new Error('Cannot get tasks without user.');
+    throw new NoodleError(401, 'Cannot get tasks without user.');
   }
 
   return await noodleDb.manager.findBy(TodoTaskModel, { createdBy: userId });

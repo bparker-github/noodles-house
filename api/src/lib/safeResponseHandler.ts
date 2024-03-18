@@ -11,8 +11,17 @@ export async function safeResponseHandler<T>(
     return { status, jsonBody: ret };
   } catch (err) {
     return {
-      status: 500,
+      status: err instanceof NoodleError ? err.status : 500,
       jsonBody: Object.assign({ nhMessage: 'Error executing ' + action.name ?? 'function' }, err),
     };
+  }
+}
+
+export class NoodleError extends Error {
+  public status: number;
+
+  constructor(desiredStatus?: number, message?: string) {
+    super(message);
+    this.status = desiredStatus ?? 500;
   }
 }

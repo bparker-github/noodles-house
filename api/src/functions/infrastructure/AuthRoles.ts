@@ -26,7 +26,8 @@ export async function GetRoles(
   };
 }
 
-app.post('Auth_GetRoles', {
+app.http('Auth_GetRoles', {
+  methods: ['POST'],
   authLevel: 'function',
   route: 'auth/roles',
   handler: (r, c) => safeResponseHandler(r, c, GetRoles),

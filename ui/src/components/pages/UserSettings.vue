@@ -90,7 +90,6 @@ async function onSettingsSave(toSave: IUserSettings) {
   const { id, ...withoutId } = toSave;
 
   const putFetch = updateFunc.put(withoutId);
-  console.log('PutFetch:', putFetch);
 
   await putFetch.execute();
 }

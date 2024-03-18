@@ -15,7 +15,7 @@ export async function GetRoles(request: HttpRequest, context: InvocationContext)
   };
 }
 app.http('Auth_GetRoles', {
-  methods: ['GET'],
+  methods: ['POST', 'GET'],
   authLevel: 'function',
   route: 'auth/roles',
   handler: asSafeResponseHandler(GetRoles),

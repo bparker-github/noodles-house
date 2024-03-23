@@ -1,6 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
 import { NoodleUserRole } from '@db/models/NoodleAuth';
-import { safeResponseHandler } from '../../lib/safeResponseHandler';
 
 export async function GetRoles(
   request: HttpRequest,
@@ -16,12 +15,7 @@ export async function GetRoles(
       'Content-Type': 'application/json',
     },
     jsonBody: {
-      roles: [
-        NoodleUserRole.AUTHENTICATED,
-        NoodleUserRole.ANONYMOUS,
-        NoodleUserRole.ADMIN,
-        'quantum',
-      ],
+      roles: [NoodleUserRole.ADMIN, 'quantum'],
     },
   };
 }
@@ -30,5 +24,5 @@ app.http('Auth_GetRoles', {
   methods: ['POST'],
   authLevel: 'function',
   route: 'auth/roles',
-  handler: (r, c) => safeResponseHandler(r, c, GetRoles),
+  handler: GetRoles,
 });

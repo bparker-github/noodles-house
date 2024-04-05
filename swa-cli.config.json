@@ -17,7 +17,7 @@
       "apiBuildCommand": "npm run build"
     },
     "build:ui": {
-      "appLocation": "/",
+      "appLocation": "",
       "outputLocation": "ui\\dist",
       "appBuildCommand": "npm run build:swa:ui"
     },
@@ -53,7 +53,8 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "ui\\dist"
+      "appLocation": "ui\\dist",
+      "dataApiLocation": "swa-db-connections"
     },
     "serve:api": {
       "apiLanguage": "node",

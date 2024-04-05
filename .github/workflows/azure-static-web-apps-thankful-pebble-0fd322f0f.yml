@@ -36,6 +36,7 @@ jobs:
           app_location: '/'
           app_build_command: 'npm i -D "@rollup/rollup-linux-x64-gnu@^4.13.0" && npm run build:swa:ui'
           output_location: 'ui/dist'
+          data_api_location: 'swa-db-connections'
 
         env:
           NOOD_UNSPLASH_ACCESS_KEY: ${{ secrets.NOOD_UNSPLASH_ACCESS_KEY }}

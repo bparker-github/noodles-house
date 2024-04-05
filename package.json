@@ -30,6 +30,7 @@
     "dev:ui": "npm run dev -w ui",
     "//// SWA Commands ////": "/////",
     "dev:swa": "swa start --config-name dev",
+    "dev:swa:serve": "swa start --config-name serve",
     "dev:swa:api": "swa start --config-name dev:api --run \"npm run start -w api\"",
     "dev:swa:ui": "swa start --config-name dev:ui --run \"npm run dev -w ui\"",
     "dev:swa:debug": "swa start --config-name dev:debug"

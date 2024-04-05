@@ -36,6 +36,7 @@
           'relative ml-auto flex-shrink-0 rounded-full bg-nh-chalet-green-800 p-1 text-nh-whiteish hover:text-white',
           'nh-focus-chalet-green',
         ]"
+        @click="authStore.doFetch(true)"
       >
         <span class="absolute -inset-1.5" />
         <span class="sr-only">View notifications</span>

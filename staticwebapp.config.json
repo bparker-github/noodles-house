@@ -47,7 +47,13 @@
   },
   "navigationFallback": {
     "rewrite": "index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}", "/direct", "/api"]
+    "exclude": [
+      "/images/*.{png,jpg,gif,ico}",
+      "/*.{css,scss,js,ts,vue}",
+      "/direct/*",
+      "/api/*",
+      "/.auth/*"
+    ]
   },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "*",

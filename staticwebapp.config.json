@@ -37,14 +37,6 @@
       "route": "/logout",
       "rewrite": "/.auth/logout",
       "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/api/unsplash/*",
-      "allowedRoles": ["anonymous", "authenticated"]
-    },
-    {
-      "route": "/api*",
-      "allowedRoles": ["authenticated"]
     }
   ],
   "responseOverrides": {

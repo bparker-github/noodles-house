@@ -7,6 +7,7 @@
   "license": "ISC",
   "workspaces": [
     "api",
+    "swa-db-connections",
     "ui"
   ],
   "engines": {

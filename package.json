@@ -5,6 +5,11 @@
   "main": "index.js",
   "author": "Ben Parker (ben@noodles.house)",
   "license": "ISC",
+  "files": [
+    "api",
+    "swa-db-connections",
+    "ui"
+  ],
   "workspaces": [
     "api",
     "swa-db-connections",

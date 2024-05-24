@@ -25,6 +25,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@vueuse/core": "^10.5.0",
     "blurhash": "^2.0.5",
+    "date-fns": "^3.6.0",
     "lorem-ipsum": "^2.0.8",
     "pinia": "^2.1.7",
     "unsplash-js": "^7.0.18",

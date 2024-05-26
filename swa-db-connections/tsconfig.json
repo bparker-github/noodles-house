@@ -1,6 +1,6 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["models"],
+  "include": ["index.ts", "models"],
   "compilerOptions": {
     "composite": true
   }

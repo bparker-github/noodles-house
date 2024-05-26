@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { TaskState, type TaskType, type TodoTask } from '@db/models/TodoTask.d';
+import { TaskState, type TaskType, type TodoTask } from '@noodles-house/db';
 
 @Entity('TodoTask')
 export class TodoTaskModel extends BaseEntity implements TodoTask {

@@ -7,6 +7,9 @@
   "engines": {
     "node": "^18.0.0"
   },
+  "files": [
+    "../swa-db-connections"
+  ],
   "scripts": {
     "build": "tsc -b",
     "watch": "tsc -b -w",
@@ -17,7 +20,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@noodles-house/db": "^0.1.0",
+    "@noodles-house/db": "file:../swa-db-connections",
     "dotenv": "^16.3.1",
     "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.14",

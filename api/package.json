@@ -5,8 +5,11 @@
   "main": "dist/src/functions/**/*.js",
   "type": "commonjs",
   "engines": {
-    "node": "^18"
+    "node": "^18.0.0"
   },
+  "files": [
+    "../swa-db-connections"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

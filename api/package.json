@@ -11,6 +11,7 @@
     "../swa-db-connections"
   ],
   "scripts": {
+    "prebuild": "npm run build -w ../swa-db-connections",
     "build": "tsc -b",
     "watch": "tsc -b -w",
     "clean": "rimraf dist",

@@ -4,7 +4,7 @@
   "description": "The package holder for model shapes.",
   "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "author": "Noodle",
   "license": "ISC"

@@ -2,7 +2,7 @@
   "name": "@noodles-house/db",
   "version": "0.1.0",
   "description": "The package holder for model shapes.",
-  "main": "index.ts",
+  "main": "src/index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,7 +1,6 @@
 import { useAuthFetch } from '@/lib/useAuthFetch';
 import { useTimedStorage } from '@/lib/useTimedStorage';
-import type { ModelResponse } from '@db/models/ModelResponse';
-import type { TodoTask } from '@db/models/TodoTask';
+import type { ModelResponse, TodoTask } from '@noodles-house/db';
 import { useFetch } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed } from 'vue';

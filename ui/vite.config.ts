@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vite';
 import vueSvg from 'vite-svg-loader';
 import postcss from './postcss.config.mjs';
-import { url } from 'node:inspector';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -27,7 +26,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@db': fileURLToPath(new URL('../swa-db-connections', import.meta.url)),
     },
   },
   css: {

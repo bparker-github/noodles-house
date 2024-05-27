@@ -13,7 +13,9 @@
   "scripts": {
     "build:code": "tsc",
     "build:generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
-    "build": "npm-run-all -lns clean build:generate build:code",
+    "build:test1": "tree -d ..",
+    "build:test2": "tree dist -L 3",
+    "build": "npm-run-all -lns clean build:generate build:test1 build:test2 build:code",
     "clean": "rimraf dist src/generated",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",

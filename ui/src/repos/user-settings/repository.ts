@@ -1,7 +1,7 @@
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import { useAuthFetch } from '@/lib/useAuthFetch';
 import { useTimedStorage } from '@/lib/useTimedStorage';
-import { type IUserSettings } from '@db/models/UserSettings.d';
+import { type IUserSettings } from '@noodles-house/db';
 import { defineStore, storeToRefs } from 'pinia';
 import { computed } from 'vue';
 

@@ -19,7 +19,7 @@ export interface TodoTask {
   updatedAt?: Date;
 }
 
-export const enum TaskState {
+export enum TaskState {
   REPORTED = 'Reported',
   PONDERING = 'Pondering',
   IN_PROGRESS = 'In Progress',
@@ -30,7 +30,7 @@ export const enum TaskState {
   HELD_UP = 'Held Up',
 }
 
-export const enum TaskType {
+export enum TaskType {
   UNSPECIFIED = 'Unspecified',
   BUG = 'Bug',
   IMPROVEMENT = 'Improvement',

@@ -72,8 +72,8 @@
 </template>
 
 <script setup lang="ts">
-import type { TodoTask } from '@db/models/TodoTask.d';
 import { QuestionMarkCircleIcon } from '@heroicons/vue/24/outline';
+import type { TodoTask } from '@noodles-house/db';
 import NhButton from '../basic/NhButton.vue';
 import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 

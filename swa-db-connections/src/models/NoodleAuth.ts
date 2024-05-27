@@ -1,4 +1,4 @@
-export const enum NoodleUserRole {
+export enum NoodleUserRole {
   ANONYMOUS = 'anonymous',
   AUTHENTICATED = 'authenticated',
   ADMIN = 'admin',

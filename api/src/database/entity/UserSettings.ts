@@ -1,4 +1,4 @@
-import type { IUserSettings } from '@db/models/UserSettings.d';
+import type { IUserSettings } from '@noodles-house/db';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('UserSettings')

@@ -1,5 +1,4 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
-import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
 import { safeResponseHandler } from '../../lib/safeResponseHandler';
 
@@ -8,14 +7,16 @@ export async function CreateTask(
   context: InvocationContext
 ): Promise<TodoTaskModel> {
   context.debug(`Create Todo Task`);
-  const noodleDb = await getNoodleDb();
 
   const theBody = await request.json();
   if (!theBody || typeof theBody !== 'object' || !('id' in theBody) || !theBody.id) {
     delete theBody['id'];
   }
 
-  const asModel = noodleDb.manager.create<TodoTaskModel>(TodoTaskModel, theBody);
+  const asModel = new TodoTaskModel();
+  Object.assign(asModel, theBody);
+
+  // const asModel = noodleDb.manager.create<TodoTask, TodoTaskModel>(TodoTaskModel, theBody as TodoTaskModel);
 
   // Assign fixed data via server
   asModel.createdAt = new Date();

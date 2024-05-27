@@ -1,5 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
-import { NoodleUserRole } from '@db/models/NoodleAuth';
+import { NoodleUserRole } from '@noodles-house/db';
 
 export async function GetRoles(
   request: HttpRequest,

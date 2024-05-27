@@ -1,5 +1,5 @@
 import { app, HttpRequest, InvocationContext } from '@azure/functions';
-import { TodoTask } from '@db/models/TodoTask';
+import { TodoTask } from '@noodles-house/db';
 import { getNoodleDb } from '../../database/dataSource';
 import { TodoTaskModel } from '../../database/entity/TodoTask';
 import { NoodleError, safeResponseHandler } from '../../lib/safeResponseHandler';

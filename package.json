@@ -5,18 +5,13 @@
   "main": "index.js",
   "author": "Ben Parker (ben@noodles.house)",
   "license": "ISC",
-  "files": [
-    "api",
-    "swa-db-connections",
-    "ui"
-  ],
   "workspaces": [
     "api",
     "swa-db-connections",
     "ui"
   ],
   "engines": {
-    "node": "^18"
+    "node": "^18.0.0"
   },
   "scripts": {
     "/// Clean Scripts ///": "/// Scripts below are used for setting up local environment ///",
@@ -25,10 +20,10 @@
     "clean:dist": "rimraf -g **/dist",
     "clean:modules": "rimraf -g **/node_modules",
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
-    "build": "npm-run-all -lns build:models -p build:api build:ui",
+    "build": "npm-run-all -lnp build:api build:ui",
     "build:api": "npm run build -w api",
     "build:ui": "npm run build -w ui",
-    "build:swa:api": "npm run build:api",
+    "build:swa:api": "npm run build -w api",
     "build:swa:ui": "npm run build:swa -w ui",
     "/// Development ///": "/// Scripts below make it easy to develop ///",
     "dev": "npm-run-all -lns build:models -p dev:*",

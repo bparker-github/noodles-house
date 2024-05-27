@@ -5,12 +5,16 @@
   "main": "dist/src/functions/**/*.js",
   "type": "commonjs",
   "engines": {
-    "node": "^18"
+    "node": "^18.0.0"
   },
+  "files": [
+    "../swa-db-connections"
+  ],
   "scripts": {
+    "generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
     "build": "tsc",
     "watch": "tsc -w",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist src/generated",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt"
@@ -24,6 +28,8 @@
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.7",
     "typescript": "^5.3.3"
   }
 }

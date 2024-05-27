@@ -59,7 +59,7 @@
 import NoofSelect from '@/Noof/inputs/NoofSelect.vue';
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import { EnumObject } from '@/lib';
-import { TaskState, TaskType, type TodoTask } from '@db/models/TodoTask.d';
+import { TaskState, TaskType, type TodoTask } from '@noodles-house/db';
 import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 import NoofInput from '../../Noof/inputs/NoofInput.vue';

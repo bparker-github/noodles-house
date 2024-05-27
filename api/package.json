@@ -11,17 +11,16 @@
     "../swa-db-connections"
   ],
   "scripts": {
-    "prebuild": "npm run build -w ../swa-db-connections",
-    "build": "tsc -b",
-    "watch": "tsc -b -w",
-    "clean": "rimraf dist",
+    "generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "clean": "rimraf dist src/generated",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt"
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@noodles-house/db": "file:../swa-db-connections",
     "dotenv": "^16.3.1",
     "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.14",
@@ -29,6 +28,8 @@
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
+    "copyfiles": "^2.4.1",
+    "rimraf": "^5.0.7",
     "typescript": "^5.3.3"
   }
 }

@@ -13,9 +13,8 @@
   "scripts": {
     "build:code": "tsc",
     "build:generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
-    "build:test1": "tree -d ..",
-    "build:test2": "tree dist -L 3",
-    "build": "npm-run-all -lns clean build:generate build:test1 build:test2 build:code",
+    "build:test": "dree parse .",
+    "build": "npm-run-all -lns clean build:generate build:test build:code",
     "clean": "rimraf dist src/generated",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",
@@ -32,6 +31,7 @@
   },
   "devDependencies": {
     "copyfiles": "^2.4.1",
+    "dree": "^4.8.5",
     "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.7",
     "typescript": "^5.3.3"

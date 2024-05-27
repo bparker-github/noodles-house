@@ -13,7 +13,7 @@
   "scripts": {
     "build:code": "tsc",
     "build:generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
-    "build:test": "dree parse .",
+    "build:test": "dree parse . --exclude /node_modules/",
     "build": "npm-run-all -lns clean build:generate build:test build:code",
     "clean": "rimraf dist src/generated",
     "start": "npm-run-all -lns clean build -p watch start:func",

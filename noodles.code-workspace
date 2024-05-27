@@ -2,8 +2,8 @@
   "folders": [
     {
       "name": "NoodlesHouse",
-      "path": "../noodles-house"
-    }
+      "path": "../noodles-house",
+    },
   ],
   "extensions": {
     "recommendations": [
@@ -20,9 +20,9 @@
       "vue.volar",
       "wayou.vscode-todo-highlight",
       "wmaurer.change-case",
-      "ms-vscode.powershell"
+      "ms-vscode.powershell",
     ],
-    "unwantedRecommendations": ["octref.vetur"]
+    "unwantedRecommendations": ["octref.vetur"],
   },
   "settings": {
     "editor.tabSize": 2,
@@ -33,20 +33,20 @@
     "json.schemas": [
       {
         "fileMatch": [".prettierrc.*json"],
-        "url": "https://json.schemastore.org/prettierrc"
+        "url": "https://json.schemastore.org/prettierrc",
       },
       {
         "fileMatch": ["tsconfig.*.json", "tsconfig/*.json", "tsconfig.json"],
-        "url": "https://json.schemastore.org/tsconfig.json"
+        "url": "https://json.schemastore.org/tsconfig.json",
       },
       {
         "fileMatch": ["staticwebapp.config*"],
-        "url": "https://json.schemastore.org/staticwebapp.config.json"
+        "url": "https://json.schemastore.org/staticwebapp.config.json",
       },
       {
         "fileMatch": ["local.settings.json"],
-        "url": "https://json.schemastore.org/local.settings.json"
-      }
+        "url": "https://json.schemastore.org/local.settings.json",
+      },
     ],
 
     "tailwindCSS.classAttributes": [
@@ -60,40 +60,40 @@
       "enter-to-class",
       "leave-active-class",
       "leave-from-class",
-      "leave-to-class"
+      "leave-to-class",
     ],
     "tailwindCSS.experimental.configFile": {
-      "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"]
+      "./ui/tailwind.config.ts": ["./ui/index.html", "./ui/src/**/*"],
     },
 
     "[css]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
       "editor.suggest.insertMode": "replace",
-      "cSpell.fixSpellingWithRenameProvider": false
+      "cSpell.fixSpellingWithRenameProvider": false,
     },
     "[html]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.suggest.insertMode": "replace"
+      "editor.suggest.insertMode": "replace",
     },
     "[json]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.formatOnPaste": true
+      "editor.formatOnPaste": true,
     },
     "[svg]": {
-      "editor.defaultFormatter": "jock.svg"
+      "editor.defaultFormatter": "jock.svg",
     },
     "[typescript]": {
-      "editor.defaultFormatter": "esbenp.prettier-vscode"
+      "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     "[vue]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode",
-      "editor.rulers": [80, 120]
+      "editor.rulers": [80, 120],
     },
 
     "files.associations": {
       ".funcignore": "ignore",
       "**/tsconfig/*.json": "jsonc",
-      "*.css": "tailwindcss"
+      "*.css": "tailwindcss",
     },
 
     "cSpell.ignorePaths": [
@@ -103,11 +103,12 @@
       ".git/objects",
       ".vscode",
       ".vscode-insiders",
-      "*.code-workspace"
+      "*.code-workspace",
     ],
     "cSpell.words": [
       "automations",
       "blurhash",
+      "copyfiles",
       "datetime",
       "endregion",
       "headlessui",
@@ -126,7 +127,7 @@
       "Textbox",
       "typeorm",
       "vueuse",
-      "Whiteish"
+      "Whiteish",
     ],
 
     "svg.preview.background": "transparent",
@@ -151,7 +152,7 @@
     "vue.inlayHints.inlineHandlerLeading": true,
     "vue.inlayHints.missingProps": true,
     "vue.inlayHints.optionsWrapper": true,
-    "vue.splitEditors.icon": true
+    "vue.splitEditors.icon": true,
   },
   "launch": {
     "version": "0.2.0",
@@ -161,9 +162,9 @@
         "type": "node",
         "request": "attach",
         "port": 9229,
-        "preLaunchTask": "func: host start"
-      }
-    ]
+        "preLaunchTask": "func: host start",
+      },
+    ],
   },
   "tasks": {
     "version": "2.0.0",
@@ -174,32 +175,32 @@
         "command": "host start",
         "problemMatcher": "$func-node-watch",
         "isBackground": true,
-        "dependsOn": "npm build (functions)"
+        "dependsOn": "npm build (functions)",
       },
       {
         "type": "shell",
         "label": "npm build (functions)",
         "command": "npm run build",
         "dependsOn": "npm clean (functions)",
-        "problemMatcher": "$tsc"
+        "problemMatcher": "$tsc",
       },
       {
         "type": "shell",
         "label": "npm install (functions)",
-        "command": "npm install"
+        "command": "npm install",
       },
       {
         "type": "shell",
         "label": "npm prune (functions)",
         "command": "npm prune --production",
         "dependsOn": "npm build (functions)",
-        "problemMatcher": []
+        "problemMatcher": [],
       },
       {
         "type": "shell",
         "label": "npm clean (functions)",
         "command": "npm run clean",
-        "dependsOn": "npm install (functions)"
+        "dependsOn": "npm install (functions)",
       },
       {
         "type": "func",
@@ -208,18 +209,18 @@
         "problemMatcher": "$func-node-watch",
         "isBackground": true,
         "options": {
-          "cwd": "${workspaceFolder}\\src\\api"
-        }
+          "cwd": "${workspaceFolder}\\src\\api",
+        },
       },
       {
         "type": "shell",
         "label": "npm install (functions)",
         "command": "npm install",
         "options": {
-          "cwd": "${workspaceFolder}/src\\api"
+          "cwd": "${workspaceFolder}/src\\api",
         },
         "problemMatcher": ["$func-node-watch"],
-        "isBackground": true
+        "isBackground": true,
       },
       {
         "type": "shell",
@@ -227,9 +228,9 @@
         "command": "npm prune --production",
         "problemMatcher": [],
         "options": {
-          "cwd": "${workspaceFolder}/src\\api"
-        }
-      }
-    ]
-  }
+          "cwd": "${workspaceFolder}/src\\api",
+        },
+      },
+    ],
+  },
 }

@@ -33,9 +33,9 @@ jobs:
           api_location: 'api'
           # This DOES need to be the command within ^ api
           api_build_command: 'npm run build'
-          app_location: '.'
+          app_location: 'ui'
           app_build_command: 'npm run build:swa:ui'
-          output_location: 'ui/dist'
+          output_location: 'dist'
           data_api_location: swa-db-connections
 
         env:

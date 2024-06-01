@@ -15,9 +15,10 @@
     "../swa-db-connections"
   ],
   "scripts": {
-    "build": "npm-run-all -lns clean log build:code",
+    "build": "npm-run-all -lns clean build:models build:code",
     "log": "dree parse ./node_modules",
     "build:code": "tsc -b",
+    "build:models": "npm run build -w ../swa-db-connections",
     "build:watch": "tsc -b -w",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns build -p watch start:func",
@@ -27,7 +28,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.5.0",
-    "@noodles-house/db": "file:../swa-db-connections",
+    "@noodles-house/db": "file:../swa-db-connections/dist/noodles-house-db-0.1.0.tgz",
     "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.14",
     "typeorm": "^0.3.17",

@@ -53,8 +53,9 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
-      "appLocation": "ui\\dist",
-      "dataApiLocation": "swa-db-connections"
+      "appLocation": "",
+      "dataApiLocation": "./swa-db-connections",
+      "outputLocation": "ui"
     },
     "serve:api": {
       "apiLanguage": "node",

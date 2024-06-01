@@ -40,7 +40,7 @@
       "source": "dbo.UserSettings",
       "permissions": [
         { "actions": ["create", "read", "update"], "role": "authenticated" },
-        { "actions": ["delete"], "role": "lord-of-the-house" }
+        { "actions": ["delete"], "role": "admin" }
       ]
     },
     "tasks": {

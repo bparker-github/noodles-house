@@ -1,9 +1,6 @@
 // Ensure the config files are loaded.
 import 'reflect-metadata';
 
-import { config } from 'dotenv';
-config({ path: '../.env' });
-
 import { DataSource } from 'typeorm';
 import { UserSettings } from './entity/UserSettings';
 import { TodoTaskModel } from './entity/TodoTask';

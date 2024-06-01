@@ -10,7 +10,8 @@
   "scripts": {
     "build:code": "tsc -b",
     "build:watch": "tsc -b -w",
-    "build": "npm-run-all -lns clean build:code",
+    "shout": "echo done",
+    "build": "npm-run-all -lns clean build:code shout",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns build -p watch start:func",
     "start:func": "func start",

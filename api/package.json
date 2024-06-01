@@ -7,9 +7,6 @@
   "engines": {
     "node": "^18.0.0"
   },
-  "files": [
-    "../swa-db-connections"
-  ],
   "scripts": {
     "build:code": "tsc",
     "build:generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",

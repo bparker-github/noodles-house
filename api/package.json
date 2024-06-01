@@ -19,7 +19,7 @@
     "watch": "npm-run-all -lns clean build:generate -p \"tsc -w\""
   },
   "dependencies": {
-    "@azure/functions": "^4.0.0",
+    "@azure/functions": "^4.5.0",
     "dotenv": "^16.3.1",
     "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.14",

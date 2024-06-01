@@ -15,8 +15,9 @@
     "../swa-db-connections"
   ],
   "scripts": {
-    "build": "npm-run-all -lns clean build:models build:code",
+    "build": "npm-run-all -lns clean temp build:models build:code",
     "log": "dree parse ./node_modules",
+    "temp": "cd ..; npm i @noodles-house/db -w api; cd api",
     "build:code": "tsc -b",
     "build:models": "npm run build -w ../swa-db-connections",
     "build:watch": "tsc -b -w",

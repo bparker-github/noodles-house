@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@azure/functions": "^4.5.0",
-    "@noodles-house/db": "file:../swa-db-connections@^0.1.0",
+    "@noodles-house/db": "file:../swa-db-connections",
     "mssql": "^9.3.2",
     "reflect-metadata": "^0.1.14",
     "typeorm": "^0.3.17",

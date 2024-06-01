@@ -12,7 +12,8 @@
     "../swa-db-connections"
   ],
   "scripts": {
-    "build": "npm-run-all -lns clean build:code",
+    "build": "npm-run-all -lns clean log build:code",
+    "log": "dree ./node_modules",
     "build:code": "tsc -b",
     "build:watch": "tsc -b -w",
     "clean": "rimraf dist",

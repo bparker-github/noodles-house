@@ -7,13 +7,16 @@
   "engines": {
     "node": "^18.0.0"
   },
+  "files": [
+    "../swa-db-connections"
+  ],
   "workspaces": [
     ".",
     "../swa-db-connections"
   ],
   "scripts": {
     "build": "npm-run-all -lns clean log build:code",
-    "log": "dree ./node_modules",
+    "log": "dree parse ./node_modules",
     "build:code": "tsc -b",
     "build:watch": "tsc -b -w",
     "clean": "rimraf dist",

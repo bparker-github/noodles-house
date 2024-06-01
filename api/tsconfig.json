@@ -9,10 +9,7 @@
     "strict": false,
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-
-    "paths": {
-      "@noodles-house/db": ["./src/generated/swa-db-connections/src/index.ts"]
-    }
-  }
+    "emitDecoratorMetadata": true
+  },
+  "references": [{ "path": "../swa-db-connections" }]
 }

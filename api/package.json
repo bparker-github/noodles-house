@@ -7,14 +7,16 @@
   "engines": {
     "node": "^18.0.0"
   },
-  "files": [
+  "workspaces": [
+    ".",
     "../swa-db-connections"
   ],
   "scripts": {
+    "build": "npm-run-all -lns clean build:safe build:code shout",
     "build:code": "tsc -b",
+    "build:safe": "npm i --install-links ../swa-db-connections",
     "build:watch": "tsc -b -w",
     "shout": "echo done",
-    "build": "npm-run-all -lns clean build:code shout",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns build -p watch start:func",
     "start:func": "func start",

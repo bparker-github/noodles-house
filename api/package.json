@@ -2,7 +2,7 @@
   "name": "@noodles-house/api",
   "version": "0.1.0",
   "description": "Basic API functionality for Noodle's House.",
-  "main": "dist/src/{main.js,functions/**/*.js}",
+  "main": "dist/src/main.js",
   "type": "commonjs",
   "engines": {
     "node": "^20.0.0"

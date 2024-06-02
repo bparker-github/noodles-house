@@ -2,10 +2,10 @@
   "name": "@noodles-house/api",
   "version": "0.1.0",
   "description": "Basic API functionality for Noodle's House.",
-  "main": "{dist/src/main.js,../swa-db-connections/dist/src/index.js}",
+  "main": "dist/src/{main.js,functions/**/*.js}",
   "type": "commonjs",
   "engines": {
-    "node": "^18.0.0"
+    "node": "^20.0.0"
   },
   "workspaces": [
     ".",

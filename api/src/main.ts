@@ -14,3 +14,8 @@ export * from './functions/tasks/getMyTasksCount';
 
 export * from './lib/authService';
 export * from './lib/safeResponseHandler';
+
+export * from './models/ModelResponse';
+export * from './models/NoodleAuth';
+export * from './models/TodoTask';
+export * from './models/UserSettings';

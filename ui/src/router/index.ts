@@ -1,4 +1,4 @@
-import { NoodleUserRole } from '@noodles-house/db';
+import { NoodleUserRole } from '@nh/shared';
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router';
 import { RouteName } from './RouteName';
 

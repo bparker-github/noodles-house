@@ -1,4 +1,4 @@
-import type { IUserSettings } from '@noodles-house/db';
+import type { IUserSettings } from '@nh/shared';
 
 export const getDefaultUserSettings = (userId: string): IUserSettings => ({
   id: userId,

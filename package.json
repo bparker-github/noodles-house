@@ -7,7 +7,6 @@
   "license": "ISC",
   "workspaces": [
     "api",
-    "swa-db-connections",
     "ui"
   ],
   "engines": {
@@ -26,7 +25,7 @@
     "build:swa:api": "npm run build -w api",
     "build:swa:ui": "npm run build:swa -w ui",
     "/// Development ///": "/// Scripts below make it easy to develop ///",
-    "dev": "npm-run-all -lns build:models -p dev:*",
+    "dev": "npm-run-all -lnp dev:*",
     "dev:api": "npm run start -w api",
     "dev:ui": "npm run dev -w ui",
     "//// SWA Commands ////": "/////",

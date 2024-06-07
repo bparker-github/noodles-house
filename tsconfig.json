@@ -1,8 +1,4 @@
 {
   "files": [],
-  "references": [
-    { "path": "./api" },
-    { "path": "./ui" },
-    { "path": "./swa-db-connections" }
-  ]
+  "references": [{ "path": "./api" }, { "path": "./ui" }]
 }

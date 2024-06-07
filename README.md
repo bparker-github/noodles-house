@@ -1,5 +1,7 @@
 # Noodle's House
 
+[![BuildAndDeploy SWA:ThankfulPebble](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml/badge.svg?branch=main)](https://github.com/bparker-github/noodles-house/actions/workflows/azure-static-web-apps-thankful-pebble-0fd322f0f.yml)
+
 The intention of this site is to collect data, add automation to daily activity, and generally extend into the digital space of "my house".
 First pass is to get the foundation laid, get friends added into it, and then contributing ideas as I work through the myriad of inevitable bugs.
 

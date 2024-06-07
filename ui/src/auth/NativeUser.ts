@@ -1,4 +1,4 @@
-import { NoodleUserRole } from '@noodles-house/db';
+import { NoodleUserRole } from '@nh/shared';
 
 export interface NativeUser {
   clientPrincipal: NativeUserClientPrincipal;

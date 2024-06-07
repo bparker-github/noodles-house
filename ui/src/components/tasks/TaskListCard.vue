@@ -73,7 +73,7 @@
 
 <script setup lang="ts">
 import { QuestionMarkCircleIcon } from '@heroicons/vue/24/outline';
-import type { TodoTask } from '@noodles-house/db';
+import type { TodoTask } from '@nh/shared';
 import NhButton from '../basic/NhButton.vue';
 import BackgroundSpinner from '../spinners/BackgroundSpinner.vue';
 

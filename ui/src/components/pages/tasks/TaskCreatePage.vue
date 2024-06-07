@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import { useTaskStore } from '@/stores/tasksStore';
-import type { TodoTask } from '@noodles-house/db';
+import type { TodoTask } from '@nh/shared';
 import { storeToRefs } from 'pinia';
 import TaskCreateCard from '../../tasks/TaskCreateCard.vue';
 

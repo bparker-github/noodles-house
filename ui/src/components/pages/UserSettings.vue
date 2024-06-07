@@ -32,7 +32,7 @@
 import { useNativeAuth } from '@/auth/useNativeAuth';
 import { useAuthFetch } from '@/lib/useAuthFetch';
 import { getDefaultUserSettings, userSettingsRepository } from '@/repos/user-settings';
-import type { IUserSettings } from '@noodles-house/db';
+import type { IUserSettings } from '@nh/shared';
 import { storeToRefs } from 'pinia';
 import { computed } from 'vue';
 import NhButton, { BStyle, BTheme } from '../basic/NhButton.vue';

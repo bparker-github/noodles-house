@@ -4,7 +4,7 @@ import { storeToRefs } from 'pinia';
 import type { NavigationGuard } from 'vue-router';
 import { NavigationGuardNext } from 'vue-router';
 import { useNativeAuth } from './useNativeAuth';
-import { NoodleUserRole } from '@noodles-house/db';
+import { NoodleUserRole } from '@nh/shared';
 
 function doExternalRouting(to: string, next: NavigationGuardNext) {
   next(false);

@@ -1,5 +1,5 @@
 import { HttpRequest } from '@azure/functions';
-import { NoodleUserRole } from '@noodles-house/db';
+import { NoodleUserRole } from '@nh/shared';
 import { NoodleError } from './safeResponseHandler';
 
 export const useAuthGuard = (request: HttpRequest, role: NoodleUserRole) => {

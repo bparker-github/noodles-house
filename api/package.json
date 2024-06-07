@@ -2,21 +2,19 @@
   "name": "@noodles-house/api",
   "version": "0.1.0",
   "description": "Basic API functionality for Noodle's House.",
-  "main": "dist/src/functions/**/*.js",
+  "main": "dist/src/main.js",
   "type": "commonjs",
   "engines": {
     "node": "^18.0.0"
   },
   "scripts": {
     "build:code": "tsc",
-    "build:generate": "copyfiles ../swa-db-connections/src/**/* ./src/generated/*",
-    "build:test": "dree parse . --exclude /node_modules/",
-    "build": "npm-run-all -lns clean build:generate build:test build:code build:test",
-    "clean": "rimraf dist src/generated",
+    "build": "npm-run-all -lns clean build:code",
+    "clean": "rimraf dist",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt",
-    "watch": "npm-run-all -lns clean build:generate -p \"tsc -w\""
+    "watch": "npm-run-all -lns clean -p \"tsc -w\""
   },
   "dependencies": {
     "@azure/functions": "^4.5.0",

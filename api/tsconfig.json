@@ -12,7 +12,7 @@
     "emitDecoratorMetadata": true,
 
     "paths": {
-      "@noodles-house/db": ["./src/generated/swa-db-connections/src/index.ts"]
+      "@nh/shared": ["./shared/index.ts"]
     }
   }
 }

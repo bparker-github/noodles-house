@@ -12,7 +12,7 @@
     "emitDecoratorMetadata": true,
 
     "paths": {
-      "@nh/shared": ["./shared/index.ts"]
+      "@nh/shared": ["./src/shared/index.ts"]
     }
   }
 }

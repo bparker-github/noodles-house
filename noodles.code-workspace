@@ -16,19 +16,23 @@
       "misterj.vue-volar-extention-pack",
       "mitchdenny.ecdc",
       "ms-azuretools.vscode-azurefunctions",
+      "ms-vscode.powershell",
       "streetsidesoftware.code-spell-checker",
       "vue.volar",
       "wayou.vscode-todo-highlight",
       "wmaurer.change-case",
-      "ms-vscode.powershell",
     ],
     "unwantedRecommendations": ["octref.vetur"],
   },
   "settings": {
     "editor.tabSize": 2,
     "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.rulers": [80, 120],
     "editor.defaultFoldingRangeProvider": "Vue.volar",
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+    },
 
     "json.schemas": [
       {
@@ -154,84 +158,5 @@
     "vue.inlayHints.missingProps": true,
     "vue.inlayHints.optionsWrapper": true,
     "vue.splitEditors.icon": true,
-  },
-  "launch": {
-    "version": "0.2.0",
-    "configurations": [
-      {
-        "name": "Attach to Node Functions",
-        "type": "node",
-        "request": "attach",
-        "port": 9229,
-        "preLaunchTask": "func: host start",
-      },
-    ],
-  },
-  "tasks": {
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "type": "func",
-        "label": "func: host start",
-        "command": "host start",
-        "problemMatcher": "$func-node-watch",
-        "isBackground": true,
-        "dependsOn": "npm build (functions)",
-      },
-      {
-        "type": "shell",
-        "label": "npm build (functions)",
-        "command": "npm run build",
-        "dependsOn": "npm clean (functions)",
-        "problemMatcher": "$tsc",
-      },
-      {
-        "type": "shell",
-        "label": "npm install (functions)",
-        "command": "npm install",
-      },
-      {
-        "type": "shell",
-        "label": "npm prune (functions)",
-        "command": "npm prune --production",
-        "dependsOn": "npm build (functions)",
-        "problemMatcher": [],
-      },
-      {
-        "type": "shell",
-        "label": "npm clean (functions)",
-        "command": "npm run clean",
-        "dependsOn": "npm install (functions)",
-      },
-      {
-        "type": "func",
-        "label": "func: host start",
-        "command": "host start --verbose",
-        "problemMatcher": "$func-node-watch",
-        "isBackground": true,
-        "options": {
-          "cwd": "${workspaceFolder}\\src\\api",
-        },
-      },
-      {
-        "type": "shell",
-        "label": "npm install (functions)",
-        "command": "npm install",
-        "options": {
-          "cwd": "${workspaceFolder}/src\\api",
-        },
-        "problemMatcher": ["$func-node-watch"],
-        "isBackground": true,
-      },
-      {
-        "type": "shell",
-        "label": "npm prune (functions)",
-        "command": "npm prune --production",
-        "problemMatcher": [],
-        "options": {
-          "cwd": "${workspaceFolder}/src\\api",
-        },
-      },
-    ],
   },
 }

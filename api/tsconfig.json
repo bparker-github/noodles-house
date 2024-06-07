@@ -7,6 +7,7 @@
     "rootDir": ".",
     "sourceMap": false,
     "strict": false,
+    "types": ["node"],
 
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,

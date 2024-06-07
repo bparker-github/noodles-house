@@ -15,8 +15,8 @@
   "scripts": {
     "/// Clean Scripts ///": "/// Scripts below are used for setting up local environment ///",
     "clean": "npm-run-all -lns clean:buildinfo clean:dist",
+    "clean:dist": "npm run clean -ws --if-present",
     "clean:buildinfo": "rimraf -g **/*.tsbuildinfo",
-    "clean:dist": "rimraf -g **/dist",
     "clean:modules": "rimraf -g **/node_modules",
     "/// Build Scripts ///": "/// Scripts below are used for building the app to a bundle ///",
     "build": "npm-run-all -lnp build:api build:ui",
@@ -36,7 +36,6 @@
     "dev:swa:debug": "swa start --config-name dev:debug"
   },
   "devDependencies": {
-    "@types/node": "^20.10.4",
     "cross-env": "^7.0.3",
     "nodemon": "^3.0.1",
     "npm-run-all2": "^6.1.1",

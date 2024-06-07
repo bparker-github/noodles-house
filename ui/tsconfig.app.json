@@ -6,10 +6,10 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@nh/shared": ["./src/shared/index.ts"]
     },
     "verbatimModuleSyntax": false,
     "typeRoots": ["types"]
-  },
-  "references": [{ "path": "../swa-db-connections" }]
+  }
 }

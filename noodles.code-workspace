@@ -4,6 +4,12 @@
       "name": "NoodlesHouse",
       "path": "../noodles-house",
     },
+    {
+      "path": "../nh-api",
+    },
+    {
+      "path": "../nh-api-2",
+    },
   ],
   "extensions": {
     "recommendations": [

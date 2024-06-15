@@ -1,4 +1,4 @@
-import type { IUserSettings } from '@nh/shared';
+import type { IUserSettings } from '../../shared';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
 @Entity('UserSettings')

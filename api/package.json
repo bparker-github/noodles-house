@@ -8,11 +8,12 @@
   },
   "scripts": {
     "build:code": "tsc",
-    "build:watch": "tsc -w",
+    "build:watch": "tsc -w --preserveWatchOutput",
     "build": "npm-run-all -lns clean build:code",
     "clean": "rimraf dist",
     "start": "npm-run-all -lns clean build -p watch start:func",
     "start:func": "func start",
+    "start:func:test": "func start --verbose --functions Unsplash",
     "start:func:https": "func start --useHttps --cert ../https/certificate.crt",
     "watch": "npm-run-all -lns clean build:watch"
   },
@@ -25,6 +26,7 @@
     "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
+    "azure-functions-core-tools": "^4.0.5801",
     "@types/node": "^18.19.34",
     "copyfiles": "^2.4.1",
     "dree": "^4.8.5",

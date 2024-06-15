@@ -5,15 +5,12 @@
     "target": "es6",
     "outDir": "dist",
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": false,
     "strict": false,
     "types": ["node"],
 
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-
-    "paths": {
-      "@nh/shared": ["./src/shared/index.ts"]
-    }
+    "emitDecoratorMetadata": true
   }
 }

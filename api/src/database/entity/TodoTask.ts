@@ -1,5 +1,5 @@
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { TaskState, type TaskType, type TodoTask } from '@nh/shared';
+import { TaskState, type TaskType, type TodoTask } from '../../shared';
 
 @Entity('TodoTask')
 export class TodoTaskModel extends BaseEntity implements TodoTask {

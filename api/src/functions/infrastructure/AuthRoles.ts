@@ -1,5 +1,5 @@
 import { app, HttpRequest, HttpResponseInit, InvocationContext } from '@azure/functions';
-import { NoodleUserRole } from '@nh/shared';
+import { NoodleUserRole } from '../../shared';
 
 export async function GetRoles(
   request: HttpRequest,

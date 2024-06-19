@@ -4,10 +4,6 @@
       "name": "NoodlesHouseFirst",
       "path": "../noodles-house",
     },
-    {
-      "name": "NoodlesHouse - NEXT",
-      "path": "../noodles-next-house",
-    },
   ],
   "extensions": {
     "recommendations": [

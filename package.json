@@ -1,0 +1,15 @@
+{
+  "name": "noodles-house",
+  "version": "0.0.1",
+  "workspaces": [
+    "api",
+    "ui",
+    "ui-next"
+  ],
+  "devDependencies": {
+    "eslint": "^9.5.0",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "prettier-plugin-tailwindcss": "^0.6.4"
+  }
+}

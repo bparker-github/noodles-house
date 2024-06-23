@@ -9,5 +9,5 @@
   "useTabs": false,
   "singleAttributePerLine": true,
   "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-organize-attributes"],
-  "attributeGroups": ["^v-.+$", "$DEFAULT", "^aria-"]
+  "attributeGroups": ["$DEFAULT", "^aria-"]
 }

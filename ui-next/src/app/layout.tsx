@@ -25,7 +25,7 @@ export default function RootLayout({
       <head>
         <link
           rel="icon"
-          href="./NoodleIcon.svg"
+          href="/favicon/NoodleIcon.svg"
           type="image/svg+xml"
           sizes="any"
         />

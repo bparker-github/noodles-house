@@ -6,7 +6,7 @@ export type SafeFuncHandler<T> = (req: HttpRequest, con: InvocationContext) => P
 export async function safeResponseHandler<T>(
   request: HttpRequest,
   context: InvocationContext,
-  action: SafeFuncHandler<T>,
+  action: (request: HttpRequest, context: InvocationContext) => Promise<T | void>,
   status = 200
 ): Promise<HttpResponseInit> {
   try {
@@ -19,13 +19,6 @@ export async function safeResponseHandler<T>(
     };
   }
 }
-
-export const useSafeResponseHandler = <T>(
-  action: SafeFuncHandler<T>,
-  status = 200
-): FuncHandler => {
-  return (r: HttpRequest, c: InvocationContext) => safeResponseHandler(r, c, action, status);
-};
 
 export class NoodleError extends Error {
   public status: number;

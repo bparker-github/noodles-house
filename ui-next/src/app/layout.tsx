@@ -22,6 +22,15 @@ export default function RootLayout({
       lang="en"
       className={'h-full'}
     >
+      <head>
+        <link
+          rel="icon"
+          href="/favicon/NoodleIcon.svg"
+          type="image/svg+xml"
+          sizes="any"
+        />
+      </head>
+
       <body className={classNames(inter.className, 'h-full')}>{children}</body>
     </html>
   );

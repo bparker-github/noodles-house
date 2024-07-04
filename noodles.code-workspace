@@ -148,6 +148,7 @@
     "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
+    "azureFunctions.projectSubpath": "api",
     "azureFunctions.preDeployTask": "npm prune (functions)",
 
     "powershell.cwd": "noodles-house",

@@ -1,0 +1,60 @@
+{
+  "auth": {
+    "identityProviders": {
+      "apple": {
+        "registration": {
+          "clientIdSettingName": "NOOD_APPLE_CLIENT_ID",
+          "clientSecretSettingName": "NOOD_APPLE_CLIENT_SECRET"
+        },
+        "login": {
+          "scopes": ["openid", "email", "name"]
+        }
+      }
+    }
+  },
+  "platform": {
+    "apiRuntime": "node:18"
+  },
+  "trailingSlash": "auto",
+  "routes": [
+    {
+      "route": "/office*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/sitting-room*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/foyer*",
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/login",
+      "rewrite": "/.auth/login/apple?post_login_redirect_uri=/foyer/welcome"
+    },
+    {
+      "route": "/logout",
+      "rewrite": "/.auth/logout",
+      "allowedRoles": ["authenticated"]
+    }
+  ],
+  "responseOverrides": {
+    "401": {
+      "rewrite": "/.auth/login/apple?post_login_redirect_uri=.referrer",
+      "statusCode": 302
+    }
+  },
+  "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/images/*.{png,jpg,gif,ico}", "/*.{css,scss,js,ts,vue}"]
+  },
+  "globalHeaders": {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET",
+    "Content-Security-Policy": "default-src https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'"
+  },
+  "mimeTypes": {
+    ".json": "text/json"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "dev": {
+      "apiDevserverUrl": "http://localhost:3001",
+      "apiLanguage": "node",
+      "apiLocation": "api",
+      "apiVersion": "18",
+      "appDevserverUrl": "http://localhost:3000",
+      "appLocation": "ui-next",
+      "dataApiLocation": "swa-db-connections",
+      "verbose": "true"
+    }
+  }
+}

@@ -9,6 +9,12 @@
   "engines": {
     "node": "^18.0.0 || ^20.0.0"
   },
+  "scripts": {
+    "dev:api": "npm run start -w api",
+    "dev:ui-next": "npm run dev -w ui-next",
+    "swa:start": "swa start --config-name dev",
+    "start": "npm-run-all -lnp dev:api dev:ui-next swa:start"
+  },
   "devDependencies": {
     "eslint": "^9.5.0",
     "npm-run-all2": "^6.2.0",

@@ -1,0 +1,44 @@
+{
+  "name": "@noodles-house/unsplash",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "files": [
+    "dist",
+    "unsplash.d.ts"
+  ],
+  "main": "./dist/unsplash-js-react.umd.cjs",
+  "module": "./dist/unsplash-js-react.js",
+  "types": "./dist/src/main.d.ts",
+  "exports": {
+    "types": "./dist/src/main.d.ts",
+    "import": "./dist/unsplash-js-react.js",
+    "require": "./dist/unsplash-js-react.umd.cjs"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "vite",
+    "build:types": "tsc",
+    "build:lib": "vite build",
+    "build": "npm-run-all -lns clean build:lib build:types"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.1.1",
+    "blurhash": "^2.0.5",
+    "classnames": "^2.5.1",
+    "unsplash-js": "^7.0.19"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.6.0",
+    "npm-run-all2": "^6.2.2",
+    "postcss": "^8.4.39",
+    "prettier": "^3.3.2",
+    "prettier-plugin-organize-attributes": "^1.0.0",
+    "rimraf": "^5.0.7",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.3"
+  }
+}

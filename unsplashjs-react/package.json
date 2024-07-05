@@ -5,6 +5,7 @@
   "type": "module",
   "files": [
     "dist",
+    "src",
     "unsplash.d.ts"
   ],
   "main": "./dist/unsplash-js-react.umd.cjs",
@@ -16,7 +17,7 @@
     "require": "./dist/unsplash-js-react.umd.cjs"
   },
   "engines": {
-    "node": "^20"
+    "node": "^18"
   },
   "scripts": {
     "clean": "rimraf dist",
@@ -34,7 +35,7 @@
     "unsplash-js": "^7.0.19"
   },
   "devDependencies": {
-    "@tsconfig/node20": "^20.1.4",
+    "@tsconfig/node18": "^18",
     "autoprefixer": "^10.4.19",
     "eslint": "^9.6.0",
     "npm-run-all2": "^6.2.2",

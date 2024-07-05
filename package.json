@@ -3,12 +3,11 @@
   "version": "0.0.1",
   "workspaces": [
     "api",
-    "ui",
     "ui-next",
     "unsplashjs-react"
   ],
   "engines": {
-    "node": "^18.0.0 || ^20.0.0"
+    "node": "^18"
   },
   "scripts": {
     "build": "npm run build -w ui-next",

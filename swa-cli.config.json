@@ -6,8 +6,19 @@
       "apiLanguage": "node",
       "apiLocation": "api",
       "apiVersion": "18",
+      "dataApiLocation": "swa-db-connections",
       "appDevserverUrl": "http://localhost:3000",
-      "appLocation": "ui-next",
+      "appLocation": ".",
+      "verbose": "true"
+    },
+    "build": {
+      "apiBuildCommand": "npm run build",
+      "apiLanguage": "node",
+      "apiLocation": "api",
+      "apiVersion": "18",
+      "appBuildCommand": "npm run build.ui",
+      "appLocation": ".",
+      "outputLocation": "ui-next",
       "verbose": "true"
     }
   }

@@ -4,7 +4,8 @@
   "workspaces": [
     "api",
     "ui",
-    "ui-next"
+    "ui-next",
+    "unsplashjs-react"
   ],
   "engines": {
     "node": "^18.0.0 || ^20.0.0"

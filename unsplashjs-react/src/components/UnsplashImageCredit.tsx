@@ -13,11 +13,11 @@ function createAttributeLink(link?: string): string {
   return link + separator + ['utm_source=NoodlesHouse', 'utm_medium=referral'].join('&');
 }
 
-export default function UnsplashImageCredit({
+export const UnsplashImageCredit = ({
   photoResp,
   className,
   ...rest
-}: UnsplashImageCreditProps) {
+}: UnsplashImageCreditProps) => {
   // We must credit the creator of the images with a click section
   if (!photoResp) {
     return null;
@@ -49,4 +49,5 @@ export default function UnsplashImageCredit({
       </a>
     </a>
   );
-}
+};
+export default UnsplashImageCredit;

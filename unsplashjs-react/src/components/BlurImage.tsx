@@ -9,7 +9,7 @@ export interface BlurHashProps extends BlurCanvasProps {
   transitionDuration?: number;
 }
 
-export default function BlurImage({
+export const BlurImage = ({
   hash,
   height,
   width,
@@ -18,7 +18,7 @@ export default function BlurImage({
   srcset,
   transitionDuration,
   ...rest
-}: React.HTMLAttributes<HTMLImageElement> & BlurHashProps) {
+}: React.HTMLAttributes<HTMLImageElement> & BlurHashProps) => {
   const isLoaded = useRef(false);
 
   return (
@@ -58,4 +58,5 @@ export default function BlurImage({
       </Transition>
     </div>
   );
-}
+};
+export default BlurImage;

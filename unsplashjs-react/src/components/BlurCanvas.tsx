@@ -13,9 +13,7 @@ export interface BlurCanvasProps {
   punch?: number;
 }
 
-export default function BlurCanvas(
-  props: React.HTMLAttributes<HTMLCanvasElement> & BlurCanvasProps
-) {
+export const BlurCanvas = (props: React.HTMLAttributes<HTMLCanvasElement> & BlurCanvasProps) => {
   const { hash, width, height, punch, ...rest } = props;
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -57,4 +55,5 @@ export default function BlurCanvas(
       height={curHeight.current}
     />
   );
-}
+};
+export default BlurCanvas;

@@ -36,7 +36,7 @@ export interface UnsplashImageProps extends React.HTMLAttributes<HTMLDivElement>
    */
   creditClass?: CN_Argument;
 }
-export default function UnsplashImage(props: UnsplashImageProps) {
+export const UnsplashImage = (props: UnsplashImageProps) => {
   const [state, setState] = useState(UIS.NONE);
   const [photoResp, setPhotoResp] = useState<Full | null>(null);
   const unsplashApi = useUnsplashContext();
@@ -135,4 +135,5 @@ export default function UnsplashImage(props: UnsplashImageProps) {
       )}
     </div>
   );
-}
+};
+export default UnsplashImage;

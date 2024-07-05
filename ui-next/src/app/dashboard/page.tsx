@@ -1,6 +1,13 @@
+'use client';
+
+import { useAuthContext } from '@/context/authContext';
 import { Fragment } from 'react';
 
 export default function BasePage() {
+  const authContext = useAuthContext();
+
+  console.log('Auth Context?:', authContext);
+
   return (
     <Fragment>
       <header>

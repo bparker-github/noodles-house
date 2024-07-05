@@ -29,7 +29,7 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.rulers": [80, 120],
-    "editor.defaultFoldingRangeProvider": "Vue.volar",
+    "editor.defaultFoldingRangeProvider": "vscode.typescript-language-features",
     "editor.codeActionsOnSave": {
       "source.fixAll": "explicit",
     },
@@ -131,6 +131,7 @@
       "tailwindcss",
       "Textbox",
       "typeorm",
+      "Unsplashjs",
       "vueuse",
       "Whiteish",
     ],
@@ -148,6 +149,7 @@
     "azureFunctions.projectLanguage": "TypeScript",
     "azureFunctions.projectRuntime": "~4",
     "azureFunctions.projectLanguageModel": 4,
+    "azureFunctions.projectSubpath": "api",
     "azureFunctions.preDeployTask": "npm prune (functions)",
 
     "powershell.cwd": "noodles-house",
@@ -158,5 +160,7 @@
     "vue.inlayHints.missingProps": true,
     "vue.inlayHints.optionsWrapper": true,
     "vue.splitEditors.icon": true,
+    "emmet.showSuggestionsAsSnippets": true,
+    "tailwindCSS.emmetCompletions": true,
   },
 }

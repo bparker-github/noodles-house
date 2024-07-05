@@ -8,7 +8,6 @@
       "apiVersion": "18",
       "appDevserverUrl": "http://localhost:3000",
       "appLocation": "ui-next",
-      "dataApiLocation": "swa-db-connections",
       "verbose": "true"
     }
   }

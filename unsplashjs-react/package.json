@@ -15,6 +15,9 @@
     "import": "./dist/unsplash-js-react.js",
     "require": "./dist/unsplash-js-react.umd.cjs"
   },
+  "engines": {
+    "node": "^20"
+  },
   "scripts": {
     "clean": "rimraf dist",
     "dev": "vite",

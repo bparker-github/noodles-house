@@ -1,9 +1,9 @@
-// import { UnsplashImage } from '@noodles-house/unsplash';
+import { UnsplashImage } from '@noodles-house/unsplash';
 
 export default function NotAllowedPage() {
   return (
     <main className="relative isolate min-h-full">
-      <div
+      <UnsplashImage
         id="W7cPLHOa0eQ"
         className="absolute inset-0 -z-10 h-full w-full object-cover object-top"
         shared-class="flex flex-col flex-1 items-center justify-center rounded-md"

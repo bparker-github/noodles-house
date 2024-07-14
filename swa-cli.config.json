@@ -18,7 +18,7 @@
       "apiVersion": "18",
       "appBuildCommand": "npm run build.ui",
       "appLocation": ".",
-      "outputLocation": "ui-next",
+      "outputLocation": "ui",
       "verbose": "true"
     }
   }

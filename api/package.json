@@ -4,7 +4,7 @@
   "description": "Basic API functionality for Noodle's House.",
   "main": "dist/src/main.js",
   "engines": {
-    "node": "^18.0.0"
+    "node": "^18"
   },
   "scripts": {
     "build:code": "tsc",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "azure-functions-core-tools": "^4.0.5801",
-    "@types/node": "^18.19.34",
+    "@types/node": "^18",
     "copyfiles": "^2.4.1",
     "dree": "^4.8.5",
     "npm-run-all2": "^6.2.0",

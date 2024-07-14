@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "^20.0.0"
+    "node": "^18"
   },
   "scripts": {
     "clean:code": "rimraf out",
@@ -29,12 +29,13 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^18",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "classnames": "^2.5.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.4",
+    "npm-run-all2": "^6.2.2",
     "postcss": "^8",
     "rimraf": "^5.0.7",
     "tailwindcss": "^3.4.1",

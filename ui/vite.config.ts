@@ -35,14 +35,14 @@ export default defineConfig({
   envPrefix: 'NOOD_',
   envDir: '..',
   server: {
-    port: 9090,
+    port: 3000,
     // https: {
     //   key: readFileSync('../https/privateKey.key'),
     //   cert: readFileSync('../https/certificate.crt'),
     // },
   },
   preview: {
-    port: 9090,
+    port: 3000,
     // https: true,
   },
 });

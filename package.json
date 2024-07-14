@@ -10,8 +10,9 @@
     "node": "^18"
   },
   "scripts": {
-    "build": "npm run build -w ui-next",
+    "build": "npm run build -w ui",
     "dev:api": "npm run start -w api",
+    "dev:ui": "npm run dev -w ui",
     "dev:ui-next": "npm run dev -w ui-next",
     "swa:start": "swa start --config-name dev",
     "start": "npm-run-all -lnp dev:api dev:ui-next swa:start"

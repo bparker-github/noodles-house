@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "workspaces": [
     "api",
-    "ui-next",
+    "ui",
     "unsplashjs-react"
   ],
   "engines": {
@@ -13,9 +13,8 @@
     "build": "npm run build -w ui",
     "dev:api": "npm run start -w api",
     "dev:ui": "npm run dev -w ui",
-    "dev:ui-next": "npm run dev -w ui-next",
     "swa:start": "swa start --config-name dev",
-    "start": "npm-run-all -lnp dev:api dev:ui-next swa:start"
+    "start": "npm-run-all -lnp dev:api dev:ui swa:start"
   },
   "devDependencies": {
     "eslint": "^9.5.0",
